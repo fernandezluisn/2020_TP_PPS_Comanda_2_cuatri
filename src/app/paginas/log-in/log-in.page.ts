@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { ToastController } from '@ionic/angular';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { SpinerService } from 'src/app/servicios/spiner.service';
 
 @Component({
@@ -38,7 +37,7 @@ export class LogInPage implements OnInit {
         audio.load();
         audio.play();
       }
-      this.publicRouter.navigate(['/home'])
+      
     
     }).catch(err =>{
       // alert(err)

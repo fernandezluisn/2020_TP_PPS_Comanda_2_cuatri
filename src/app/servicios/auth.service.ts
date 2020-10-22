@@ -18,6 +18,7 @@ export class AuthService {
     private AFauth: AngularFireAuth,
     private firestore: AngularFirestore,
     private fireStorage: AngularFireStorage,
+    private router:Router
   ) { }
 
   loginAnonimo(usuario, foto) {
@@ -40,40 +41,72 @@ export class AuthService {
         // let usuarioData = this.TransformarUsuario(usuarioLogeado.user.uid)
         let uid = usuarioLogeado.user.uid;
 
-        // this.GetUsuarios().then(usrs => {
-        //   usrs.forEach(element => {
-        //     let obj_element = element.data();
-        //     obj_element.id = element.id;
-        //     if (obj_element.activo && obj_element.uid == uid) {
-        //       switch (obj_element.perfil) {
-        //         case 'bar':
-        //         case 'cocina':
-        //         case 'supervisor':
-        //         case 'mozo':
-        //         case 'metre':
-        //         case 'delivery':
-        //         case 'dueño':
-        //           this.usuario = obj_element as Empleado;
-        //           localStorage.setItem('usuario', JSON.stringify(this.usuario));
-        //           resolve(this.usuario);
-        //           break;
-        //         case 'cliente':
-        //           this.usuario = obj_element as Cliente;
-        //           localStorage.setItem('usuario', JSON.stringify(this.usuario));
-        //           resolve(this.usuario);
-        //           break;
-        //       }
-        //     }
-        //   });
-        //   if (this.usuario) {
-             //resolve(this.usuario);
+         this.GetUsuarios().then(usrs => {
+          usrs.forEach(element => {
+            let obj_element = element.data();
+            obj_element.id = element.id;
+             if (obj_element.activo && obj_element.uid == uid) {
+               switch (obj_element.perfil) {
+               case 'bar':
+                this.usuario = obj_element as Empleado;
+                localStorage.setItem('usuario', JSON.stringify(this.usuario));
+                 resolve(this.usuario);
+                 this.router.navigate(["home-comanda"]);
+                 break;
+                case 'cocina':
+                  this.usuario = obj_element as Empleado;
+                  localStorage.setItem('usuario', JSON.stringify(this.usuario));
+                   resolve(this.usuario);
+                   this.router.navigate(["home-comanda"]);
+                   break;
+               case 'supervisor':
+                this.usuario = obj_element as Empleado;
+                localStorage.setItem('usuario', JSON.stringify(this.usuario));
+                 resolve(this.usuario);
+                 this.router.navigate(["home-comanda"]);
+                 break;
+                case 'mozo':
+                  this.usuario = obj_element as Empleado;
+                  localStorage.setItem('usuario', JSON.stringify(this.usuario));
+                   resolve(this.usuario);
+                   this.router.navigate(["home-comanda"]);
+                   break;
+                case 'metre':
+                  this.usuario = obj_element as Empleado;
+                  localStorage.setItem('usuario', JSON.stringify(this.usuario));
+                   resolve(this.usuario);
+                   this.router.navigate(["home-comanda"]);
+                   break;
+                case 'delivery':
+                  this.usuario = obj_element as Empleado;
+                  localStorage.setItem('usuario', JSON.stringify(this.usuario));
+                   resolve(this.usuario);
+                   this.router.navigate(["home-comanda"]);
+                   break;
+                 case 'dueño':
+                   this.usuario = obj_element as Empleado;
+                  localStorage.setItem('usuario', JSON.stringify(this.usuario));
+                   resolve(this.usuario);
+                   this.router.navigate(["home-comanda"]);
+                   break;
+                 case 'cliente':
+                 this.usuario = obj_element as Cliente;
+                   localStorage.setItem('usuario', JSON.stringify(this.usuario));
+                   resolve(this.usuario);
+                   this.router.navigate(["home-cliente"]);
+                  break;
+               }
+             }
+           });
+          if (this.usuario) {
+            resolve(this.usuario);
              resolve(true);
-        //   }
-        //   else {
-        //     this.LogOut();
-        //     rejected(this.usuario);
-        //   }
-        // });
+           }
+           else {
+             this.LogOut();
+           rejected(this.usuario);
+           }
+         });
       }).catch(err => {
         this.LogOut();
         rejected(err);

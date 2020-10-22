@@ -19,7 +19,8 @@ const routes: Routes = [
   },
   { path: 'log-in', loadChildren: './paginas/log-in/log-in.module#LogInPageModule' },
   { path: 'home-comanda', loadChildren: './paginas/home-comanda/home-comanda.module#HomeComandaPageModule' },
-  { path: 'alta-cliente', loadChildren: './paginas/alta-cliente/alta-cliente.module#AltaClientePageModule' } 
+  { path: 'alta-cliente', loadChildren: './paginas/alta-cliente/alta-cliente.module#AltaClientePageModule' },
+  { path: 'home-cliente', loadChildren: './paginas/home-cliente/home-cliente.module#HomeClientePageModule' }  
 ];
 
 @NgModule({
