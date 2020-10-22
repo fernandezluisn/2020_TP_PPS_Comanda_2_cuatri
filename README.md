@@ -2,11 +2,15 @@
 2020 - 2 cuatrimestre - PPS -- La Comanda
 </h1>
 
+<h2>
+  Grupo 99
+</h2>
+
 <h3>Integrantes:</h3>
 <br>
-Alfa: <br>
-Beta: <br>
-Gama: <br>
+Alfa: Fernández, Luis Nahuel<br>
+Beta: Zamora, Ariel<br>
+Gama: Ramundo, Federico<br>
 <br>
 <h3>Diagrama código Qr (mesa)</h3>
 
