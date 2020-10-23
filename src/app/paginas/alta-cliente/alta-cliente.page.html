@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="danger">
+  <ion-toolbar color="primary">
     <ion-title>Registro</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -51,12 +51,12 @@
     <ion-label *ngIf="this.urlFotoUsuario == ''">NaN</ion-label>
   </ion-item>
 
-  <ion-button (click)="this.tomarDatosDNI()" expand="full" color="dark">Datos desde código QR del DNI</ion-button>
-  <ion-button (click)="this.tomarFotoUsuario()" expand="full" color="dark">Cargar foto</ion-button>
+  <ion-button (click)="this.tomarDatosDNI()" expand="full" color="primary">Datos desde código QR del DNI</ion-button>
+  <ion-button (click)="this.tomarFotoUsuario()" expand="full" color="warning">Cargar foto</ion-button>
   <ng-container *ngIf="this.tipoRegistro == 'Nuevo usuario'">
-    <ion-button (click)="this.cargarUsuario()" expand="full" color="danger">Registrar usuario</ion-button>
+    <ion-button (click)="this.cargarUsuario()" expand="full" color="success">Registrar usuario</ion-button>
   </ng-container>
   <ng-container *ngIf="this.tipoRegistro == 'Anónimo'">
-    <ion-button (click)="this.cargarUsuario()" expand="full" color="danger">Ingresar como anónimo</ion-button>
+    <ion-button (click)="this.cargarUsuario()" expand="full" color="primary">Ingresar como anónimo</ion-button>
   </ng-container>
 </ion-content>

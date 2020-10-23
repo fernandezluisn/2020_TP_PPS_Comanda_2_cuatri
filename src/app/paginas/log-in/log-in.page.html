@@ -1,16 +1,19 @@
+
+<ion-header>
+	<div class="login-header  ion-padding">
+
+		<img class="logo-img" src="assets/img/logo.png">
+	</div>
+</ion-header>
+
 <ion-content >
-    <ion-card-header >
-      <ion-card-header>
-        <ion-card-title class="container" color='dark'>
-          <h2 class='text'>Iniciar sesión</h2><br>
 
-           <!-- ACA VA EL LOGO NUESTRO <img class="icon" src="assets/icon/icono_1.png"> -->
-        </ion-card-title>
-      </ion-card-header>
-
-
-    </ion-card-header>
-
+  <div text-center>
+    <h3 style="color: black">	        
+    Iniciar Sesion</h3>  	  
+    <br>
+  </div>
+  
     <ion-card-content >
       <ion-card style="width: 100%;position: relative;">
         <ion-item  shape="round">
@@ -40,19 +43,19 @@
 
 
         <ion-label>
-          <ion-button expand="full" (click)='OnSubmitLogIn()' shape="round" color='success' fill="outline">
+          <ion-button expand="full" (click)='OnSubmitLogIn()' shape="round" color='primary'>
             Entrar
           </ion-button>
         </ion-label>
 
-          <ion-label>
-            <ion-button expand="full" (click)='Registrarse()' shape="round" color='danger' fill="outline">
+          <ion-label style="margin-top:16px">
+            <ion-button expand="full" (click)='Registrarse()' shape="round" color='success'>
               Registrarme
             </ion-button>
           </ion-label>
       
         <ion-fab vertical="bottom" horizontal="start" >
-            <ion-fab-button color="danger">
+            <ion-fab-button color="primary">
               <ion-icon name="arrow-dropup"></ion-icon>
             </ion-fab-button>
             <ion-fab-list side="top">
