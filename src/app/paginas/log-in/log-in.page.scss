@@ -15,3 +15,24 @@
   line-height: 100%;
 }
 
+#columnCenter{
+  width:50%;
+  margin: 0 auto
+ }
+ 
+ .logo-img{
+     display:block;
+     margin:0 auto;
+     text-align:center;
+     width:300px;
+     height:160px;
+ }
+ 
+ .login-header{
+     background: var(--themecolor);
+     position: relative;
+     background-color :#A599B5;
+     height:190px;
+
+ }
+

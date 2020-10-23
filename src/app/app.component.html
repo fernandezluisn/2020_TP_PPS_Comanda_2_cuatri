@@ -1,25 +1,10 @@
 <ion-app>
-  <div *ngIf='showSplash' class="base_1">
-      <div class="base_2">
-      </div>
+  <div *ngIf="this.showSplash" class="splash" style="background-color:#A599B5">
+    <div class="rotating" [ngClass]="{
+      'spinner-landscape': this.platform.isLandscape(),
+      'spinner-portrait': !this.platform.isLandscape()
+      }"><img src="../assets/splash.png" class="rotate">
     </div>
-    <ion-toolbar color='tertiary'>
-      <ion-button slot="start" fill="clear" color="light" (click)='home()'>
-        <ion-icon name="home"></ion-icon>
-      </ion-button>
-      <ion-title text-center>
-        La Comanda PPS [Test]
-      </ion-title>
-      <ion-icon name="volume-high" (click)='sonido(false)' *ngIf='sound'></ion-icon>
-      <ion-icon name="volume-off" (click)='sonido(true)' *ngIf='!sound'></ion-icon>
-      <ion-button slot="end" fill="clear" color="danger" (click)='LogOut()'>
-        <ion-icon name="close"></ion-icon>
-      </ion-button>
-    </ion-toolbar>
-
-    <ion-content>
-      <ion-router-outlet></ion-router-outlet>
-    </ion-content>
+  </div>
+  <ion-router-outlet></ion-router-outlet>
 </ion-app>
-
-
