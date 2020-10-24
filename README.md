@@ -10,7 +10,7 @@
 <br>
 Alfa: Fernández, Luis Nahuel<br>
 Beta: Zamora, Ariel<br>
-Gama: Ramundo, Federico<br>
+Gamma: Ramundo, Federico<br>
 <br>
 
 | Tarea | Descripcion | Estado | Desarrollado por | Fecha
@@ -40,10 +40,9 @@ Gama: Ramundo, Federico<br>
 <h3>Semana 1</h3>
 |  | Alfa | Beta | Gammaa 
 |---|---|---|---|
-| Branch | https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/tree/master |  | https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/tree/framundo | 
-| Tareas |  |  |  | 
-| Fecha inicio |  |  |  | 
-| Fecha finalizaciíon |  |  |  | 
+| Tareas | Login |  | Splash e iconos | 
+| Fecha inicio | 17/10 | 17/10 | 17/10 | 
+| Fecha finalizaciíon | 23/10 | 23/10 | 23/10 | 
 
 
 
