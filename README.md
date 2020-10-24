@@ -24,12 +24,12 @@
 
 | Tarea | Descripcion | Estado | Desarrollado por | Fecha
 |---|---|---|---|---|
-| A | Alta dueño | Pendiente |  | 
-| B | Alta empleado | Pendiente |  | 
-| C | Alta producto | Pendiente |  | 
-| D | Alta cliente | Pendiente |  | 
-| E | Alta mesa | Pendiente |  |
-| F | Ingreso Local | Pendiente |  | 
+| A | Alta dueño | Pendiente | Zamora | 
+| B | Alta empleado | Pendiente | Zamora | 
+| C | Alta producto | Pendiente | Fernández | 
+| D | Alta cliente | Pendiente | Ramundo | 
+| E | Alta mesa | Pendiente | Fernández |
+| F | Ingreso Local | Pendiente | Ramundo | 
 | G | QR mesa | Pendiente |  | 
 | H | QR Propina | Pendiente |  | 
 | I | Encuesta cliente | Pendiente |  | 
