@@ -6,12 +6,15 @@
   Grupo 99
 </h2>
 
-<h3>Integrantes:</h3>
+<h3>Integrantes 🎓:</h3>
 <br>
 Alfa: Fernández, Luis Nahuel<br>
 Beta: Zamora, Ariel<br>
 Gama: Ramundo, Federico<br>
 <br>
+
+<h2>Responsabilidades ✍️</h2><br>
+
 <h3>Diagrama código Qr (mesa)</h3>
 
 | Tarea | Descripcion | Estado | Desarrollado por | Fecha
