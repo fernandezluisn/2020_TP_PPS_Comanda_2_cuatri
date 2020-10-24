@@ -10,12 +10,12 @@
 
 <br>
 
-**Alfa**: Fernández, Luis Nahuel  <br>
-**Branch**: https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/tree/fernandez<br><br>
+**Alfa**: [Fernández, Luis Nahuel](https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/tree/fernandez)  <br>
+
 **Beta**: Zamora, Ariel  <br>
-**Branch**: <br><br>
+
 **Gamma**: Ramundo, Federico <br>
-**Branch**: https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/tree/framundo<br><br>
+
 
 <br>
 
