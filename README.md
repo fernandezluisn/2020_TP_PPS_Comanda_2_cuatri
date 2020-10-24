@@ -7,10 +7,13 @@
 </h2>
 
 <h3>Integrantes 🎓:</h3>
+
 <br>
-Alfa: Fernández, Luis Nahuel<br>
-Beta: Zamora, Ariel<br>
-Gamma: Ramundo, Federico<br>
+
+Alfa: Fernández, Luis Nahuel  Branch: https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/tree/fernandez<br>
+Beta: Zamora, Ariel  Branch: <br>
+Gamma: Ramundo, Federico Branch; https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/tree/framundo<br>
+
 <br>
 
 | Tarea | Descripcion | Estado | Desarrollado por | Fecha
