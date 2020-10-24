@@ -15,6 +15,14 @@ Gama: Ramundo, Federico<br>
 
 <h2>Responsabilidades ✍️</h2><br>
 
+<h3>Semana 1</h3>
+| |Alfa|Beta|Gama|
+|---|---|---|---|
+|Nombre|---|---|---|
+|Apellido|---|---|---|
+|Branch|---|---|---|
+|Tareas|---|---|---|
+
 <h3>Diagrama código Qr (mesa)</h3>
 
 | Tarea | Descripcion | Estado | Desarrollado por | Fecha
