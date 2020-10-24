@@ -9,8 +9,10 @@ import { AuthService } from "./servicios/auth.service";
 
 @Component({
   selector: 'app-root',
-  templateUrl: 'app.component.html'
+  templateUrl: 'app.component.html',
+  styleUrls: ['app.component.scss']
 })
+
 export class AppComponent{
   sound;
   showSplash =true;
@@ -48,10 +50,13 @@ export class AppComponent{
       timer(3000).subscribe(()=>{this.showSplash=false;})
     });
   }
+
   home(){
     this.publicRouter.navigate(['/home'])
 
   }
+
+
   LogOut(){
     if(localStorage.getItem('Sonido') == 'true')
     {

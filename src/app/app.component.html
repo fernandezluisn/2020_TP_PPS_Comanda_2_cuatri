@@ -1,9 +1,9 @@
 <ion-app>
-  <div *ngIf="this.showSplash" class="splash" style="background-color:#A599B5">
+  <div *ngIf="this.showSplash" class="splash">
     <div class="rotating" [ngClass]="{
       'spinner-landscape': this.platform.isLandscape(),
       'spinner-portrait': !this.platform.isLandscape()
-      }"><img src="../assets/splash.png" class="rotate">
+      }"><img src="../assets/splashfull.png" class="animate">
     </div>
   </div>
   <ion-router-outlet></ion-router-outlet>
