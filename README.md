@@ -13,18 +13,6 @@ Beta: Zamora, Ariel<br>
 Gama: Ramundo, Federico<br>
 <br>
 
-<h2>Responsabilidades ✍️</h2><br>
-
-<h3>Semana 1</h3>
-| |Alfa|Beta|Gama|
-|---|---|---|---|
-|Nombre|---|---|---|
-|Apellido|---|---|---|
-|Branch|---|---|---|
-|Tareas|---|---|---|
-
-<h3>Diagrama código Qr (mesa)</h3>
-
 | Tarea | Descripcion | Estado | Desarrollado por | Fecha
 |---|---|---|---|---|
 | A | Alta dueño | Pendiente |  | 
@@ -43,6 +31,19 @@ Gama: Ramundo, Federico<br>
 | N | Realizar pedido direccion | Pendiente |  | 
 | O | Chat delivery | Pendiente | | 
 | P | Juego descuento | Pendiente |  | 
+
+
+<h3>Diagrama código Qr (mesa)</h3>
+
+<h2>Responsabilidades ✍️</h2><br>
+
+|  | Alfa | Beta | Gammaa 
+|---|---|---|---|
+| Branch |  |  |  | 
+| Tareas |  |  |  | 
+| Fecha inicio |  |  |  | 
+| Fecha finalizaciíon |  |  |  | 
+
 
 
 
