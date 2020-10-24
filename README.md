@@ -41,7 +41,7 @@ Gamma: Ramundo, Federico<br>
 
 |  | Alfa | Beta | Gammaa 
 |---|---|---|---|
-| Tareas | Login y README.md | Autenticación | Splash e iconos y diseño | 
+| Tareas | Login <br> README.md | Autenticación y <br> server de imagenes | Splash e iconos <br> diseño | 
 | Fecha inicio | 17/10 | 17/10 | 17/10 | 
 | Fecha finalizaciíon | 23/10 | 23/10 | 23/10 | 
 
