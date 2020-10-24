@@ -47,9 +47,19 @@
 
 |  | Alfa | Beta | Gammaa 
 |---|---|---|---|
-| Tareas | Login <br> README.md | Autenticación y <br> server de imagenes | Splash e iconos <br> diseño | 
+| Tareas | Login <br> README.md | Autenticación <br> Server de imagenes | Splash e iconos <br> Diseño global | 
 | Fecha inicio | 17/10 | 17/10 | 17/10 | 
 | Fecha finalizaciíon | 23/10 | 23/10 | 23/10 | 
+
+<br><br>
+
+<h3>Semana 2 💪</h3><br>
+
+|  | Alfa | Beta | Gammaa 
+|---|---|---|---|
+| Tareas | Alta producto <br> Alta mesa | Alta dueño <br> Alta empleado | Alta cliente <br> Ingreso Local | 
+| Fecha inicio | 24/10 | 24/10 | 24/10 | 
+| Fecha finalizaciíon |  |  |  | 
 
 
 
