@@ -14,7 +14,7 @@
 
 **Beta**: Zamora, Ariel  <br>
 
-**Gamma**: Ramundo, Federico <br>
+**Gamma**: [Ramundo, Federico](https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/tree/framundo) <br>
 
 
 <br>
