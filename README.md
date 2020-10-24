@@ -35,11 +35,12 @@ Gama: Ramundo, Federico<br>
 
 <h3>Diagrama código Qr (mesa)</h3>
 
-<h2>Responsabilidades ✍️</h2><br>
+<h2>Responsabilidades semanales ✍️</h2><br>
 
+<h3>Semana 1</h3>
 |  | Alfa | Beta | Gammaa 
 |---|---|---|---|
-| Branch |  |  |  | 
+| Branch | https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/tree/master |  | https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/tree/framundo | 
 | Tareas |  |  |  | 
 | Fecha inicio |  |  |  | 
 | Fecha finalizaciíon |  |  |  | 
