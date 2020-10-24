@@ -37,10 +37,10 @@ Gamma: Ramundo, Federico<br>
 
 <h2>Responsabilidades semanales ✍️</h2><br>
 
-<h3>Semana 1</h3>
+<h3>Semana 1 :+1:</h3>
 |  | Alfa | Beta | Gammaa 
 |---|---|---|---|
-| Tareas | Login |  | Splash e iconos | 
+| Tareas | Login README.md |  | Splash e iconos | 
 | Fecha inicio | 17/10 | 17/10 | 17/10 | 
 | Fecha finalizaciíon | 23/10 | 23/10 | 23/10 | 
 
