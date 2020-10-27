@@ -63,7 +63,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"common":"common","home-home-module":"home-home-module","list-list-module":"list-list-module","paginas-alta-cliente-alta-cliente-module":"paginas-alta-cliente-alta-cliente-module","paginas-home-cliente-home-cliente-module":"paginas-home-cliente-home-cliente-module","paginas-home-comanda-home-comanda-module":"paginas-home-comanda-home-comanda-module","paginas-log-in-log-in-module":"paginas-log-in-log-in-module"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"common":"common","home-home-module":"home-home-module","list-list-module":"list-list-module","paginas-admin-comercio-admin-comercio-module":"paginas-admin-comercio-admin-comercio-module","paginas-alta-cliente-alta-cliente-module":"paginas-alta-cliente-alta-cliente-module","paginas-home-admin-home-admin-module":"paginas-home-admin-home-admin-module","paginas-home-cliente-home-cliente-module":"paginas-home-cliente-home-cliente-module","paginas-home-comanda-home-comanda-module":"paginas-home-comanda-home-comanda-module","paginas-log-in-log-in-module":"paginas-log-in-log-in-module"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function

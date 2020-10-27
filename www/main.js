@@ -841,9 +841,17 @@ var map = {
 		"./src/app/list/list.module.ts",
 		"list-list-module"
 	],
+	"./paginas/admin-comercio/admin-comercio.module": [
+		"./src/app/paginas/admin-comercio/admin-comercio.module.ts",
+		"paginas-admin-comercio-admin-comercio-module"
+	],
 	"./paginas/alta-cliente/alta-cliente.module": [
 		"./src/app/paginas/alta-cliente/alta-cliente.module.ts",
 		"paginas-alta-cliente-alta-cliente-module"
+	],
+	"./paginas/home-admin/home-admin.module": [
+		"./src/app/paginas/home-admin/home-admin.module.ts",
+		"paginas-home-admin-home-admin-module"
 	],
 	"./paginas/home-cliente/home-cliente.module": [
 		"./src/app/paginas/home-cliente/home-cliente.module.ts",
@@ -901,7 +909,7 @@ __webpack_require__.r(__webpack_exports__);
 var routes = [
     {
         path: '',
-        redirectTo: 'home',
+        redirectTo: 'log-in',
         pathMatch: 'full'
     },
     {
@@ -916,7 +924,9 @@ var routes = [
     { path: 'log-in', loadChildren: './paginas/log-in/log-in.module#LogInPageModule' },
     { path: 'home-comanda', loadChildren: './paginas/home-comanda/home-comanda.module#HomeComandaPageModule' },
     { path: 'alta-cliente', loadChildren: './paginas/alta-cliente/alta-cliente.module#AltaClientePageModule' },
-    { path: 'home-cliente', loadChildren: './paginas/home-cliente/home-cliente.module#HomeClientePageModule' }
+    { path: 'home-cliente', loadChildren: './paginas/home-cliente/home-cliente.module#HomeClientePageModule' },
+    { path: 'home-admin', loadChildren: './paginas/home-admin/home-admin.module#HomeAdminPageModule' },
+    { path: 'admin-comercio', loadChildren: './paginas/admin-comercio/admin-comercio.module#AdminComercioPageModule' }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -1293,7 +1303,7 @@ var AuthService = /** @class */ (function () {
                                     _this.usuario = obj_element;
                                     localStorage.setItem('usuario', JSON.stringify(_this.usuario));
                                     resolve(_this.usuario);
-                                    _this.router.navigate(["home-comanda"]);
+                                    _this.router.navigate(["home-admin"]);
                                     break;
                                 case 'mozo':
                                     _this.usuario = obj_element;
@@ -1317,7 +1327,8 @@ var AuthService = /** @class */ (function () {
                                     _this.usuario = obj_element;
                                     localStorage.setItem('usuario', JSON.stringify(_this.usuario));
                                     resolve(_this.usuario);
-                                    _this.router.navigate(["home-comanda"]);
+                                    console.log("soy dueño");
+                                    _this.router.navigate(["home-admin"]);
                                     break;
                                 case 'cliente':
                                     _this.usuario = obj_element;
@@ -1368,6 +1379,7 @@ var AuthService = /** @class */ (function () {
     };
     AuthService.prototype.CrearAuth = function (mail, pass, usuario, foto) {
         var _this = this;
+        console.log("Aca");
         return new Promise(function (resolve, rejected) {
             _this.AFauth.auth.createUserWithEmailAndPassword(mail, pass).then(function (nuevousuario) {
                 // let usuarioData = this.TransformarUsuario(usuarioLogeado.user.uid)

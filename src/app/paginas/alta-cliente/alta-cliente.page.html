@@ -18,7 +18,7 @@
     <ion-input type="text" [(ngModel)]="this.nombreUsuario"></ion-input>
   </ion-item>
 
-  <ng-container *ngIf="this.tipoRegistro == 'Nuevo usuario'">
+  <ng-container *ngIf="this.tipoRegistro == 'Usuario'">
     <ion-item>
       <ion-label position="floating">Apellido</ion-label>
       <ion-input type="text" [(ngModel)]="this.apellidoUsuario"></ion-input>
@@ -48,12 +48,12 @@
         <ion-img [src]="this.urlFotoUsuario"></ion-img>
       </ion-thumbnail>
     </ion-label>
-    <ion-label *ngIf="this.urlFotoUsuario == ''">NaN</ion-label>
+    <ion-label *ngIf="this.urlFotoUsuario == ''"></ion-label>
   </ion-item>
 
-  <ion-button (click)="this.tomarDatosDNI()" expand="full" color="primary">Datos desde código QR del DNI</ion-button>
+  <ion-button (click)="this.tomarDatosDNI()" expand="full" color="primary">Escanear DNI</ion-button>
   <ion-button (click)="this.tomarFotoUsuario()" expand="full" color="warning">Cargar foto</ion-button>
-  <ng-container *ngIf="this.tipoRegistro == 'Nuevo usuario'">
+  <ng-container *ngIf="this.tipoRegistro == 'Usuario'">
     <ion-button (click)="this.cargarUsuario()" expand="full" color="success">Registrar usuario</ion-button>
   </ng-container>
   <ng-container *ngIf="this.tipoRegistro == 'Anónimo'">
