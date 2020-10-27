@@ -139,6 +139,7 @@ export class AuthService {
   }
 
   CrearAuth(mail, pass, usuario, foto) {
+    console.log("Aca")
     return new Promise((resolve, rejected) => {
       this.AFauth.auth.createUserWithEmailAndPassword(mail, pass).then(nuevousuario => {
         // let usuarioData = this.TransformarUsuario(usuarioLogeado.user.uid)
