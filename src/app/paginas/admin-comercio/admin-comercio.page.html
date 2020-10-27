@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>admin-comercio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-button position="floating" (click)="cambiarAlta()">Cambiar formulario</ion-button>
+  <ng-container *ngIf="altaMesa">
+   <h1 position="floating">Subo mesas</h1>
+
+   <ion-item>
+    <ion-label position="floating">Tipo de mesa</ion-label>
+    <ion-select [(ngModel)]="this.tipoMesa">
+      <ion-select-option>Vip</ion-select-option>
+      <ion-select-option>Discapacitados</ion-select-option>
+      <ion-select-option>Estandar</ion-select-option>
+    </ion-select>
+  </ion-item>  
+  
+    <ion-item>
+      <ion-label position="floating">Número de mesa</ion-label>
+      <ion-input type="number" [(ngModel)]="this.numMesa"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Cantidad de comensales</ion-label>
+      <ion-input type="number" [(ngModel)]="this.cantidad"></ion-input>
+    </ion-item>  
+    
+  </ng-container>
+
+  <ng-container *ngIf="!altaMesa">
+    <h1 position="floating">subo productos</h1>
+  
+    
+  </ng-container>
+</ion-content>

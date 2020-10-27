@@ -5,7 +5,7 @@ import { SepararGuard } from './guard/separar.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'log-in',
     pathMatch: 'full'
   },
   {
@@ -20,7 +20,10 @@ const routes: Routes = [
   { path: 'log-in', loadChildren: './paginas/log-in/log-in.module#LogInPageModule' },
   { path: 'home-comanda', loadChildren: './paginas/home-comanda/home-comanda.module#HomeComandaPageModule' },
   { path: 'alta-cliente', loadChildren: './paginas/alta-cliente/alta-cliente.module#AltaClientePageModule' },
-  { path: 'home-cliente', loadChildren: './paginas/home-cliente/home-cliente.module#HomeClientePageModule' }  
+  { path: 'home-cliente', loadChildren: './paginas/home-cliente/home-cliente.module#HomeClientePageModule' },   
+  { path: 'home-admin', loadChildren: './paginas/home-admin/home-admin.module#HomeAdminPageModule' },  { path: 'admin-comercio', loadChildren: './paginas/admin-comercio/admin-comercio.module#AdminComercioPageModule' }
+
+ 
 ];
 
 @NgModule({
