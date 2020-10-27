@@ -143,7 +143,7 @@ export class AltaClientePage {
 
     if (this.urlFotoUsuario === '') {
       this.alert.mensaje('', 'Debe cargar una foto');
-     // return;
+     return;
     }
 
     if (this.tipoRegistro === 'Usuario') {
