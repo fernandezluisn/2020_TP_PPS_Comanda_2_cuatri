@@ -1,0 +1,20 @@
+<ion-content>
+  <ion-card class="ion-activatable" (click)="this.Mover('bar-cocina')" [ngClass]="{ 'card-vertical': !this.platform.isLandscape(), 'card-horizontal': this.platform.isLandscape() }">
+    <ion-ripple-effect></ion-ripple-effect>
+    <ion-icon name="person" [ngClass]="{ 'icon-horizontal': this.platform.isLandscape(), 'icon-vertical': !this.platform.isLandscape() }"></ion-icon>
+    <h2>Gestión de usuarios</h2>
+  </ion-card>
+  
+  <ion-card class="ion-activatable" (click)="this.Mover('admin-comercio')" [ngClass]="{ 'card-vertical': !this.platform.isLandscape(), 'card-horizontal': this.platform.isLandscape() }">
+    <ion-ripple-effect></ion-ripple-effect>
+    <ion-icon name="beer" [ngClass]="{ 'icon-horizontal': this.platform.isLandscape(), 'icon-vertical': !this.platform.isLandscape() }"></ion-icon>
+    <h2>Gestión del comercio</h2>
+  </ion-card>
+
+  <ion-card class="ion-activatable" (click)="this.Mover('home-comanda')" [ngClass]="{ 'card-vertical': !this.platform.isLandscape(), 'card-horizontal': this.platform.isLandscape() }">
+    <ion-ripple-effect></ion-ripple-effect>
+    <ion-icon name="restaurant"></ion-icon>
+    <h2>Home</h2>
+  </ion-card>
+
+</ion-content>

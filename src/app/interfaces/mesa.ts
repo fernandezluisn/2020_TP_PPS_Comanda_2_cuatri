@@ -1,4 +1,4 @@
-export interface Mesa {
+export class Mesa {
     id?: string;
     numero: number;
     espacios: number;
