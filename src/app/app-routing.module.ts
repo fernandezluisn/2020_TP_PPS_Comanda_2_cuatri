@@ -21,7 +21,8 @@ const routes: Routes = [
   { path: 'home-comanda', loadChildren: './paginas/home-comanda/home-comanda.module#HomeComandaPageModule' },
   { path: 'alta-cliente', loadChildren: './paginas/alta-cliente/alta-cliente.module#AltaClientePageModule' },
   { path: 'home-cliente', loadChildren: './paginas/home-cliente/home-cliente.module#HomeClientePageModule' },   
-  { path: 'home-admin', loadChildren: './paginas/home-admin/home-admin.module#HomeAdminPageModule' },  { path: 'admin-comercio', loadChildren: './paginas/admin-comercio/admin-comercio.module#AdminComercioPageModule' }
+  { path: 'home-admin', loadChildren: './paginas/home-admin/home-admin.module#HomeAdminPageModule' },  { path: 'admin-comercio', loadChildren: './paginas/admin-comercio/admin-comercio.module#AdminComercioPageModule' },
+  { path: 'alta-producto', loadChildren: './paginas/alta-producto/alta-producto.module#AltaProductoPageModule' }
 
  
 ];

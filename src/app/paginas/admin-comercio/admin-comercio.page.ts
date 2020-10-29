@@ -15,7 +15,6 @@ import { Vibration } from '@ionic-native/vibration/ngx';
 })
 export class AdminComercioPage implements OnInit {
 
-  altaMesa:boolean;
   tipoMesa:string;
   numMesa:number;
   cantidad:number;
@@ -23,6 +22,8 @@ export class AdminComercioPage implements OnInit {
   image: string = null;
   url1: string;
   qr:string;
+  repite=false;
+  listaMesas:Mesa[];
 
   constructor(private storage:AngularFireStorage, 
     private bda:MesasService,
@@ -32,22 +33,15 @@ export class AdminComercioPage implements OnInit {
     private loadingCtrl:LoadingController,
     private vibra:Vibration) 
     { 
-    this.altaMesa=true;
     this.cantidad=0;
     this.numMesa=0;
     this.tipoMesa="Estandar";
+    this.bda.devolverListadoMesas().subscribe(lista=>this.listaMesas=lista)
   }
 
   ngOnInit() {
   }
-
-  cambiarAlta(){
-    if(this.altaMesa){
-      this.altaMesa=false;
-    }else{
-      this.altaMesa=true;
-    }
-  }
+  
 
   escanear(){  
 
@@ -113,32 +107,47 @@ export class AdminComercioPage implements OnInit {
   }
 
   async subir(){
-    this.presentLoading("Subiendo imagen");
 
-    try{
-      const com=this.numMesa+"mesa";
-      let img;
-      await fetch(this.image)
-      .then(res => res.blob().then(r=>{
-        img=r
-      }))
-      
-      const file= img;
-      const path= com;
-      const ref=this.storage.ref(path);    
-      const task=this.storage.upload(path, file);     
-      task.snapshotChanges().pipe(finalize(()=>ref.getDownloadURL().subscribe(url=>{
-        this.url1=url;
-        let f=new Mesa(this.qr, this.numMesa, this.cantidad, this.tipoMesa, this.url1, "Vacia");
-      this.bda.createMesa(f);
-      
-      } ))).subscribe(); 
-      
-    }catch(err){
-      this.alertar(err);
-      
-    }    
+    this.listaMesas.forEach(mesa=>{
+      if(mesa.numero==this.numMesa)
+      this.repite=true
+    })
+    if(this.qr.length>2 && this.cantidad!=0)
+    {
+      if(!this.repite)
+      {
+        this.presentLoading("Subiendo imagen");
 
+        try{
+          const com=this.numMesa+"mesa";
+          let img;
+          await fetch(this.image)
+          .then(res => res.blob().then(r=>{
+            img=r
+          }))
+          
+          const file= img;
+          const path= com;
+          const ref=this.storage.ref(path);    
+          const task=this.storage.upload(path, file);     
+          task.snapshotChanges().pipe(finalize(()=>ref.getDownloadURL().subscribe(url=>{
+            this.url1=url;
+            let f=new Mesa(this.qr, this.numMesa, this.cantidad, this.tipoMesa, this.url1, "Vacia");
+          this.bda.createMesa(f);
+          
+          } ))).subscribe(); 
+          
+        }catch(err){
+          this.alertar(err);
+          
+        }    
+      }else{
+        this.alertar("Ese número de mesa ya existe");
+      }
+      
+    }else{
+      this.alertar("Debe ingresar código QR y una cantidad mayor a 0");
+    }
   }
 
 }
