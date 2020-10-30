@@ -1,47 +1,54 @@
-<ion-content [scrollEvents]="true">
-  <ion-card class="ion-activatable" (click)="this.EscannerQR()" [ngClass]="{ 'card-vertical': !this.platform.isLandscape(), 'card-horizontal': this.platform.isLandscape() }">
-    <ion-ripple-effect></ion-ripple-effect>
-    <ion-icon name="qr-scanner" [ngClass]="{ 'icon-horizontal': this.platform.isLandscape(), 'icon-vertical': !this.platform.isLandscape() }"></ion-icon>
-    <h2>Escanear QR</h2>
-  </ion-card>
 
-  <ion-card class="ion-activatable" (click)="this.RealizarPedido()" [ngClass]="{ 'card-vertical': !this.platform.isLandscape(), 'card-horizontal': this.platform.isLandscape() }">
-    <ion-ripple-effect></ion-ripple-effect>
-    <ion-icon name="restaurant" [ngClass]="{ 'icon-horizontal': this.platform.isLandscape(), 'icon-vertical': !this.platform.isLandscape() }"></ion-icon>
-    <h2>Realizar pedido</h2>
-  </ion-card>
+<ion-header>
 
-  <ion-card class="ion-activatable" (click)="this.ConfirmarRecepcion()" [ngClass]="{ 'card-vertical': !this.platform.isLandscape(), 'card-horizontal': this.platform.isLandscape() }">
-    <ion-ripple-effect></ion-ripple-effect>
-    <ion-icon name="checkbox-outline"></ion-icon>
-    <h2>Confirmar recepción del pedido</h2>
-  </ion-card>
+	<div *ngIf="cliente.estado=='desconectado' || cliente.estado == 'EnListaDeEspera' || cliente.estado == 'aceptado'"  class="login-header  ion-padding">
 
-  <ion-card class="ion-activatable" (click)="this.PedirCuenta()" [ngClass]="{ 'card-vertical': !this.platform.isLandscape(), 'card-horizontal': this.platform.isLandscape() }">
-    <ion-ripple-effect></ion-ripple-effect>
-    <ion-icon name="list" [ngClass]="{ 'icon-horizontal': this.platform.isLandscape(), 'icon-vertical': !this.platform.isLandscape() }"></ion-icon>
-    <h2>Mi cuenta</h2>
-  </ion-card>
+    <img class="logo-img" src="assets/img/logo.png">
 
-  <ng-container *ngIf="this.usuario.perfil === 'cliente'">
-    <ion-card class="ion-activatable" (click)="this.RealizarReserva()" [ngClass]="{ 'card-vertical': !this.platform.isLandscape(), 'card-horizontal': this.platform.isLandscape() }">
-      <ion-ripple-effect></ion-ripple-effect>
-      <ion-icon name="calendar" [ngClass]="{ 'icon-horizontal': this.platform.isLandscape(), 'icon-vertical': !this.platform.isLandscape() }"></ion-icon>
-      <h2>Realizar reserva</h2>
-    </ion-card>
-  </ng-container>
+  </div>
+</ion-header>
 
-  <ng-container *ngIf="this.chat">
-      <ion-card class="ion-activatable" (click)="this.Chat()" [ngClass]="{ 'card-vertical': !this.platform.isLandscape(), 'card-horizontal': this.platform.isLandscape() }">
-        <ion-ripple-effect></ion-ripple-effect>
-        <ion-icon name="chatboxes" [ngClass]="{ 'icon-horizontal': this.platform.isLandscape(), 'icon-vertical': !this.platform.isLandscape() }"></ion-icon>
-        <h2>Chat Delivery</h2>
-      </ion-card>
-    </ng-container>
 
-  <ion-card class="ion-activatable" (click)="this.Jugar()" [ngClass]="{ 'card-vertical': !this.platform.isLandscape(), 'card-horizontal': this.platform.isLandscape() }">
-    <ion-ripple-effect></ion-ripple-effect>
-    <ion-icon name="logo-game-controller-b" [ngClass]="{ 'icon-horizontal': this.platform.isLandscape(), 'icon-vertical': !this.platform.isLandscape() }"></ion-icon>
-    <h2>Jugar</h2>
-  </ion-card>
+<ion-content class="secondaryBackground ion-padding">
+  <div *ngIf="cliente.estado=='desconectado'" style="height: 100%; display:flex; flex-direction:column;">
+    <div class="titulo">
+      <h1>Bienvenido</h1>
+      <h3></h3>
+      <p>Escanee el codigo QR para Ingresar a la lista de espera..</p>
+    </div>
+    <div style="display: flex;justify-content: center;">
+      <ion-button class="boton" (click)="scanearEspera()">
+        <ion-icon name="qr-code" class="qrCode"></ion-icon>        &nbsp; Escanear codigo QR         
+      </ion-button>
+    </div>
+  </div>
+
+
+    <div *ngIf="cliente.estado == 'EnListaDeEspera'">
+      <ion-col >
+        <ion-row style="justify-content:center; margin-top:35px" >
+          <p class="spinnerInterceptor latido">Ya se encuentra en la lista de espera, podra ingresar al ser aprobado. </p>
+        </ion-row>
+        <ion-row style="justify-content: center; margin-top:125px;">
+          <ion-spinner name="circles" class="ion-spinner-large" color="primary"></ion-spinner>
+        </ion-row>
+      </ion-col>
+    </div>
+
+ 
+      <div *ngIf="cliente.estado=='aceptado'" style="height: 100%; display:flex; flex-direction:column;">
+        <div class="titulo">
+          <h1>Bienvenido</h1>
+          <h3></h3>
+          <p>Escanee el codigo QR para Acceder a la mesa</p>
+        </div>
+        <div style="display: flex;justify-content: center;">
+          <ion-button class="boton" (click)="scanearEspera()">
+            <ion-icon name="qr-code" class="qrCode"></ion-icon>        &nbsp; Escanear codigo QR         
+          </ion-button>
+        </div>
+      </div>
+  
+
+
 </ion-content>

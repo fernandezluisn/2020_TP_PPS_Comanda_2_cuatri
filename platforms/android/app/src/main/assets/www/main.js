@@ -841,6 +841,10 @@ var map = {
 		"./src/app/list/list.module.ts",
 		"list-list-module"
 	],
+	"./paginas/aceptar-cliente/aceptar-cliente.module": [
+		"./src/app/paginas/aceptar-cliente/aceptar-cliente.module.ts",
+		"paginas-aceptar-cliente-aceptar-cliente-module"
+	],
 	"./paginas/admin-comercio/admin-comercio.module": [
 		"./src/app/paginas/admin-comercio/admin-comercio.module.ts",
 		"paginas-admin-comercio-admin-comercio-module"
@@ -855,6 +859,7 @@ var map = {
 	],
 	"./paginas/home-cliente/home-cliente.module": [
 		"./src/app/paginas/home-cliente/home-cliente.module.ts",
+		"common",
 		"paginas-home-cliente-home-cliente-module"
 	],
 	"./paginas/home-comanda/home-comanda.module": [
@@ -863,6 +868,7 @@ var map = {
 	],
 	"./paginas/log-in/log-in.module": [
 		"./src/app/paginas/log-in/log-in.module.ts",
+		"common",
 		"paginas-log-in-log-in-module"
 	]
 };
@@ -875,7 +881,7 @@ function webpackAsyncContext(req) {
 			throw e;
 		});
 	}
-	return __webpack_require__.e(ids[1]).then(function() {
+	return Promise.all(ids.slice(1).map(__webpack_require__.e)).then(function() {
 		var id = ids[0];
 		return __webpack_require__(id);
 	});
@@ -926,7 +932,8 @@ var routes = [
     { path: 'alta-cliente', loadChildren: './paginas/alta-cliente/alta-cliente.module#AltaClientePageModule' },
     { path: 'home-cliente', loadChildren: './paginas/home-cliente/home-cliente.module#HomeClientePageModule' },
     { path: 'home-admin', loadChildren: './paginas/home-admin/home-admin.module#HomeAdminPageModule' },
-    { path: 'admin-comercio', loadChildren: './paginas/admin-comercio/admin-comercio.module#AdminComercioPageModule' }
+    { path: 'admin-comercio', loadChildren: './paginas/admin-comercio/admin-comercio.module#AdminComercioPageModule' },
+    { path: 'aceptar-cliente', loadChildren: './paginas/aceptar-cliente/aceptar-cliente.module#AceptarClientePageModule' }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -1231,6 +1238,68 @@ var SepararGuard = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/servicios/alert.service.ts":
+/*!********************************************!*\
+  !*** ./src/app/servicios/alert.service.ts ***!
+  \********************************************/
+/*! exports provided: AlertService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AlertService", function() { return AlertService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
+
+
+
+var AlertService = /** @class */ (function () {
+    function AlertService(alertController, route) {
+        this.alertController = alertController;
+        this.route = route;
+    }
+    AlertService.prototype.mensaje = function (titulo, mensaje) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var alert;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.alertController.create({
+                            header: titulo,
+                            message: mensaje,
+                            translucent: true,
+                            buttons: [
+                                {
+                                    text: 'Aceptar'
+                                }
+                            ]
+                        })];
+                    case 1:
+                        alert = _a.sent();
+                        return [4 /*yield*/, alert.present()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AlertService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
+    ], AlertService);
+    return AlertService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/servicios/auth.service.ts":
 /*!*******************************************!*\
   !*** ./src/app/servicios/auth.service.ts ***!
@@ -1247,6 +1316,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/fire/firestore */ "./node_modules/@angular/fire/firestore/index.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _angular_fire_storage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/fire/storage */ "./node_modules/@angular/fire/storage/index.js");
+/* harmony import */ var _alert_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./alert.service */ "./src/app/servicios/alert.service.ts");
+
 
 
 
@@ -1254,11 +1325,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var AuthService = /** @class */ (function () {
-    function AuthService(AFauth, firestore, fireStorage, router) {
+    function AuthService(AFauth, firestore, fireStorage, router, alert) {
         this.AFauth = AFauth;
         this.firestore = firestore;
         this.fireStorage = fireStorage;
         this.router = router;
+        this.alert = alert;
         this.usuario = false;
     }
     AuthService.prototype.loginAnonimo = function (usuario, foto) {
@@ -1281,6 +1353,7 @@ var AuthService = /** @class */ (function () {
             _this.AFauth.auth.signInWithEmailAndPassword(mail, pass).then(function (usuarioLogeado) {
                 // let usuarioData = this.TransformarUsuario(usuarioLogeado.user.uid)
                 var uid = usuarioLogeado.user.uid;
+                console.log(uid);
                 _this.GetUsuarios().then(function (usrs) {
                     usrs.forEach(function (element) {
                         var obj_element = element.data();
@@ -1334,9 +1407,13 @@ var AuthService = /** @class */ (function () {
                                     _this.usuario = obj_element;
                                     localStorage.setItem('usuario', JSON.stringify(_this.usuario));
                                     resolve(_this.usuario);
+                                    console.log("cliente");
                                     _this.router.navigate(["home-cliente"]);
                                     break;
                             }
+                        }
+                        if (obj_element.activo == false && obj_element.uid == uid) {
+                            _this.alert.mensaje('', 'Se encuentra pendiente la aprobacion por el dueño');
                         }
                     });
                     if (_this.usuario) {
@@ -1349,6 +1426,7 @@ var AuthService = /** @class */ (function () {
                     }
                 });
             }).catch(function (err) {
+                console.log(err);
                 _this.LogOut();
                 rejected(err);
             });
@@ -1430,6 +1508,11 @@ var AuthService = /** @class */ (function () {
     AuthService.prototype.BorrarUsuario = function (cliente) {
         this.firestore.doc('usuarios/' + cliente.id).delete().then();
     };
+    AuthService.prototype.obtenerCliente = function (id) {
+        console.log(id);
+        var param = "uid";
+        return this.firestore.collection('usuarios', function (ref) { return ref.where(param, '==', id); }).valueChanges();
+    };
     AuthService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
             providedIn: 'root'
@@ -1437,7 +1520,8 @@ var AuthService = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_fire_auth__WEBPACK_IMPORTED_MODULE_2__["AngularFireAuth"],
             _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__["AngularFirestore"],
             _angular_fire_storage__WEBPACK_IMPORTED_MODULE_5__["AngularFireStorage"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]])
+            _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"],
+            _alert_service__WEBPACK_IMPORTED_MODULE_6__["AlertService"]])
     ], AuthService);
     return AuthService;
 }());

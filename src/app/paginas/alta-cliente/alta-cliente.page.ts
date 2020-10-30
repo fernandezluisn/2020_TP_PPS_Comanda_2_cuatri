@@ -7,6 +7,8 @@ import { BarcodeScannerOptions, BarcodeScanResult, BarcodeScanner } from '@ionic
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { ToastService } from 'src/app/servicios/toast.service';
 import { AlertService } from 'src/app/servicios/alert.service';
+import { SpinerService } from 'src/app/servicios/spiner.service';
+import { SpinnerService } from 'src/app/servicios/spinner.service';
 
 @Component({
   selector: 'app-alta-cliente',
@@ -29,6 +31,7 @@ export class AltaClientePage {
 
   constructor(private barcodeScanner: BarcodeScanner, private camera: Camera, private alert: AlertService,
   private authService: AuthService, private firestorageService: FirestorageService, private router: Router,
+  private spinnerService: SpinnerService,
   private toastService:ToastService) {
     this.nombreUsuario = '';
     this.apellidoUsuario = '';
@@ -146,6 +149,9 @@ export class AltaClientePage {
      return;
     }
 
+    this.spinnerService.showSpinner();
+
+
     if (this.tipoRegistro === 'Usuario') {
       this.authService.CrearAuth(this.correoUsuario, this.claveUsuario, {
         uid: '',
@@ -155,10 +161,16 @@ export class AltaClientePage {
         mail: this.correoUsuario,
         dni: this.dniUsuario,
         activo: false,
+        estado: "desconectado",
         perfil: 'cliente'
       }, this.dataFotoUsuario).then(usuario => {
-        this.alert.mensaje('', 'Usuario registrado exitosamente!');
+        this.spinnerService.hideSpinner();
+
+        this.alert.mensaje('', 'Usuario registrado exitosamente! Va a poder ingresar a la aplicacion cuando sea aprobado por el dueño.');
+        this.router.navigate(['/log-in']);
       }).catch(error => {
+        this.spinnerService.hideSpinner();
+
         this.alert.mensaje('', 'ERROR: ' + error);
       });
     }
@@ -166,11 +178,14 @@ export class AltaClientePage {
       this.authService.loginAnonimo({
         foto: this.urlFotoUsuario,
         nombre: this.nombreUsuario,
+        estado: "desconectado",
         perfil: 'anonimo'
       }, this.dataFotoUsuario).then(usuario => {
+        this.spinnerService.hideSpinner();
         this.router.navigate(['/home-cliente']);
         this.alert.mensaje('Bienvenido!', 'Ingresó como usuario anónimo');
       }).catch(error => {
+        this.spinnerService.hideSpinner();
         this.alert.mensaje('ERROR',  error);
       });
     }
