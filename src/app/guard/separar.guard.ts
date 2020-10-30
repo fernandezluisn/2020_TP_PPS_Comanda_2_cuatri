@@ -26,38 +26,38 @@ export class SepararGuard implements CanActivate {
           this.router.navigate(['/log-in']);
           return false
         }else{
-         // let usuario = this.auth.getUsuario();
-      // switch (usuario['perfil']) {
-      //   case 'mozo':
-      //     this.router.navigate(['home-mozo']);
-      //     break;
-      //   case 'metre':
-      //     this.router.navigate(['home-metre']);
-      //     break;
-      //   case 'delivery':
-      //       this.router.navigate(['home-delivery']);
-      //       break;
-      //   case 'cocina':
-      //   case 'bar':
-           this.router.navigate(['home-comanda']);
-      //     break;
-      //   case 'cliente':
-      //   case 'anonimo':
-      //     this.router.navigate(['home-cliente']);
-      //     break;
-      //   case 'supervisor':
-      //   case 'dueño':
-      //       this.router.navigate(['home-supervisor']);
-      //     break;
-      //   default:
-      //       this.router.navigate(['log-in']);
+          let usuario = this.auth.getUsuario();
+       switch (usuario['perfil']) {
+         case 'mozo':
+           this.router.navigate(['home-mozo']);
+           break;
+         case 'metre':
+           this.router.navigate(['home-metre']);
+           break;
+         case 'delivery':
+             this.router.navigate(['home-delivery']);
+             break;
+         case 'cocina':
+         case 'bar':
+           this.router.navigate(['home-cocina']);
+           break;
+         case 'cliente':
+         case 'anonimo':
+           this.router.navigate(['home-cliente']);
+           break;
+         case 'supervisor':
+         case 'dueño':
+             this.router.navigate(['home-supervisor']);
+           break;
+         default:
+             this.router.navigate(['log-in']);
 
-      //     break;
-      // }
+           break;
+       }
           return true
         }
         // console.log(auth);
-        // return false;
+         return false;
       }))
 
   
