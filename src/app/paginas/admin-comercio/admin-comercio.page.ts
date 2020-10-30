@@ -116,7 +116,7 @@ export class AdminComercioPage implements OnInit {
     {
       if(!this.repite)
       {
-        this.presentLoading("Subiendo imagen");
+        this.presentLoading("Subiendo mesa");
 
         try{
           const com=this.numMesa+"mesa";

@@ -51,13 +51,13 @@ export class AuthService {
                 this.usuario = obj_element as Empleado;
                 localStorage.setItem('usuario', JSON.stringify(this.usuario));
                  resolve(this.usuario);
-                 this.router.navigate(["home-comanda"]);
+                 this.router.navigate(["home-cocina"]);
                  break;
                 case 'cocina':
                   this.usuario = obj_element as Empleado;
                   localStorage.setItem('usuario', JSON.stringify(this.usuario));
                    resolve(this.usuario);
-                   this.router.navigate(["home-comanda"]);
+                   this.router.navigate(["home-cocina"]);
                    break;
                case 'supervisor':
                 this.usuario = obj_element as Empleado;

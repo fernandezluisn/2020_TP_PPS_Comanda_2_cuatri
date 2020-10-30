@@ -3,8 +3,11 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { Vibration } from '@ionic-native/vibration/ngx';
 import { AlertController, LoadingController } from '@ionic/angular';
-import { MesasService } from 'src/app/servicios/mesas.service';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { Producto } from 'src/app/interfaces/producto';
+import { ProductosService } from 'src/app/servicios/productos.service';
+
+
 
 
 @Component({
@@ -16,8 +19,9 @@ export class AltaProductoPage implements OnInit {
 
   nombre:string;
   minutos:number;
-  descripción:string;
+  descripcion:string;
   qr:string;
+  precio:number;
 
   loading;
 
@@ -30,7 +34,13 @@ export class AltaProductoPage implements OnInit {
     private alertController:AlertController, 
     private barcodeScanner: BarcodeScanner,
     private loadingCtrl:LoadingController,
-    private vibra:Vibration) { }
+    private vibra:Vibration,
+    private bda:ProductosService) { 
+      this.nombre="";
+      this.minutos=0;
+      this.descripcion="";
+      this.precio=0;
+    }
 
   ngOnInit() {
   }
@@ -102,4 +112,33 @@ export class AltaProductoPage implements OnInit {
     (await alert).present();
   }
 
+  async subir(){
+    if(this.image1==null){
+      let p=new Producto(this.nombre, this.descripcion, this.minutos, this.precio);
+      this.cargarProducto(p);
+    }else if(this.image2==null){
+         
+    }else if(this.image3==null){
+
+    }else{
+
+    }
+    
+  }
+
+  cargarProducto(prod:Producto){
+    if(prod.precio>0 && prod.nombre.length>3 && prod.tiempo>10 && prod.descripcion.length>20){
+      
+      this.bda.createProducto(prod);
+    }else if(prod.precio==0){
+      console.log("El precio debe ser mayor a 0")
+    }else if(prod.nombre.length<4){
+      console.log("El nombre debe tener más de 3 caracteres");
+    }else if(prod.tiempo<11){
+      console.log("Los productos tienen un mínimo de producción de 10 minutos");      
+    }else{
+      console.log("La descripción debe tener más de 20 caracteres");
+      
+    }
+  }
 }

@@ -35,7 +35,7 @@ export class MesasService {
 
   actualizarMesa(mesa:Mesa) {     
     
-    this.db.doc('turnos' + '/'+mesa.id).update({...mesa});    
+    this.db.doc('mesas' + '/'+mesa.id).update({...mesa});    
     
   }
 }

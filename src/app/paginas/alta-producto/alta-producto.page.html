@@ -18,17 +18,20 @@
     </ion-item>
    
      <ion-item>
-       <ion-label position="floating">Número de mesa</ion-label>
+       <ion-label position="floating">Cantidad de minutos de elaboración</ion-label>
        <ion-input type="number" [(ngModel)]="minutos"></ion-input>
      </ion-item>
  
-      
+     <ion-item>
+      <ion-label position="floating">Precio</ion-label>
+      <ion-input type="number" [(ngModel)]="precio" placeholder="$$$"></ion-input>
+    </ion-item>
  
-     <ion-button  color="dark" size="small" (click)="escanear()">Escanear QR</ion-button>
+     <ion-button  color="dark" size="small" (click)="escanear()">Escanear QR</ion-button><br>
  
-     <ion-button color="dark" size="small" (click)="sacarFoto(1)">Toma una foto</ion-button>
-     <ion-button color="dark" size="small" (click)="sacarFoto(2)">Toma segunda foto</ion-button>
-     <ion-button color="dark" size="small" (click)="sacarFoto(3)">Toma tercera foto</ion-button>
+     <ion-button color="dark" size="small" (click)="sacarFoto(1)" *ngIf="!image1">Tomar una foto</ion-button><br><br>
+     <ion-button color="dark" size="small" (click)="sacarFoto(2)" *ngIf="image1 && !image2">Tomar segunda foto</ion-button>
+     <ion-button color="dark" size="small" (click)="sacarFoto(3)" *ngIf="image2">Tomar tercera foto</ion-button>
      
      <ion-button (click)="subir()">Subir Producto</ion-button>
      
