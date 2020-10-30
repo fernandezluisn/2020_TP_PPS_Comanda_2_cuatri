@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AlertController } from '@ionic/angular';
-import { ReservasService } from './reservas.service';
-import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -10,7 +8,7 @@ import { Router } from '@angular/router';
 export class AlertService {
 
 
-  constructor(private alertController: AlertController, private reservaService:ReservasService, private authService:AuthService,
+  constructor(private alertController: AlertController, 
 
     private route: Router) { }
 
@@ -41,12 +39,6 @@ export class AlertService {
           cssClass: 'secondary',
           handler: () => {
             console.log('Confirm Cancel');
-          }
-        }, {
-          text: 'Aceptar',
-          handler: (data) => {
-            data=''
-            this.reservaService.entrarListaEspera(data);
           }
         }
       ]

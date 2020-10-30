@@ -6,6 +6,7 @@ import { AlertController, LoadingController } from '@ionic/angular';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { Producto } from 'src/app/interfaces/producto';
 import { ProductosService } from 'src/app/servicios/productos.service';
+import { finalize } from 'rxjs/operators';
 
 
 
@@ -28,6 +29,8 @@ export class AltaProductoPage implements OnInit {
   image1: string = null;
   image2: string = null;
   image3: string = null;
+
+  private fotos = new Array<any>();
 
   constructor(private storage:AngularFireStorage,     
     private camera: Camera, 
@@ -113,22 +116,27 @@ export class AltaProductoPage implements OnInit {
   }
 
   async subir(){
+    let p=new Producto(this.nombre, this.descripcion, this.minutos, this.precio);
     if(this.image1==null){
-      let p=new Producto(this.nombre, this.descripcion, this.minutos, this.precio);
       this.cargarProducto(p);
     }else if(this.image2==null){
-         
+      await this.guardarImagen(1, this.image1, p);
+      this.cargarProducto(p);
     }else if(this.image3==null){
-
+      await this.guardarImagen(1, this.image1, p);
+      await this.guardarImagen(2, this.image2, p);
+      this.cargarProducto(p);
     }else{
-
+     await  this.guardarImagen(1, this.image1, p);
+     await this.guardarImagen(2, this.image2, p);
+     await this.guardarImagen(3, this.image3, p);
+     this.cargarProducto(p);
     }
     
   }
 
   cargarProducto(prod:Producto){
-    if(prod.precio>0 && prod.nombre.length>3 && prod.tiempo>10 && prod.descripcion.length>20){
-      
+    if(prod.precio>0 && prod.nombre.length>3 && prod.tiempo>10 && prod.descripcion.length>20){      
       this.bda.createProducto(prod);
     }else if(prod.precio==0){
       console.log("El precio debe ser mayor a 0")
@@ -137,8 +145,35 @@ export class AltaProductoPage implements OnInit {
     }else if(prod.tiempo<11){
       console.log("Los productos tienen un mínimo de producción de 10 minutos");      
     }else{
-      console.log("La descripción debe tener más de 20 caracteres");
-      
+      console.log("La descripción debe tener más de 20 caracteres");      
     }
+  }
+
+  async guardarImagen(numero:number, image:any, producto:Producto){
+    try{
+      const com=this.nombre+this.precio+numero;
+      let img;
+      await fetch(image)
+      .then(res => res.blob().then(r=>{
+        img=r
+      }))
+      
+      const file= img;
+      const path= com;
+      const ref=this.storage.ref(path);    
+      const task=this.storage.upload(path, file);     
+      task.snapshotChanges().pipe(finalize(()=>ref.getDownloadURL().subscribe(url=>{
+        if(numero==1)
+        producto.foto_1=url;      
+        else if(numero==2)
+        producto.foto_2=url;
+        else
+        producto.foto_3=url;
+      } ))).subscribe(); 
+      
+    }catch(err){
+      this.alertar(err);
+      
+    } 
   }
 }

@@ -88,7 +88,6 @@ export class AuthService {
                    this.usuario = obj_element as Empleado;
                   localStorage.setItem('usuario', JSON.stringify(this.usuario));
                    resolve(this.usuario);
-                   console.log("soy dueño");
                    this.router.navigate(["home-supervisor"]);
                    break;
                  case 'cliente':
@@ -145,7 +144,6 @@ export class AuthService {
   }
 
   CrearAuth(mail, pass, usuario, foto) {
-    console.log("Aca")
     return new Promise((resolve, rejected) => {
       this.AFauth.auth.createUserWithEmailAndPassword(mail, pass).then(nuevousuario => {
         // let usuarioData = this.TransformarUsuario(usuarioLogeado.user.uid)
@@ -184,6 +182,7 @@ export class AuthService {
       });
     });
   }
+
   ModificarUsuario(cliente: Cliente) {
     this.firestore.doc('usuarios/' + cliente.id).update(cliente).then()
   }
