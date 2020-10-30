@@ -7,6 +7,7 @@ import { resolve, reject, isRejected } from 'q';
 import { Anonimo, Empleado, Cliente } from '../interfaces/usuario';
 import { Router } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { AlertService } from './alert.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,8 @@ export class AuthService {
     private AFauth: AngularFireAuth,
     private firestore: AngularFirestore,
     private fireStorage: AngularFireStorage,
-    private router:Router
-  ) { }
+    private router:Router,
+    private alert: AlertService  ) { }
 
   loginAnonimo(usuario, foto) {
     return new Promise((resolved, rejected) => {
@@ -40,7 +41,7 @@ export class AuthService {
       this.AFauth.auth.signInWithEmailAndPassword(mail, pass).then(usuarioLogeado => {
         // let usuarioData = this.TransformarUsuario(usuarioLogeado.user.uid)
         let uid = usuarioLogeado.user.uid;
-
+        console.log(uid);
          this.GetUsuarios().then(usrs => {
           usrs.forEach(element => {
             let obj_element = element.data();
@@ -94,9 +95,13 @@ export class AuthService {
                  this.usuario = obj_element as Cliente;
                    localStorage.setItem('usuario', JSON.stringify(this.usuario));
                    resolve(this.usuario);
+                   console.log("cliente");
                    this.router.navigate(["home-cliente"]);
                   break;
                }
+             }
+             if (obj_element.activo == false && obj_element.uid == uid) {
+              this.alert.mensaje('','Se encuentra pendiente la aprobacion por el dueño');
              }
            });
           if (this.usuario) {
@@ -109,6 +114,7 @@ export class AuthService {
            }
          });
       }).catch(err => {
+        console.log(err);
         this.LogOut();
         rejected(err);
       });
@@ -184,5 +190,14 @@ export class AuthService {
   BorrarUsuario(cliente: Cliente) {
     this.firestore.doc('usuarios/' + cliente.id).delete().then()
   }
+
+  obtenerCliente(id ){
+    console.log(id);
+    var param = "uid";
+    return this.firestore.collection('usuarios', ref => ref.where(param,'==', id )).valueChanges();
+  }
+
 }
+
+
 

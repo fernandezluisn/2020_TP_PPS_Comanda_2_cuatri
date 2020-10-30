@@ -92,6 +92,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic-native/camera/ngx */ "./node_modules/@ionic-native/camera/ngx/index.js");
 /* harmony import */ var src_app_servicios_toast_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/servicios/toast.service */ "./src/app/servicios/toast.service.ts");
 /* harmony import */ var src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/servicios/alert.service */ "./src/app/servicios/alert.service.ts");
+/* harmony import */ var src_app_servicios_spinner_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/servicios/spinner.service */ "./src/app/servicios/spinner.service.ts");
+
 
 
 
@@ -102,13 +104,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var AltaClientePage = /** @class */ (function () {
-    function AltaClientePage(barcodeScanner, camera, alert, authService, firestorageService, router, toastService) {
+    function AltaClientePage(barcodeScanner, camera, alert, authService, firestorageService, router, spinnerService, toastService) {
         this.barcodeScanner = barcodeScanner;
         this.camera = camera;
         this.alert = alert;
         this.authService = authService;
         this.firestorageService = firestorageService;
         this.router = router;
+        this.spinnerService = spinnerService;
         this.toastService = toastService;
         this.registros = [{ id: 0, tipo: 'Usuario' }, { id: 1, tipo: 'Anónimo' }];
         this.nombreUsuario = '';
@@ -214,8 +217,9 @@ var AltaClientePage = /** @class */ (function () {
         }
         if (this.urlFotoUsuario === '') {
             this.alert.mensaje('', 'Debe cargar una foto');
-            // return;
+            return;
         }
+        this.spinnerService.showSpinner();
         if (this.tipoRegistro === 'Usuario') {
             this.authService.CrearAuth(this.correoUsuario, this.claveUsuario, {
                 uid: '',
@@ -225,10 +229,14 @@ var AltaClientePage = /** @class */ (function () {
                 mail: this.correoUsuario,
                 dni: this.dniUsuario,
                 activo: false,
+                estado: "desconectado",
                 perfil: 'cliente'
             }, this.dataFotoUsuario).then(function (usuario) {
-                _this.alert.mensaje('', 'Usuario registrado exitosamente!');
+                _this.spinnerService.hideSpinner();
+                _this.alert.mensaje('', 'Usuario registrado exitosamente! Va a poder ingresar a la aplicacion cuando sea aprobado por el dueño.');
+                _this.router.navigate(['/log-in']);
             }).catch(function (error) {
+                _this.spinnerService.hideSpinner();
                 _this.alert.mensaje('', 'ERROR: ' + error);
             });
         }
@@ -236,11 +244,14 @@ var AltaClientePage = /** @class */ (function () {
             this.authService.loginAnonimo({
                 foto: this.urlFotoUsuario,
                 nombre: this.nombreUsuario,
+                estado: "desconectado",
                 perfil: 'anonimo'
             }, this.dataFotoUsuario).then(function (usuario) {
+                _this.spinnerService.hideSpinner();
                 _this.router.navigate(['/home-cliente']);
                 _this.alert.mensaje('Bienvenido!', 'Ingresó como usuario anónimo');
             }).catch(function (error) {
+                _this.spinnerService.hideSpinner();
                 _this.alert.mensaje('ERROR', error);
             });
         }
@@ -253,71 +264,10 @@ var AltaClientePage = /** @class */ (function () {
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_5__["BarcodeScanner"], _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_6__["Camera"], src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_8__["AlertService"],
             _servicios_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"], _servicios_firestorage_service__WEBPACK_IMPORTED_MODULE_3__["FirestorageService"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
+            src_app_servicios_spinner_service__WEBPACK_IMPORTED_MODULE_9__["SpinnerService"],
             src_app_servicios_toast_service__WEBPACK_IMPORTED_MODULE_7__["ToastService"]])
     ], AltaClientePage);
     return AltaClientePage;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/servicios/alert.service.ts":
-/*!********************************************!*\
-  !*** ./src/app/servicios/alert.service.ts ***!
-  \********************************************/
-/*! exports provided: AlertService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AlertService", function() { return AlertService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-
-
-
-
-var AlertService = /** @class */ (function () {
-    function AlertService(alertController, route) {
-        this.alertController = alertController;
-        this.route = route;
-    }
-    AlertService.prototype.mensaje = function (titulo, mensaje) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var alert;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.alertController.create({
-                            header: titulo,
-                            message: mensaje,
-                            translucent: true,
-                            buttons: [
-                                {
-                                    text: 'Aceptar'
-                                }
-                            ]
-                        })];
-                    case 1:
-                        alert = _a.sent();
-                        return [4 /*yield*/, alert.present()];
-                    case 2:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    AlertService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-            providedIn: 'root'
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
-    ], AlertService);
-    return AlertService;
 }());
 
 
@@ -371,6 +321,134 @@ var FirestorageService = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_fire_storage__WEBPACK_IMPORTED_MODULE_2__["AngularFireStorage"]])
     ], FirestorageService);
     return FirestorageService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/servicios/spinner.service.ts":
+/*!**********************************************!*\
+  !*** ./src/app/servicios/spinner.service.ts ***!
+  \**********************************************/
+/*! exports provided: SpinnerService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SpinnerService", function() { return SpinnerService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+
+
+
+var SpinnerService = /** @class */ (function () {
+    function SpinnerService(_loadingController, _toastCtrl) {
+        this._loadingController = _loadingController;
+        this._toastCtrl = _toastCtrl;
+        this._isSpinnerShowing = false;
+        this._isGoingToClose = false;
+        this._timer = -1; // This is the timer, it will go from 2000 to -1
+        this._timerID = null;
+        // console.log('Inicializo el spinner');
+        this.createSpinner();
+    }
+    SpinnerService.prototype.createSpinner = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var _a;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = this;
+                        return [4 /*yield*/, this._loadingController.create({
+                                showBackdrop: false,
+                                cssClass: 'spinner-class',
+                                spinner: null,
+                                translucent: true,
+                            })];
+                    case 1:
+                        _a._currentLoading = _b.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    SpinnerService.prototype.showSpinner = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                // console.log('Muestro el spinner', this._currentLoading);
+                if (this._isSpinnerShowing === false) {
+                    this._currentLoading.present();
+                    this._isSpinnerShowing = this.startTimer();
+                }
+                return [2 /*return*/];
+            });
+        });
+    };
+    SpinnerService.prototype.startTimer = function () {
+        var _this = this;
+        // console.log('Inicializo el conteo');
+        this._timer = 2000;
+        this._timerID = setInterval(function () {
+            _this._timer = _this._timer - 1;
+            if (_this._timer < 0) {
+                // console.log('El conteo se acabÃ³.');
+                _this._isGoingToClose = true;
+                clearInterval(_this._timerID);
+            }
+        }, 1);
+        return true;
+    };
+    SpinnerService.prototype.hideSpinner = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                // console.log('Intento ocultar el spinner con el timer en', this._timer);
+                if (this._isSpinnerShowing) {
+                    if (this._timer < 0) {
+                        // console.log('El tiempo acabÃ³ y oculto el spinner');
+                        this._isSpinnerShowing = this.stopAndReplaceSpinner();
+                        this._isGoingToClose = false;
+                    }
+                    else {
+                        // console.log('El tiempo NO acaba y hago un timeout para acabarlo en', this._timer);
+                        clearInterval(this._timerID);
+                        setTimeout(function () {
+                            _this._isGoingToClose = true;
+                            _this.hideSpinner();
+                        }, this._timer);
+                    }
+                    this._timer = -1;
+                }
+                return [2 /*return*/];
+            });
+        });
+    };
+    SpinnerService.prototype.stopAndReplaceSpinner = function () {
+        this._currentLoading.dismiss();
+        this.createSpinner();
+        return false;
+    };
+    SpinnerService.prototype.mostrarToast = function (message, timer, color, position) {
+        this._toastCtrl.create({
+            color: color,
+            duration: timer * 1000,
+            message: message,
+            position: position,
+        })
+            .then(function (toast) {
+            toast.present();
+        });
+    };
+    SpinnerService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"]])
+    ], SpinnerService);
+    return SpinnerService;
 }());
 
 
