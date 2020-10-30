@@ -1,7 +1,7 @@
-export interface Producto {
+export class Producto {
     nombre:string;
     descripcion:string;
-    tiempo:string;
+    tiempo:number;
     precio:number;
     foto_1:any;
     foto_2:any;
@@ -9,4 +9,11 @@ export interface Producto {
     qr:string;
     sector:string;
     id:string;
+
+    constructor(nombre:string, descripcion:string, tiempo:number, precio:number){
+        this.nombre=nombre;
+        this.descripcion=descripcion;
+        this.tiempo=tiempo;
+        this.precio=precio;
+    }
 }

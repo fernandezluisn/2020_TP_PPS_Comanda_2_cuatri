@@ -1,13 +1,13 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>admin-comercio</ion-title>
+    <ion-title>Alta de mesas</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <ion-button position="floating" (click)="cambiarAlta()">Cambiar formulario</ion-button>
-  <ng-container *ngIf="altaMesa">
+ 
+  <ng-container >
    <h1 position="floating">Subo mesas</h1>
 
    <ion-item>
@@ -28,12 +28,15 @@
       <ion-label position="floating">Cantidad de comensales</ion-label>
       <ion-input type="number" [(ngModel)]="this.cantidad"></ion-input>
     </ion-item>  
+
+    <ion-button  color="dark" size="small" (click)="escanear()">Escanear QR</ion-button>
+
+    <ion-button color="dark" size="small" (click)="sacarFoto()">Toma una foto</ion-button>
+    <h2 *ngIf="image">Esta es la imagen que quiere subir?</h2>
+    <img style="border: 0.2rem black solid; height: 25rem; margin-left: 3rem;" [src]="image" *ngIf="image" />
+    <ion-button (click)="subir()">Subir Mesa</ion-button>
     
   </ng-container>
 
-  <ng-container *ngIf="!altaMesa">
-    <h1 position="floating">subo productos</h1>
   
-    
-  </ng-container>
 </ion-content>
