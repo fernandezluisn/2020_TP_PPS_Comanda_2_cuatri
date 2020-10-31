@@ -9,6 +9,8 @@
 ![alt text]
 (https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/logo.png)
 
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/logo.png" width="350"/>
+
 <h3>Integrantes 🎓:</h3>
 
 <br>
