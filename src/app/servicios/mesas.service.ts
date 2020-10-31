@@ -38,4 +38,8 @@ export class MesasService {
     this.db.doc('mesas' + '/'+mesa.id).update({...mesa});    
     
   }
+
+  BorrarMesa(mesa: Mesa) {
+    this.db.doc('mesas/' + mesa.id).delete().then()
+  }
 }

@@ -42,7 +42,11 @@ export class AdminComercioPage implements OnInit {
     this.cantidad=0;
     this.numMesa=0;
     this.tipoMesa="Estandar";
-    this.bda.devolverListadoMesas().subscribe(lista=>this.listaMesas=lista)
+    this.bda.devolverListadoMesas().subscribe(lista=>{
+      this.listaMesas=lista;
+      this.listaMesas.sort((a,b) => a.numero - b.numero);
+
+    })
   }
 
   ngOnInit() {
@@ -81,8 +85,7 @@ export class AdminComercioPage implements OnInit {
   async alertar(mensaje:string){
     const alert= this.alertController.create({
       cssClass: 'danger-alert-btn',
-      header: 'Error',
-      subHeader: 'La cámara no ha podido cargar la imagen',
+      header: 'Error',      
       message: mensaje,
       buttons: ['OK']
     });
@@ -94,7 +97,7 @@ export class AdminComercioPage implements OnInit {
     this.loading = await this.loadingCtrl.create({
         message,
         spinner: "crescent",
-        duration: 4500
+        duration: 2000
     });
     return this.loading.present();
 
@@ -119,53 +122,142 @@ export class AdminComercioPage implements OnInit {
      });
   }
 
-  async subir(){
+  mostrarMesa(){
+    console.log(this.mesaElegida);
+  }
 
+  async subir(){
+    this.repite=false;
+    
     this.listaMesas.forEach(mesa=>{
       if(mesa.numero==this.numMesa)
       this.repite=true
     })
-    if(this.qr.length>2 && this.cantidad!=0)
+
+
+    if(this.cantidad!=0)
     {
       if(!this.repite)
       {
         this.presentLoading("Subiendo mesa");
 
-        try{
-          const com=this.numMesa+"mesa";
-          let img;
-          await fetch(this.image)
-          .then(res => res.blob().then(r=>{
-            img=r
-          }))
-          
-          const file= img;
-          const path= com;
-          const ref=this.storage.ref(path);    
-          const task=this.storage.upload(path, file);     
-          await task.snapshotChanges().pipe(finalize(()=>ref.getDownloadURL().subscribe(url=>{
-            this.url1=url;
-            let f=new Mesa(this.qr, this.numMesa, this.cantidad, this.tipoMesa, this.url1, "Vacia");
-            this.bda.createMesa(f);
-          
-          } ))).subscribe(); 
-          
-          this.toast.confirmationToast("se subió la mesa.");
-          this.qr="";
-          this.numMesa=0;
-          this.cantidad=0;
-          this.tipoMesa="Estandar";
-        }catch(err){
-          this.alertar(err);
-          
-        }    
+        if(this.image){
+          try{
+            const com=this.numMesa+"mesa";
+            let img;
+            await fetch(this.image)
+            .then(res => res.blob().then(r=>{
+              img=r
+            }))
+            
+            const file= img;
+            const path= com;
+            const ref=this.storage.ref(path);    
+            const task=this.storage.upload(path, file);     
+            await task.snapshotChanges().pipe(finalize(()=>ref.getDownloadURL().subscribe(url=>{
+              this.url1=url;
+              let f=new Mesa(this.numMesa, this.cantidad, this.tipoMesa, this.url1, "Vacia");
+              if(this.qr.length>2)
+              {
+                f.qr=this.qr;
+              }
+              this.bda.createMesa(f);
+            
+            } ))).subscribe(); 
+            
+            this.toast.confirmationToast("se subió la mesa.");
+            
+          }catch(err){
+            this.alertar(err);
+            
+          }    
+        }else{
+          let f=new Mesa(this.numMesa, this.cantidad, this.tipoMesa, null, "Vacia");
+              if(this.qr.length>2)
+              {
+                f.qr=this.qr;
+              }
+              this.bda.createMesa(f);
+              this.toast.confirmationToast("se subió la mesa.");
+        }
+       
       }else{
         this.alertar("Ese número de mesa ya existe");
       }
       
     }else{
-      this.alertar("Debe ingresar código QR y una cantidad mayor a 0");
+      this.alertar("Debe ingresar una cantidad mayor a 0");
     }
+
+    
   }
 
+
+  async eliminar(){
+    this.presentLoading("Eliminando");
+    try{
+      await this.bda.BorrarMesa(this.mesaElegida);
+      this.toast.confirmationToast("se eliminó la mesa.");
+    }catch(e){
+      this.alertar(e);
+    }finally{
+      this.mesaElegida=null;
+    }
+    
+  }
+
+  async modificar(){
+    let f=this.mesaElegida;
+    f.numero=this.mesaElegida.numero;
+    f.espacios=this.mesaElegida.espacios;
+    f.tipo=this.mesaElegida.tipo;
+    if(this.mesaElegida.cantidad!=0)
+    {      
+        this.presentLoading("Subiendo mesa");
+
+        if(this.image){
+          try{
+            const com=this.numMesa+"mesa";
+            let img;
+            await fetch(this.image)
+            .then(res => res.blob().then(r=>{
+              img=r
+            }))
+            
+            const file= img;
+            const path= com;
+            const ref=this.storage.ref(path);    
+            const task=this.storage.upload(path, file);     
+            await task.snapshotChanges().pipe(finalize(()=>ref.getDownloadURL().subscribe(url=>{
+              f.foto=url;              
+              
+              if(this.qr.length>2)
+              {
+                f.qr=this.qr;
+              }
+              this.bda.actualizarMesa(f);
+            
+            } ))).subscribe(); 
+            
+            this.toast.confirmationToast("se subió la mesa.");
+            
+          }catch(err){
+            this.alertar(err);
+            
+          }    
+        }else{
+          
+              if(this.qr.length>2)
+              {
+                f.qr=this.qr;
+              }
+              this.bda.actualizarMesa(f);
+              this.toast.confirmationToast("se subió la mesa.");
+        }   
+      
+      
+    }else{
+      this.alertar("Debe ingresar una cantidad mayor a 0");
+    }
+  }
 }

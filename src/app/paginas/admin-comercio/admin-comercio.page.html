@@ -26,7 +26,7 @@
 
     <ion-item>
       <ion-label position="floating">Cantidad de comensales</ion-label>
-      <ion-input type="number" [(ngModel)]="this.cantidad"></ion-input>
+      <ion-input type="number" [(ngModel)]="cantidad"></ion-input>
     </ion-item>  
 
     <ion-button  color="dark" size="small" (click)="escanear()">Escanear QR</ion-button>
@@ -42,13 +42,42 @@
   <ng-container *ngIf="!alta">
     
 
-    <ion-item>
+    <ion-item style="margin-bottom:3rem;">
       <ion-label>Mesa a modificar y/o eliminar</ion-label>
-      <ion-select  [(ngModel)]="mesaElegida">
-        <ion-select-option [value]="item" *ngFor="let item of listaMesas">{{item}}</ion-select-option>        
+      <ion-select  [(ngModel)]="mesaElegida" (change)="mostrarMesa()">
+        <ion-select-option [value]="item" *ngFor="let item of listaMesas">{{item.numero}}</ion-select-option>        
       </ion-select>
-    </ion-item>
+    </ion-item >
 
+    <ng-container *ngIf="mesaElegida" style="margin-top: 3rem;">
+      <h2 style="margin-left: 2REM;">MESA N°: {{mesaElegida.numero}}</h2>
+
+      <ion-item>
+        <ion-label position="floating">Tipo de mesa</ion-label>
+        <ion-select [(ngModel)]="mesaElegida.tipo">
+          <ion-select-option>Vip</ion-select-option>
+          <ion-select-option>Discapacitados</ion-select-option>
+          <ion-select-option>Estandar</ion-select-option>
+        </ion-select>
+      </ion-item>  
+      
+       
+    
+        <ion-item>
+          <ion-label position="floating">Cantidad de comensales</ion-label>
+          <ion-input type="number" [(ngModel)]="mesaElegida.espacios"></ion-input>
+        </ion-item> 
+
+      
+
+      <ion-button  color="dark" size="small" (click)="escanear()">Ingresar nuevo QR</ion-button>
+      <ion-item *ngIf="mesaElegida.foto">
+        <ion-img [src]="mesaElegida.foto"></ion-img>
+      </ion-item>
+      <ion-button color="dark" size="small" (click)="sacarFoto()">Ingresar otra foto</ion-button><br><br><br>
+      <ion-button (click)="modificar()">Actualizar Mesa</ion-button>
+      <ion-button (click)="eliminar()">Eliminar Mesa</ion-button>
+    </ng-container>
   </ng-container>
   
 </ion-content>

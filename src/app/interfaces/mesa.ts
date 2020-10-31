@@ -7,9 +7,8 @@ export class Mesa {
     foto: string;
     estado: string;
 
-    constructor(qr:string, numero:number, espacios:number, tipo:string, foto:string, estado:string){
-        this.numero=numero;
-        this.qr=qr;
+    constructor(numero:number, espacios:number, tipo:string, foto:string, estado:string){
+        this.numero=numero;        
         this.espacios=espacios;
         this.tipo=tipo;
         this.foto=foto;
