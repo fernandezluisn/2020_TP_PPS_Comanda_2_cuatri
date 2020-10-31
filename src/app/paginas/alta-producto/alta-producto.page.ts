@@ -7,6 +7,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { Producto } from 'src/app/interfaces/producto';
 import { ProductosService } from 'src/app/servicios/productos.service';
 import { finalize } from 'rxjs/operators';
+import { ToastService } from 'src/app/servicios/toast.service';
 
 
 
@@ -30,7 +31,6 @@ export class AltaProductoPage implements OnInit {
   image2: string = null;
   image3: string = null;
 
-  private fotos = new Array<any>();
 
   constructor(private storage:AngularFireStorage,     
     private camera: Camera, 
@@ -38,7 +38,8 @@ export class AltaProductoPage implements OnInit {
     private barcodeScanner: BarcodeScanner,
     private loadingCtrl:LoadingController,
     private vibra:Vibration,
-    private bda:ProductosService) { 
+    private bda:ProductosService,
+    private toast:ToastService) { 
       this.nombre="";
       this.minutos=0;
       this.descripcion="";
@@ -96,7 +97,7 @@ export class AltaProductoPage implements OnInit {
     this.loading = await this.loadingCtrl.create({
         message,
         spinner: "crescent",
-        duration: 4500
+        duration: 3500
     });
     return this.loading.present();
 
@@ -106,8 +107,7 @@ export class AltaProductoPage implements OnInit {
   async alertar(mensaje:string){
     const alert= this.alertController.create({
       cssClass: 'danger-alert-btn',
-      header: 'Error',
-      subHeader: 'La cámara no ha podido cargar la imagen',
+      header: 'Error',      
       message: mensaje,
       buttons: ['OK']
     });
@@ -116,36 +116,54 @@ export class AltaProductoPage implements OnInit {
   }
 
   async subir(){
+    this.presentLoading("Subiendo el producto.");
     let p=new Producto(this.nombre, this.descripcion, this.minutos, this.precio);
-    if(this.image1==null){
-      this.cargarProducto(p);
-    }else if(this.image2==null){
-      await this.guardarImagen(1, this.image1, p);
-      this.cargarProducto(p);
-    }else if(this.image3==null){
-      await this.guardarImagen(1, this.image1, p);
-      await this.guardarImagen(2, this.image2, p);
-      this.cargarProducto(p);
-    }else{
-     await  this.guardarImagen(1, this.image1, p);
-     await this.guardarImagen(2, this.image2, p);
-     await this.guardarImagen(3, this.image3, p);
-     this.cargarProducto(p);
+    try{    
+      if(this.image1==null){
+        await this.cargarProducto(p);
+      }else if(this.image2==null){
+        p= await this.guardarImagen(1, this.image1, p);
+        await this.cargarProducto(p);
+      }else if(this.image3==null){
+        p= await this.guardarImagen(1, this.image1, p);
+        p= await this.guardarImagen(2, this.image2, p);
+        await this.cargarProducto(p);
+      }else{
+        p= await this.guardarImagen(1, this.image1, p);
+        p= await this.guardarImagen(2, this.image2, p);
+        p= await this.guardarImagen(3, this.image3, p);
+        await this.cargarProducto(p);
+      }
+      this.image1=null;
+      this.image2=null;
+      this.image3=null;
+      this.nombre="";
+      this.descripcion="";
+      this.minutos=0;
+      this.precio=0;
+      this.toast.confirmationToast("Se guardó el producto.");
+    }catch(err){
+      this.alertar(err);
     }
     
   }
 
   cargarProducto(prod:Producto){
-    if(prod.precio>0 && prod.nombre.length>3 && prod.tiempo>10 && prod.descripcion.length>20){      
-      this.bda.createProducto(prod);
+    if(prod.precio>0 && prod.nombre.length>3 && prod.tiempo>10 && prod.descripcion.length>20){  
+      try{
+        this.bda.createProducto(prod);
+      }  catch(err){
+        this.alertar(err);
+      }  
+      
     }else if(prod.precio==0){
-      console.log("El precio debe ser mayor a 0")
+      this.alertar("El precio debe ser mayor a 0")
     }else if(prod.nombre.length<4){
-      console.log("El nombre debe tener más de 3 caracteres");
+      this.alertar("El nombre debe tener más de 3 caracteres");
     }else if(prod.tiempo<11){
-      console.log("Los productos tienen un mínimo de producción de 10 minutos");      
+      this.alertar("Los productos tienen un mínimo de producción de 10 minutos");      
     }else{
-      console.log("La descripción debe tener más de 20 caracteres");      
+      this.alertar("La descripción debe tener más de 20 caracteres");      
     }
   }
 
@@ -162,7 +180,7 @@ export class AltaProductoPage implements OnInit {
       const path= com;
       const ref=this.storage.ref(path);    
       const task=this.storage.upload(path, file);     
-      task.snapshotChanges().pipe(finalize(()=>ref.getDownloadURL().subscribe(url=>{
+      await task.snapshotChanges().pipe(finalize(()=>ref.getDownloadURL().subscribe(url=>{
         if(numero==1)
         producto.foto_1=url;      
         else if(numero==2)
@@ -171,6 +189,7 @@ export class AltaProductoPage implements OnInit {
         producto.foto_3=url;
       } ))).subscribe(); 
       
+      return producto;
     }catch(err){
       this.alertar(err);
       

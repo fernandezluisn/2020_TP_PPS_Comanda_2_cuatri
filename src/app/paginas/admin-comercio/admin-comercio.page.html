@@ -5,9 +5,10 @@
 </ion-header>
 
 <ion-content>
- 
-  <ng-container >
-   <h1 position="floating">Subo mesas</h1>
+
+  <ion-button (click)="cambiar()">Cambiar formulario</ion-button>
+
+  <ng-container *ngIf="alta">
 
    <ion-item>
     <ion-label position="floating">Tipo de mesa</ion-label>
@@ -37,5 +38,17 @@
     
   </ng-container>
 
+
+  <ng-container *ngIf="!alta">
+    
+
+    <ion-item>
+      <ion-label>Mesa a modificar y/o eliminar</ion-label>
+      <ion-select  [(ngModel)]="mesaElegida">
+        <ion-select-option [value]="item" *ngFor="let item of listaMesas">{{item}}</ion-select-option>        
+      </ion-select>
+    </ion-item>
+
+  </ng-container>
   
 </ion-content>

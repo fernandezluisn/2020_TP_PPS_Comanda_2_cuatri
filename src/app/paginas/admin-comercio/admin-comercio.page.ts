@@ -7,6 +7,7 @@ import { Mesa } from 'src/app/interfaces/mesa';
 import { MesasService } from 'src/app/servicios/mesas.service';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { Vibration } from '@ionic-native/vibration/ngx';
+import { ToastService } from 'src/app/servicios/toast.service';
 
 @Component({
   selector: 'app-admin-comercio',
@@ -21,9 +22,13 @@ export class AdminComercioPage implements OnInit {
   loading;
   image: string = null;
   url1: string;
-  qr:string;
+  qr:string="";
   repite=false;
   listaMesas:Mesa[];
+
+  alta=true;
+
+  mesaElegida=null;
 
   constructor(private storage:AngularFireStorage, 
     private bda:MesasService,
@@ -31,7 +36,8 @@ export class AdminComercioPage implements OnInit {
     private alertController:AlertController, 
     private barcodeScanner: BarcodeScanner,
     private loadingCtrl:LoadingController,
-    private vibra:Vibration) 
+    private vibra:Vibration,
+    private toast:ToastService) 
     { 
     this.cantidad=0;
     this.numMesa=0;
@@ -40,6 +46,13 @@ export class AdminComercioPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  cambiar(){
+    if(this.alta)
+    this.alta=false;
+    else
+    this.alta=true;
   }
   
 
@@ -130,13 +143,18 @@ export class AdminComercioPage implements OnInit {
           const path= com;
           const ref=this.storage.ref(path);    
           const task=this.storage.upload(path, file);     
-          task.snapshotChanges().pipe(finalize(()=>ref.getDownloadURL().subscribe(url=>{
+          await task.snapshotChanges().pipe(finalize(()=>ref.getDownloadURL().subscribe(url=>{
             this.url1=url;
             let f=new Mesa(this.qr, this.numMesa, this.cantidad, this.tipoMesa, this.url1, "Vacia");
-          this.bda.createMesa(f);
+            this.bda.createMesa(f);
           
           } ))).subscribe(); 
           
+          this.toast.confirmationToast("se subió la mesa.");
+          this.qr="";
+          this.numMesa=0;
+          this.cantidad=0;
+          this.tipoMesa="Estandar";
         }catch(err){
           this.alertar(err);
           
