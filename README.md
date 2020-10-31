@@ -26,14 +26,14 @@
 |---|---|---|---|---|
 | A | Alta dueño | Pendiente | Zamora | 
 | B | Alta empleado | Pendiente | Zamora | 
-| C | Alta producto | Pendiente | Fernández | 
-| D | Alta cliente | Pendiente | Ramundo | 
-| E | Alta mesa | Pendiente | Fernández |
-| F | Ingreso Local | Pendiente | Ramundo | 
-| G | QR mesa | Pendiente |  | 
-| H | QR Propina | Pendiente |  | 
+| C | Alta producto | Hecho | Fernández | 
+| D | Alta cliente | Hecho | Ramundo | 
+| E | Alta mesa | Hecho | Fernández |
+| F | Ingreso Local | Hecho | Ramundo | 
+| G | QR mesa | Pendiente | Ramundo | 
+| H | QR Propina | Pendiente | Fernández | 
 | I | Encuesta cliente | Pendiente |  | 
-| J | Encuesta empleado | Pendiente |  | 
+| J | Encuesta empleado | Pendiente | Fernández | 
 | K | Pedir plato y bebida | Pendiente |  | 
 | L | Tomar Pedido | Pendiente |  | 
 | M | Hacer reserva | Pendiente |  |
@@ -62,6 +62,14 @@
 |---|---|---|---|
 | Tareas | Alta producto <br> Alta mesa | Alta dueño <br> Alta empleado | Alta cliente <br> Ingreso Local | 
 | Fecha inicio | 24/10 | 24/10 | 24/10 | 
+| Fecha finalizaciíon | 31/10 |  | 30/10 | 
+
+<h3>Semana 3 :smile:</h3><br>
+
+|  | Alfa | Beta | Gammaa 
+|---|---|---|---|
+| Tareas | QR Propina <br> Encuesta empleado | QR Ingreso <br> Encuesta cliente | QR Mesa <br> Encuesta supervisor | 
+| Fecha inicio | 1/11 | 1/11 | 1/11 | 
 | Fecha finalizaciíon |  |  |  | 
 
 
