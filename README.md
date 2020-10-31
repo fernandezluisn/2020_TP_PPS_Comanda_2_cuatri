@@ -6,6 +6,7 @@
   Grupo 9️⃣9️⃣
 </h2>
 
+![alt text]
 (https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/logo.png)
 
 <h3>Integrantes 🎓:</h3>
