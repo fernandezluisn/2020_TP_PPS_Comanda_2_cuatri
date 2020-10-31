@@ -6,6 +6,10 @@
   Grupo 9️⃣9️⃣
 </h2>
 
+
+
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/logo.png" width="1100"/>
+
 <h3>Integrantes 🎓:</h3>
 
 <br>
@@ -26,14 +30,14 @@
 |---|---|---|---|---|
 | A | Alta dueño | Pendiente | Zamora | 
 | B | Alta empleado | Pendiente | Zamora | 
-| C | Alta producto | Pendiente | Fernández | 
-| D | Alta cliente | Pendiente | Ramundo | 
-| E | Alta mesa | Pendiente | Fernández |
-| F | Ingreso Local | Pendiente | Ramundo | 
-| G | QR mesa | Pendiente |  | 
-| H | QR Propina | Pendiente |  | 
-| I | Encuesta cliente | Pendiente |  | 
-| J | Encuesta empleado | Pendiente |  | 
+| C | Alta producto | Hecho | Fernández | 
+| D | Alta cliente | Hecho | Ramundo | 
+| E | Alta mesa | Hecho | Fernández |
+| F | Ingreso Local | Hecho | Ramundo | 
+| G | QR mesa | Pendiente | Ramundo | 
+| H | QR Propina | Pendiente | Fernández | 
+| I | Encuesta cliente | Pendiente | Zamora | 
+| J | Encuesta empleado | Pendiente | Fernández | 
 | K | Pedir plato y bebida | Pendiente |  | 
 | L | Tomar Pedido | Pendiente |  | 
 | M | Hacer reserva | Pendiente |  |
@@ -62,8 +66,23 @@
 |---|---|---|---|
 | Tareas | Alta producto <br> Alta mesa | Alta dueño <br> Alta empleado | Alta cliente <br> Ingreso Local | 
 | Fecha inicio | 24/10 | 24/10 | 24/10 | 
+| Fecha finalizaciíon | 31/10 |  | 30/10 | 
+
+<h3>Semana 3 :smile:</h3><br>
+
+|  | Alfa | Beta | Gammaa 
+|---|---|---|---|
+| Tareas | QR Propina <br> Encuesta empleado | QR Ingreso <br> Encuesta cliente | QR Mesa <br> Encuesta supervisor | 
+| Fecha inicio | 1/11 | 1/11 | 1/11 | 
 | Fecha finalizaciíon |  |  |  | 
 
+
+
+<h2>
+  Guía de uso :computer:
+</h2>
+
+<h3>Login</h3><br><br>
 
 
 
