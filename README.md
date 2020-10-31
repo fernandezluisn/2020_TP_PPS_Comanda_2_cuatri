@@ -32,7 +32,7 @@
 | F | Ingreso Local | Hecho | Ramundo | 
 | G | QR mesa | Pendiente | Ramundo | 
 | H | QR Propina | Pendiente | Fernández | 
-| I | Encuesta cliente | Pendiente |  | 
+| I | Encuesta cliente | Pendiente | Zamora | 
 | J | Encuesta empleado | Pendiente | Fernández | 
 | K | Pedir plato y bebida | Pendiente |  | 
 | L | Tomar Pedido | Pendiente |  | 
