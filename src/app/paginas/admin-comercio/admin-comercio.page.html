@@ -44,7 +44,7 @@
 
     <ion-item style="margin-bottom:3rem;">
       <ion-label>Mesa a modificar y/o eliminar</ion-label>
-      <ion-select  [(ngModel)]="mesaElegida" (change)="mostrarMesa()">
+      <ion-select  [(ngModel)]="mesaElegida" >
         <ion-select-option [value]="item" *ngFor="let item of listaMesas">{{item.numero}}</ion-select-option>        
       </ion-select>
     </ion-item >

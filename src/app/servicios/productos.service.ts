@@ -38,4 +38,8 @@ export class ProductosService {
     this.db.doc('productos' + '/'+prod.id).update({...prod});    
     
   }
+
+  BorrarProducto(prod: Producto) {
+    this.db.doc('productos/' + prod.id).delete().then()
+  }
 }

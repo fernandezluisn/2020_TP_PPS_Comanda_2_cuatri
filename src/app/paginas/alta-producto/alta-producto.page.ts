@@ -25,11 +25,16 @@ export class AltaProductoPage implements OnInit {
   qr:string;
   precio:number;
 
+  listaProductos:Producto[];
+  productoElegido:Producto=null;
+
   loading;
 
   image1: string = null;
   image2: string = null;
   image3: string = null;
+
+  alta=true;
 
 
   constructor(private storage:AngularFireStorage,     
@@ -40,6 +45,14 @@ export class AltaProductoPage implements OnInit {
     private vibra:Vibration,
     private bda:ProductosService,
     private toast:ToastService) { 
+
+      this.bda.devolverListadoProductos().subscribe(lista=>{
+        this.listaProductos=lista;      
+        this.listaProductos.sort((a,b)=>a.precio-b.precio); 
+      
+      }
+        );
+
       this.nombre="";
       this.minutos=0;
       this.descripcion="";
@@ -120,20 +133,23 @@ export class AltaProductoPage implements OnInit {
     let p=new Producto(this.nombre, this.descripcion, this.minutos, this.precio);
     try{    
       if(this.image1==null){
-        await this.cargarProducto(p);
+        await this.cargarProducto(p,1);
       }else if(this.image2==null){
         p= await this.guardarImagen(1, this.image1, p);
-        await this.cargarProducto(p);
+        await this.cargarProducto(p,1);
       }else if(this.image3==null){
         p= await this.guardarImagen(1, this.image1, p);
         p= await this.guardarImagen(2, this.image2, p);
-        await this.cargarProducto(p);
+        await this.cargarProducto(p,1);
       }else{
         p= await this.guardarImagen(1, this.image1, p);
         p= await this.guardarImagen(2, this.image2, p);
         p= await this.guardarImagen(3, this.image3, p);
-        await this.cargarProducto(p);
-      }
+        await this.cargarProducto(p,1);
+      }      
+    }catch(err){
+      this.alertar(err);
+    }finally{
       this.image1=null;
       this.image2=null;
       this.image3=null;
@@ -141,22 +157,30 @@ export class AltaProductoPage implements OnInit {
       this.descripcion="";
       this.minutos=0;
       this.precio=0;
-      this.toast.confirmationToast("Se guardó el producto.");
-    }catch(err){
-      this.alertar(err);
     }
     
   }
 
-  cargarProducto(prod:Producto){
-    if(prod.precio>0 && prod.nombre.length>3 && prod.tiempo>10 && prod.descripcion.length>20){  
+  cargarProducto(prod:Producto, modalidad:number){
+    if(prod.precio>0 && prod.nombre.length>3 && prod.tiempo>10 && prod.descripcion.length>20 && modalidad==1){  
       try{
         this.bda.createProducto(prod);
+        this.toast.confirmationToast("Se guardó el producto.");
+
       }  catch(err){
         this.alertar(err);
       }  
       
-    }else if(prod.precio==0){
+    }else if(prod.precio>0 && prod.nombre.length>3 && prod.tiempo>10 && prod.descripcion.length>20 && modalidad==2){
+      try{
+        this.bda.actualizarProducto(prod);
+        this.toast.confirmationToast("Se actualizó el producto.");
+
+      }  catch(err){
+        this.alertar(err);
+      }  
+    }
+    else if(prod.precio==0){
       this.alertar("El precio debe ser mayor a 0")
     }else if(prod.nombre.length<4){
       this.alertar("El nombre debe tener más de 3 caracteres");
@@ -194,5 +218,56 @@ export class AltaProductoPage implements OnInit {
       this.alertar(err);
       
     } 
+  }
+
+
+  cambiar(){
+    if(this.alta)
+    this.alta=false;
+    else
+    this.alta=true;
+  }
+
+  async eliminar(){
+    this.presentLoading("Eliminando");
+    try{
+      await this.bda.BorrarProducto(this.productoElegido);
+      this.toast.confirmationToast("se eliminó el producto.");
+    }catch(e){
+      this.alertar(e);
+    }finally{
+      this.productoElegido=null;
+    }
+    
+  }
+
+  async modificar(){
+    this.presentLoading("Subiendo el producto.");
+    let p=this.productoElegido;
+    p.nombre=this.productoElegido.nombre;
+    p.precio=this.productoElegido.precio;
+    p.descripcion=this.productoElegido.descripcion;
+    p.tiempo=this.productoElegido.tiempo;
+    try{    
+      if(this.image1==null){
+        await this.cargarProducto(p,2);
+      }else if(this.image2==null){
+        p= await this.guardarImagen(1, this.image1, p);
+        await this.cargarProducto(p,2);
+      }else if(this.image3==null){
+        p= await this.guardarImagen(1, this.image1, p);
+        p= await this.guardarImagen(2, this.image2, p);
+        await this.cargarProducto(p,2);
+      }else{
+        p= await this.guardarImagen(1, this.image1, p);
+        p= await this.guardarImagen(2, this.image2, p);
+        p= await this.guardarImagen(3, this.image3, p);
+        await this.cargarProducto(p,2);
+      }      
+    }catch(err){
+      this.alertar(err);
+    }finally{
+      this.productoElegido=null;
+    }
   }
 }

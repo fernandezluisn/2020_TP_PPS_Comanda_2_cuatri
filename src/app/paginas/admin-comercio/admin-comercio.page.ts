@@ -122,9 +122,7 @@ export class AdminComercioPage implements OnInit {
      });
   }
 
-  mostrarMesa(){
-    console.log(this.mesaElegida);
-  }
+ 
 
   async subir(){
     this.repite=false;
