@@ -82,7 +82,10 @@
   Guía de uso :computer:
 </h2>
 
-<h3>Login</h3><br><br>
+<h3>Ingreso</h3><br><br>
+
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/login.jpeg" margin-left:35%; width: 30%;/>
+
 
 
 
