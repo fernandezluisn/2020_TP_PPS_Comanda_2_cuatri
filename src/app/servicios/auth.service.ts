@@ -94,7 +94,6 @@ export class AuthService {
                  this.usuario = obj_element as Cliente;
                    localStorage.setItem('usuario', JSON.stringify(this.usuario));
                    resolve(this.usuario);
-                   console.log("cliente");
                    this.router.navigate(["home-cliente"]);
                   break;
                }

@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>propina</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h2>¿Cuál es su grado de satisfacción con respecto a la atención del mozo?</h2>
+
+  <ion-button  color="dark" size="small" (click)="escanear()">Cargar</ion-button>
+  <h1 *ngIf="satisfacción">Usted piensa que la atención ha sido {{satisfacción}}</h1>
+
+  <ion-button  color="dark" size="small" (click)="limpiar()">Limpiar</ion-button>
+
+  <ion-button  (click)="subirPropina()">Confirmar Propina</ion-button>
+</ion-content>

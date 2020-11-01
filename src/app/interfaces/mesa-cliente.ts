@@ -1,4 +1,4 @@
-export interface MesaCliente {
+export class MesaCliente {
     id?: string;
     cerrada: boolean;
     idCliente: string;
@@ -8,4 +8,11 @@ export interface MesaCliente {
     juegoDescuento: number;
     juegoPostre: number;
     propina: number;
+
+    constructor(idMozo:string, idMesa:string, idCliente:string){
+        this.cerrada=false;
+        this.idCliente=idCliente;
+        this.idMesa=idMesa;
+        this.idMozo=idMozo;
+    }
 }
