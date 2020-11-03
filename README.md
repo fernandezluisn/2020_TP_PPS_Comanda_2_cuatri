@@ -66,7 +66,7 @@
 |---|---|---|---|
 | Tareas | Alta producto <br> Alta mesa | Alta dueño <br> Alta empleado | Alta cliente <br> Ingreso Local | 
 | Fecha inicio | 24/10 | 24/10 | 24/10 | 
-| Fecha finalizaciíon | 31/10 |  | 30/10 | 
+| Fecha finalizaciíon | 31/10 | 1/11 | 30/10 | 
 
 <h3>Semana 3 :smile:</h3><br>
 
@@ -83,6 +83,8 @@
 </h2>
 
 <h3>Ingreso</h3><br><br>
+
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/ingresoComanda.jpeg" width="1100"/>
 
 La aplicación permite el ingreso con correo y contraseña, así como también entrar como usuario anonimo.
 
