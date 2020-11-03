@@ -133,9 +133,9 @@ export class AdminComercioPage implements OnInit {
     })
 
 
-    if(this.cantidad!=0)
+    if(this.cantidad!=0 )
     {
-      if(!this.repite)
+      if(!this.repite && this.qr.length>3)
       {
         this.presentLoading("Subiendo mesa");
 
@@ -155,10 +155,9 @@ export class AdminComercioPage implements OnInit {
             await task.snapshotChanges().pipe(finalize(()=>ref.getDownloadURL().subscribe(url=>{
               this.url1=url;
               let f=new Mesa(this.numMesa, this.cantidad, this.tipoMesa, this.url1, "Vacia");
-              if(this.qr.length>2)
-              {
-                f.qr=this.qr;
-              }
+              
+              f.qr=this.qr;
+              
               this.bda.createMesa(f);
             
             } ))).subscribe(); 
@@ -180,7 +179,7 @@ export class AdminComercioPage implements OnInit {
         }
        
       }else{
-        this.alertar("Ese número de mesa ya existe");
+        this.alertar("Debe elegir un número de mesa que no existe y agregarle un código qr para poder relizar el alta");
       }
       
     }else{
