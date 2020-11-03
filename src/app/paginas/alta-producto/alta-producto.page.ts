@@ -132,21 +132,15 @@ export class AltaProductoPage implements OnInit {
     this.presentLoading("Subiendo el producto.");
     let p=new Producto(this.nombre, this.descripcion, this.minutos, this.precio);
     try{    
-      if(this.image1==null){
-        await this.cargarProducto(p,1);
-      }else if(this.image2==null){
+      if(this.image1!=null){
         p= await this.guardarImagen(1, this.image1, p);
-        await this.cargarProducto(p,1);
-      }else if(this.image3==null){
-        p= await this.guardarImagen(1, this.image1, p);
+      }if(this.image2!=null){
         p= await this.guardarImagen(2, this.image2, p);
-        await this.cargarProducto(p,1);
-      }else{
-        p= await this.guardarImagen(1, this.image1, p);
-        p= await this.guardarImagen(2, this.image2, p);
-        p= await this.guardarImagen(3, this.image3, p);
-        await this.cargarProducto(p,1);
-      }      
+      }if(this.image3!=null){
+        p= await this.guardarImagen(3, this.image3, p);    
+
+      }  
+      await this.cargarProducto(p,1);   
     }catch(err){
       this.alertar(err);
     }finally{
@@ -249,21 +243,15 @@ export class AltaProductoPage implements OnInit {
     p.descripcion=this.productoElegido.descripcion;
     p.tiempo=this.productoElegido.tiempo;
     try{    
-      if(this.image1==null){
-        await this.cargarProducto(p,2);
-      }else if(this.image2==null){
+      if(this.image1!=null){
         p= await this.guardarImagen(1, this.image1, p);
-        await this.cargarProducto(p,2);
-      }else if(this.image3==null){
-        p= await this.guardarImagen(1, this.image1, p);
+      }if(this.image2!=null){
         p= await this.guardarImagen(2, this.image2, p);
-        await this.cargarProducto(p,2);
-      }else{
-        p= await this.guardarImagen(1, this.image1, p);
-        p= await this.guardarImagen(2, this.image2, p);
+      }if(this.image3!=null){
         p= await this.guardarImagen(3, this.image3, p);
-        await this.cargarProducto(p,2);
-      }      
+
+      }  
+      await this.cargarProducto(p,1);     
     }catch(err){
       this.alertar(err);
     }finally{
