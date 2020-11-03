@@ -84,7 +84,7 @@
 
 <h3>Ingreso</h3><br><br>
 
-<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/ingresoComanda.jpeg" width="1100"/>
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/ingresoComanda.jpeg" width="300"/>
 
 La aplicación permite el ingreso con correo y contraseña, así como también entrar como usuario anonimo.
 
