@@ -33,7 +33,8 @@ const routes: Routes = [
   { path: 'home-delivery', loadChildren: './paginas/home-delivery/home-delivery.module#HomeDeliveryPageModule' },
   { path: 'home-mozo', loadChildren: './paginas/home-mozo/home-mozo.module#HomeMozoPageModule' },
   { path: 'home-cliente', loadChildren: './paginas/home-cliente/home-cliente.module#HomeClientePageModule' },   
-  { path: 'propina', loadChildren: './paginas/propina/propina.module#PropinaPageModule' },
+  { path: 'propina', loadChildren: './paginas/propina/propina.module#PropinaPageModule' },  { path: 'mesa-cliente', loadChildren: './paginas/mesa-cliente/mesa-cliente.module#MesaClientePageModule' },
+
 
 
  

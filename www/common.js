@@ -99,51 +99,378 @@ var _sPassive,GestureController=function(){function t(t){this.doc=t,this.gesture
 
 /***/ }),
 
-/***/ "./src/app/servicios/spiner.service.ts":
-/*!*********************************************!*\
-  !*** ./src/app/servicios/spiner.service.ts ***!
-  \*********************************************/
-/*! exports provided: SpinerService */
+/***/ "./src/app/servicios/error.service.ts":
+/*!********************************************!*\
+  !*** ./src/app/servicios/error.service.ts ***!
+  \********************************************/
+/*! exports provided: ErrorService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SpinerService", function() { return SpinerService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ErrorService", function() { return ErrorService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _ionic_native_vibration_ngx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic-native/vibration/ngx */ "./node_modules/@ionic-native/vibration/ngx/index.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+
+
+
+
+var ErrorService = /** @class */ (function () {
+    function ErrorService(alertCtrl, vibration) {
+        this.alertCtrl = alertCtrl;
+        this.vibration = vibration;
+    }
+    ErrorService.prototype.MostrarErrorSoloLower = function (messageRecieved) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var alert;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        console.log('Ocurrio un error:', messageRecieved);
+                        this.vibration.vibrate(1000);
+                        return [4 /*yield*/, this.alertCtrl.create({
+                                message: messageRecieved,
+                                duration: 2000,
+                                position: 'bottom'
+                            })];
+                    case 1:
+                        alert = _a.sent();
+                        alert.present();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    ErrorService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"],
+            _ionic_native_vibration_ngx__WEBPACK_IMPORTED_MODULE_2__["Vibration"]])
+    ], ErrorService);
+    return ErrorService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/servicios/firestorage.service.ts":
+/*!**************************************************!*\
+  !*** ./src/app/servicios/firestorage.service.ts ***!
+  \**************************************************/
+/*! exports provided: FirestorageService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FirestorageService", function() { return FirestorageService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_fire_storage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/fire/storage */ "./node_modules/@angular/fire/storage/index.js");
+
+
+
+var FirestorageService = /** @class */ (function () {
+    function FirestorageService(fireStorage) {
+        this.fireStorage = fireStorage;
+    }
+    FirestorageService.prototype.uploadFotoToFirebase = function (dataFoto) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var picName, respuesta;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        picName = (new Date()).getTime().toString();
+                        return [4 /*yield*/, this.fireStorage.storage.ref(picName).putString(dataFoto, 'base64', { contentType: 'image/jpeg' }).
+                                then(function (uploadFoto) {
+                                return uploadFoto.ref.getDownloadURL().then(function (downloadLink) {
+                                    return downloadLink.toString();
+                                });
+                            })];
+                    case 1:
+                        respuesta = _a.sent();
+                        return [2 /*return*/, respuesta];
+                }
+            });
+        });
+    };
+    FirestorageService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_fire_storage__WEBPACK_IMPORTED_MODULE_2__["AngularFireStorage"]])
+    ], FirestorageService);
+    return FirestorageService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/servicios/mesas.service.ts":
+/*!********************************************!*\
+  !*** ./src/app/servicios/mesas.service.ts ***!
+  \********************************************/
+/*! exports provided: MesasService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MesasService", function() { return MesasService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/fire/firestore */ "./node_modules/@angular/fire/firestore/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+
+
+
+
+var MesasService = /** @class */ (function () {
+    function MesasService(db) {
+        this.db = db;
+        this.mesas = this.db.collection("mesas").snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (actions) {
+            return actions.map(function (a) {
+                var data = a.payload.doc.data();
+                var id = a.payload.doc.id;
+                return tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({ id: id }, data);
+            });
+        }));
+    }
+    MesasService.prototype.getMesas = function () {
+        return this.db.collection('mesas').snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (mesas) {
+            return mesas.map(function (mesa) {
+                var data = mesa.payload.doc.data();
+                data.id = mesa.payload.doc.id;
+                return data;
+            });
+        }));
+    };
+    MesasService.prototype.createMesa = function (mesa) {
+        return this.db.collection('mesas').add(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, mesa));
+    };
+    MesasService.prototype.devolverListadoMesas = function () {
+        return this.mesas;
+    };
+    MesasService.prototype.actualizarMesa = function (mesa) {
+        this.db.doc('mesas' + '/' + mesa.id).update(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, mesa));
+    };
+    MesasService.prototype.BorrarMesa = function (mesa) {
+        this.db.doc('mesas/' + mesa.id).delete().then();
+    };
+    MesasService.prototype.obtenerMesaQr = function (qr) {
+        //   return this.db.collection<T>("mesas", ref => ref.where(param,'==', qr )).valueChanges({idField: 'identificador'});
+        var param = "qr";
+        return this.db.collection('mesas', function (ref) { return ref.where(param, '==', qr); }).valueChanges();
+    };
+    MesasService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_2__["AngularFirestore"]])
+    ], MesasService);
+    return MesasService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/servicios/spinner.service.ts":
+/*!**********************************************!*\
+  !*** ./src/app/servicios/spinner.service.ts ***!
+  \**********************************************/
+/*! exports provided: SpinnerService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SpinnerService", function() { return SpinnerService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
 
 
 
-var SpinerService = /** @class */ (function () {
-    function SpinerService(loadingCtrl) {
-        this.loadingCtrl = loadingCtrl;
+var SpinnerService = /** @class */ (function () {
+    function SpinnerService(_loadingController, _toastCtrl) {
+        this._loadingController = _loadingController;
+        this._toastCtrl = _toastCtrl;
+        this._isSpinnerShowing = false;
+        this._isGoingToClose = false;
+        this._timer = -1; // This is the timer, it will go from 2000 to -1
+        this._timerID = null;
+        // console.log('Inicializo el spinner');
+        this.createSpinner();
     }
-    SpinerService.prototype.GetAllPageSpinner = function (messageSpinner) {
+    SpinnerService.prototype.createSpinner = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var loader;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.loadingCtrl.create({
-                            spinner: 'bubbles',
-                            keyboardClose: true,
-                            message: messageSpinner !== '' ? messageSpinner : undefined,
-                            showBackdrop: false
-                        })];
+            var _a;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = this;
+                        return [4 /*yield*/, this._loadingController.create({
+                                spinner: null,
+                                keyboardClose: true,
+                                message: '<div class="spinner-css"><img src="assets/loading.png"></div> Cargando...',
+                                showBackdrop: false,
+                                duration: 30000,
+                                cssClass: 'cajaSpinner'
+                            })];
                     case 1:
-                        loader = _a.sent();
-                        return [2 /*return*/, loader];
+                        _a._currentLoading = _b.sent();
+                        return [2 /*return*/];
                 }
             });
         });
     };
-    SpinerService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    SpinnerService.prototype.showSpinner = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                // console.log('Muestro el spinner', this._currentLoading);
+                if (this._isSpinnerShowing === false) {
+                    this._currentLoading.present();
+                    this._isSpinnerShowing = this.startTimer();
+                }
+                return [2 /*return*/];
+            });
+        });
+    };
+    SpinnerService.prototype.startTimer = function () {
+        var _this = this;
+        // console.log('Inicializo el conteo');
+        this._timer = 2000;
+        this._timerID = setInterval(function () {
+            _this._timer = _this._timer - 1;
+            if (_this._timer < 0) {
+                // console.log('El conteo se acabÃ³.');
+                _this._isGoingToClose = true;
+                clearInterval(_this._timerID);
+            }
+        }, 1);
+        return true;
+    };
+    SpinnerService.prototype.hideSpinner = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                // console.log('Intento ocultar el spinner con el timer en', this._timer);
+                if (this._isSpinnerShowing) {
+                    if (this._timer < 0) {
+                        // console.log('El tiempo acabÃ³ y oculto el spinner');
+                        this._isSpinnerShowing = this.stopAndReplaceSpinner();
+                        this._isGoingToClose = false;
+                    }
+                    else {
+                        // console.log('El tiempo NO acaba y hago un timeout para acabarlo en', this._timer);
+                        clearInterval(this._timerID);
+                        setTimeout(function () {
+                            _this._isGoingToClose = true;
+                            _this.hideSpinner();
+                        }, this._timer);
+                    }
+                    this._timer = -1;
+                }
+                return [2 /*return*/];
+            });
+        });
+    };
+    SpinnerService.prototype.stopAndReplaceSpinner = function () {
+        this._currentLoading.dismiss();
+        this.createSpinner();
+        return false;
+    };
+    SpinnerService.prototype.mostrarToast = function (message, timer, color, position) {
+        this._toastCtrl.create({
+            color: color,
+            duration: timer * 1000,
+            message: message,
+            position: position,
+        })
+            .then(function (toast) {
+            toast.present();
+        });
+    };
+    SpinnerService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
             providedIn: 'root'
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"]])
-    ], SpinerService);
-    return SpinerService;
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"]])
+    ], SpinnerService);
+    return SpinnerService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/servicios/toast.service.ts":
+/*!********************************************!*\
+  !*** ./src/app/servicios/toast.service.ts ***!
+  \********************************************/
+/*! exports provided: ToastService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ToastService", function() { return ToastService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+
+
+
+var ToastService = /** @class */ (function () {
+    function ToastService(toastController) {
+        this.toastController = toastController;
+    }
+    ToastService.prototype.errorToast = function (messageParam) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var toast;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.toastController.create({
+                            message: messageParam,
+                            duration: 5000,
+                            color: 'danger'
+                        })];
+                    case 1:
+                        toast = _a.sent();
+                        toast.present();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    ToastService.prototype.confirmationToast = function (messageParam) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var toast;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.toastController.create({
+                            message: messageParam,
+                            duration: 5000,
+                            color: 'success'
+                        })];
+                    case 1:
+                        toast = _a.sent();
+                        toast.present();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    ToastService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"]])
+    ], ToastService);
+    return ToastService;
 }());
 
 

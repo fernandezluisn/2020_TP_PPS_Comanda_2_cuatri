@@ -25,6 +25,19 @@ export class MesasService {
     );
   }
 
+
+ 
+  getMesas() {
+    return this.db.collection('mesas').snapshotChanges().pipe(map(mesas => {
+      return mesas.map(mesa => {
+        const data = mesa.payload.doc.data() as Mesa;
+        data.id = mesa.payload.doc.id;
+        return data;
+      });
+    }));
+  }
+
+
   createMesa(mesa:Mesa): Promise<DocumentReference> {
     return this.db.collection('mesas').add({...mesa});
   }  
@@ -41,5 +54,13 @@ export class MesasService {
 
   BorrarMesa(mesa: Mesa) {
     this.db.doc('mesas/' + mesa.id).delete().then()
+  }
+
+
+  obtenerMesaQr(qr ){
+ //   return this.db.collection<T>("mesas", ref => ref.where(param,'==', qr )).valueChanges({idField: 'identificador'});
+
+    var param = "qr";
+    return this.db.collection('mesas', ref => ref.where(param,'==', qr)).valueChanges();
   }
 }
