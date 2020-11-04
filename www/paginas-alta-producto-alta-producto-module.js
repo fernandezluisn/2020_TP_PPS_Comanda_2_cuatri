@@ -255,52 +255,33 @@ var AltaProductoPage = /** @class */ (function () {
                         p = new src_app_interfaces_producto__WEBPACK_IMPORTED_MODULE_7__["Producto"](this.nombre, this.descripcion, this.minutos, this.precio);
                         _a.label = 1;
                     case 1:
-                        _a.trys.push([1, 16, 17, 18]);
-                        if (!(this.image1 == null)) return [3 /*break*/, 3];
-                        return [4 /*yield*/, this.cargarProducto(p, 1)];
-                    case 2:
-                        _a.sent();
-                        return [3 /*break*/, 15];
-                    case 3:
-                        if (!(this.image2 == null)) return [3 /*break*/, 6];
+                        _a.trys.push([1, 9, 10, 11]);
+                        if (!(this.image1 != null)) return [3 /*break*/, 3];
                         return [4 /*yield*/, this.guardarImagen(1, this.image1, p)];
+                    case 2:
+                        p = _a.sent();
+                        _a.label = 3;
+                    case 3:
+                        if (!(this.image2 != null)) return [3 /*break*/, 5];
+                        return [4 /*yield*/, this.guardarImagen(2, this.image2, p)];
                     case 4:
                         p = _a.sent();
-                        return [4 /*yield*/, this.cargarProducto(p, 1)];
+                        _a.label = 5;
                     case 5:
-                        _a.sent();
-                        return [3 /*break*/, 15];
-                    case 6:
-                        if (!(this.image3 == null)) return [3 /*break*/, 10];
-                        return [4 /*yield*/, this.guardarImagen(1, this.image1, p)];
-                    case 7:
-                        p = _a.sent();
-                        return [4 /*yield*/, this.guardarImagen(2, this.image2, p)];
-                    case 8:
-                        p = _a.sent();
-                        return [4 /*yield*/, this.cargarProducto(p, 1)];
-                    case 9:
-                        _a.sent();
-                        return [3 /*break*/, 15];
-                    case 10: return [4 /*yield*/, this.guardarImagen(1, this.image1, p)];
-                    case 11:
-                        p = _a.sent();
-                        return [4 /*yield*/, this.guardarImagen(2, this.image2, p)];
-                    case 12:
-                        p = _a.sent();
+                        if (!(this.image3 != null)) return [3 /*break*/, 7];
                         return [4 /*yield*/, this.guardarImagen(3, this.image3, p)];
-                    case 13:
+                    case 6:
                         p = _a.sent();
-                        return [4 /*yield*/, this.cargarProducto(p, 1)];
-                    case 14:
+                        _a.label = 7;
+                    case 7: return [4 /*yield*/, this.cargarProducto(p, 1)];
+                    case 8:
                         _a.sent();
-                        _a.label = 15;
-                    case 15: return [3 /*break*/, 18];
-                    case 16:
+                        return [3 /*break*/, 11];
+                    case 9:
                         err_1 = _a.sent();
                         this.alertar(err_1);
-                        return [3 /*break*/, 18];
-                    case 17:
+                        return [3 /*break*/, 11];
+                    case 10:
                         this.image1 = null;
                         this.image2 = null;
                         this.image3 = null;
@@ -309,7 +290,7 @@ var AltaProductoPage = /** @class */ (function () {
                         this.minutos = 0;
                         this.precio = 0;
                         return [7 /*endfinally*/];
-                    case 18: return [2 /*return*/];
+                    case 11: return [2 /*return*/];
                 }
             });
         });
@@ -431,55 +412,36 @@ var AltaProductoPage = /** @class */ (function () {
                         p.tiempo = this.productoElegido.tiempo;
                         _a.label = 1;
                     case 1:
-                        _a.trys.push([1, 16, 17, 18]);
-                        if (!(this.image1 == null)) return [3 /*break*/, 3];
-                        return [4 /*yield*/, this.cargarProducto(p, 2)];
-                    case 2:
-                        _a.sent();
-                        return [3 /*break*/, 15];
-                    case 3:
-                        if (!(this.image2 == null)) return [3 /*break*/, 6];
+                        _a.trys.push([1, 9, 10, 11]);
+                        if (!(this.image1 != null)) return [3 /*break*/, 3];
                         return [4 /*yield*/, this.guardarImagen(1, this.image1, p)];
+                    case 2:
+                        p = _a.sent();
+                        _a.label = 3;
+                    case 3:
+                        if (!(this.image2 != null)) return [3 /*break*/, 5];
+                        return [4 /*yield*/, this.guardarImagen(2, this.image2, p)];
                     case 4:
                         p = _a.sent();
-                        return [4 /*yield*/, this.cargarProducto(p, 2)];
+                        _a.label = 5;
                     case 5:
-                        _a.sent();
-                        return [3 /*break*/, 15];
-                    case 6:
-                        if (!(this.image3 == null)) return [3 /*break*/, 10];
-                        return [4 /*yield*/, this.guardarImagen(1, this.image1, p)];
-                    case 7:
-                        p = _a.sent();
-                        return [4 /*yield*/, this.guardarImagen(2, this.image2, p)];
-                    case 8:
-                        p = _a.sent();
-                        return [4 /*yield*/, this.cargarProducto(p, 2)];
-                    case 9:
-                        _a.sent();
-                        return [3 /*break*/, 15];
-                    case 10: return [4 /*yield*/, this.guardarImagen(1, this.image1, p)];
-                    case 11:
-                        p = _a.sent();
-                        return [4 /*yield*/, this.guardarImagen(2, this.image2, p)];
-                    case 12:
-                        p = _a.sent();
+                        if (!(this.image3 != null)) return [3 /*break*/, 7];
                         return [4 /*yield*/, this.guardarImagen(3, this.image3, p)];
-                    case 13:
+                    case 6:
                         p = _a.sent();
-                        return [4 /*yield*/, this.cargarProducto(p, 2)];
-                    case 14:
+                        _a.label = 7;
+                    case 7: return [4 /*yield*/, this.cargarProducto(p, 1)];
+                    case 8:
                         _a.sent();
-                        _a.label = 15;
-                    case 15: return [3 /*break*/, 18];
-                    case 16:
+                        return [3 /*break*/, 11];
+                    case 9:
                         err_3 = _a.sent();
                         this.alertar(err_3);
-                        return [3 /*break*/, 18];
-                    case 17:
+                        return [3 /*break*/, 11];
+                    case 10:
                         this.productoElegido = null;
                         return [7 /*endfinally*/];
-                    case 18: return [2 /*return*/];
+                    case 11: return [2 /*return*/];
                 }
             });
         });

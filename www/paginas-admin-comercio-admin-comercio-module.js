@@ -265,7 +265,7 @@ var AdminComercioPage = /** @class */ (function () {
                                 _this.repite = true;
                         });
                         if (!(this.cantidad != 0)) return [3 /*break*/, 10];
-                        if (!!this.repite) return [3 /*break*/, 8];
+                        if (!(!this.repite && this.qr.length > 3)) return [3 /*break*/, 8];
                         this.presentLoading("Subiendo mesa");
                         if (!this.image) return [3 /*break*/, 6];
                         _a.label = 1;
@@ -285,9 +285,7 @@ var AdminComercioPage = /** @class */ (function () {
                         return [4 /*yield*/, task.snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["finalize"])(function () { return ref_1.getDownloadURL().subscribe(function (url) {
                                 _this.url1 = url;
                                 var f = new src_app_interfaces_mesa__WEBPACK_IMPORTED_MODULE_6__["Mesa"](_this.numMesa, _this.cantidad, _this.tipoMesa, _this.url1, "Vacia");
-                                if (_this.qr.length > 2) {
-                                    f.qr = _this.qr;
-                                }
+                                f.qr = _this.qr;
                                 _this.bda.createMesa(f);
                             }); })).subscribe()];
                     case 3:
@@ -309,7 +307,7 @@ var AdminComercioPage = /** @class */ (function () {
                         _a.label = 7;
                     case 7: return [3 /*break*/, 9];
                     case 8:
-                        this.alertar("Ese número de mesa ya existe");
+                        this.alertar("Debe elegir un número de mesa que no existe y agregarle un código qr para poder relizar el alta");
                         _a.label = 9;
                     case 9: return [3 /*break*/, 11];
                     case 10:
