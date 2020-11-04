@@ -58,7 +58,7 @@ var PropinaPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title>propina</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n  <h2>¿Cuál es su grado de satisfaccion con respecto a la atención del mozo?</h2>\r\n\r\n  <ion-button  color=\"dark\" size=\"small\" (click)=\"escanear()\">Cargar</ion-button>\r\n  <h1 *ngIf=\"satisfacción\">Usted piensa que la atencion ha sido {{satisfacción}}</h1>\r\n\r\n  <ion-button  color=\"dark\" size=\"small\" (click)=\"limpiar()\">Limpiar</ion-button>\r\n\r\n  <ion-button  (click)=\"subirPropina()\">Confirmar Propina</ion-button>\r\n</ion-content>\r\n"
+module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title>Propina</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n  <h2>¿Cuál es su grado de satisfacción con respecto a la atención del mozo?</h2>\r\n\r\n  <ion-button  color=\"dark\" size=\"small\" (click)=\"escanear()\">Cargar</ion-button>\r\n  <h1 *ngIf=\"satisfaccion\">Usted piensa que la atención ha sido {{satisfaccion}}</h1>\r\n\r\n  <ion-button  color=\"dark\" size=\"small\" (click)=\"limpiar()\">Limpiar</ion-button>\r\n\r\n  <ion-button  (click)=\"subirPropina()\">Confirmar Propina</ion-button>\r\n</ion-content>\r\n"
 
 /***/ }),
 

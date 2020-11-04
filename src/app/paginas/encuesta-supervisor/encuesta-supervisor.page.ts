@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { EncuestasService } from 'src/app/servicios/encuestas.service';
-import { FirestorageService } from 'src/app/servicios/firestorage.service';
-import { AuthService } from 'src/app/servicios/auth.service';
-import { Empleado } from 'src/app/interfaces/usuario';
+import { EncuestasService } from '../../servicios/encuestas.service'
+import { FirestorageService } from '../../servicios/firestorage.service'
+import { AuthService } from '../../servicios/auth.service'
+import { Empleado } from '../../interfaces/usuario'
 import { AlertController } from '@ionic/angular';
 
 @Component({

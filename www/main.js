@@ -870,6 +870,11 @@ var map = {
 		"common",
 		"paginas-alta-supervisor-alta-supervisor-module"
 	],
+	"./paginas/encuesta-supervisor/encuesta-supervisor.module": [
+		"./src/app/paginas/encuesta-supervisor/encuesta-supervisor.module.ts",
+		"common",
+		"paginas-encuesta-supervisor-encuesta-supervisor-module"
+	],
 	"./paginas/home-cliente/home-cliente.module": [
 		"./src/app/paginas/home-cliente/home-cliente.module.ts",
 		"common",
@@ -984,6 +989,7 @@ var routes = [
     { path: 'home-cliente', loadChildren: './paginas/home-cliente/home-cliente.module#HomeClientePageModule' },
     { path: 'propina', loadChildren: './paginas/propina/propina.module#PropinaPageModule' },
     { path: 'mesa-cliente', loadChildren: './paginas/mesa-cliente/mesa-cliente.module#MesaClientePageModule' },
+    { path: 'encuesta-supervisor', loadChildren: './paginas/encuesta-supervisor/encuesta-supervisor.module#EncuestaSupervisorPageModule' },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
