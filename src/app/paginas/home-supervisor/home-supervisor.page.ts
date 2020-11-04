@@ -18,4 +18,8 @@ export class HomeSupervisorPage implements OnInit {
     this.route.navigate([endpoint])
   }
 
+  Encuesta(){
+    this.route.navigate(['encuesta-supervisor'])
+  }
+
 }
