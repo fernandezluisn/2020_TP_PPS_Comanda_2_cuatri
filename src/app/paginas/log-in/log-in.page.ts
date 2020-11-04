@@ -29,7 +29,6 @@ export class LogInPage implements OnInit {
     console.log(this.email)
     console.log(this.password)
     this.auth.LogIn(this.email, this.password).then(res => {
-      sp.dismiss();
       if(localStorage.getItem('Sonido') == 'true')
       {
         let audio = new Audio();
@@ -37,7 +36,7 @@ export class LogInPage implements OnInit {
         audio.load();
         audio.play();
       }
-      
+      sp.dismiss();
     
     }).catch(err =>{
       // alert(err)

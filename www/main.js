@@ -847,29 +847,69 @@ var map = {
 	],
 	"./paginas/admin-comercio/admin-comercio.module": [
 		"./src/app/paginas/admin-comercio/admin-comercio.module.ts",
+		"common",
 		"paginas-admin-comercio-admin-comercio-module"
 	],
 	"./paginas/alta-cliente/alta-cliente.module": [
 		"./src/app/paginas/alta-cliente/alta-cliente.module.ts",
+		"common",
 		"paginas-alta-cliente-alta-cliente-module"
 	],
-	"./paginas/home-admin/home-admin.module": [
-		"./src/app/paginas/home-admin/home-admin.module.ts",
-		"paginas-home-admin-home-admin-module"
+	"./paginas/alta-empleado/alta-empleado.module": [
+		"./src/app/paginas/alta-empleado/alta-empleado.module.ts",
+		"common",
+		"paginas-alta-empleado-alta-empleado-module"
+	],
+	"./paginas/alta-producto/alta-producto.module": [
+		"./src/app/paginas/alta-producto/alta-producto.module.ts",
+		"common",
+		"paginas-alta-producto-alta-producto-module"
+	],
+	"./paginas/alta-supervisor/alta-supervisor.module": [
+		"./src/app/paginas/alta-supervisor/alta-supervisor.module.ts",
+		"common",
+		"paginas-alta-supervisor-alta-supervisor-module"
 	],
 	"./paginas/home-cliente/home-cliente.module": [
 		"./src/app/paginas/home-cliente/home-cliente.module.ts",
 		"common",
 		"paginas-home-cliente-home-cliente-module"
 	],
+	"./paginas/home-cocina/home-cocina.module": [
+		"./src/app/paginas/home-cocina/home-cocina.module.ts",
+		"paginas-home-cocina-home-cocina-module"
+	],
 	"./paginas/home-comanda/home-comanda.module": [
 		"./src/app/paginas/home-comanda/home-comanda.module.ts",
 		"paginas-home-comanda-home-comanda-module"
 	],
+	"./paginas/home-delivery/home-delivery.module": [
+		"./src/app/paginas/home-delivery/home-delivery.module.ts",
+		"paginas-home-delivery-home-delivery-module"
+	],
+	"./paginas/home-metre/home-metre.module": [
+		"./src/app/paginas/home-metre/home-metre.module.ts",
+		"paginas-home-metre-home-metre-module"
+	],
+	"./paginas/home-mozo/home-mozo.module": [
+		"./src/app/paginas/home-mozo/home-mozo.module.ts",
+		"paginas-home-mozo-home-mozo-module"
+	],
+	"./paginas/home-supervisor/home-supervisor.module": [
+		"./src/app/paginas/home-supervisor/home-supervisor.module.ts",
+		"paginas-home-supervisor-home-supervisor-module"
+	],
 	"./paginas/log-in/log-in.module": [
 		"./src/app/paginas/log-in/log-in.module.ts",
-		"common",
 		"paginas-log-in-log-in-module"
+	],
+	"./paginas/mesa-cliente/mesa-cliente.module": [
+		"./src/app/paginas/mesa-cliente/mesa-cliente.module.ts",
+		"paginas-mesa-cliente-mesa-cliente-module"
+	],
+	"./paginas/propina/propina.module": [
+		"./src/app/paginas/propina/propina.module.ts",
+		"paginas-propina-propina-module"
 	]
 };
 function webpackAsyncContext(req) {
@@ -931,9 +971,19 @@ var routes = [
     { path: 'home-comanda', loadChildren: './paginas/home-comanda/home-comanda.module#HomeComandaPageModule' },
     { path: 'alta-cliente', loadChildren: './paginas/alta-cliente/alta-cliente.module#AltaClientePageModule' },
     { path: 'home-cliente', loadChildren: './paginas/home-cliente/home-cliente.module#HomeClientePageModule' },
-    { path: 'home-admin', loadChildren: './paginas/home-admin/home-admin.module#HomeAdminPageModule' },
-    { path: 'admin-comercio', loadChildren: './paginas/admin-comercio/admin-comercio.module#AdminComercioPageModule' },
-    { path: 'aceptar-cliente', loadChildren: './paginas/aceptar-cliente/aceptar-cliente.module#AceptarClientePageModule' }
+    { path: 'alta-mesa', loadChildren: './paginas/admin-comercio/admin-comercio.module#AdminComercioPageModule' },
+    { path: 'alta-producto', loadChildren: './paginas/alta-producto/alta-producto.module#AltaProductoPageModule' },
+    { path: 'home-cocina', loadChildren: './paginas/home-cocina/home-cocina.module#HomeCocinaPageModule' },
+    { path: 'aceptar-cliente', loadChildren: './paginas/aceptar-cliente/aceptar-cliente.module#AceptarClientePageModule' },
+    { path: 'alta-supervisor', loadChildren: './paginas/alta-supervisor/alta-supervisor.module#AltaSupervisorPageModule' },
+    { path: 'alta-empleado', loadChildren: './paginas/alta-empleado/alta-empleado.module#AltaEmpleadoPageModule' },
+    { path: 'home-metre', loadChildren: './paginas/home-metre/home-metre.module#HomeMetrePageModule' },
+    { path: 'home-supervisor', loadChildren: './paginas/home-supervisor/home-supervisor.module#HomeSupervisorPageModule' },
+    { path: 'home-delivery', loadChildren: './paginas/home-delivery/home-delivery.module#HomeDeliveryPageModule' },
+    { path: 'home-mozo', loadChildren: './paginas/home-mozo/home-mozo.module#HomeMozoPageModule' },
+    { path: 'home-cliente', loadChildren: './paginas/home-cliente/home-cliente.module#HomeClientePageModule' },
+    { path: 'propina', loadChildren: './paginas/propina/propina.module#PropinaPageModule' },
+    { path: 'mesa-cliente', loadChildren: './paginas/mesa-cliente/mesa-cliente.module#MesaClientePageModule' },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -971,7 +1021,7 @@ module.exports = "<ion-app>\r\n  <div *ngIf=\"this.showSplash\" class=\"splash\"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".splash {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  z-index: 999;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background-color: #A599B5; }\n  .splash .animate {\n    -webkit-animation: shake 0.5s;\n            animation: shake 0.5s;\n    -webkit-animation-iteration-count: infinite;\n            animation-iteration-count: infinite; }\n  @-webkit-keyframes shake {\n  0% {\n    -webkit-transform: translate(1px, 1px) rotate(0deg);\n            transform: translate(1px, 1px) rotate(0deg); }\n  10% {\n    -webkit-transform: translate(-1px, -2px) rotate(-1deg);\n            transform: translate(-1px, -2px) rotate(-1deg); }\n  20% {\n    -webkit-transform: translate(-3px, 0px) rotate(1deg);\n            transform: translate(-3px, 0px) rotate(1deg); }\n  30% {\n    -webkit-transform: translate(3px, 2px) rotate(0deg);\n            transform: translate(3px, 2px) rotate(0deg); }\n  40% {\n    -webkit-transform: translate(1px, -1px) rotate(1deg);\n            transform: translate(1px, -1px) rotate(1deg); }\n  50% {\n    -webkit-transform: translate(-1px, 2px) rotate(-1deg);\n            transform: translate(-1px, 2px) rotate(-1deg); }\n  60% {\n    -webkit-transform: translate(-3px, 1px) rotate(0deg);\n            transform: translate(-3px, 1px) rotate(0deg); }\n  70% {\n    -webkit-transform: translate(3px, 1px) rotate(-1deg);\n            transform: translate(3px, 1px) rotate(-1deg); }\n  80% {\n    -webkit-transform: translate(-1px, -1px) rotate(1deg);\n            transform: translate(-1px, -1px) rotate(1deg); }\n  90% {\n    -webkit-transform: translate(1px, 2px) rotate(0deg);\n            transform: translate(1px, 2px) rotate(0deg); }\n  100% {\n    -webkit-transform: translate(1px, -2px) rotate(-1deg);\n            transform: translate(1px, -2px) rotate(-1deg); } }\n  @keyframes shake {\n  0% {\n    -webkit-transform: translate(1px, 1px) rotate(0deg);\n            transform: translate(1px, 1px) rotate(0deg); }\n  10% {\n    -webkit-transform: translate(-1px, -2px) rotate(-1deg);\n            transform: translate(-1px, -2px) rotate(-1deg); }\n  20% {\n    -webkit-transform: translate(-3px, 0px) rotate(1deg);\n            transform: translate(-3px, 0px) rotate(1deg); }\n  30% {\n    -webkit-transform: translate(3px, 2px) rotate(0deg);\n            transform: translate(3px, 2px) rotate(0deg); }\n  40% {\n    -webkit-transform: translate(1px, -1px) rotate(1deg);\n            transform: translate(1px, -1px) rotate(1deg); }\n  50% {\n    -webkit-transform: translate(-1px, 2px) rotate(-1deg);\n            transform: translate(-1px, 2px) rotate(-1deg); }\n  60% {\n    -webkit-transform: translate(-3px, 1px) rotate(0deg);\n            transform: translate(-3px, 1px) rotate(0deg); }\n  70% {\n    -webkit-transform: translate(3px, 1px) rotate(-1deg);\n            transform: translate(3px, 1px) rotate(-1deg); }\n  80% {\n    -webkit-transform: translate(-1px, -1px) rotate(1deg);\n            transform: translate(-1px, -1px) rotate(1deg); }\n  90% {\n    -webkit-transform: translate(1px, 2px) rotate(0deg);\n            transform: translate(1px, 2px) rotate(0deg); }\n  100% {\n    -webkit-transform: translate(1px, -2px) rotate(-1deg);\n            transform: translate(1px, -2px) rotate(-1deg); } }\n  .rotate {\n  -webkit-animation: rotation 8s infinite linear;\n          animation: rotation 8s infinite linear; }\n  @-webkit-keyframes rotation {\n  from {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  to {\n    -webkit-transform: rotate(359deg);\n            transform: rotate(359deg); } }\n  @keyframes rotation {\n  from {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  to {\n    -webkit-transform: rotate(359deg);\n            transform: rotate(359deg); } }\n  .rotating-landscape {\n  width: 100vw;\n  height: 100vw; }\n  .rotating {\n  position: absolute;\n  display: flex;\n  align-items: center;\n  justify-content: center; }\n  .spinner-portrait {\n  width: 100vh;\n  height: 100vh; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQzpcXFVzZXJzXFxyYXVsLnphbW9yYVxcQW5uZ3VsYXJcXDIwMjBfVFBfUFBTL3NyY1xcYXBwXFxhcHAuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxrQkFBa0I7RUFDbEIsV0FBVztFQUNYLFlBQVk7RUFDWixZQUFZO0VBQ1osYUFBYTtFQUNiLG1CQUFtQjtFQUNuQix1QkFBdUI7RUFFdkIseUJBQXlCLEVBQUE7RUFUM0I7SUFZSSw2QkFBcUI7WUFBckIscUJBQXFCO0lBQ3JCLDJDQUFtQztZQUFuQyxtQ0FBbUMsRUFBQTtFQUdyQztFQUNGO0lBQUssbURBQTJDO1lBQTNDLDJDQUEyQyxFQUFBO0VBQ2hEO0lBQU0sc0RBQThDO1lBQTlDLDhDQUE4QyxFQUFBO0VBQ3BEO0lBQU0sb0RBQTRDO1lBQTVDLDRDQUE0QyxFQUFBO0VBQ2xEO0lBQU0sbURBQTJDO1lBQTNDLDJDQUEyQyxFQUFBO0VBQ2pEO0lBQU0sb0RBQTRDO1lBQTVDLDRDQUE0QyxFQUFBO0VBQ2xEO0lBQU0scURBQTZDO1lBQTdDLDZDQUE2QyxFQUFBO0VBQ25EO0lBQU0sb0RBQTRDO1lBQTVDLDRDQUE0QyxFQUFBO0VBQ2xEO0lBQU0sb0RBQTRDO1lBQTVDLDRDQUE0QyxFQUFBO0VBQ2xEO0lBQU0scURBQTZDO1lBQTdDLDZDQUE2QyxFQUFBO0VBQ25EO0lBQU0sbURBQTJDO1lBQTNDLDJDQUEyQyxFQUFBO0VBQ2pEO0lBQU8scURBQTZDO1lBQTdDLDZDQUE2QyxFQUFBLEVBQUE7RUFYbEQ7RUFDRjtJQUFLLG1EQUEyQztZQUEzQywyQ0FBMkMsRUFBQTtFQUNoRDtJQUFNLHNEQUE4QztZQUE5Qyw4Q0FBOEMsRUFBQTtFQUNwRDtJQUFNLG9EQUE0QztZQUE1Qyw0Q0FBNEMsRUFBQTtFQUNsRDtJQUFNLG1EQUEyQztZQUEzQywyQ0FBMkMsRUFBQTtFQUNqRDtJQUFNLG9EQUE0QztZQUE1Qyw0Q0FBNEMsRUFBQTtFQUNsRDtJQUFNLHFEQUE2QztZQUE3Qyw2Q0FBNkMsRUFBQTtFQUNuRDtJQUFNLG9EQUE0QztZQUE1Qyw0Q0FBNEMsRUFBQTtFQUNsRDtJQUFNLG9EQUE0QztZQUE1Qyw0Q0FBNEMsRUFBQTtFQUNsRDtJQUFNLHFEQUE2QztZQUE3Qyw2Q0FBNkMsRUFBQTtFQUNuRDtJQUFNLG1EQUEyQztZQUEzQywyQ0FBMkMsRUFBQTtFQUNqRDtJQUFPLHFEQUE2QztZQUE3Qyw2Q0FBNkMsRUFBQSxFQUFBO0VBSXBEO0VBQ0UsOENBQXNDO1VBQXRDLHNDQUFzQyxFQUFBO0VBR3hDO0VBQ0U7SUFDRSwrQkFBdUI7WUFBdkIsdUJBQXVCLEVBQUE7RUFFekI7SUFDRSxpQ0FBeUI7WUFBekIseUJBQXlCLEVBQUEsRUFBQTtFQUw3QjtFQUNFO0lBQ0UsK0JBQXVCO1lBQXZCLHVCQUF1QixFQUFBO0VBRXpCO0lBQ0UsaUNBQXlCO1lBQXpCLHlCQUF5QixFQUFBLEVBQUE7RUFJN0I7RUFDRSxZQUFZO0VBQ1osYUFBYSxFQUFBO0VBR2Y7RUFDRSxrQkFBa0I7RUFDbEIsYUFBYTtFQUNiLG1CQUFtQjtFQUNuQix1QkFBdUIsRUFBQTtFQUd6QjtFQUNFLFlBQVk7RUFDWixhQUFhLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuc3BsYXNoIHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgaGVpZ2h0OiAxMDAlO1xyXG4gIHotaW5kZXg6IDk5OTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgLy8gYmFja2dyb3VuZDogI2ZmNzQwMDtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjQTU5OUI1O1xyXG5cclxuICAuYW5pbWF0ZSB7XHJcbiAgICBhbmltYXRpb246IHNoYWtlIDAuNXM7XHJcbiAgICBhbmltYXRpb24taXRlcmF0aW9uLWNvdW50OiBpbmZpbml0ZTtcclxuICB9XHJcbiAgXHJcbiAgQGtleWZyYW1lcyBzaGFrZSB7XHJcbjAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoMXB4LCAxcHgpIHJvdGF0ZSgwZGVnKTsgfVxyXG4xMCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgtMXB4LCAtMnB4KSByb3RhdGUoLTFkZWcpOyB9XHJcbjIwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKC0zcHgsIDBweCkgcm90YXRlKDFkZWcpOyB9XHJcbjMwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKDNweCwgMnB4KSByb3RhdGUoMGRlZyk7IH1cclxuNDAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoMXB4LCAtMXB4KSByb3RhdGUoMWRlZyk7IH1cclxuNTAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTFweCwgMnB4KSByb3RhdGUoLTFkZWcpOyB9XHJcbjYwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKC0zcHgsIDFweCkgcm90YXRlKDBkZWcpOyB9XHJcbjcwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKDNweCwgMXB4KSByb3RhdGUoLTFkZWcpOyB9XHJcbjgwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKC0xcHgsIC0xcHgpIHJvdGF0ZSgxZGVnKTsgfVxyXG45MCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgxcHgsIDJweCkgcm90YXRlKDBkZWcpOyB9XHJcbjEwMCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgxcHgsIC0ycHgpIHJvdGF0ZSgtMWRlZyk7IH1cclxuICB9XHJcbn1cclxuXHJcbi5yb3RhdGUge1xyXG4gIGFuaW1hdGlvbjogcm90YXRpb24gOHMgaW5maW5pdGUgbGluZWFyO1xyXG59XHJcblxyXG5Aa2V5ZnJhbWVzIHJvdGF0aW9uIHtcclxuICBmcm9tIHtcclxuICAgIHRyYW5zZm9ybTogcm90YXRlKDBkZWcpO1xyXG4gIH1cclxuICB0byB7XHJcbiAgICB0cmFuc2Zvcm06IHJvdGF0ZSgzNTlkZWcpO1xyXG4gIH1cclxufVxyXG5cclxuLnJvdGF0aW5nLWxhbmRzY2FwZSB7XHJcbiAgd2lkdGg6IDEwMHZ3O1xyXG4gIGhlaWdodDogMTAwdnc7XHJcbn1cclxuXHJcbi5yb3RhdGluZyB7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxufVxyXG5cclxuLnNwaW5uZXItcG9ydHJhaXQge1xyXG4gIHdpZHRoOiAxMDB2aDtcclxuICBoZWlnaHQ6IDEwMHZoO1xyXG59XHJcbiJdfQ== */"
+module.exports = ".splash {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  z-index: 999;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background-color: #A599B5; }\n  .splash .animate {\n    -webkit-animation: shake 0.5s;\n            animation: shake 0.5s;\n    -webkit-animation-iteration-count: infinite;\n            animation-iteration-count: infinite; }\n  @-webkit-keyframes shake {\n  0% {\n    -webkit-transform: translate(1px, 1px) rotate(0deg);\n            transform: translate(1px, 1px) rotate(0deg); }\n  10% {\n    -webkit-transform: translate(-1px, -2px) rotate(-1deg);\n            transform: translate(-1px, -2px) rotate(-1deg); }\n  20% {\n    -webkit-transform: translate(-3px, 0px) rotate(1deg);\n            transform: translate(-3px, 0px) rotate(1deg); }\n  30% {\n    -webkit-transform: translate(3px, 2px) rotate(0deg);\n            transform: translate(3px, 2px) rotate(0deg); }\n  40% {\n    -webkit-transform: translate(1px, -1px) rotate(1deg);\n            transform: translate(1px, -1px) rotate(1deg); }\n  50% {\n    -webkit-transform: translate(-1px, 2px) rotate(-1deg);\n            transform: translate(-1px, 2px) rotate(-1deg); }\n  60% {\n    -webkit-transform: translate(-3px, 1px) rotate(0deg);\n            transform: translate(-3px, 1px) rotate(0deg); }\n  70% {\n    -webkit-transform: translate(3px, 1px) rotate(-1deg);\n            transform: translate(3px, 1px) rotate(-1deg); }\n  80% {\n    -webkit-transform: translate(-1px, -1px) rotate(1deg);\n            transform: translate(-1px, -1px) rotate(1deg); }\n  90% {\n    -webkit-transform: translate(1px, 2px) rotate(0deg);\n            transform: translate(1px, 2px) rotate(0deg); }\n  100% {\n    -webkit-transform: translate(1px, -2px) rotate(-1deg);\n            transform: translate(1px, -2px) rotate(-1deg); } }\n  @keyframes shake {\n  0% {\n    -webkit-transform: translate(1px, 1px) rotate(0deg);\n            transform: translate(1px, 1px) rotate(0deg); }\n  10% {\n    -webkit-transform: translate(-1px, -2px) rotate(-1deg);\n            transform: translate(-1px, -2px) rotate(-1deg); }\n  20% {\n    -webkit-transform: translate(-3px, 0px) rotate(1deg);\n            transform: translate(-3px, 0px) rotate(1deg); }\n  30% {\n    -webkit-transform: translate(3px, 2px) rotate(0deg);\n            transform: translate(3px, 2px) rotate(0deg); }\n  40% {\n    -webkit-transform: translate(1px, -1px) rotate(1deg);\n            transform: translate(1px, -1px) rotate(1deg); }\n  50% {\n    -webkit-transform: translate(-1px, 2px) rotate(-1deg);\n            transform: translate(-1px, 2px) rotate(-1deg); }\n  60% {\n    -webkit-transform: translate(-3px, 1px) rotate(0deg);\n            transform: translate(-3px, 1px) rotate(0deg); }\n  70% {\n    -webkit-transform: translate(3px, 1px) rotate(-1deg);\n            transform: translate(3px, 1px) rotate(-1deg); }\n  80% {\n    -webkit-transform: translate(-1px, -1px) rotate(1deg);\n            transform: translate(-1px, -1px) rotate(1deg); }\n  90% {\n    -webkit-transform: translate(1px, 2px) rotate(0deg);\n            transform: translate(1px, 2px) rotate(0deg); }\n  100% {\n    -webkit-transform: translate(1px, -2px) rotate(-1deg);\n            transform: translate(1px, -2px) rotate(-1deg); } }\n  .rotate {\n  -webkit-animation: rotation 8s infinite linear;\n          animation: rotation 8s infinite linear; }\n  @-webkit-keyframes rotation {\n  from {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  to {\n    -webkit-transform: rotate(359deg);\n            transform: rotate(359deg); } }\n  @keyframes rotation {\n  from {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  to {\n    -webkit-transform: rotate(359deg);\n            transform: rotate(359deg); } }\n  .rotating-landscape {\n  width: 100vw;\n  height: 100vw; }\n  .rotating {\n  position: absolute;\n  display: flex;\n  align-items: center;\n  justify-content: center; }\n  .spinner-portrait {\n  width: 100vh;\n  height: 100vh; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvRTpcXERlc2Nhcmdhc1xcbWFzdGVyXFxtYXN0ZXIvc3JjXFxhcHBcXGFwcC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGtCQUFrQjtFQUNsQixXQUFXO0VBQ1gsWUFBWTtFQUNaLFlBQVk7RUFDWixhQUFhO0VBQ2IsbUJBQW1CO0VBQ25CLHVCQUF1QjtFQUV2Qix5QkFBeUIsRUFBQTtFQVQzQjtJQVlJLDZCQUFxQjtZQUFyQixxQkFBcUI7SUFDckIsMkNBQW1DO1lBQW5DLG1DQUFtQyxFQUFBO0VBR3JDO0VBQ0Y7SUFBSyxtREFBMkM7WUFBM0MsMkNBQTJDLEVBQUE7RUFDaEQ7SUFBTSxzREFBOEM7WUFBOUMsOENBQThDLEVBQUE7RUFDcEQ7SUFBTSxvREFBNEM7WUFBNUMsNENBQTRDLEVBQUE7RUFDbEQ7SUFBTSxtREFBMkM7WUFBM0MsMkNBQTJDLEVBQUE7RUFDakQ7SUFBTSxvREFBNEM7WUFBNUMsNENBQTRDLEVBQUE7RUFDbEQ7SUFBTSxxREFBNkM7WUFBN0MsNkNBQTZDLEVBQUE7RUFDbkQ7SUFBTSxvREFBNEM7WUFBNUMsNENBQTRDLEVBQUE7RUFDbEQ7SUFBTSxvREFBNEM7WUFBNUMsNENBQTRDLEVBQUE7RUFDbEQ7SUFBTSxxREFBNkM7WUFBN0MsNkNBQTZDLEVBQUE7RUFDbkQ7SUFBTSxtREFBMkM7WUFBM0MsMkNBQTJDLEVBQUE7RUFDakQ7SUFBTyxxREFBNkM7WUFBN0MsNkNBQTZDLEVBQUEsRUFBQTtFQVhsRDtFQUNGO0lBQUssbURBQTJDO1lBQTNDLDJDQUEyQyxFQUFBO0VBQ2hEO0lBQU0sc0RBQThDO1lBQTlDLDhDQUE4QyxFQUFBO0VBQ3BEO0lBQU0sb0RBQTRDO1lBQTVDLDRDQUE0QyxFQUFBO0VBQ2xEO0lBQU0sbURBQTJDO1lBQTNDLDJDQUEyQyxFQUFBO0VBQ2pEO0lBQU0sb0RBQTRDO1lBQTVDLDRDQUE0QyxFQUFBO0VBQ2xEO0lBQU0scURBQTZDO1lBQTdDLDZDQUE2QyxFQUFBO0VBQ25EO0lBQU0sb0RBQTRDO1lBQTVDLDRDQUE0QyxFQUFBO0VBQ2xEO0lBQU0sb0RBQTRDO1lBQTVDLDRDQUE0QyxFQUFBO0VBQ2xEO0lBQU0scURBQTZDO1lBQTdDLDZDQUE2QyxFQUFBO0VBQ25EO0lBQU0sbURBQTJDO1lBQTNDLDJDQUEyQyxFQUFBO0VBQ2pEO0lBQU8scURBQTZDO1lBQTdDLDZDQUE2QyxFQUFBLEVBQUE7RUFJcEQ7RUFDRSw4Q0FBc0M7VUFBdEMsc0NBQXNDLEVBQUE7RUFHeEM7RUFDRTtJQUNFLCtCQUF1QjtZQUF2Qix1QkFBdUIsRUFBQTtFQUV6QjtJQUNFLGlDQUF5QjtZQUF6Qix5QkFBeUIsRUFBQSxFQUFBO0VBTDdCO0VBQ0U7SUFDRSwrQkFBdUI7WUFBdkIsdUJBQXVCLEVBQUE7RUFFekI7SUFDRSxpQ0FBeUI7WUFBekIseUJBQXlCLEVBQUEsRUFBQTtFQUk3QjtFQUNFLFlBQVk7RUFDWixhQUFhLEVBQUE7RUFHZjtFQUNFLGtCQUFrQjtFQUNsQixhQUFhO0VBQ2IsbUJBQW1CO0VBQ25CLHVCQUF1QixFQUFBO0VBR3pCO0VBQ0UsWUFBWTtFQUNaLGFBQWEsRUFBQSIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5zcGxhc2gge1xyXG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICB3aWR0aDogMTAwJTtcclxuICBoZWlnaHQ6IDEwMCU7XHJcbiAgei1pbmRleDogOTk5O1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICAvLyBiYWNrZ3JvdW5kOiAjZmY3NDAwO1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICNBNTk5QjU7XHJcblxyXG4gIC5hbmltYXRlIHtcclxuICAgIGFuaW1hdGlvbjogc2hha2UgMC41cztcclxuICAgIGFuaW1hdGlvbi1pdGVyYXRpb24tY291bnQ6IGluZmluaXRlO1xyXG4gIH1cclxuICBcclxuICBAa2V5ZnJhbWVzIHNoYWtlIHtcclxuMCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgxcHgsIDFweCkgcm90YXRlKDBkZWcpOyB9XHJcbjEwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKC0xcHgsIC0ycHgpIHJvdGF0ZSgtMWRlZyk7IH1cclxuMjAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTNweCwgMHB4KSByb3RhdGUoMWRlZyk7IH1cclxuMzAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoM3B4LCAycHgpIHJvdGF0ZSgwZGVnKTsgfVxyXG40MCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgxcHgsIC0xcHgpIHJvdGF0ZSgxZGVnKTsgfVxyXG41MCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgtMXB4LCAycHgpIHJvdGF0ZSgtMWRlZyk7IH1cclxuNjAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTNweCwgMXB4KSByb3RhdGUoMGRlZyk7IH1cclxuNzAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoM3B4LCAxcHgpIHJvdGF0ZSgtMWRlZyk7IH1cclxuODAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTFweCwgLTFweCkgcm90YXRlKDFkZWcpOyB9XHJcbjkwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKDFweCwgMnB4KSByb3RhdGUoMGRlZyk7IH1cclxuMTAwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKDFweCwgLTJweCkgcm90YXRlKC0xZGVnKTsgfVxyXG4gIH1cclxufVxyXG5cclxuLnJvdGF0ZSB7XHJcbiAgYW5pbWF0aW9uOiByb3RhdGlvbiA4cyBpbmZpbml0ZSBsaW5lYXI7XHJcbn1cclxuXHJcbkBrZXlmcmFtZXMgcm90YXRpb24ge1xyXG4gIGZyb20ge1xyXG4gICAgdHJhbnNmb3JtOiByb3RhdGUoMGRlZyk7XHJcbiAgfVxyXG4gIHRvIHtcclxuICAgIHRyYW5zZm9ybTogcm90YXRlKDM1OWRlZyk7XHJcbiAgfVxyXG59XHJcblxyXG4ucm90YXRpbmctbGFuZHNjYXBlIHtcclxuICB3aWR0aDogMTAwdnc7XHJcbiAgaGVpZ2h0OiAxMDB2dztcclxufVxyXG5cclxuLnJvdGF0aW5nIHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG59XHJcblxyXG4uc3Bpbm5lci1wb3J0cmFpdCB7XHJcbiAgd2lkdGg6IDEwMHZoO1xyXG4gIGhlaWdodDogMTAwdmg7XHJcbn1cclxuIl19 */"
 
 /***/ }),
 
@@ -1190,37 +1240,37 @@ var SepararGuard = /** @class */ (function () {
                 return false;
             }
             else {
-                // let usuario = this.auth.getUsuario();
-                // switch (usuario['perfil']) {
-                //   case 'mozo':
-                //     this.router.navigate(['home-mozo']);
-                //     break;
-                //   case 'metre':
-                //     this.router.navigate(['home-metre']);
-                //     break;
-                //   case 'delivery':
-                //       this.router.navigate(['home-delivery']);
-                //       break;
-                //   case 'cocina':
-                //   case 'bar':
-                _this.router.navigate(['home-comanda']);
-                //     break;
-                //   case 'cliente':
-                //   case 'anonimo':
-                //     this.router.navigate(['home-cliente']);
-                //     break;
-                //   case 'supervisor':
-                //   case 'dueño':
-                //       this.router.navigate(['home-supervisor']);
-                //     break;
-                //   default:
-                //       this.router.navigate(['log-in']);
-                //     break;
-                // }
+                var usuario = _this.auth.getUsuario();
+                switch (usuario['perfil']) {
+                    case 'mozo':
+                        _this.router.navigate(['home-mozo']);
+                        break;
+                    case 'metre':
+                        _this.router.navigate(['home-metre']);
+                        break;
+                    case 'delivery':
+                        _this.router.navigate(['home-delivery']);
+                        break;
+                    case 'cocina':
+                    case 'bar':
+                        _this.router.navigate(['home-cocina']);
+                        break;
+                    case 'cliente':
+                    case 'anonimo':
+                        _this.router.navigate(['home-cliente']);
+                        break;
+                    case 'supervisor':
+                    case 'dueño':
+                        _this.router.navigate(['home-supervisor']);
+                        break;
+                    default:
+                        _this.router.navigate(['log-in']);
+                        break;
+                }
                 return true;
             }
             // console.log(auth);
-            // return false;
+            return false;
         }));
     };
     SepararGuard = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -1273,6 +1323,71 @@ var AlertService = /** @class */ (function () {
                             buttons: [
                                 {
                                     text: 'Aceptar'
+                                }
+                            ]
+                        })];
+                    case 1:
+                        alert = _a.sent();
+                        return [4 /*yield*/, alert.present()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AlertService.prototype.clienteListaEspera = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var alert;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.alertController.create({
+                            header: 'Bienvenido',
+                            message: 'Desea agregarse a la lista de espera?',
+                            buttons: [
+                                {
+                                    text: 'Cancelar',
+                                    role: 'cancel',
+                                    cssClass: 'secondary',
+                                    handler: function () {
+                                        console.log('Confirm Cancel');
+                                    }
+                                }
+                            ]
+                        })];
+                    case 1:
+                        alert = _a.sent();
+                        return [4 /*yield*/, alert.present()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AlertService.prototype.clienteComiendo = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var alert;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.alertController.create({
+                            header: 'Bienvenido',
+                            message: 'Espero que esté disfrutando de su pedido. Desea completar una breve encuesta acerca de su experiencia?',
+                            buttons: [
+                                {
+                                    text: 'Cancelar',
+                                    role: 'cancel',
+                                    cssClass: 'secondary',
+                                    handler: function () {
+                                        console.log('Confirm Cancel');
+                                    }
+                                }, {
+                                    text: 'Aceptar',
+                                    handler: function (data) {
+                                        data = '';
+                                        _this.route.navigate(['/encuesta-cliente']);
+                                    }
                                 }
                             ]
                         })];
@@ -1364,19 +1479,19 @@ var AuthService = /** @class */ (function () {
                                     _this.usuario = obj_element;
                                     localStorage.setItem('usuario', JSON.stringify(_this.usuario));
                                     resolve(_this.usuario);
-                                    _this.router.navigate(["home-comanda"]);
+                                    _this.router.navigate(["home-cocina"]);
                                     break;
                                 case 'cocina':
                                     _this.usuario = obj_element;
                                     localStorage.setItem('usuario', JSON.stringify(_this.usuario));
                                     resolve(_this.usuario);
-                                    _this.router.navigate(["home-comanda"]);
+                                    _this.router.navigate(["home-cocina"]);
                                     break;
                                 case 'supervisor':
                                     _this.usuario = obj_element;
                                     localStorage.setItem('usuario', JSON.stringify(_this.usuario));
                                     resolve(_this.usuario);
-                                    _this.router.navigate(["home-admin"]);
+                                    _this.router.navigate(["home-supervisor"]);
                                     break;
                                 case 'mozo':
                                     _this.usuario = obj_element;
@@ -1400,14 +1515,12 @@ var AuthService = /** @class */ (function () {
                                     _this.usuario = obj_element;
                                     localStorage.setItem('usuario', JSON.stringify(_this.usuario));
                                     resolve(_this.usuario);
-                                    console.log("soy dueño");
-                                    _this.router.navigate(["home-admin"]);
+                                    _this.router.navigate(["home-supervisor"]);
                                     break;
                                 case 'cliente':
                                     _this.usuario = obj_element;
                                     localStorage.setItem('usuario', JSON.stringify(_this.usuario));
                                     resolve(_this.usuario);
-                                    console.log("cliente");
                                     _this.router.navigate(["home-cliente"]);
                                     break;
                             }
@@ -1457,7 +1570,6 @@ var AuthService = /** @class */ (function () {
     };
     AuthService.prototype.CrearAuth = function (mail, pass, usuario, foto) {
         var _this = this;
-        console.log("Aca");
         return new Promise(function (resolve, rejected) {
             _this.AFauth.auth.createUserWithEmailAndPassword(mail, pass).then(function (nuevousuario) {
                 // let usuarioData = this.TransformarUsuario(usuarioLogeado.user.uid)
@@ -1601,7 +1713,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\raul.zamora\Anngular\2020_TP_PPS\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! E:\Descargas\master\master\src\main.ts */"./src/main.ts");
 
 
 /***/ })

@@ -23,11 +23,13 @@ export class SpinnerService {
 
   private async createSpinner() {
     this._currentLoading = await this._loadingController.create({
-      showBackdrop: false,
-      cssClass: 'spinner-class',
-      spinner: null,
-      translucent: true,
-    } as LoadingOptions);
+        spinner: null,
+        keyboardClose: true,
+        message: '<div class="spinner-css"><img src="assets/loading.png"></div> Cargando...',
+        showBackdrop: false,
+        duration:30000,
+        cssClass: 'cajaSpinner'
+      });
   }
 
   public async showSpinner() {

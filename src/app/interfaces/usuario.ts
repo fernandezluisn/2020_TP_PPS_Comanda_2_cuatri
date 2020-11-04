@@ -10,8 +10,18 @@ export interface Cliente {
     nacimiento?: string;
     nacionalidad?: string;
     activo: boolean;
+    estado: string;
     perfil: string;
 }
+
+
+export enum EstadosCliente{
+    "desconectado",
+    "aceptado",
+    "ConMesaAsignada",
+    "EnListaDeEspera"
+}
+
 
 export interface Empleado {
     uid: string;
@@ -33,3 +43,5 @@ export interface Anonimo {
     nombre: string;
     perfil: string;
 }
+
+
