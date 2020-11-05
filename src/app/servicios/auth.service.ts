@@ -76,7 +76,7 @@ export class AuthService {
                   this.usuario = obj_element as Empleado;
                   localStorage.setItem('usuario', JSON.stringify(this.usuario));
                    resolve(this.usuario);
-                   this.router.navigate(["home-comanda"]);
+                   this.router.navigate(["home-metre"]);
                    break;
                 case 'delivery':
                   this.usuario = obj_element as Empleado;
@@ -139,7 +139,6 @@ export class AuthService {
         }));
       }).catch(err=>{rejected(err)});
     });
-   
   }
 
   CrearAuth(mail, pass, usuario, foto) {
@@ -164,6 +163,17 @@ export class AuthService {
 
   getUsuario() {
     return JSON.parse(localStorage.getItem('usuario'));
+  }
+
+
+  getUsuariosListaEspera() {
+    return this.firestore.collection('usuarios').snapshotChanges().pipe(map(cliente => {
+      return cliente.map(espera => {
+        const data = espera.payload.doc.data() as Cliente;
+        data.id = espera.payload.doc.id;
+        return data;
+      });
+    }));
   }
 
   public CrearUsuario(usuario, foto) {

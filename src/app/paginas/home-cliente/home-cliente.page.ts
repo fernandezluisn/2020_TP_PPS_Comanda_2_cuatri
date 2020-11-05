@@ -12,6 +12,7 @@ import { SpinerService } from 'src/app/servicios/spiner.service';
 import { AlertService } from 'src/app/servicios/alert.service';
 import { MesasService } from 'src/app/servicios/mesas.service';
 import { SpinnerService } from 'src/app/servicios/spinner.service';
+import { MesaClienteService } from 'src/app/servicios/mesa-cliente.service';
 
 @Component({ 
   selector: 'app-home-cliente',
@@ -26,10 +27,11 @@ export class HomeClientePage {
   public usuario: any;
   public mesa: Mesa;
   private pedidos = [];
+  private estadoActualCliente;
   cliente;
   chat =false;
   constructor(private alert: AlertService, private spinner: SpinnerService, private barcodeScanner: BarcodeScanner, private route: Router,
-    private clienteService:AuthService, private mesaService: MesasService) {
+    private clienteService:AuthService, private mesaService: MesasService, private mesaClienteService: MesaClienteService) {
     this.cliente = JSON.parse(localStorage.getItem('usuario')); 
 
     this.mesaService.getMesas().subscribe(mesas => { this.mesas = mesas; });
@@ -39,9 +41,20 @@ export class HomeClientePage {
     this.clienteService.obtenerCliente(this.cliente.uid).subscribe((resp:any) =>{
       resp.forEach(user => {
         console.log(user.estado);
-          this.cliente = user;              
+          this.cliente = user;      
+
+          //chequeo si cambio el estado del cliente para poder darle un mensaje de aviso.
+          if(this.cliente.estado == "aceptado" && this.estadoActualCliente == "EnListaDeEspera"){
+            this.alert.mensaje("","Ha sido aceptado! ya puede ingresar al local");
+          }        
+          this.estadoActualCliente = user.estado;     
+
+          console.log("aca");
       });        
     });
+
+
+
 
     if(this.cliente.estado == "ConMesaAsignada"){
       this.route.navigate(['mesa-cliente'])
@@ -108,12 +121,13 @@ this.spinner.hideSpinner();
               if(mesa.estado == "Ocupada"){
                 this.alert.mensaje('', 'La mesa esta ocupada');
               }
-              else{
+              else{           
                 mesa.estado = "Ocupada";    
                 this.mesaService.actualizarMesa(mesa);
                 this.cliente.estado = "ConMesaAsignada"
                 this.clienteService.ModificarUsuario(this.cliente);       
                 this.alert.mensaje('', 'Ya puede sentarse en la mesa seleccionada!!');
+                this.mesaClienteService.createMesaCliente(new MesaCliente(mesa.id,this.cliente.id,mesa.qr));
                 this.route.navigate(['mesa-cliente']);      
                 }           
 

@@ -1,5 +1,30 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["paginas-home-cliente-home-cliente-module"],{
 
+/***/ "./src/app/interfaces/mesa-cliente.ts":
+/*!********************************************!*\
+  !*** ./src/app/interfaces/mesa-cliente.ts ***!
+  \********************************************/
+/*! exports provided: MesaCliente */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MesaCliente", function() { return MesaCliente; });
+var MesaCliente = /** @class */ (function () {
+    function MesaCliente(idMesa, idCliente, qrMesa) {
+        this.cerrada = false;
+        this.idCliente = idCliente;
+        this.idMesa = idMesa;
+        this.qrMesa = qrMesa;
+        // this.idMozo=idMozo;
+    }
+    return MesaCliente;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/paginas/home-cliente/home-cliente.module.ts":
 /*!*************************************************************!*\
   !*** ./src/app/paginas/home-cliente/home-cliente.module.ts ***!
@@ -84,13 +109,17 @@ module.exports = "#columnCenter {\n  width: 50%;\n  margin: 0 auto; }\n\n.logo-i
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeClientePage", function() { return HomeClientePage; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic-native/barcode-scanner/ngx */ "./node_modules/@ionic-native/barcode-scanner/ngx/index.js");
-/* harmony import */ var src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/servicios/auth.service */ "./src/app/servicios/auth.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/servicios/alert.service */ "./src/app/servicios/alert.service.ts");
-/* harmony import */ var src_app_servicios_mesas_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/servicios/mesas.service */ "./src/app/servicios/mesas.service.ts");
-/* harmony import */ var src_app_servicios_spinner_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/servicios/spinner.service */ "./src/app/servicios/spinner.service.ts");
+/* harmony import */ var _interfaces_mesa_cliente__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../interfaces/mesa-cliente */ "./src/app/interfaces/mesa-cliente.ts");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic-native/barcode-scanner/ngx */ "./node_modules/@ionic-native/barcode-scanner/ngx/index.js");
+/* harmony import */ var src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/servicios/auth.service */ "./src/app/servicios/auth.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/servicios/alert.service */ "./src/app/servicios/alert.service.ts");
+/* harmony import */ var src_app_servicios_mesas_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/servicios/mesas.service */ "./src/app/servicios/mesas.service.ts");
+/* harmony import */ var src_app_servicios_spinner_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/servicios/spinner.service */ "./src/app/servicios/spinner.service.ts");
+/* harmony import */ var src_app_servicios_mesa_cliente_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/servicios/mesa-cliente.service */ "./src/app/servicios/mesa-cliente.service.ts");
+
+
 
 
 
@@ -100,7 +129,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var HomeClientePage = /** @class */ (function () {
-    function HomeClientePage(alert, spinner, barcodeScanner, route, clienteService, mesaService) {
+    function HomeClientePage(alert, spinner, barcodeScanner, route, clienteService, mesaService, mesaClienteService) {
         var _this = this;
         this.alert = alert;
         this.spinner = spinner;
@@ -108,6 +137,7 @@ var HomeClientePage = /** @class */ (function () {
         this.route = route;
         this.clienteService = clienteService;
         this.mesaService = mesaService;
+        this.mesaClienteService = mesaClienteService;
         this.pedidos = [];
         this.chat = false;
         this.cliente = JSON.parse(localStorage.getItem('usuario'));
@@ -118,6 +148,12 @@ var HomeClientePage = /** @class */ (function () {
             resp.forEach(function (user) {
                 console.log(user.estado);
                 _this.cliente = user;
+                //chequeo si cambio el estado del cliente para poder darle un mensaje de aviso.
+                if (_this.cliente.estado == "aceptado" && _this.estadoActualCliente == "EnListaDeEspera") {
+                    _this.alert.mensaje("", "Ha sido aceptado! ya puede ingresar al local");
+                }
+                _this.estadoActualCliente = user.estado;
+                console.log("aca");
             });
         });
         if (this.cliente.estado == "ConMesaAsignada") {
@@ -191,6 +227,7 @@ var HomeClientePage = /** @class */ (function () {
                                         this.cliente.estado = "ConMesaAsignada";
                                         this.clienteService.ModificarUsuario(this.cliente);
                                         this.alert.mensaje('', 'Ya puede sentarse en la mesa seleccionada!!');
+                                        this.mesaClienteService.createMesaCliente(new _interfaces_mesa_cliente__WEBPACK_IMPORTED_MODULE_1__["MesaCliente"](mesa.id, this.cliente.id, mesa.qr));
                                         this.route.navigate(['mesa-cliente']);
                                     }
                                 }
@@ -228,13 +265,13 @@ var HomeClientePage = /** @class */ (function () {
         });
     };
     HomeClientePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({
             selector: 'app-home-cliente',
             template: __webpack_require__(/*! ./home-cliente.page.html */ "./src/app/paginas/home-cliente/home-cliente.page.html"),
             styles: [__webpack_require__(/*! ./home-cliente.page.scss */ "./src/app/paginas/home-cliente/home-cliente.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_5__["AlertService"], src_app_servicios_spinner_service__WEBPACK_IMPORTED_MODULE_7__["SpinnerService"], _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_2__["BarcodeScanner"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"],
-            src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"], src_app_servicios_mesas_service__WEBPACK_IMPORTED_MODULE_6__["MesasService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_6__["AlertService"], src_app_servicios_spinner_service__WEBPACK_IMPORTED_MODULE_8__["SpinnerService"], _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_3__["BarcodeScanner"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"],
+            src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"], src_app_servicios_mesas_service__WEBPACK_IMPORTED_MODULE_7__["MesasService"], src_app_servicios_mesa_cliente_service__WEBPACK_IMPORTED_MODULE_9__["MesaClienteService"]])
     ], HomeClientePage);
     return HomeClientePage;
 }());

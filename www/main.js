@@ -914,6 +914,7 @@ var map = {
 	],
 	"./paginas/propina/propina.module": [
 		"./src/app/paginas/propina/propina.module.ts",
+		"common",
 		"paginas-propina-propina-module"
 	]
 };
@@ -1435,9 +1436,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_fire_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/fire/auth */ "./node_modules/@angular/fire/auth/index.js");
 /* harmony import */ var _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/fire/firestore */ "./node_modules/@angular/fire/firestore/index.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _angular_fire_storage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/fire/storage */ "./node_modules/@angular/fire/storage/index.js");
-/* harmony import */ var _alert_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./alert.service */ "./src/app/servicios/alert.service.ts");
+/* harmony import */ var rxjs_internal_operators_map__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/internal/operators/map */ "./node_modules/rxjs/internal/operators/map.js");
+/* harmony import */ var rxjs_internal_operators_map__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(rxjs_internal_operators_map__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_fire_storage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/fire/storage */ "./node_modules/@angular/fire/storage/index.js");
+/* harmony import */ var _alert_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./alert.service */ "./src/app/servicios/alert.service.ts");
+
 
 
 
@@ -1509,7 +1513,7 @@ var AuthService = /** @class */ (function () {
                                     _this.usuario = obj_element;
                                     localStorage.setItem('usuario', JSON.stringify(_this.usuario));
                                     resolve(_this.usuario);
-                                    _this.router.navigate(["home-comanda"]);
+                                    _this.router.navigate(["home-metre"]);
                                     break;
                                 case 'delivery':
                                     _this.usuario = obj_element;
@@ -1596,6 +1600,15 @@ var AuthService = /** @class */ (function () {
     AuthService.prototype.getUsuario = function () {
         return JSON.parse(localStorage.getItem('usuario'));
     };
+    AuthService.prototype.getUsuariosListaEspera = function () {
+        return this.firestore.collection('usuarios').snapshotChanges().pipe(Object(rxjs_internal_operators_map__WEBPACK_IMPORTED_MODULE_4__["map"])(function (cliente) {
+            return cliente.map(function (espera) {
+                var data = espera.payload.doc.data();
+                data.id = espera.payload.doc.id;
+                return data;
+            });
+        }));
+    };
     AuthService.prototype.CrearUsuario = function (usuario, foto) {
         var _this = this;
         return new Promise(function (resolve, rejected) {
@@ -1637,9 +1650,9 @@ var AuthService = /** @class */ (function () {
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_fire_auth__WEBPACK_IMPORTED_MODULE_2__["AngularFireAuth"],
             _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__["AngularFirestore"],
-            _angular_fire_storage__WEBPACK_IMPORTED_MODULE_5__["AngularFireStorage"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"],
-            _alert_service__WEBPACK_IMPORTED_MODULE_6__["AlertService"]])
+            _angular_fire_storage__WEBPACK_IMPORTED_MODULE_6__["AngularFireStorage"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"],
+            _alert_service__WEBPACK_IMPORTED_MODULE_7__["AlertService"]])
     ], AuthService);
     return AuthService;
 }());

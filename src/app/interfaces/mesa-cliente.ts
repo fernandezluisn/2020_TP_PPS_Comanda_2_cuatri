@@ -1,3 +1,5 @@
+import { stringify } from 'querystring';
+
 export class MesaCliente {
     id?: string;
     cerrada: boolean;
@@ -8,11 +10,13 @@ export class MesaCliente {
     juegoDescuento: number;
     juegoPostre: number;
     propina: number;
+    qrMesa: string;
 
-    constructor(idMozo:string, idMesa:string, idCliente:string){
+    constructor( idMesa:string, idCliente:string, qrMesa: string){
         this.cerrada=false;
         this.idCliente=idCliente;
         this.idMesa=idMesa;
-        this.idMozo=idMozo;
+        this.qrMesa = qrMesa;
+       // this.idMozo=idMozo;
     }
 }
