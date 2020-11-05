@@ -227,60 +227,6 @@ var PropinaPage = /** @class */ (function () {
 
 
 
-/***/ }),
-
-/***/ "./src/app/servicios/mesa-cliente.service.ts":
-/*!***************************************************!*\
-  !*** ./src/app/servicios/mesa-cliente.service.ts ***!
-  \***************************************************/
-/*! exports provided: MesaClienteService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MesaClienteService", function() { return MesaClienteService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/fire/firestore */ "./node_modules/@angular/fire/firestore/index.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-
-
-
-
-var MesaClienteService = /** @class */ (function () {
-    function MesaClienteService(db) {
-        this.db = db;
-        this.mesas = this.db.collection("mesaClientes").snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (actions) {
-            return actions.map(function (a) {
-                var data = a.payload.doc.data();
-                var id = a.payload.doc.id;
-                return tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({ id: id }, data);
-            });
-        }));
-    }
-    MesaClienteService.prototype.createMesaCliente = function (mesa) {
-        return this.db.collection('mesaClientes').add(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, mesa));
-    };
-    MesaClienteService.prototype.devolverListadoMesas = function () {
-        return this.mesas;
-    };
-    MesaClienteService.prototype.actualizarMesa = function (mesa) {
-        this.db.doc('mesaClientes' + '/' + mesa.id).update(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, mesa));
-    };
-    MesaClienteService.prototype.BorrarMesa = function (mesa) {
-        this.db.doc('mesaClientes/' + mesa.id).delete().then();
-    };
-    MesaClienteService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-            providedIn: 'root'
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_2__["AngularFirestore"]])
-    ], MesaClienteService);
-    return MesaClienteService;
-}());
-
-
-
 /***/ })
 
 }]);

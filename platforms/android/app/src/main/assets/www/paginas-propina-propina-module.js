@@ -58,7 +58,7 @@ var PropinaPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title>propina</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n  <h2>¿Cuál es su grado de satisfaccion con respecto a la atención del mozo?</h2>\r\n\r\n  <ion-button  color=\"dark\" size=\"small\" (click)=\"escanear()\">Cargar</ion-button>\r\n  <h1 *ngIf=\"satisfacción\">Usted piensa que la atencion ha sido {{satisfacción}}</h1>\r\n\r\n  <ion-button  color=\"dark\" size=\"small\" (click)=\"limpiar()\">Limpiar</ion-button>\r\n\r\n  <ion-button  (click)=\"subirPropina()\">Confirmar Propina</ion-button>\r\n</ion-content>\r\n"
+module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title>Propina</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n  <h2>¿Cuál es su grado de satisfacción con respecto a la atención del mozo?</h2>\r\n\r\n  <ion-button  color=\"dark\" size=\"small\" (click)=\"escanear()\">Cargar</ion-button>\r\n  <h1 *ngIf=\"satisfaccion\">Usted piensa que la atención ha sido {{satisfaccion}}</h1>\r\n\r\n  <ion-button  color=\"dark\" size=\"small\" (click)=\"limpiar()\">Limpiar</ion-button>\r\n\r\n  <ion-button  (click)=\"subirPropina()\">Confirmar Propina</ion-button>\r\n</ion-content>\r\n"
 
 /***/ }),
 
@@ -223,60 +223,6 @@ var PropinaPage = /** @class */ (function () {
             _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
     ], PropinaPage);
     return PropinaPage;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/servicios/mesa-cliente.service.ts":
-/*!***************************************************!*\
-  !*** ./src/app/servicios/mesa-cliente.service.ts ***!
-  \***************************************************/
-/*! exports provided: MesaClienteService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MesaClienteService", function() { return MesaClienteService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/fire/firestore */ "./node_modules/@angular/fire/firestore/index.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-
-
-
-
-var MesaClienteService = /** @class */ (function () {
-    function MesaClienteService(db) {
-        this.db = db;
-        this.mesas = this.db.collection("mesaClientes").snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (actions) {
-            return actions.map(function (a) {
-                var data = a.payload.doc.data();
-                var id = a.payload.doc.id;
-                return tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({ id: id }, data);
-            });
-        }));
-    }
-    MesaClienteService.prototype.createMesaCliente = function (mesa) {
-        return this.db.collection('mesaClientes').add(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, mesa));
-    };
-    MesaClienteService.prototype.devolverListadoMesas = function () {
-        return this.mesas;
-    };
-    MesaClienteService.prototype.actualizarMesa = function (mesa) {
-        this.db.doc('mesaClientes' + '/' + mesa.id).update(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, mesa));
-    };
-    MesaClienteService.prototype.BorrarMesa = function (mesa) {
-        this.db.doc('mesaClientes/' + mesa.id).delete().then();
-    };
-    MesaClienteService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-            providedIn: 'root'
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_2__["AngularFirestore"]])
-    ], MesaClienteService);
-    return MesaClienteService;
 }());
 
 

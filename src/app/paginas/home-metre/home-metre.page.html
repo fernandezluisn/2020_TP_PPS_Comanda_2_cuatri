@@ -1,41 +1,30 @@
-<ion-content>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <div>
-          Hora registro
-        </div>
-      </ion-col>
-      <ion-col>
-        <div>
-          Nombre
-        </div>
-      </ion-col>
-      <ion-col>
-        <div>
-          Sacar de Lista
-        </div>
-      </ion-col>
-    </ion-row>
-    <ion-row  *ngFor="let espera of this.lista_espera">
-      <ion-col>
-        <div>
-          {{espera.ingreso}}
-        </div>
-      </ion-col>
-      <ion-col>
-        <div>
-          {{espera.nombre}}
-        </div>
-      </ion-col>
-      <ion-col>
-        <div>
-          <ion-button color='danger' (click)='this.Eliminar(espera.id)' >Sacar</ion-button>
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>METRE</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding color="dark"> 
+
+  <br>
+  <ion-list-header lines="inset" color="dark">
+    <ion-label>LISTA DE ESPERA</ion-label>
+  </ion-list-header>
+<div *ngFor="let cliente of this.clientesEnEspera">
+  <ion-item color="dark">
+    <ion-label style="color:black" >{{cliente.nombre}} {{cliente.apellido}}</ion-label>
+    <ion-button fill="outline" (click)="aceptarCliente(cliente)">ACEPTAR</ion-button>
+  </ion-item>
+</div>
+<div *ngIf="clientesEnEspera.length === 0">
+  <ion-item color="dark">
+    <ion-label >Sin clientes en espera</ion-label>
+  </ion-item>
+</div>
+
 </ion-content>
+
+
 <ion-footer>
   <ion-toolbar>
     <ion-button color='dark' expand="full" (click)='this.AltaCliente()' >Alta Cliente</ion-button>
