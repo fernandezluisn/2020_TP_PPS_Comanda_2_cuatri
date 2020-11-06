@@ -9,11 +9,13 @@ export class Producto {
     qr:string;
     sector:string;
     id:string;
+    tipo:string;
 
-    constructor(nombre:string, descripcion:string, tiempo:number, precio:number){
+    constructor(nombre:string, descripcion:string, tiempo:number, precio:number, tipo:string){
         this.nombre=nombre;
         this.descripcion=descripcion;
         this.tiempo=tiempo;
         this.precio=precio;
+        this.tipo=tipo;
     }
 }

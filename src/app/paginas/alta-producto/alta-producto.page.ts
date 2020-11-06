@@ -35,6 +35,7 @@ export class AltaProductoPage implements OnInit {
   image3: string = null;
 
   alta=true;
+  usuario;
 
 
   constructor(private storage:AngularFireStorage,     
@@ -45,6 +46,7 @@ export class AltaProductoPage implements OnInit {
     private vibra:Vibration,
     private bda:ProductosService,
     private toast:ToastService) { 
+      this.usuario = JSON.parse(localStorage.getItem('usuario'));
 
       this.bda.devolverListadoProductos().subscribe(lista=>{
         this.listaProductos=lista;      
@@ -130,7 +132,13 @@ export class AltaProductoPage implements OnInit {
 
   async subir(){
     this.presentLoading("Subiendo el producto.");
-    let p=new Producto(this.nombre, this.descripcion, this.minutos, this.precio);
+    let m:string;
+    if(this.usuario.perfil=='bar')
+    m="bebida";
+    else
+    m="comida";
+
+    let p=new Producto(this.nombre, this.descripcion, this.minutos, this.precio, m);
     try{    
       if(this.image1!=null){
         p= await this.guardarImagen(1, this.image1, p);

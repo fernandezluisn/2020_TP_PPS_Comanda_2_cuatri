@@ -12,6 +12,9 @@ import { Vibration } from '@ionic-native/vibration/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+import { ChartsModule } from 'ng2-charts';
+
+
 import { firebaseConfig } from '../environments/environment';
 
 import { AngularFireModule } from '@angular/fire';
@@ -41,7 +44,8 @@ import { EmailComposer } from '@ionic-native/email-composer/ngx';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: FirestoreSettingsToken, useValue:{}},
     Camera,
-    EmailComposer
+    EmailComposer,
+    ChartsModule
   ],
   bootstrap: [AppComponent]
 })

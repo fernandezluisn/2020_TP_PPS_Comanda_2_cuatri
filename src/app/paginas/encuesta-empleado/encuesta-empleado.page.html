@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>encuestaEmpleado</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item>
+    <ion-label position="floating">En caso de desearlo aquí puede ingresar un comentario</ion-label>
+    <ion-textarea [(ngModel)]="comentario"></ion-textarea>
+  </ion-item>
+
+  <ion-label>Del 1 al 10 que tan limpio está su lugar de trabajo</ion-label>
+  <ion-item>
+    <ion-range [(ngModel)]="this.limpieza" pin="true" snaps="true" ticks="false" min="1" max="10"
+      color="primary">
+      <ion-label slot="start">1</ion-label>
+      <ion-label slot="end">10</ion-label>
+    </ion-range>
+  </ion-item>      
+
+    
+  
+
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Marque si hay algo importante a informar</ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Fila en la puerta</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="fila"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Roturas</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="roturas"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Falta de personal</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="falta"></ion-checkbox>
+    </ion-item>
+  </ion-list><br><br>
+
+
+  <ion-radio-group [(ngModel)]="demora">
+    <ion-list-header>
+      <ion-label>Demora de la cocina</ion-label>
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label>Mucha</ion-label>
+      <ion-radio slot="start" value="Mucha"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Normal</ion-label>
+      <ion-radio slot="start" value="Normal"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Poca</ion-label>
+      <ion-radio slot="start" value="Poca"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Muy Poca</ion-label>
+      <ion-radio slot="start" value="Muy poca"></ion-radio>
+    </ion-item>
+  </ion-radio-group><br><br>
+
+  <ion-label>Cuán ordenado está su lugar de trabajo</ion-label>
+  <ion-item>
+    <ion-select [(ngModel)]="opcion" class="form-control" style="width: 12rem;">
+      <ion-select-option [value]="item" *ngFor="let item of opciones">{{item}}</ion-select-option>
+    </ion-select>   
+  </ion-item><br><br>
+
+  <ion-button color="dark" size="small" (click)="sacarFoto()">Agregar imagen</ion-button>
+    <h2 *ngIf="image">Esta es la imagen que quiere subir?</h2>
+    <img style="border: 0.2rem black solid; height: 25rem; margin-left: 3rem;" [src]="image" *ngIf="image" /><br><br><br>
+
+
+    <ion-button (click)="subir()">Responder</ion-button>
+</ion-content>

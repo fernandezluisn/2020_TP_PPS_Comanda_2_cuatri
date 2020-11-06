@@ -17,4 +17,10 @@
     <h2>Agregar producto</h2>
   </ion-card>
 
+  <ion-card class="ion-activatable" (click)="this.Mover('encuesta-empleado')" [ngClass]="{ 'card-vertical': !this.platform.isLandscape(), 'card-horizontal': this.platform.isLandscape() }">
+    <ion-ripple-effect></ion-ripple-effect>
+    <ion-icon name="checkbox"></ion-icon>
+    <h2>Ingresar encuesta</h2>
+  </ion-card>
+
 </ion-content>

@@ -35,6 +35,8 @@ const routes: Routes = [
   { path: 'home-cliente', loadChildren: './paginas/home-cliente/home-cliente.module#HomeClientePageModule' },   
   { path: 'propina', loadChildren: './paginas/propina/propina.module#PropinaPageModule' },  { path: 'mesa-cliente', loadChildren: './paginas/mesa-cliente/mesa-cliente.module#MesaClientePageModule' },
   { path: 'encuesta-supervisor', loadChildren: './paginas/encuesta-supervisor/encuesta-supervisor.module#EncuestaSupervisorPageModule' },
+  { path: 'encuesta-empleado', loadChildren: './paginas/encuesta-empleado/encuesta-empleado.module#EncuestaEmpleadoPageModule' },
+  { path: 'graficos', loadChildren: './paginas/graficos/graficos.module#GraficosPageModule' },
 
 
 
