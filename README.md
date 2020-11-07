@@ -38,7 +38,7 @@
 | H | QR Propina | Pendiente | Fernández | 
 | I | Encuesta cliente | Pendiente | Zamora | 
 | J | Encuesta empleado | Pendiente | Fernández | 
-| K | Pedir plato y bebida | Pendiente |  | 
+| K | Pedir plato y bebida | Pendiente | Zamora | 
 | L | Tomar Pedido | Pendiente |  | 
 | M | Hacer reserva | Pendiente |  |
 | N | Realizar pedido direccion | Pendiente |  | 
@@ -76,7 +76,13 @@
 | Fecha inicio | 1/11 | 1/11 | 1/11 | 
 | Fecha finalizaciíon | 7/11 |  | 6/11 | 
 
+<h3>Semana 4 :star:</h3><br>
 
+|  | Alfa | Beta | Gammaa 
+|---|---|---|---|
+| Tareas | reservas agendadas <br> Push N reservas | Pedir plato y bebida <br> Push N pedir platos y bebidas | Push N Mesa <br> Tomar pedido | 
+| Fecha inicio | 7/11 | 7/11 | 7/11 | 
+| Fecha finalizaciíon |  |  |  | 
 
 <h2>
   Guía de uso :computer:
