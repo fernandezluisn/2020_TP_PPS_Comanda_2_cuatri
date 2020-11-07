@@ -74,7 +74,7 @@
 |---|---|---|---|
 | Tareas | QR Propina <br> Encuesta empleado | QR Ingreso <br> Encuesta cliente | QR Mesa <br> Encuesta supervisor | 
 | Fecha inicio | 1/11 | 1/11 | 1/11 | 
-| Fecha finalizaciíon |  |  |  | 
+| Fecha finalizaciíon | 7/11 |  | 6/11 | 
 
 
 
