@@ -268,13 +268,20 @@ export class AltaProductoPage implements OnInit {
         p= await this.guardarImagen(2, this.image2, p);
       }if(this.image3!=null){
         p= await this.guardarImagen(3, this.image3, p);
-
       }  
-      await this.cargarProducto(p,1);     
     }catch(err){
       this.alertar(err);
     }finally{
-      this.productoElegido=null;
+      try{
+        await this.cargarProducto(p,2);  
+
+      }catch(err){
+        this.alertar(err);
+      }finally
+      {
+        this.productoElegido=null;
+
+      }
     }
   }
 }
