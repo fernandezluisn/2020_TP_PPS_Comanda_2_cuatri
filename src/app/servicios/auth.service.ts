@@ -14,7 +14,8 @@ import { AlertService } from './alert.service';
 })
 export class AuthService {
   usuario: any = false;
-
+  usuarios:any=[];
+  clientes:any=[];
   constructor(
     private AFauth: AngularFireAuth,
     private firestore: AngularFirestore,
@@ -46,6 +47,7 @@ export class AuthService {
           usrs.forEach(element => {
             let obj_element = element.data();
             obj_element.id = element.id;
+
              if (obj_element.activo && obj_element.uid == uid) {
                switch (obj_element.perfil) {
                case 'bar':
@@ -125,7 +127,31 @@ export class AuthService {
   }
 
   GetUsuarios() {
+
     return this.firestore.collection('usuarios').get().toPromise();
+
+  }
+
+  GetUsuariosPorAceptar()
+  {
+
+    return new Promise((resolve, rejected) => {
+      this.GetUsuarios().then(usrs => {
+        usrs.forEach(element => {
+          let obj_element = element.data();
+          obj_element.id = element.id;
+          if(obj_element.perfil=='cliente'){
+            this.clientes.push(obj_element);
+          }
+
+        });
+                //guardo los usuarios
+                resolve(this.clientes);
+      });
+
+    });
+           
+         
   }
 
   GetUsuariosAceptar() {
