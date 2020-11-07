@@ -39,8 +39,8 @@
 | I | Encuesta cliente | Pendiente | Zamora | 
 | J | Encuesta empleado | Pendiente | Fernández | 
 | K | Pedir plato y bebida | Pendiente | Zamora | 
-| L | Tomar Pedido | Pendiente |  | 
-| M | Hacer reserva | Pendiente |  |
+| L | Tomar Pedido | Pendiente | Ramundo | 
+| M | Hacer reserva | Pendiente | Fernández |
 | N | Realizar pedido direccion | Pendiente |  | 
 | O | Chat delivery | Pendiente | | 
 | P | Juego descuento | Pendiente |  | 
