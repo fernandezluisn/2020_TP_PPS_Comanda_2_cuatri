@@ -86,15 +86,14 @@
       <ion-item *ngIf="productoElegido.foto_1">
         <ion-img [src]="productoElegido.foto_1"></ion-img>
       </ion-item>
-     <ion-button color="dark" size="small" (click)="sacarFoto(1)">Cambiar primera foto</ion-button><br><br>
+      
      <ion-item *ngIf="productoElegido.foto_2">
       <ion-img [src]="productoElegido.foto_2"></ion-img>
     </ion-item>
-     <ion-button color="dark" size="small" (click)="sacarFoto(2)">Cambiar segunda foto</ion-button><br><br>
+     
      <ion-item *ngIf="productoElegido.foto_3">
       <ion-img [src]="productoElegido.foto_3"></ion-img>
     </ion-item>
-     <ion-button color="dark" size="small" (click)="sacarFoto(3)">Cambiar tercera foto</ion-button><br><br>
 
       <ion-button (click)="modificar()">Actualizar Producto</ion-button>
       <ion-button (click)="eliminar()">Eliminar Producto</ion-button>
