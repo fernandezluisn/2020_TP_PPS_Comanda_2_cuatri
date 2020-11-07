@@ -24,7 +24,7 @@ export class AltaProductoPage implements OnInit {
   descripcion:string;
   qr:string;
   precio:number;
-
+  cargarProd=false;
   listaProductos:Producto[];
   productoElegido:Producto=null;
 
@@ -146,14 +146,19 @@ export class AltaProductoPage implements OnInit {
         p= await this.guardarImagen(2, this.image2, p);
       }if(this.image3!=null){
         p= await this.guardarImagen(3, this.image3, p);    
-
-      }  
+        this.cargarProd=true;
+      }
          
     }catch(err){
       this.alertar(err);
     }finally{
       try{
-        await this.cargarProducto(p,1);
+        if(this.cargarProd){
+          await this.cargarProducto(p,1);
+        }
+        else{
+          this.alertar("El producto debe tener tres imagenes asignadas!!");          
+        }  
       }catch(err){
         this.alertar(err);
       }finally{      
