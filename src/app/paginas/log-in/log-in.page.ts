@@ -26,8 +26,7 @@ export class LogInPage implements OnInit {
   async OnSubmitLogIn(){
     let sp = await this.spiner.GetAllPageSpinner("");
     sp.present();
-    console.log(this.email)
-    console.log(this.password)
+    
     this.auth.LogIn(this.email, this.password).then(res => {
       if(localStorage.getItem('Sonido') == 'true')
       {

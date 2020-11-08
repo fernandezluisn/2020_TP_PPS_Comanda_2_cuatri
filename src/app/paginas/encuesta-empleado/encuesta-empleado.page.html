@@ -11,12 +11,12 @@
     <ion-textarea [(ngModel)]="comentario"></ion-textarea>
   </ion-item>
 
-  <ion-label>Del 1 al 10 que tan limpio está su lugar de trabajo</ion-label>
+  <ion-label>Del 1 al 5 que tan limpio está su lugar de trabajo</ion-label>
   <ion-item>
-    <ion-range [(ngModel)]="this.limpieza" pin="true" snaps="true" ticks="false" min="1" max="10"
+    <ion-range [(ngModel)]="this.limpieza" pin="true" snaps="true" ticks="false" min="1" max="5"
       color="primary">
       <ion-label slot="start">1</ion-label>
-      <ion-label slot="end">10</ion-label>
+      <ion-label slot="end">5</ion-label>
     </ion-range>
   </ion-item>      
 

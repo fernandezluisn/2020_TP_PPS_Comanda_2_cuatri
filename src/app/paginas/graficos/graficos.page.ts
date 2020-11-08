@@ -23,10 +23,31 @@ export class GraficosPage implements OnInit {
   falsosFalta=0;
   verdaderosRoturas=0;
   falsosRoturas=0;
+  muchas=0;
+  normal=0;
+  poca=0;
+  mp=0;
+
+  unos=0;
+  dos=0;
+  tres=0;
+  cuatros=0;
+  cincos=0;
+
+  public numerosLabels;
+
+  ordenado=0;
+  desorden=0;
+  mDesorden=0;
   constructor(private service:EncuestasService) { 
     this.service.GetEncuestasEmpleados().subscribe(lista=>{
       this.encuestasEmpleados=lista;
     })
+
+    for(let i=1; i<6; i++){
+      this.numerosLabels.push[i];
+    }
+    this.numerosLabels.sort();
 
     this.encuestasEmpleados.forEach(elem=>{
       if(elem.fila){
@@ -46,7 +67,39 @@ export class GraficosPage implements OnInit {
       }else{
         this.falsosFalta++;
       }
+
+      if(elem.demora=="Mucha"){
+        this.muchas++;
+      }else if(elem.demora=="Normal"){
+        this.normal++;
+      }else if(elem.demora=="Poca"){
+        this.poca++;
+      }else{
+        this.mp++;
+      }
+
+      if(elem.limpieza==1){
+        this.unos++;
+      }else if(elem.limpieza==2){
+        this.dos++;
+      }else if(elem.limpieza==3){
+        this.tres++;
+      }else if(elem.limpieza==4){
+        this.cuatros++;
+      }else{
+        this.cincos++;
+      }
+
+      if(elem.orden=="Ordenado"){
+        this.ordenado++;
+      }else if(elem.orden=="Desordenado"){
+        this.desorden++;
+      }else{
+        this.mDesorden++;
+      }
     });   
+
+    
   }
 
   ngOnInit() {
@@ -70,9 +123,22 @@ export class GraficosPage implements OnInit {
 
   public barChartData: ChartDataSets[] = [
     { data: [this.verdaderosFalta, this.verdaderosFila, this.verdaderosRoturas], label: 'Si' },
-    { data: [this.falsosFalta, this.falsosFila, this.falsosRoturas], label: 'No' }
+    { data: [this.verdaderosFalta, this.verdaderosFila, this.verdaderosRoturas], label: 'No' }
   ];
 
-  //falta limpieza, demora y orden
+  //falta limpieza y orden
 
+  public dataDemora: ChartDataSets[] = [
+    { data: [this.muchas, this.normal, this.poca, this.mp], label: '' }    
+  ];
+  public demoraLabels: Label[] = ['Mucha', 'Normal', 'Poca', "Muy poca"];
+
+  public dataOrden: ChartDataSets[] = [
+    { data: [this.ordenado, this.desorden, this.mDesorden], label: '' }    
+  ];
+  public ordenLabels: Label[] = ["Ordenado", "Desordenado", "Muy desordenado"];
+
+  public dataNumeros:ChartDataSets[]=[
+    { data: [this.unos, this.dos, this.tres, this.cuatros, this.cincos], label: '' } 
+  ];
 }

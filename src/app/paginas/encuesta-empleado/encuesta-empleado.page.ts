@@ -87,7 +87,8 @@ export class EncuestaEmpleadoPage implements OnInit {
   subir(){
     let f=new Date();
     let e=new EncuestaEmpleado(this.usuario.id, this.comentario, this.url1, this.demora, this.limpieza, f, this.fila, this.roturas, this.falta, this.opcion);
-    this.encuestasService.addEncuestaEmpleado(e).then(() =>{
+    try{
+      this.encuestasService.addEncuestaEmpleado(e);
       this.toast.confirmationToast("Se cargó la encuesta.");      
       switch (this.usuario.perfil) {
         case 'bar':        
@@ -103,9 +104,13 @@ export class EncuestaEmpleadoPage implements OnInit {
             this.router.navigate(["home-metre"]);
             break;        
           
-          }
+      }
+    }catch(err){
+      this.alertar(err);
     }
-    ).catch(error => { this.alertar(error); });
+
+    
+    
   }
 
 }

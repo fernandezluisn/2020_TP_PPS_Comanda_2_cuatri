@@ -24,10 +24,9 @@ export class AltaProductoPage implements OnInit {
   descripcion:string;
   qr:string;
   precio:number;
-
+  cargarProd=false;
   listaProductos:Producto[];
   productoElegido:Producto=null;
-
   loading;
 
   image1: string = null;
@@ -54,7 +53,6 @@ export class AltaProductoPage implements OnInit {
       
       }
         );
-
       this.nombre="";
       this.minutos=0;
       this.descripcion="";
@@ -140,25 +138,35 @@ export class AltaProductoPage implements OnInit {
 
     let p=new Producto(this.nombre, this.descripcion, this.minutos, this.precio, m);
     try{    
-      if(this.image1!=null){
-        p= await this.guardarImagen(1, this.image1, p);
-      }if(this.image2!=null){
-        p= await this.guardarImagen(2, this.image2, p);
-      }if(this.image3!=null){
-        p= await this.guardarImagen(3, this.image3, p);    
-
-      }  
-      await this.cargarProducto(p,1);   
+     
+      if(this.image3!=null){
+        let imagenes=new Array();
+        imagenes.push(this.image1, this.image2, this.image3)
+        p= await this.guardarImagen(imagenes, p);    
+        this.cargarProd=true;
+      }
+         
     }catch(err){
       this.alertar(err);
     }finally{
-      this.image1=null;
-      this.image2=null;
-      this.image3=null;
-      this.nombre="";
-      this.descripcion="";
-      this.minutos=0;
-      this.precio=0;
+      try{
+        if(this.cargarProd){
+          await this.cargarProducto(p,1);
+        }
+        else{
+          this.alertar("El producto debe tener tres imagenes asignadas!!");          
+        }  
+      }catch(err){
+        this.alertar(err);
+      }finally{      
+        this.image1=null;
+        this.image2=null;
+        this.image3=null;
+        this.nombre="";
+        this.descripcion="";
+        this.minutos=0;
+        this.precio=0;
+      }
     }
     
   }
@@ -193,33 +201,39 @@ export class AltaProductoPage implements OnInit {
     }
   }
 
-  async guardarImagen(numero:number, image:any, producto:Producto){
-    try{
-      const com=this.nombre+this.precio+numero;
-      let img;
-      await fetch(image)
-      .then(res => res.blob().then(r=>{
-        img=r
-      }))
-      
-      const file= img;
-      const path= com;
-      const ref=this.storage.ref(path);    
-      const task=this.storage.upload(path, file);     
-      await task.snapshotChanges().pipe(finalize(()=>ref.getDownloadURL().subscribe(url=>{
-        if(numero==1)
-        producto.foto_1=url;      
-        else if(numero==2)
-        producto.foto_2=url;
-        else
-        producto.foto_3=url;
-      } ))).subscribe(); 
-      
+  async guardarImagen(images:any[], producto:Producto){
+    for (let index = 0; index < 3; index++) {
+      const image = images[index];
+      try{
+        const com=this.nombre+this.precio+index;
+        let img;
+        await fetch(image)
+        .then(res => res.blob().then(r=>{
+          img=r
+        }))
+        
+        const file= img;
+        const path= com;
+        const ref=this.storage.ref(path);    
+        const task=this.storage.upload(path, file);     
+        await task.snapshotChanges().pipe(finalize(()=>ref.getDownloadURL().subscribe(url=>{
+          if(index==0)
+          producto.foto_1=url;      
+          else if(index==1)
+          producto.foto_2=url;
+          else
+          producto.foto_3=url;
+        } ))).subscribe(); 
+        
+        
+      }catch(err){
+        this.alertar(err);
+        
+      } 
+
       return producto;
-    }catch(err){
-      this.alertar(err);
+    }
       
-    } 
   }
 
 
@@ -250,20 +264,16 @@ export class AltaProductoPage implements OnInit {
     p.precio=this.productoElegido.precio;
     p.descripcion=this.productoElegido.descripcion;
     p.tiempo=this.productoElegido.tiempo;
-    try{    
-      if(this.image1!=null){
-        p= await this.guardarImagen(1, this.image1, p);
-      }if(this.image2!=null){
-        p= await this.guardarImagen(2, this.image2, p);
-      }if(this.image3!=null){
-        p= await this.guardarImagen(3, this.image3, p);
+    
+    try{
+      await this.cargarProducto(p,2);  
 
-      }  
-      await this.cargarProducto(p,1);     
     }catch(err){
       this.alertar(err);
-    }finally{
+    }finally
+    {
       this.productoElegido=null;
     }
+    
   }
 }

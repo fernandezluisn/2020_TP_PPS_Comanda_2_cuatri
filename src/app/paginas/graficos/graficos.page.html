@@ -21,6 +21,62 @@
   </div>
 
   <div style="margin-top: 2rem;">
-    acá va otro
+    <div>
+      <div style="display: block">
+        <canvas baseChart
+          [datasets]="dataDemora"
+          [labels]="demoraLabels"
+          [options]="barChartOptions"
+          [plugins]="barChartPlugins"
+          [legend]="barChartLegend"
+          [chartType]="barChartType">
+        </canvas>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 2rem;">
+    <div>
+      <div style="display: block">
+        <canvas baseChart
+          [datasets]="dataOrden"
+          [labels]="ordenLabels"
+          [options]="barChartOptions"
+          [plugins]="barChartPlugins"
+          [legend]="barChartLegend"
+          [chartType]="barChartType">
+        </canvas>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 2rem;">
+    <div>
+      <div style="display: block">
+        <canvas baseChart
+          [datasets]="dataOrden"
+          [labels]="ordenLabels"
+          [options]="barChartOptions"
+          [plugins]="barChartPlugins"
+          [legend]="barChartLegend"
+          [chartType]="barChartType">
+        </canvas>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 2rem;">
+    <div>
+      <div style="display: block">
+        <canvas baseChart
+          [datasets]="dataNumeros"
+          [labels]="numerosLabels"
+          [options]="barChartOptions"
+          [plugins]="barChartPlugins"
+          [legend]="barChartLegend"
+          [chartType]="barChartType">
+        </canvas>
+      </div>
+    </div>
   </div>
 </ion-content>
