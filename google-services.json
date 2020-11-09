@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "265753363650",
+    "firebase_url": "https://comandafront.firebaseio.com",
+    "project_id": "comandafront",
+    "storage_bucket": "comandafront.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:265753363650:android:f899036183b5c5e299e75b",
+        "android_client_info": {
+          "package_name": "io.ionic.COMANDA2020_99"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "265753363650-6r336p1md8hqtfh943rn7tq0ide60l1q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBharkNXWaLs-jUXev1Xt42HqBTpF9WGuU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "265753363650-6r336p1md8hqtfh943rn7tq0ide60l1q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

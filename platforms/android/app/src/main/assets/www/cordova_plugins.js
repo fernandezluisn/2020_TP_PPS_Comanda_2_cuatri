@@ -87,6 +87,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "cordova.plugins.email"
       ]
+    },
+    {
+      "id": "cordova-plugin-fcm-with-dependecy-updated.FCMPlugin",
+      "file": "plugins/cordova-plugin-fcm-with-dependecy-updated/www/FCMPlugin.js",
+      "pluginId": "cordova-plugin-fcm-with-dependecy-updated",
+      "clobbers": [
+        "FCM"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -99,6 +107,9 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-ionic-keyboard": "2.1.3",
     "phonegap-plugin-barcodescanner": "8.0.1",
     "cordova-plugin-camera": "4.0.3",
-    "cordova-plugin-email-composer": "0.9.2"
+    "cordova-plugin-email-composer": "0.9.2",
+    "cordova-plugin-fcm-with-dependecy-updated": "7.0.10",
+    "cordova-plugin-androidx": "3.0.0",
+    "cordova-plugin-androidx-adapter": "1.1.3"
   };
 });

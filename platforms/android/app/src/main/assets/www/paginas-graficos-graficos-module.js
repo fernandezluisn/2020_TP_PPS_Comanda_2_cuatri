@@ -1453,7 +1453,7 @@ var GraficosPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title>Gráficos</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n  <div>\r\n    <div>\r\n      <div style=\"display: block\">\r\n        <canvas baseChart\r\n          [datasets]=\"barChartData\"\r\n          [labels]=\"barChartLabels\"\r\n          [options]=\"barChartOptions\"\r\n          [plugins]=\"barChartPlugins\"\r\n          [legend]=\"barChartLegend\"\r\n          [chartType]=\"barChartType\">\r\n        </canvas>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div style=\"margin-top: 2rem;\">\r\n    acá va otro\r\n  </div>\r\n</ion-content>\r\n"
+module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title>Gráficos</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n  <div>\r\n    <div>\r\n      <div style=\"display: block\">\r\n        <canvas baseChart\r\n          [datasets]=\"barChartData\"\r\n          [labels]=\"barChartLabels\"\r\n          [options]=\"barChartOptions\"\r\n          [plugins]=\"barChartPlugins\"\r\n          [legend]=\"barChartLegend\"\r\n          [chartType]=\"barChartType\">\r\n        </canvas>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div style=\"margin-top: 2rem;\">\r\n    <div>\r\n      <div style=\"display: block\">\r\n        <canvas baseChart\r\n          [datasets]=\"dataDemora\"\r\n          [labels]=\"demoraLabels\"\r\n          [options]=\"barChartOptions\"\r\n          [plugins]=\"barChartPlugins\"\r\n          [legend]=\"barChartLegend\"\r\n          [chartType]=\"barChartType\">\r\n        </canvas>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div style=\"margin-top: 2rem;\">\r\n    <div>\r\n      <div style=\"display: block\">\r\n        <canvas baseChart\r\n          [datasets]=\"dataOrden\"\r\n          [labels]=\"ordenLabels\"\r\n          [options]=\"barChartOptions\"\r\n          [plugins]=\"barChartPlugins\"\r\n          [legend]=\"barChartLegend\"\r\n          [chartType]=\"barChartType\">\r\n        </canvas>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div style=\"margin-top: 2rem;\">\r\n    <div>\r\n      <div style=\"display: block\">\r\n        <canvas baseChart\r\n          [datasets]=\"dataOrden\"\r\n          [labels]=\"ordenLabels\"\r\n          [options]=\"barChartOptions\"\r\n          [plugins]=\"barChartPlugins\"\r\n          [legend]=\"barChartLegend\"\r\n          [chartType]=\"barChartType\">\r\n        </canvas>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div style=\"margin-top: 2rem;\">\r\n    <div>\r\n      <div style=\"display: block\">\r\n        <canvas baseChart\r\n          [datasets]=\"dataNumeros\"\r\n          [labels]=\"numerosLabels\"\r\n          [options]=\"barChartOptions\"\r\n          [plugins]=\"barChartPlugins\"\r\n          [legend]=\"barChartLegend\"\r\n          [chartType]=\"barChartType\">\r\n        </canvas>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</ion-content>\r\n"
 
 /***/ }),
 
@@ -1497,6 +1497,18 @@ var GraficosPage = /** @class */ (function () {
         this.falsosFalta = 0;
         this.verdaderosRoturas = 0;
         this.falsosRoturas = 0;
+        this.muchas = 0;
+        this.normal = 0;
+        this.poca = 0;
+        this.mp = 0;
+        this.unos = 0;
+        this.dos = 0;
+        this.tres = 0;
+        this.cuatros = 0;
+        this.cincos = 0;
+        this.ordenado = 0;
+        this.desorden = 0;
+        this.mDesorden = 0;
         this.barChartOptions = {
             responsive: true,
             // We use these empty structures as placeholders for dynamic theming.
@@ -1514,11 +1526,27 @@ var GraficosPage = /** @class */ (function () {
         this.barChartPlugins = [chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_2__];
         this.barChartData = [
             { data: [this.verdaderosFalta, this.verdaderosFila, this.verdaderosRoturas], label: 'Si' },
-            { data: [this.falsosFalta, this.falsosFila, this.falsosRoturas], label: 'No' }
+            { data: [this.verdaderosFalta, this.verdaderosFila, this.verdaderosRoturas], label: 'No' }
+        ];
+        //falta limpieza y orden
+        this.dataDemora = [
+            { data: [this.muchas, this.normal, this.poca, this.mp], label: '' }
+        ];
+        this.demoraLabels = ['Mucha', 'Normal', 'Poca', "Muy poca"];
+        this.dataOrden = [
+            { data: [this.ordenado, this.desorden, this.mDesorden], label: '' }
+        ];
+        this.ordenLabels = ["Ordenado", "Desordenado", "Muy desordenado"];
+        this.dataNumeros = [
+            { data: [this.unos, this.dos, this.tres, this.cuatros, this.cincos], label: '' }
         ];
         this.service.GetEncuestasEmpleados().subscribe(function (lista) {
             _this.encuestasEmpleados = lista;
         });
+        for (var i = 1; i < 6; i++) {
+            this.numerosLabels.push[i];
+        }
+        this.numerosLabels.sort();
         this.encuestasEmpleados.forEach(function (elem) {
             if (elem.fila) {
                 _this.verdaderosFila++;
@@ -1537,6 +1565,42 @@ var GraficosPage = /** @class */ (function () {
             }
             else {
                 _this.falsosFalta++;
+            }
+            if (elem.demora == "Mucha") {
+                _this.muchas++;
+            }
+            else if (elem.demora == "Normal") {
+                _this.normal++;
+            }
+            else if (elem.demora == "Poca") {
+                _this.poca++;
+            }
+            else {
+                _this.mp++;
+            }
+            if (elem.limpieza == 1) {
+                _this.unos++;
+            }
+            else if (elem.limpieza == 2) {
+                _this.dos++;
+            }
+            else if (elem.limpieza == 3) {
+                _this.tres++;
+            }
+            else if (elem.limpieza == 4) {
+                _this.cuatros++;
+            }
+            else {
+                _this.cincos++;
+            }
+            if (elem.orden == "Ordenado") {
+                _this.ordenado++;
+            }
+            else if (elem.orden == "Desordenado") {
+                _this.desorden++;
+            }
+            else {
+                _this.mDesorden++;
             }
         });
     }
