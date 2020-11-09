@@ -1349,7 +1349,7 @@ module.exports = "<ion-app>\r\n  <div *ngIf=\"this.showSplash\" class=\"splash\"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".splash {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  z-index: 999;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background-color: #A599B5; }\n  .splash .animate {\n    -webkit-animation: shake 0.5s;\n            animation: shake 0.5s;\n    -webkit-animation-iteration-count: infinite;\n            animation-iteration-count: infinite; }\n  @-webkit-keyframes shake {\n  0% {\n    -webkit-transform: translate(1px, 1px) rotate(0deg);\n            transform: translate(1px, 1px) rotate(0deg); }\n  10% {\n    -webkit-transform: translate(-1px, -2px) rotate(-1deg);\n            transform: translate(-1px, -2px) rotate(-1deg); }\n  20% {\n    -webkit-transform: translate(-3px, 0px) rotate(1deg);\n            transform: translate(-3px, 0px) rotate(1deg); }\n  30% {\n    -webkit-transform: translate(3px, 2px) rotate(0deg);\n            transform: translate(3px, 2px) rotate(0deg); }\n  40% {\n    -webkit-transform: translate(1px, -1px) rotate(1deg);\n            transform: translate(1px, -1px) rotate(1deg); }\n  50% {\n    -webkit-transform: translate(-1px, 2px) rotate(-1deg);\n            transform: translate(-1px, 2px) rotate(-1deg); }\n  60% {\n    -webkit-transform: translate(-3px, 1px) rotate(0deg);\n            transform: translate(-3px, 1px) rotate(0deg); }\n  70% {\n    -webkit-transform: translate(3px, 1px) rotate(-1deg);\n            transform: translate(3px, 1px) rotate(-1deg); }\n  80% {\n    -webkit-transform: translate(-1px, -1px) rotate(1deg);\n            transform: translate(-1px, -1px) rotate(1deg); }\n  90% {\n    -webkit-transform: translate(1px, 2px) rotate(0deg);\n            transform: translate(1px, 2px) rotate(0deg); }\n  100% {\n    -webkit-transform: translate(1px, -2px) rotate(-1deg);\n            transform: translate(1px, -2px) rotate(-1deg); } }\n  @keyframes shake {\n  0% {\n    -webkit-transform: translate(1px, 1px) rotate(0deg);\n            transform: translate(1px, 1px) rotate(0deg); }\n  10% {\n    -webkit-transform: translate(-1px, -2px) rotate(-1deg);\n            transform: translate(-1px, -2px) rotate(-1deg); }\n  20% {\n    -webkit-transform: translate(-3px, 0px) rotate(1deg);\n            transform: translate(-3px, 0px) rotate(1deg); }\n  30% {\n    -webkit-transform: translate(3px, 2px) rotate(0deg);\n            transform: translate(3px, 2px) rotate(0deg); }\n  40% {\n    -webkit-transform: translate(1px, -1px) rotate(1deg);\n            transform: translate(1px, -1px) rotate(1deg); }\n  50% {\n    -webkit-transform: translate(-1px, 2px) rotate(-1deg);\n            transform: translate(-1px, 2px) rotate(-1deg); }\n  60% {\n    -webkit-transform: translate(-3px, 1px) rotate(0deg);\n            transform: translate(-3px, 1px) rotate(0deg); }\n  70% {\n    -webkit-transform: translate(3px, 1px) rotate(-1deg);\n            transform: translate(3px, 1px) rotate(-1deg); }\n  80% {\n    -webkit-transform: translate(-1px, -1px) rotate(1deg);\n            transform: translate(-1px, -1px) rotate(1deg); }\n  90% {\n    -webkit-transform: translate(1px, 2px) rotate(0deg);\n            transform: translate(1px, 2px) rotate(0deg); }\n  100% {\n    -webkit-transform: translate(1px, -2px) rotate(-1deg);\n            transform: translate(1px, -2px) rotate(-1deg); } }\n  .rotate {\n  -webkit-animation: rotation 8s infinite linear;\n          animation: rotation 8s infinite linear; }\n  @-webkit-keyframes rotation {\n  from {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  to {\n    -webkit-transform: rotate(359deg);\n            transform: rotate(359deg); } }\n  @keyframes rotation {\n  from {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  to {\n    -webkit-transform: rotate(359deg);\n            transform: rotate(359deg); } }\n  .rotating-landscape {\n  width: 100vw;\n  height: 100vw; }\n  .rotating {\n  position: absolute;\n  display: flex;\n  align-items: center;\n  justify-content: center; }\n  .spinner-portrait {\n  width: 100vh;\n  height: 100vh; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQzpcXFVzZXJzXFxyYXVsLnphbW9yYVxcQW5uZ3VsYXJcXDIwMjBfVFBfUFBTL3NyY1xcYXBwXFxhcHAuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxrQkFBa0I7RUFDbEIsV0FBVztFQUNYLFlBQVk7RUFDWixZQUFZO0VBQ1osYUFBYTtFQUNiLG1CQUFtQjtFQUNuQix1QkFBdUI7RUFFdkIseUJBQXlCLEVBQUE7RUFUM0I7SUFZSSw2QkFBcUI7WUFBckIscUJBQXFCO0lBQ3JCLDJDQUFtQztZQUFuQyxtQ0FBbUMsRUFBQTtFQUdyQztFQUNGO0lBQUssbURBQTJDO1lBQTNDLDJDQUEyQyxFQUFBO0VBQ2hEO0lBQU0sc0RBQThDO1lBQTlDLDhDQUE4QyxFQUFBO0VBQ3BEO0lBQU0sb0RBQTRDO1lBQTVDLDRDQUE0QyxFQUFBO0VBQ2xEO0lBQU0sbURBQTJDO1lBQTNDLDJDQUEyQyxFQUFBO0VBQ2pEO0lBQU0sb0RBQTRDO1lBQTVDLDRDQUE0QyxFQUFBO0VBQ2xEO0lBQU0scURBQTZDO1lBQTdDLDZDQUE2QyxFQUFBO0VBQ25EO0lBQU0sb0RBQTRDO1lBQTVDLDRDQUE0QyxFQUFBO0VBQ2xEO0lBQU0sb0RBQTRDO1lBQTVDLDRDQUE0QyxFQUFBO0VBQ2xEO0lBQU0scURBQTZDO1lBQTdDLDZDQUE2QyxFQUFBO0VBQ25EO0lBQU0sbURBQTJDO1lBQTNDLDJDQUEyQyxFQUFBO0VBQ2pEO0lBQU8scURBQTZDO1lBQTdDLDZDQUE2QyxFQUFBLEVBQUE7RUFYbEQ7RUFDRjtJQUFLLG1EQUEyQztZQUEzQywyQ0FBMkMsRUFBQTtFQUNoRDtJQUFNLHNEQUE4QztZQUE5Qyw4Q0FBOEMsRUFBQTtFQUNwRDtJQUFNLG9EQUE0QztZQUE1Qyw0Q0FBNEMsRUFBQTtFQUNsRDtJQUFNLG1EQUEyQztZQUEzQywyQ0FBMkMsRUFBQTtFQUNqRDtJQUFNLG9EQUE0QztZQUE1Qyw0Q0FBNEMsRUFBQTtFQUNsRDtJQUFNLHFEQUE2QztZQUE3Qyw2Q0FBNkMsRUFBQTtFQUNuRDtJQUFNLG9EQUE0QztZQUE1Qyw0Q0FBNEMsRUFBQTtFQUNsRDtJQUFNLG9EQUE0QztZQUE1Qyw0Q0FBNEMsRUFBQTtFQUNsRDtJQUFNLHFEQUE2QztZQUE3Qyw2Q0FBNkMsRUFBQTtFQUNuRDtJQUFNLG1EQUEyQztZQUEzQywyQ0FBMkMsRUFBQTtFQUNqRDtJQUFPLHFEQUE2QztZQUE3Qyw2Q0FBNkMsRUFBQSxFQUFBO0VBSXBEO0VBQ0UsOENBQXNDO1VBQXRDLHNDQUFzQyxFQUFBO0VBR3hDO0VBQ0U7SUFDRSwrQkFBdUI7WUFBdkIsdUJBQXVCLEVBQUE7RUFFekI7SUFDRSxpQ0FBeUI7WUFBekIseUJBQXlCLEVBQUEsRUFBQTtFQUw3QjtFQUNFO0lBQ0UsK0JBQXVCO1lBQXZCLHVCQUF1QixFQUFBO0VBRXpCO0lBQ0UsaUNBQXlCO1lBQXpCLHlCQUF5QixFQUFBLEVBQUE7RUFJN0I7RUFDRSxZQUFZO0VBQ1osYUFBYSxFQUFBO0VBR2Y7RUFDRSxrQkFBa0I7RUFDbEIsYUFBYTtFQUNiLG1CQUFtQjtFQUNuQix1QkFBdUIsRUFBQTtFQUd6QjtFQUNFLFlBQVk7RUFDWixhQUFhLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuc3BsYXNoIHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgaGVpZ2h0OiAxMDAlO1xyXG4gIHotaW5kZXg6IDk5OTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgLy8gYmFja2dyb3VuZDogI2ZmNzQwMDtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjQTU5OUI1O1xyXG5cclxuICAuYW5pbWF0ZSB7XHJcbiAgICBhbmltYXRpb246IHNoYWtlIDAuNXM7XHJcbiAgICBhbmltYXRpb24taXRlcmF0aW9uLWNvdW50OiBpbmZpbml0ZTtcclxuICB9XHJcbiAgXHJcbiAgQGtleWZyYW1lcyBzaGFrZSB7XHJcbjAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoMXB4LCAxcHgpIHJvdGF0ZSgwZGVnKTsgfVxyXG4xMCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgtMXB4LCAtMnB4KSByb3RhdGUoLTFkZWcpOyB9XHJcbjIwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKC0zcHgsIDBweCkgcm90YXRlKDFkZWcpOyB9XHJcbjMwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKDNweCwgMnB4KSByb3RhdGUoMGRlZyk7IH1cclxuNDAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoMXB4LCAtMXB4KSByb3RhdGUoMWRlZyk7IH1cclxuNTAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTFweCwgMnB4KSByb3RhdGUoLTFkZWcpOyB9XHJcbjYwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKC0zcHgsIDFweCkgcm90YXRlKDBkZWcpOyB9XHJcbjcwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKDNweCwgMXB4KSByb3RhdGUoLTFkZWcpOyB9XHJcbjgwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKC0xcHgsIC0xcHgpIHJvdGF0ZSgxZGVnKTsgfVxyXG45MCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgxcHgsIDJweCkgcm90YXRlKDBkZWcpOyB9XHJcbjEwMCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgxcHgsIC0ycHgpIHJvdGF0ZSgtMWRlZyk7IH1cclxuICB9XHJcbn1cclxuXHJcbi5yb3RhdGUge1xyXG4gIGFuaW1hdGlvbjogcm90YXRpb24gOHMgaW5maW5pdGUgbGluZWFyO1xyXG59XHJcblxyXG5Aa2V5ZnJhbWVzIHJvdGF0aW9uIHtcclxuICBmcm9tIHtcclxuICAgIHRyYW5zZm9ybTogcm90YXRlKDBkZWcpO1xyXG4gIH1cclxuICB0byB7XHJcbiAgICB0cmFuc2Zvcm06IHJvdGF0ZSgzNTlkZWcpO1xyXG4gIH1cclxufVxyXG5cclxuLnJvdGF0aW5nLWxhbmRzY2FwZSB7XHJcbiAgd2lkdGg6IDEwMHZ3O1xyXG4gIGhlaWdodDogMTAwdnc7XHJcbn1cclxuXHJcbi5yb3RhdGluZyB7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxufVxyXG5cclxuLnNwaW5uZXItcG9ydHJhaXQge1xyXG4gIHdpZHRoOiAxMDB2aDtcclxuICBoZWlnaHQ6IDEwMHZoO1xyXG59XHJcbiJdfQ== */"
+module.exports = ".splash {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  z-index: 999;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background-color: #A599B5; }\n  .splash .animate {\n    -webkit-animation: shake 0.5s;\n            animation: shake 0.5s;\n    -webkit-animation-iteration-count: infinite;\n            animation-iteration-count: infinite; }\n  @-webkit-keyframes shake {\n  0% {\n    -webkit-transform: translate(1px, 1px) rotate(0deg);\n            transform: translate(1px, 1px) rotate(0deg); }\n  10% {\n    -webkit-transform: translate(-1px, -2px) rotate(-1deg);\n            transform: translate(-1px, -2px) rotate(-1deg); }\n  20% {\n    -webkit-transform: translate(-3px, 0px) rotate(1deg);\n            transform: translate(-3px, 0px) rotate(1deg); }\n  30% {\n    -webkit-transform: translate(3px, 2px) rotate(0deg);\n            transform: translate(3px, 2px) rotate(0deg); }\n  40% {\n    -webkit-transform: translate(1px, -1px) rotate(1deg);\n            transform: translate(1px, -1px) rotate(1deg); }\n  50% {\n    -webkit-transform: translate(-1px, 2px) rotate(-1deg);\n            transform: translate(-1px, 2px) rotate(-1deg); }\n  60% {\n    -webkit-transform: translate(-3px, 1px) rotate(0deg);\n            transform: translate(-3px, 1px) rotate(0deg); }\n  70% {\n    -webkit-transform: translate(3px, 1px) rotate(-1deg);\n            transform: translate(3px, 1px) rotate(-1deg); }\n  80% {\n    -webkit-transform: translate(-1px, -1px) rotate(1deg);\n            transform: translate(-1px, -1px) rotate(1deg); }\n  90% {\n    -webkit-transform: translate(1px, 2px) rotate(0deg);\n            transform: translate(1px, 2px) rotate(0deg); }\n  100% {\n    -webkit-transform: translate(1px, -2px) rotate(-1deg);\n            transform: translate(1px, -2px) rotate(-1deg); } }\n  @keyframes shake {\n  0% {\n    -webkit-transform: translate(1px, 1px) rotate(0deg);\n            transform: translate(1px, 1px) rotate(0deg); }\n  10% {\n    -webkit-transform: translate(-1px, -2px) rotate(-1deg);\n            transform: translate(-1px, -2px) rotate(-1deg); }\n  20% {\n    -webkit-transform: translate(-3px, 0px) rotate(1deg);\n            transform: translate(-3px, 0px) rotate(1deg); }\n  30% {\n    -webkit-transform: translate(3px, 2px) rotate(0deg);\n            transform: translate(3px, 2px) rotate(0deg); }\n  40% {\n    -webkit-transform: translate(1px, -1px) rotate(1deg);\n            transform: translate(1px, -1px) rotate(1deg); }\n  50% {\n    -webkit-transform: translate(-1px, 2px) rotate(-1deg);\n            transform: translate(-1px, 2px) rotate(-1deg); }\n  60% {\n    -webkit-transform: translate(-3px, 1px) rotate(0deg);\n            transform: translate(-3px, 1px) rotate(0deg); }\n  70% {\n    -webkit-transform: translate(3px, 1px) rotate(-1deg);\n            transform: translate(3px, 1px) rotate(-1deg); }\n  80% {\n    -webkit-transform: translate(-1px, -1px) rotate(1deg);\n            transform: translate(-1px, -1px) rotate(1deg); }\n  90% {\n    -webkit-transform: translate(1px, 2px) rotate(0deg);\n            transform: translate(1px, 2px) rotate(0deg); }\n  100% {\n    -webkit-transform: translate(1px, -2px) rotate(-1deg);\n            transform: translate(1px, -2px) rotate(-1deg); } }\n  .rotate {\n  -webkit-animation: rotation 8s infinite linear;\n          animation: rotation 8s infinite linear; }\n  @-webkit-keyframes rotation {\n  from {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  to {\n    -webkit-transform: rotate(359deg);\n            transform: rotate(359deg); } }\n  @keyframes rotation {\n  from {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  to {\n    -webkit-transform: rotate(359deg);\n            transform: rotate(359deg); } }\n  .rotating-landscape {\n  width: 100vw;\n  height: 100vw; }\n  .rotating {\n  position: absolute;\n  display: flex;\n  align-items: center;\n  justify-content: center; }\n  .spinner-portrait {\n  width: 100vh;\n  height: 100vh; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvRTpcXERlc2Nhcmdhc1xcbWFzdGVyNS9zcmNcXGFwcFxcYXBwLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usa0JBQWtCO0VBQ2xCLFdBQVc7RUFDWCxZQUFZO0VBQ1osWUFBWTtFQUNaLGFBQWE7RUFDYixtQkFBbUI7RUFDbkIsdUJBQXVCO0VBRXZCLHlCQUF5QixFQUFBO0VBVDNCO0lBWUksNkJBQXFCO1lBQXJCLHFCQUFxQjtJQUNyQiwyQ0FBbUM7WUFBbkMsbUNBQW1DLEVBQUE7RUFHckM7RUFDRjtJQUFLLG1EQUEyQztZQUEzQywyQ0FBMkMsRUFBQTtFQUNoRDtJQUFNLHNEQUE4QztZQUE5Qyw4Q0FBOEMsRUFBQTtFQUNwRDtJQUFNLG9EQUE0QztZQUE1Qyw0Q0FBNEMsRUFBQTtFQUNsRDtJQUFNLG1EQUEyQztZQUEzQywyQ0FBMkMsRUFBQTtFQUNqRDtJQUFNLG9EQUE0QztZQUE1Qyw0Q0FBNEMsRUFBQTtFQUNsRDtJQUFNLHFEQUE2QztZQUE3Qyw2Q0FBNkMsRUFBQTtFQUNuRDtJQUFNLG9EQUE0QztZQUE1Qyw0Q0FBNEMsRUFBQTtFQUNsRDtJQUFNLG9EQUE0QztZQUE1Qyw0Q0FBNEMsRUFBQTtFQUNsRDtJQUFNLHFEQUE2QztZQUE3Qyw2Q0FBNkMsRUFBQTtFQUNuRDtJQUFNLG1EQUEyQztZQUEzQywyQ0FBMkMsRUFBQTtFQUNqRDtJQUFPLHFEQUE2QztZQUE3Qyw2Q0FBNkMsRUFBQSxFQUFBO0VBWGxEO0VBQ0Y7SUFBSyxtREFBMkM7WUFBM0MsMkNBQTJDLEVBQUE7RUFDaEQ7SUFBTSxzREFBOEM7WUFBOUMsOENBQThDLEVBQUE7RUFDcEQ7SUFBTSxvREFBNEM7WUFBNUMsNENBQTRDLEVBQUE7RUFDbEQ7SUFBTSxtREFBMkM7WUFBM0MsMkNBQTJDLEVBQUE7RUFDakQ7SUFBTSxvREFBNEM7WUFBNUMsNENBQTRDLEVBQUE7RUFDbEQ7SUFBTSxxREFBNkM7WUFBN0MsNkNBQTZDLEVBQUE7RUFDbkQ7SUFBTSxvREFBNEM7WUFBNUMsNENBQTRDLEVBQUE7RUFDbEQ7SUFBTSxvREFBNEM7WUFBNUMsNENBQTRDLEVBQUE7RUFDbEQ7SUFBTSxxREFBNkM7WUFBN0MsNkNBQTZDLEVBQUE7RUFDbkQ7SUFBTSxtREFBMkM7WUFBM0MsMkNBQTJDLEVBQUE7RUFDakQ7SUFBTyxxREFBNkM7WUFBN0MsNkNBQTZDLEVBQUEsRUFBQTtFQUlwRDtFQUNFLDhDQUFzQztVQUF0QyxzQ0FBc0MsRUFBQTtFQUd4QztFQUNFO0lBQ0UsK0JBQXVCO1lBQXZCLHVCQUF1QixFQUFBO0VBRXpCO0lBQ0UsaUNBQXlCO1lBQXpCLHlCQUF5QixFQUFBLEVBQUE7RUFMN0I7RUFDRTtJQUNFLCtCQUF1QjtZQUF2Qix1QkFBdUIsRUFBQTtFQUV6QjtJQUNFLGlDQUF5QjtZQUF6Qix5QkFBeUIsRUFBQSxFQUFBO0VBSTdCO0VBQ0UsWUFBWTtFQUNaLGFBQWEsRUFBQTtFQUdmO0VBQ0Usa0JBQWtCO0VBQ2xCLGFBQWE7RUFDYixtQkFBbUI7RUFDbkIsdUJBQXVCLEVBQUE7RUFHekI7RUFDRSxZQUFZO0VBQ1osYUFBYSxFQUFBIiwiZmlsZSI6InNyYy9hcHAvYXBwLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnNwbGFzaCB7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIGhlaWdodDogMTAwJTtcclxuICB6LWluZGV4OiA5OTk7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gIC8vIGJhY2tncm91bmQ6ICNmZjc0MDA7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogI0E1OTlCNTtcclxuXHJcbiAgLmFuaW1hdGUge1xyXG4gICAgYW5pbWF0aW9uOiBzaGFrZSAwLjVzO1xyXG4gICAgYW5pbWF0aW9uLWl0ZXJhdGlvbi1jb3VudDogaW5maW5pdGU7XHJcbiAgfVxyXG4gIFxyXG4gIEBrZXlmcmFtZXMgc2hha2Uge1xyXG4wJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKDFweCwgMXB4KSByb3RhdGUoMGRlZyk7IH1cclxuMTAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTFweCwgLTJweCkgcm90YXRlKC0xZGVnKTsgfVxyXG4yMCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgtM3B4LCAwcHgpIHJvdGF0ZSgxZGVnKTsgfVxyXG4zMCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgzcHgsIDJweCkgcm90YXRlKDBkZWcpOyB9XHJcbjQwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKDFweCwgLTFweCkgcm90YXRlKDFkZWcpOyB9XHJcbjUwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKC0xcHgsIDJweCkgcm90YXRlKC0xZGVnKTsgfVxyXG42MCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgtM3B4LCAxcHgpIHJvdGF0ZSgwZGVnKTsgfVxyXG43MCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgzcHgsIDFweCkgcm90YXRlKC0xZGVnKTsgfVxyXG44MCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgtMXB4LCAtMXB4KSByb3RhdGUoMWRlZyk7IH1cclxuOTAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoMXB4LCAycHgpIHJvdGF0ZSgwZGVnKTsgfVxyXG4xMDAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoMXB4LCAtMnB4KSByb3RhdGUoLTFkZWcpOyB9XHJcbiAgfVxyXG59XHJcblxyXG4ucm90YXRlIHtcclxuICBhbmltYXRpb246IHJvdGF0aW9uIDhzIGluZmluaXRlIGxpbmVhcjtcclxufVxyXG5cclxuQGtleWZyYW1lcyByb3RhdGlvbiB7XHJcbiAgZnJvbSB7XHJcbiAgICB0cmFuc2Zvcm06IHJvdGF0ZSgwZGVnKTtcclxuICB9XHJcbiAgdG8ge1xyXG4gICAgdHJhbnNmb3JtOiByb3RhdGUoMzU5ZGVnKTtcclxuICB9XHJcbn1cclxuXHJcbi5yb3RhdGluZy1sYW5kc2NhcGUge1xyXG4gIHdpZHRoOiAxMDB2dztcclxuICBoZWlnaHQ6IDEwMHZ3O1xyXG59XHJcblxyXG4ucm90YXRpbmcge1xyXG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbn1cclxuXHJcbi5zcGlubmVyLXBvcnRyYWl0IHtcclxuICB3aWR0aDogMTAwdmg7XHJcbiAgaGVpZ2h0OiAxMDB2aDtcclxufVxyXG4iXX0= */"
 
 /***/ }),
 
@@ -1371,6 +1371,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _servicios_auth_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./servicios/auth.service */ "./src/app/servicios/auth.service.ts");
+/* harmony import */ var _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic-native/fcm/ngx */ "./node_modules/@ionic-native/fcm/ngx/index.js");
+
+
 
 
 
@@ -1380,11 +1383,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var AppComponent = /** @class */ (function () {
-    function AppComponent(platform, splashScreen, statusBar, publicRouter, auth) {
+    function AppComponent(platform, splashScreen, statusBar, toastController, publicRouter, fcm, auth) {
         this.platform = platform;
         this.splashScreen = splashScreen;
         this.statusBar = statusBar;
+        this.toastController = toastController;
         this.publicRouter = publicRouter;
+        this.fcm = fcm;
         this.auth = auth;
         this.showSplash = true;
         this.notShowSplash = false;
@@ -1408,7 +1413,57 @@ var AppComponent = /** @class */ (function () {
         this.platform.ready().then(function () {
             _this.statusBar.styleDefault();
             _this.splashScreen.hide();
-            Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["timer"])(3000).subscribe(function () { _this.showSplash = false; });
+            Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["timer"])(4000).subscribe(function () { _this.showSplash = false; });
+        });
+        this.fcm.getToken().then(function (token) {
+            alert(token);
+        });
+        this.fcm.onNotification().subscribe(function (data) {
+            // console.log(data);
+            if (data.wasTapped) {
+                alert(data);
+                // console.log('Received in background');
+                //this.router.navigateByUrl('/list-confirmar-cliente-mesa');
+                _this.publicRouter.navigate(['/log-in']);
+            }
+            else {
+                // console.log('Received in foreground');
+                //let objetoAuxUno = JSON.stringify(data.title);
+                var objetoAuxDos = JSON.stringify(data.body);
+                _this.presentToast(objetoAuxDos);
+            }
+        });
+    };
+    AppComponent.prototype.presentToast = function (mensaje) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var toast;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.toastController.create({
+                            //header: cabeza,
+                            message: mensaje,
+                            //duration: 5000,
+                            position: 'top',
+                            color: 'violetaleon',
+                            translucent: false,
+                            cssClass: 'toast-noti',
+                            buttons: [
+                                {
+                                    text: 'Cerrar',
+                                    role: 'cancel',
+                                    handler: function () {
+                                        // console.log('Cancel clicked');
+                                        toast.dismiss();
+                                    }
+                                }
+                            ]
+                        })];
+                    case 1:
+                        toast = _a.sent();
+                        toast.present();
+                        return [2 /*return*/];
+                }
+            });
         });
     };
     AppComponent.prototype.home = function () {
@@ -1437,7 +1492,9 @@ var AppComponent = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"],
             _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__["SplashScreen"],
             _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"],
             _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"],
+            _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_8__["FCM"],
             _servicios_auth_service__WEBPACK_IMPORTED_MODULE_7__["AuthService"]])
     ], AppComponent);
     return AppComponent;
@@ -1476,6 +1533,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/fire/firestore */ "./node_modules/@angular/fire/firestore/index.js");
 /* harmony import */ var _angular_fire_storage__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @angular/fire/storage */ "./node_modules/@angular/fire/storage/index.js");
 /* harmony import */ var _ionic_native_email_composer_ngx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @ionic-native/email-composer/ngx */ "./node_modules/@ionic-native/email-composer/ngx/index.js");
+/* harmony import */ var _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @ionic-native/fcm/ngx */ "./node_modules/@ionic-native/fcm/ngx/index.js");
+
 
 
 
@@ -1520,6 +1579,7 @@ var AppModule = /** @class */ (function () {
                 { provide: _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_16__["FirestoreSettingsToken"], useValue: {} },
                 _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_8__["Camera"],
                 _ionic_native_email_composer_ngx__WEBPACK_IMPORTED_MODULE_18__["EmailComposer"],
+                _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_19__["FCM"],
                 ng2_charts__WEBPACK_IMPORTED_MODULE_12__["ChartsModule"]
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_10__["AppComponent"]]
@@ -1833,7 +1893,7 @@ var AuthService = /** @class */ (function () {
                                     _this.usuario = obj_element;
                                     localStorage.setItem('usuario', JSON.stringify(_this.usuario));
                                     resolve(_this.usuario);
-                                    _this.router.navigate(["home-comanda"]);
+                                    _this.router.navigate(["home-mozo"]);
                                     break;
                                 case 'metre':
                                     _this.usuario = obj_element;
@@ -1895,7 +1955,7 @@ var AuthService = /** @class */ (function () {
                 usrs.forEach(function (element) {
                     var obj_element = element.data();
                     obj_element.id = element.id;
-                    if (obj_element.perfil == 'cliente') {
+                    if ((obj_element.perfil == 'cliente') && !(obj_element.activo)) {
                         _this.clientes.push(obj_element);
                     }
                 });
@@ -2074,7 +2134,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\raul.zamora\Anngular\2020_TP_PPS\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! E:\Descargas\master5\src\main.ts */"./src/main.ts");
 
 
 /***/ })

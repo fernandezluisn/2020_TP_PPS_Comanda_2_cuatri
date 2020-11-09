@@ -139,14 +139,7 @@ var EncuestasService = /** @class */ (function () {
         });
     };
     EncuestasService.prototype.addEncuestaEmpleado = function (encuesta) {
-        var _this = this;
-        return new Promise(function (resolve, rejected) {
-            _this.db.collection('encuestas-empleados').add(encuesta).then(function (ret) {
-                resolve(ret);
-            }).catch(function (err) {
-                rejected(err);
-            });
-        });
+        return this.db.collection('encuestas-empleados').add(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, encuesta));
     };
     EncuestasService.prototype.addEncuestaDueño = function (encuesta) {
         var _this = this;

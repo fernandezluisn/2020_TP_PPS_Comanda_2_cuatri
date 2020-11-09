@@ -39,6 +39,19 @@
     "cordova-plugin-email-composer": {
       "ANDROID_SUPPORT_V4_VERSION": "27.+",
       "PACKAGE_NAME": "io.ionic.app"
+    },
+    "cordova-plugin-fcm-with-dependecy-updated": {
+      "ANDROID_FCM_VERSION": "19.0.0",
+      "ANDROID_GRADLE_TOOLS_VERSION": "3.5.3",
+      "ANDROID_GOOGLE_SERVICES_VERSION": "4.3.3",
+      "ANDROID_DEFAULT_NOTIFICATION_ICON": "@mipmap/ic_launcher",
+      "PACKAGE_NAME": "io.ionic.app"
+    },
+    "cordova-plugin-androidx": {
+      "PACKAGE_NAME": "io.ionic.COMANDA2020_99"
+    },
+    "cordova-plugin-androidx-adapter": {
+      "PACKAGE_NAME": "io.ionic.COMANDA2020_99"
     }
   },
   "dependent_plugins": {}
