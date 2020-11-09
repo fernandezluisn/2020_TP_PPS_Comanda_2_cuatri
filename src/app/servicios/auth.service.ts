@@ -140,7 +140,7 @@ export class AuthService {
         usrs.forEach(element => {
           let obj_element = element.data();
           obj_element.id = element.id;
-          if(obj_element.perfil=='cliente'){
+          if((obj_element.perfil=='cliente')&&!(obj_element.activo)){
             this.clientes.push(obj_element);
           }
 
