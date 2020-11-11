@@ -17,7 +17,7 @@
        under the License.
  */
 
-package io.ionic.app;
+package io.ionic.COMANDA2020_99;
 
 import android.os.Bundle;
 import org.apache.cordova.*;

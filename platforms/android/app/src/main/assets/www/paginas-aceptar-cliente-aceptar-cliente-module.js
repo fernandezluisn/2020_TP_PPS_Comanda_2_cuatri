@@ -104,9 +104,10 @@ var AceptarClientePage = /** @class */ (function () {
     }
     AceptarClientePage.prototype.ngOnInit = function () {
         var _this = this;
-        this.clienteServe.GetUsuariosAceptar().then(function (clientes) {
+        this.clienteServe.GetUsuariosPorAceptar().then(function (clientes) {
             _this.clientes = clientes;
-            Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["timer"])(3000).subscribe(function () { _this.TomarUsuarios(); });
+            //timer(3000).subscribe(()=>{this.TomarUsuarios();
+            //})
             console.log(clientes);
         });
     };

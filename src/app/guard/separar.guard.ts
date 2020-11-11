@@ -27,7 +27,10 @@ export class SepararGuard implements CanActivate {
           return false
         }else{
           let usuario = this.auth.getUsuario();
+          console.log(usuario['perfil']);
+          
        switch (usuario['perfil']) {
+       
          case 'mozo':
            this.router.navigate(['home-mozo']);
            break;
@@ -56,7 +59,7 @@ export class SepararGuard implements CanActivate {
        }
           return true
         }
-        // console.log(auth);
+        
          return false;
       }))
 

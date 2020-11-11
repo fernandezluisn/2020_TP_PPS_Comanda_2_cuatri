@@ -18,40 +18,38 @@
 </ion-header>
 
 <ion-content>
-  <ion-card class="ion-activatable">
+  <ion-card class="ion-activatable" (click)="this.escanearQr()">
     <ion-ripple-effect></ion-ripple-effect>
     <ion-icon name="qr-scanner"></ion-icon>
     <h2>Escanear QR</h2>
   </ion-card>
 
-
-
-  <ion-card class="ion-activatable">
+  <ion-card class="ion-activatable" (click)="this.realizarPedido()">
     <ion-ripple-effect></ion-ripple-effect>
     <ion-icon name="restaurant"></ion-icon>
     <h2>Realizar un Pedido</h2>
   </ion-card>
 
-  <ion-card class="ion-activatable" >
+  <ion-card class="ion-activatable" (click)="this.consultarMozo()">
     <ion-ripple-effect></ion-ripple-effect>
     <ion-icon name="person"></ion-icon>
     <h2>Consulta al Mozo</h2>
     </ion-card>
     
 
-    <ion-card class="ion-activatable">
+    <ion-card class="ion-activatable" (click)="this.realizarEncuesta()">
       <ion-ripple-effect></ion-ripple-effect>
       <ion-icon name="checkbox-outline"></ion-icon>
       <h2>Encuesta</h2>
     </ion-card>
 
-    <ion-card class="ion-activatable">
+    <ion-card class="ion-activatable" (click)="this.jugar()">
       <ion-ripple-effect></ion-ripple-effect>
       <ion-icon name="logo-game-controller-b"></ion-icon>
       <h2>Jugar</h2>
       </ion-card>
       
-      <ion-card class="ion-activatable">
+      <ion-card class="ion-activatable" (click)="this.pedirCuenta()">
       <ion-ripple-effect></ion-ripple-effect>
       <ion-icon name="list" ></ion-icon>
       <h2>Pedir cuenta</h2>

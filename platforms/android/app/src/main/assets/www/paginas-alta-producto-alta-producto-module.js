@@ -11,11 +11,12 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Producto", function() { return Producto; });
 var Producto = /** @class */ (function () {
-    function Producto(nombre, descripcion, tiempo, precio) {
+    function Producto(nombre, descripcion, tiempo, precio, tipo) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.tiempo = tiempo;
         this.precio = precio;
+        this.tipo = tipo;
     }
     return Producto;
 }());
@@ -82,7 +83,7 @@ var AltaProductoPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title>altaProducto</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n  \r\n  <ion-button (click)=\"cambiar()\">Cambiar formulario</ion-button>\r\n\r\n\r\n  <ng-container *ngIf=\"alta\">\r\n    \r\n    <ion-item>\r\n      <ion-label position=\"floating\">Nombre del producto</ion-label>\r\n      <ion-input type=\"text\" [(ngModel)]=\"nombre\"></ion-input>\r\n    </ion-item>\r\n\r\n    <ion-item>\r\n      <ion-label position=\"floating\">Descripción del producto</ion-label>\r\n      <ion-textarea [(ngModel)]=\"descripcion\"></ion-textarea>\r\n    </ion-item>\r\n   \r\n     <ion-item>\r\n       <ion-label position=\"floating\">Cantidad de minutos de elaboración</ion-label>\r\n       <ion-input type=\"number\" [(ngModel)]=\"minutos\"></ion-input>\r\n     </ion-item>\r\n \r\n     <ion-item>\r\n      <ion-label position=\"floating\">Precio</ion-label>\r\n      <ion-input type=\"number\" [(ngModel)]=\"precio\" placeholder=\"$$$\"></ion-input>\r\n    </ion-item>\r\n \r\n     <ion-button  color=\"dark\" size=\"small\" (click)=\"escanear()\">Escanear QR</ion-button><br>\r\n \r\n     <ion-button color=\"dark\" size=\"small\" (click)=\"sacarFoto(1)\" *ngIf=\"!image1\">Tomar una foto</ion-button><br><br>\r\n     <ion-button color=\"dark\" size=\"small\" (click)=\"sacarFoto(2)\" *ngIf=\"image1 && !image2\">Tomar segunda foto</ion-button>\r\n     <ion-button color=\"dark\" size=\"small\" (click)=\"sacarFoto(3)\" *ngIf=\"image2\">Tomar tercera foto</ion-button>\r\n     \r\n     <ion-button (click)=\"subir()\">Subir Producto</ion-button>\r\n     \r\n   </ng-container>\r\n\r\n\r\n   <ng-container *ngIf=\"!alta\">\r\n\r\n    <ion-item style=\"margin-bottom:3rem;\">\r\n      <ion-label>Producto a modificar y/o eliminar</ion-label>\r\n      <ion-select  [(ngModel)]=\"productoElegido\" >\r\n        <ion-select-option [value]=\"item\" *ngFor=\"let item of listaProductos\">{{item.nombre}} ${{item.precio}}</ion-select-option>        \r\n      </ion-select>\r\n    </ion-item >\r\n    \r\n    <ng-container *ngIf=\"productoElegido\">\r\n      <ion-item>\r\n        <ion-label position=\"floating\">Nombre</ion-label>\r\n        <ion-input type=\"text\" [(ngModel)]=\"productoElegido.nombre\"></ion-input>\r\n      </ion-item> \r\n\r\n      <ion-item>\r\n        <ion-label position=\"floating\">Descripción del producto</ion-label>\r\n        <ion-textarea [(ngModel)]=\"productoElegido.descripcion\"></ion-textarea>\r\n      </ion-item>\r\n\r\n      <ion-item>\r\n        <ion-label position=\"floating\">Precio</ion-label>\r\n        <ion-input type=\"number\" [(ngModel)]=\"productoElegido.precio\"></ion-input>\r\n      </ion-item> \r\n\r\n      <ion-item>\r\n        <ion-label position=\"floating\">Cantidad de minutos de elaboración</ion-label>\r\n        <ion-input type=\"number\" [(ngModel)]=\"productoElegido.minutos\"></ion-input>\r\n      </ion-item>\r\n\r\n      <ion-button  color=\"dark\" size=\"small\" (click)=\"escanear()\">Ingresar nuevo QR</ion-button><br><br>\r\n \r\n      <ion-item *ngIf=\"productoElegido.foto_1\">\r\n        <ion-img [src]=\"productoElegido.foto_1\"></ion-img>\r\n      </ion-item>\r\n     <ion-button color=\"dark\" size=\"small\" (click)=\"sacarFoto(1)\">Cambiar primera foto</ion-button><br><br>\r\n     <ion-item *ngIf=\"productoElegido.foto_2\">\r\n      <ion-img [src]=\"productoElegido.foto_2\"></ion-img>\r\n    </ion-item>\r\n     <ion-button color=\"dark\" size=\"small\" (click)=\"sacarFoto(2)\">Cambiar segunda foto</ion-button><br><br>\r\n     <ion-item *ngIf=\"productoElegido.foto_3\">\r\n      <ion-img [src]=\"productoElegido.foto_3\"></ion-img>\r\n    </ion-item>\r\n     <ion-button color=\"dark\" size=\"small\" (click)=\"sacarFoto(3)\">Cambiar tercera foto</ion-button><br><br>\r\n\r\n      <ion-button (click)=\"modificar()\">Actualizar Producto</ion-button>\r\n      <ion-button (click)=\"eliminar()\">Eliminar Producto</ion-button>\r\n    </ng-container>\r\n\r\n   </ng-container>\r\n\r\n\r\n</ion-content>\r\n"
+module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title>Productos</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n  \r\n  <ion-button (click)=\"cambiar()\">Cambiar formulario</ion-button>\r\n\r\n\r\n  <ng-container *ngIf=\"alta\">\r\n    \r\n    <ion-item>\r\n      <ion-label position=\"floating\">Nombre del producto</ion-label>\r\n      <ion-input type=\"text\" [(ngModel)]=\"nombre\"></ion-input>\r\n    </ion-item>\r\n\r\n    <ion-item>\r\n      <ion-label position=\"floating\">Descripción del producto</ion-label>\r\n      <ion-textarea [(ngModel)]=\"descripcion\"></ion-textarea>\r\n    </ion-item>\r\n   \r\n     <ion-item>\r\n       <ion-label position=\"floating\">Cantidad de minutos de elaboración</ion-label>\r\n       <ion-input type=\"number\" [(ngModel)]=\"minutos\"></ion-input>\r\n     </ion-item>\r\n \r\n     <ion-item>\r\n      <ion-label position=\"floating\">Precio</ion-label>\r\n      <ion-input type=\"number\" [(ngModel)]=\"precio\" placeholder=\"$$$\"></ion-input>\r\n    </ion-item>\r\n \r\n     <ion-button  color=\"dark\" size=\"small\" (click)=\"escanear()\">Escanear QR</ion-button><br>\r\n \r\n     <ion-button color=\"dark\" size=\"small\" (click)=\"sacarFoto(1)\" *ngIf=\"!image1\">Tomar una foto</ion-button><br><br>\r\n     <ion-item *ngIf=\"image1\">\r\n      <ion-img [src]=\"image1\"></ion-img>\r\n      </ion-item>\r\n     <ion-button color=\"dark\" size=\"small\" (click)=\"sacarFoto(2)\" *ngIf=\"image1 && !image2\">Tomar segunda foto</ion-button>\r\n     <ion-item *ngIf=\"image2\">\r\n      <ion-img [src]=\"image2\"></ion-img>\r\n      </ion-item>\r\n     <ion-button color=\"dark\" size=\"small\" (click)=\"sacarFoto(3)\" *ngIf=\"image2\">Tomar tercera foto</ion-button>\r\n     <ion-item *ngIf=\"image3\">\r\n      <ion-img [src]=\"image3\"></ion-img>\r\n      </ion-item>\r\n     \r\n     <ion-button (click)=\"subir()\">Subir Producto</ion-button>\r\n     \r\n   </ng-container>\r\n\r\n\r\n   <ng-container *ngIf=\"!alta\">\r\n\r\n    <ion-item style=\"margin-bottom:3rem;\">\r\n      <ion-label>Producto a modificar y/o eliminar</ion-label>\r\n      <ion-select  [(ngModel)]=\"productoElegido\" >\r\n        <ion-select-option [value]=\"item\" *ngFor=\"let item of listaProductos\">{{item.nombre}} ${{item.precio}}</ion-select-option>        \r\n      </ion-select>\r\n    </ion-item >\r\n    \r\n    <ng-container *ngIf=\"productoElegido\">\r\n      <ion-item>\r\n        <ion-label position=\"floating\">Nombre</ion-label>\r\n        <ion-input type=\"text\" [(ngModel)]=\"productoElegido.nombre\"></ion-input>\r\n      </ion-item> \r\n\r\n      <ion-item>\r\n        <ion-label position=\"floating\">Descripción del producto</ion-label>\r\n        <ion-textarea [(ngModel)]=\"productoElegido.descripcion\"></ion-textarea>\r\n      </ion-item>\r\n\r\n      <ion-item>\r\n        <ion-label position=\"floating\">Precio</ion-label>\r\n        <ion-input type=\"number\" [(ngModel)]=\"productoElegido.precio\"></ion-input>\r\n      </ion-item> \r\n\r\n      <ion-item>\r\n        <ion-label position=\"floating\">Cantidad de minutos de elaboración</ion-label>\r\n        <ion-input type=\"number\" [(ngModel)]=\"productoElegido.minutos\"></ion-input>\r\n      </ion-item>\r\n\r\n      <ion-button  color=\"dark\" size=\"small\" (click)=\"escanear()\">Ingresar nuevo QR</ion-button><br><br>\r\n \r\n      <ion-item *ngIf=\"productoElegido.foto_1\">\r\n        <ion-img [src]=\"productoElegido.foto_1\"></ion-img>\r\n      </ion-item>\r\n\r\n     <ion-item *ngIf=\"productoElegido.foto_2\">\r\n      <ion-img [src]=\"productoElegido.foto_2\"></ion-img>\r\n    </ion-item>\r\n     \r\n     <ion-item *ngIf=\"productoElegido.foto_3\">\r\n      <ion-img [src]=\"productoElegido.foto_3\"></ion-img>\r\n    </ion-item>\r\n\r\n      <ion-button (click)=\"modificar()\">Actualizar Producto</ion-button>\r\n      <ion-button (click)=\"eliminar()\">Eliminar Producto</ion-button>\r\n    </ng-container>\r\n\r\n   </ng-container>\r\n\r\n\r\n</ion-content>\r\n"
 
 /***/ }),
 
@@ -93,7 +94,7 @@ module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title>altaProducto
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "ion-card {\n  text-align: center;\n  --background: rgb(230, 230, 230);\n  display: block;\n  border-radius: 0;\n  margin: 0;\n  padding: 0; }\n\nion-card ion-icon {\n  font-size: 80px;\n  color: #333333; }\n\n.card-vertical {\n  height: 33.33%;\n  width: 100%;\n  float: left; }\n\n.card-horizontal {\n  height: 100%;\n  width: 33.33%;\n  float: left; }\n\nion-ripple-effect {\n  color: #ef5c5c; }\n\n.icon-vertical {\n  margin-top: 13.5%; }\n\n.icon-horizontal {\n  margin-top: 4%; }\n\nh2 {\n  font-size: 20px;\n  font-weight: bold;\n  /*line-height: 0px;*/\n  padding-top: 0;\n  margin-top: 0;\n  color: #181717; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnaW5hcy9hbHRhLXByb2R1Y3RvL0U6XFxEZXNjYXJnYXNcXG1hc3RlclxcbWFzdGVyL3NyY1xcYXBwXFxwYWdpbmFzXFxhbHRhLXByb2R1Y3RvXFxhbHRhLXByb2R1Y3RvLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFQTtFQUNJLGtCQUFrQjtFQUNsQixnQ0FBYTtFQUNiLGNBQWM7RUFDZCxnQkFBZ0I7RUFDaEIsU0FBUztFQUNULFVBQVUsRUFBQTs7QUFHZDtFQUNJLGVBQWU7RUFDZixjQUFzQixFQUFBOztBQUcxQjtFQUNJLGNBQWM7RUFDZCxXQUFXO0VBQ1gsV0FBVyxFQUFBOztBQUdmO0VBQ0ksWUFBWTtFQUNaLGFBQWE7RUFDYixXQUFXLEVBQUE7O0FBR2Y7RUFDSSxjQUF1QixFQUFBOztBQUczQjtFQUNJLGlCQUFpQixFQUFBOztBQUdyQjtFQUNJLGNBQWMsRUFBQTs7QUFHbEI7RUFDSSxlQUFlO0VBQ2YsaUJBQWlCO0VBQ2pCLG9CQUFBO0VBQ0EsY0FBYztFQUNkLGFBQWE7RUFDYixjQUFzQixFQUFBIiwiZmlsZSI6InNyYy9hcHAvcGFnaW5hcy9hbHRhLXByb2R1Y3RvL2FsdGEtcHJvZHVjdG8ucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLy8gQ09OVEVOVFxyXG5cclxuaW9uLWNhcmQge1xyXG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gICAgLS1iYWNrZ3JvdW5kOiByZ2IoMjMwLCAyMzAsIDIzMCk7XHJcbiAgICBkaXNwbGF5OiBibG9jaztcclxuICAgIGJvcmRlci1yYWRpdXM6IDA7XHJcbiAgICBtYXJnaW46IDA7XHJcbiAgICBwYWRkaW5nOiAwO1xyXG59XHJcblxyXG5pb24tY2FyZCBpb24taWNvbiB7XHJcbiAgICBmb250LXNpemU6IDgwcHg7XHJcbiAgICBjb2xvcjogcmdiKDUxLCA1MSwgNTEpO1xyXG59XHJcblxyXG4uY2FyZC12ZXJ0aWNhbCB7XHJcbiAgICBoZWlnaHQ6IDMzLjMzJTtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgZmxvYXQ6IGxlZnQ7XHJcbn1cclxuXHJcbi5jYXJkLWhvcml6b250YWwge1xyXG4gICAgaGVpZ2h0OiAxMDAlO1xyXG4gICAgd2lkdGg6IDMzLjMzJTtcclxuICAgIGZsb2F0OiBsZWZ0O1xyXG59XHJcblxyXG5pb24tcmlwcGxlLWVmZmVjdCB7XHJcbiAgICBjb2xvcjogcmdiKDIzOSwgOTIsIDkyKTtcclxufVxyXG5cclxuLmljb24tdmVydGljYWwge1xyXG4gICAgbWFyZ2luLXRvcDogMTMuNSU7XHJcbn1cclxuXHJcbi5pY29uLWhvcml6b250YWwge1xyXG4gICAgbWFyZ2luLXRvcDogNCU7XHJcbn1cclxuXHJcbmgyIHtcclxuICAgIGZvbnQtc2l6ZTogMjBweDtcclxuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xyXG4gICAgLypsaW5lLWhlaWdodDogMHB4OyovXHJcbiAgICBwYWRkaW5nLXRvcDogMDtcclxuICAgIG1hcmdpbi10b3A6IDA7XHJcbiAgICBjb2xvcjogcmdiKDI0LCAyMywgMjMpO1xyXG59Il19 */"
+module.exports = "ion-card {\n  text-align: center;\n  --background: rgb(230, 230, 230);\n  display: block;\n  border-radius: 0;\n  margin: 0;\n  padding: 0; }\n\nion-card ion-icon {\n  font-size: 80px;\n  color: #333333; }\n\n.card-vertical {\n  height: 33.33%;\n  width: 100%;\n  float: left; }\n\n.card-horizontal {\n  height: 100%;\n  width: 33.33%;\n  float: left; }\n\nion-ripple-effect {\n  color: #ef5c5c; }\n\n.icon-vertical {\n  margin-top: 13.5%; }\n\n.icon-horizontal {\n  margin-top: 4%; }\n\nh2 {\n  font-size: 20px;\n  font-weight: bold;\n  /*line-height: 0px;*/\n  padding-top: 0;\n  margin-top: 0;\n  color: #181717; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnaW5hcy9hbHRhLXByb2R1Y3RvL0U6XFxEZXNjYXJnYXNcXG1hc3RlcjUvc3JjXFxhcHBcXHBhZ2luYXNcXGFsdGEtcHJvZHVjdG9cXGFsdGEtcHJvZHVjdG8ucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVBO0VBQ0ksa0JBQWtCO0VBQ2xCLGdDQUFhO0VBQ2IsY0FBYztFQUNkLGdCQUFnQjtFQUNoQixTQUFTO0VBQ1QsVUFBVSxFQUFBOztBQUdkO0VBQ0ksZUFBZTtFQUNmLGNBQXNCLEVBQUE7O0FBRzFCO0VBQ0ksY0FBYztFQUNkLFdBQVc7RUFDWCxXQUFXLEVBQUE7O0FBR2Y7RUFDSSxZQUFZO0VBQ1osYUFBYTtFQUNiLFdBQVcsRUFBQTs7QUFHZjtFQUNJLGNBQXVCLEVBQUE7O0FBRzNCO0VBQ0ksaUJBQWlCLEVBQUE7O0FBR3JCO0VBQ0ksY0FBYyxFQUFBOztBQUdsQjtFQUNJLGVBQWU7RUFDZixpQkFBaUI7RUFDakIsb0JBQUE7RUFDQSxjQUFjO0VBQ2QsYUFBYTtFQUNiLGNBQXNCLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9wYWdpbmFzL2FsdGEtcHJvZHVjdG8vYWx0YS1wcm9kdWN0by5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvLyBDT05URU5UXHJcblxyXG5pb24tY2FyZCB7XHJcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgICAtLWJhY2tncm91bmQ6IHJnYigyMzAsIDIzMCwgMjMwKTtcclxuICAgIGRpc3BsYXk6IGJsb2NrO1xyXG4gICAgYm9yZGVyLXJhZGl1czogMDtcclxuICAgIG1hcmdpbjogMDtcclxuICAgIHBhZGRpbmc6IDA7XHJcbn1cclxuXHJcbmlvbi1jYXJkIGlvbi1pY29uIHtcclxuICAgIGZvbnQtc2l6ZTogODBweDtcclxuICAgIGNvbG9yOiByZ2IoNTEsIDUxLCA1MSk7XHJcbn1cclxuXHJcbi5jYXJkLXZlcnRpY2FsIHtcclxuICAgIGhlaWdodDogMzMuMzMlO1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgICBmbG9hdDogbGVmdDtcclxufVxyXG5cclxuLmNhcmQtaG9yaXpvbnRhbCB7XHJcbiAgICBoZWlnaHQ6IDEwMCU7XHJcbiAgICB3aWR0aDogMzMuMzMlO1xyXG4gICAgZmxvYXQ6IGxlZnQ7XHJcbn1cclxuXHJcbmlvbi1yaXBwbGUtZWZmZWN0IHtcclxuICAgIGNvbG9yOiByZ2IoMjM5LCA5MiwgOTIpO1xyXG59XHJcblxyXG4uaWNvbi12ZXJ0aWNhbCB7XHJcbiAgICBtYXJnaW4tdG9wOiAxMy41JTtcclxufVxyXG5cclxuLmljb24taG9yaXpvbnRhbCB7XHJcbiAgICBtYXJnaW4tdG9wOiA0JTtcclxufVxyXG5cclxuaDIge1xyXG4gICAgZm9udC1zaXplOiAyMHB4O1xyXG4gICAgZm9udC13ZWlnaHQ6IGJvbGQ7XHJcbiAgICAvKmxpbmUtaGVpZ2h0OiAwcHg7Ki9cclxuICAgIHBhZGRpbmctdG9wOiAwO1xyXG4gICAgbWFyZ2luLXRvcDogMDtcclxuICAgIGNvbG9yOiByZ2IoMjQsIDIzLCAyMyk7XHJcbn0iXX0= */"
 
 /***/ }),
 
@@ -140,11 +141,13 @@ var AltaProductoPage = /** @class */ (function () {
         this.vibra = vibra;
         this.bda = bda;
         this.toast = toast;
+        this.cargarProd = false;
         this.productoElegido = null;
         this.image1 = null;
         this.image2 = null;
         this.image3 = null;
         this.alta = true;
+        this.usuario = JSON.parse(localStorage.getItem('usuario'));
         this.bda.devolverListadoProductos().subscribe(function (lista) {
             _this.listaProductos = lista;
             _this.listaProductos.sort(function (a, b) { return a.precio - b.precio; });
@@ -247,39 +250,46 @@ var AltaProductoPage = /** @class */ (function () {
     };
     AltaProductoPage.prototype.subir = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var p, err_1;
+            var m, p, imagenes, err_1, err_2;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         this.presentLoading("Subiendo el producto.");
-                        p = new src_app_interfaces_producto__WEBPACK_IMPORTED_MODULE_7__["Producto"](this.nombre, this.descripcion, this.minutos, this.precio);
+                        if (this.usuario.perfil == 'bar')
+                            m = "bebida";
+                        else
+                            m = "comida";
+                        p = new src_app_interfaces_producto__WEBPACK_IMPORTED_MODULE_7__["Producto"](this.nombre, this.descripcion, this.minutos, this.precio, m);
                         _a.label = 1;
                     case 1:
-                        _a.trys.push([1, 9, 10, 11]);
-                        if (!(this.image1 != null)) return [3 /*break*/, 3];
-                        return [4 /*yield*/, this.guardarImagen(1, this.image1, p)];
+                        _a.trys.push([1, 4, 5, 12]);
+                        if (!(this.image3 != null)) return [3 /*break*/, 3];
+                        imagenes = new Array();
+                        imagenes.push(this.image1, this.image2, this.image3);
+                        return [4 /*yield*/, this.guardarImagen(imagenes, p)];
                     case 2:
                         p = _a.sent();
+                        this.cargarProd = true;
                         _a.label = 3;
-                    case 3:
-                        if (!(this.image2 != null)) return [3 /*break*/, 5];
-                        return [4 /*yield*/, this.guardarImagen(2, this.image2, p)];
+                    case 3: return [3 /*break*/, 12];
                     case 4:
-                        p = _a.sent();
-                        _a.label = 5;
-                    case 5:
-                        if (!(this.image3 != null)) return [3 /*break*/, 7];
-                        return [4 /*yield*/, this.guardarImagen(3, this.image3, p)];
-                    case 6:
-                        p = _a.sent();
-                        _a.label = 7;
-                    case 7: return [4 /*yield*/, this.cargarProducto(p, 1)];
-                    case 8:
-                        _a.sent();
-                        return [3 /*break*/, 11];
-                    case 9:
                         err_1 = _a.sent();
                         this.alertar(err_1);
+                        return [3 /*break*/, 12];
+                    case 5:
+                        _a.trys.push([5, 9, 10, 11]);
+                        if (!this.cargarProd) return [3 /*break*/, 7];
+                        return [4 /*yield*/, this.cargarProducto(p, 1)];
+                    case 6:
+                        _a.sent();
+                        return [3 /*break*/, 8];
+                    case 7:
+                        this.alertar("El producto debe tener tres imagenes asignadas!!");
+                        _a.label = 8;
+                    case 8: return [3 /*break*/, 11];
+                    case 9:
+                        err_2 = _a.sent();
+                        this.alertar(err_2);
                         return [3 /*break*/, 11];
                     case 10:
                         this.image1 = null;
@@ -290,7 +300,8 @@ var AltaProductoPage = /** @class */ (function () {
                         this.minutos = 0;
                         this.precio = 0;
                         return [7 /*endfinally*/];
-                    case 11: return [2 /*return*/];
+                    case 11: return [7 /*endfinally*/];
+                    case 12: return [2 /*return*/];
                 }
             });
         });
@@ -327,39 +338,65 @@ var AltaProductoPage = /** @class */ (function () {
             this.alertar("La descripción debe tener más de 20 caracteres");
         }
     };
-    AltaProductoPage.prototype.guardarImagen = function (numero, image, producto) {
+    AltaProductoPage.prototype.guardarImagen = function (images, producto) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var com, img_1, file, path, ref_1, task, err_2;
+            var _loop_1, this_1, index, state_1;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 3, , 4]);
-                        com = this.nombre + this.precio + numero;
-                        return [4 /*yield*/, fetch(image)
-                                .then(function (res) { return res.blob().then(function (r) {
-                                img_1 = r;
-                            }); })];
+                        _loop_1 = function (index) {
+                            var image, com, img_1, file, path, ref_1, task, err_3;
+                            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                                switch (_a.label) {
+                                    case 0:
+                                        image = images[index];
+                                        _a.label = 1;
+                                    case 1:
+                                        _a.trys.push([1, 4, , 5]);
+                                        com = this_1.nombre + this_1.precio + index;
+                                        return [4 /*yield*/, fetch(image)
+                                                .then(function (res) { return res.blob().then(function (r) {
+                                                img_1 = r;
+                                            }); })];
+                                    case 2:
+                                        _a.sent();
+                                        file = img_1;
+                                        path = com;
+                                        ref_1 = this_1.storage.ref(path);
+                                        task = this_1.storage.upload(path, file);
+                                        return [4 /*yield*/, task.snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_9__["finalize"])(function () { return ref_1.getDownloadURL().subscribe(function (url) {
+                                                if (index == 0)
+                                                    producto.foto_1 = url;
+                                                else if (index == 1)
+                                                    producto.foto_2 = url;
+                                                else
+                                                    producto.foto_3 = url;
+                                            }); })).subscribe()];
+                                    case 3:
+                                        _a.sent();
+                                        return [3 /*break*/, 5];
+                                    case 4:
+                                        err_3 = _a.sent();
+                                        this_1.alertar(err_3);
+                                        return [3 /*break*/, 5];
+                                    case 5: return [2 /*return*/, { value: producto }];
+                                }
+                            });
+                        };
+                        this_1 = this;
+                        index = 0;
+                        _a.label = 1;
                     case 1:
-                        _a.sent();
-                        file = img_1;
-                        path = com;
-                        ref_1 = this.storage.ref(path);
-                        task = this.storage.upload(path, file);
-                        return [4 /*yield*/, task.snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_9__["finalize"])(function () { return ref_1.getDownloadURL().subscribe(function (url) {
-                                if (numero == 1)
-                                    producto.foto_1 = url;
-                                else if (numero == 2)
-                                    producto.foto_2 = url;
-                                else
-                                    producto.foto_3 = url;
-                            }); })).subscribe()];
+                        if (!(index < 3)) return [3 /*break*/, 4];
+                        return [5 /*yield**/, _loop_1(index)];
                     case 2:
-                        _a.sent();
-                        return [2 /*return*/, producto];
+                        state_1 = _a.sent();
+                        if (typeof state_1 === "object")
+                            return [2 /*return*/, state_1.value];
+                        _a.label = 3;
                     case 3:
-                        err_2 = _a.sent();
-                        this.alertar(err_2);
-                        return [3 /*break*/, 4];
+                        index++;
+                        return [3 /*break*/, 1];
                     case 4: return [2 /*return*/];
                 }
             });
@@ -400,7 +437,7 @@ var AltaProductoPage = /** @class */ (function () {
     };
     AltaProductoPage.prototype.modificar = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var p, err_3;
+            var p, err_4;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -412,36 +449,19 @@ var AltaProductoPage = /** @class */ (function () {
                         p.tiempo = this.productoElegido.tiempo;
                         _a.label = 1;
                     case 1:
-                        _a.trys.push([1, 9, 10, 11]);
-                        if (!(this.image1 != null)) return [3 /*break*/, 3];
-                        return [4 /*yield*/, this.guardarImagen(1, this.image1, p)];
+                        _a.trys.push([1, 3, 4, 5]);
+                        return [4 /*yield*/, this.cargarProducto(p, 2)];
                     case 2:
-                        p = _a.sent();
-                        _a.label = 3;
-                    case 3:
-                        if (!(this.image2 != null)) return [3 /*break*/, 5];
-                        return [4 /*yield*/, this.guardarImagen(2, this.image2, p)];
-                    case 4:
-                        p = _a.sent();
-                        _a.label = 5;
-                    case 5:
-                        if (!(this.image3 != null)) return [3 /*break*/, 7];
-                        return [4 /*yield*/, this.guardarImagen(3, this.image3, p)];
-                    case 6:
-                        p = _a.sent();
-                        _a.label = 7;
-                    case 7: return [4 /*yield*/, this.cargarProducto(p, 1)];
-                    case 8:
                         _a.sent();
-                        return [3 /*break*/, 11];
-                    case 9:
-                        err_3 = _a.sent();
-                        this.alertar(err_3);
-                        return [3 /*break*/, 11];
-                    case 10:
+                        return [3 /*break*/, 5];
+                    case 3:
+                        err_4 = _a.sent();
+                        this.alertar(err_4);
+                        return [3 /*break*/, 5];
+                    case 4:
                         this.productoElegido = null;
                         return [7 /*endfinally*/];
-                    case 11: return [2 /*return*/];
+                    case 5: return [2 /*return*/];
                 }
             });
         });

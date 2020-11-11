@@ -16,9 +16,10 @@ export class AceptarClientePage implements OnInit {
   constructor( private clienteServe:AuthService,private emailComposer: EmailComposer, private alert:AlertService, private route:Router, private auth:AuthService) {}
 
   ngOnInit() {
-    this.clienteServe.GetUsuariosAceptar().then(clientes=>{
+    this.clienteServe.GetUsuariosPorAceptar().then(clientes=>{
         this.clientes = clientes;
-     timer(3000).subscribe(()=>{this.TomarUsuarios();})
+     //timer(3000).subscribe(()=>{this.TomarUsuarios();
+    //})
       console.log(clientes)
     })
 
