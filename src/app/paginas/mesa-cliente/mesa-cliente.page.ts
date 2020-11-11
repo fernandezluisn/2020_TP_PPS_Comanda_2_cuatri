@@ -43,6 +43,7 @@ realizarPedido()
   {
     this.alert.mensaje('','escanear')
   }
+  
   async consultarMozo()
   {
     const popover = await this.popoverCtrl.create({
@@ -59,7 +60,7 @@ realizarPedido()
           //TODO -> PUSH NOTIFICATION.
           this.spinnerService.hideSpinner();
           this.alert.mensaje("", "Se ha enviado su consulta.");
-          this.fcmService.enviarMensaje("Nueva Consulta", "Mesa1"+data.data, "notificacionMozo")
+          this.fcmService.enviarMensaje("Nueva Consulta", "Mesa1"+data.data, "mozo")
         }else{
              this.alert.mensaje("", "Consulta Cancelada");
           }
