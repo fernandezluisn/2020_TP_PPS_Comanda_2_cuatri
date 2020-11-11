@@ -50,4 +50,9 @@ export class HomeMetrePage implements OnInit {
     this.route.navigate(['alta-cliente'])
   }
 
+  salir(){
+    this.authService.LogOut();
+    this.route.navigate(['log-in']);
+  }
+
 }

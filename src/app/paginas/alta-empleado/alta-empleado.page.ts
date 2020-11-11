@@ -111,4 +111,9 @@ export class AltaEmpleadoPage implements OnInit {
      });
   }
 
+  salir(){
+    this.authService.LogOut();
+    this.router.navigate(['log-in']);
+  }
+
 }

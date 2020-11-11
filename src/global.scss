@@ -10,6 +10,13 @@
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
 
+.apagar{
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  width: 3rem;
+  
+}
 
 .height {
     &-10 {

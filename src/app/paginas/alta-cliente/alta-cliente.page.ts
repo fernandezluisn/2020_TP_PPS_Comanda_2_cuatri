@@ -190,4 +190,9 @@ export class AltaClientePage {
       });
     }
   }
+
+  salir(){
+    this.authService.LogOut();
+    this.router.navigate(['log-in']);
+  }
 }

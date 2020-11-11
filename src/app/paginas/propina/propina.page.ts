@@ -4,6 +4,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { Vibration } from '@ionic-native/vibration/ngx';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { MesaCliente } from 'src/app/interfaces/mesa-cliente';
+import { AuthService } from 'src/app/servicios/auth.service';
 import { MesaClienteService } from 'src/app/servicios/mesa-cliente.service';
 
 @Component({
@@ -22,7 +23,7 @@ export class PropinaPage implements OnInit {
 
   constructor(public alertController: AlertController, private router:Router, private bda:MesaClienteService,
     private loadingCtrl: LoadingController, private barcodeScanner: BarcodeScanner, private vibra:Vibration,
-    private tomarId:ActivatedRoute,) {
+    private tomarId:ActivatedRoute,  private auth:AuthService) {
 
       this.idMesaCliente=this.tomarId.snapshot.paramMap.get('idMesaCliente');
 
@@ -117,6 +118,11 @@ export class PropinaPage implements OnInit {
       this.alertar(e);
     }
     
+  }
+
+  salir(){
+    this.auth.LogOut();
+    this.router.navigate(['log-in']);
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Platform } from '@ionic/angular';
+import { AuthService } from 'src/app/servicios/auth.service';
 
 @Component({
   selector: 'app-home-comanda',
@@ -11,7 +12,8 @@ export class HomeComandaPage implements OnInit {
 
   constructor(
     private route: Router,
-    private platform:Platform   
+    private platform:Platform,
+    private auth:AuthService   
   ) { }
 
   ngOnInit(
@@ -21,6 +23,11 @@ export class HomeComandaPage implements OnInit {
 
   Mover(lugar){
     this.route.navigate([lugar])
+  }
+
+  salir(){
+    this.auth.LogOut();
+    this.route.navigate(['log-in']);
   }
 
 }

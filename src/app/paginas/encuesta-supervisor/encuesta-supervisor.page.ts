@@ -4,6 +4,7 @@ import { FirestorageService } from '../../servicios/firestorage.service'
 import { AuthService } from '../../servicios/auth.service'
 import { Empleado } from '../../interfaces/usuario'
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-encuesta-supervisor',
@@ -32,7 +33,8 @@ export class EncuestaSupervisorPage implements OnInit {
   puntualidad_dest:any;
   limpieza_dest:any;
 
-  constructor(private encuestasService: EncuestasService, private firestorageService: FirestorageService, private auth: AuthService, private alertController: AlertController) {
+  constructor(private encuestasService: EncuestasService, private firestorageService: FirestorageService, private auth: AuthService, private alertController: AlertController, 
+    private route:Router) {
     this.limpieza = 6;
     this.rapido = false;
     this.calidadBebida = false;
@@ -122,6 +124,11 @@ export class EncuestaSupervisorPage implements OnInit {
     }).then(() => {
       alert('Encuesta cargada exitosamente!');
     }).catch(error => { alert(error); });
+  }
+
+  salir(){
+    this.auth.LogOut();
+    this.route.navigate(['log-in']);
   }
 
 }

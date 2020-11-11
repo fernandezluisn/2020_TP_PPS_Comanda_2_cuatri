@@ -4,6 +4,7 @@ import { Cliente } from 'src/app/interfaces/usuario';
 import { timer } from 'rxjs';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { AlertService } from 'src/app/servicios/alert.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-aceptar-cliente',
@@ -12,7 +13,7 @@ import { AlertService } from 'src/app/servicios/alert.service';
 })
 export class AceptarClientePage implements OnInit {
   clientes: any= [];
-  constructor( private clienteServe:AuthService,private emailComposer: EmailComposer, private alert:AlertService) {}
+  constructor( private clienteServe:AuthService,private emailComposer: EmailComposer, private alert:AlertService, private route:Router, private auth:AuthService) {}
 
   ngOnInit() {
     this.clienteServe.GetUsuariosAceptar().then(clientes=>{
@@ -94,6 +95,11 @@ export class AceptarClientePage implements OnInit {
     this.alert.mensaje("Cliente Borrado","")
     this.ngOnInit()
     // console.log(this.clientes.findIndex(cliente))
+  }
+
+  salir(){
+    this.auth.LogOut();
+    this.route.navigate(['log-in']);
   }
 
 }

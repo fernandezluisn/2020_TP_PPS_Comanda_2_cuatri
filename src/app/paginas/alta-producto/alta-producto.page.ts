@@ -8,6 +8,8 @@ import { Producto } from 'src/app/interfaces/producto';
 import { ProductosService } from 'src/app/servicios/productos.service';
 import { finalize } from 'rxjs/operators';
 import { ToastService } from 'src/app/servicios/toast.service';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/servicios/auth.service';
 
 
 
@@ -44,7 +46,7 @@ export class AltaProductoPage implements OnInit {
     private loadingCtrl:LoadingController,
     private vibra:Vibration,
     private bda:ProductosService,
-    private toast:ToastService) { 
+    private toast:ToastService, private route:Router, private auth:AuthService) { 
       this.usuario = JSON.parse(localStorage.getItem('usuario'));
 
       this.bda.devolverListadoProductos().subscribe(lista=>{
@@ -275,5 +277,10 @@ export class AltaProductoPage implements OnInit {
       this.productoElegido=null;
     }
     
+  }
+
+  salir(){
+    this.auth.LogOut();
+    this.route.navigate(['log-in']);
   }
 }

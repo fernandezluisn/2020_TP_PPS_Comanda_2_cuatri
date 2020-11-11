@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
+import { AuthService } from 'src/app/servicios/auth.service';
 
 @Component({
   selector: 'app-home-cocina',
@@ -11,7 +12,7 @@ export class HomeCocinaPage implements OnInit {
 
   constructor(
     private route: Router,
-    private platform:Platform 
+    private platform:Platform , private auth:AuthService
   ) { }
 
   ngOnInit(
@@ -21,6 +22,11 @@ export class HomeCocinaPage implements OnInit {
 
   Mover(lugar){
     this.route.navigate([lugar])
+  }
+
+  salir(){
+    this.auth.LogOut();
+    this.route.navigate(['log-in']);
   }
 
 

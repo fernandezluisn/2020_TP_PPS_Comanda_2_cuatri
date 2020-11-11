@@ -8,6 +8,8 @@ import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 
 import { EncuestaEmpleado } from 'src/app/interfaces/encuestaEmpleado';
 import { EncuestasService } from 'src/app/servicios/encuestas.service';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/servicios/auth.service';
 
 @Component({
   selector: 'app-graficos',
@@ -39,7 +41,7 @@ export class GraficosPage implements OnInit {
   ordenado=0;
   desorden=0;
   mDesorden=0;
-  constructor(private service:EncuestasService) { 
+  constructor(private service:EncuestasService, private route:Router, private auth:AuthService) { 
     this.service.GetEncuestasEmpleados().subscribe(lista=>{
       this.encuestasEmpleados=lista;
     })
@@ -141,4 +143,9 @@ export class GraficosPage implements OnInit {
   public dataNumeros:ChartDataSets[]=[
     { data: [this.unos, this.dos, this.tres, this.cuatros, this.cincos], label: '' } 
   ];
+
+  salir(){
+    this.auth.LogOut();
+    this.route.navigate(['log-in']);
+  }
 }

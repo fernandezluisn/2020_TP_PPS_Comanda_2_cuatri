@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { ChartsModule } from 'ng2-charts';
 
+import { DatePipe } from '@angular/common';
 
 import { firebaseConfig } from '../environments/environment';
 
@@ -41,6 +42,7 @@ import { EmailComposer } from '@ionic-native/email-composer/ngx';
     SplashScreen,
     BarcodeScanner,
     Vibration,
+    DatePipe,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: FirestoreSettingsToken, useValue:{}},
     Camera,

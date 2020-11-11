@@ -3,22 +3,36 @@ import { Injectable } from '@angular/core';
 import { Reserva, Espera } from '../interfaces/reserva';
 import { map } from 'rxjs/internal/operators/map';
 import { AuthService } from './auth.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReservasService {
 
-  constructor(private db: AngularFirestore, private authService:AuthService) { }
+
+  listaReservas:Observable<Reserva[]>;
+  constructor(private db: AngularFirestore, private authService:AuthService) {
+
+    this.listaReservas=this.db.collection('reservas').snapshotChanges().pipe(
+      map(actions=>{
+        return actions.map(
+          a=>{
+            const data= a.payload.doc.data();
+            const id=a.payload.doc.id;
+            return {id, ...(data as any)}
+          }
+        );
+      }
+  
+      )
+  
+     
+    );
+   }
 
   getReservas() {
-    return this.db.collection('reservas').snapshotChanges().pipe(map(reservas => {
-      return reservas.map(reserva => {
-        const data = reserva.payload.doc.data() as Reserva;
-        data.id = reserva.payload.doc.id;
-        return data;
-      });
-    }));
+    return this.listaReservas;
   }
 
   getReservasPendientes() {
@@ -32,13 +46,8 @@ export class ReservasService {
   }
 
   addReserva(reserva: Reserva) {
-    return new Promise((resolve, rejected) => {
-      this.db.collection('reservas').add(reserva).then(ret => {
-        resolve(ret);
-      }).catch(err => {
-        rejected(err);
-      });
-    });
+    return this.db.collection('reservas').add({...reserva});
+
   }
 
   updateReserva(reserva: Reserva) {

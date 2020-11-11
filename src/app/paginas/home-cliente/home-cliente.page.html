@@ -13,14 +13,25 @@
   <div *ngIf="cliente.estado=='desconectado'" style="height: 100%; display:flex; flex-direction:column;">
     <div class="titulo">
       <h1>Bienvenido</h1>
+      <p>Aquí puede solicitar una reserva.</p>
+      <ion-card class="ion-activatable" (click)="this.Mover('reservas')" [ngClass]="{ 'card-vertical': !this.platform.isLandscape(), 'card-horizontal': this.platform.isLandscape() }">
+        <ion-ripple-effect></ion-ripple-effect>
+        <ion-icon name="create" [ngClass]="{ 'icon-horizontal': this.platform.isLandscape(), 'icon-vertical': !this.platform.isLandscape() }"></ion-icon>
+        
+        <h5>La reserva estará sujeta a aprobación.</h5>
+      </ion-card>
+      
+
       <h3></h3>
-      <p>Escanee el codigo QR para Ingresar a la lista de espera..</p>
+      <p>O escanee el codigo QR para Ingresar a la lista de espera..</p>
     </div>
     <div style="display: flex;justify-content: center;">
       <ion-button class="boton" (click)="scanearEspera()">
         <ion-icon name="qr-code" class="qrCode"></ion-icon>        &nbsp; Escanear codigo QR         
       </ion-button>
     </div>
+
+    
   </div>
 
 
@@ -49,6 +60,8 @@
         </div>
       </div>
   
-
+      <ion-button class="apagar" color="dark" (click)="salir()">
+        <ion-icon name="power"></ion-icon>
+      </ion-button>
 
 </ion-content>

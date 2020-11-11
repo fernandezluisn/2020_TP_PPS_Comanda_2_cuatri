@@ -84,7 +84,9 @@
     <ion-label position="floating">Añada alguna nota del empleado</ion-label>
     <ion-input type="text" [(ngModel)]="this.comentarios" maxlength="40"></ion-input>
   </ion-item>
-
+  <ion-button class="apagar" color="dark" (click)="salir()">
+    <ion-icon name="power"></ion-icon>
+  </ion-button>
 
   <ion-button (click)="this.enviarEncuesta()" expand="full">Enviar encuesta</ion-button>
 </ion-content>

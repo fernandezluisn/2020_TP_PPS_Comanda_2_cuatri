@@ -11,7 +11,7 @@ import { MesasService } from 'src/app/servicios/mesas.service';
 })
 export class HomeMozoPage implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private auth:AuthService) { }
 
   ngOnInit() {
   }
@@ -31,5 +31,10 @@ export class HomeMozoPage implements OnInit {
 
   encuesta(){
     this.router.navigate(['/encuesta-empleado']);
+  }
+
+  salir(){
+    this.auth.LogOut();
+    this.router.navigate(['log-in']);
   }
 }

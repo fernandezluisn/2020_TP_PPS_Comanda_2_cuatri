@@ -37,6 +37,8 @@ const routes: Routes = [
   { path: 'encuesta-supervisor', loadChildren: './paginas/encuesta-supervisor/encuesta-supervisor.module#EncuestaSupervisorPageModule' },
   { path: 'encuesta-empleado', loadChildren: './paginas/encuesta-empleado/encuesta-empleado.module#EncuestaEmpleadoPageModule' },
   { path: 'graficos', loadChildren: './paginas/graficos/graficos.module#GraficosPageModule' },
+  { path: 'reservas', loadChildren: './paginas/reservas/reservas.module#ReservasPageModule' },
+  { path: 'respuesta-reservas', loadChildren: './paginas/respuesta-reservas/respuesta-reservas.module#RespuestaReservasPageModule' },
 
 
 

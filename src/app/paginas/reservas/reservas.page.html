@@ -1,0 +1,19 @@
+
+
+<ion-content>
+  <ion-img src="../assets/logo.png"></ion-img>
+  <ion-item style="margin-top: 2rem;">
+    <ion-label>Fecha</ion-label>
+    <ion-datetime displayFormat="DD MM YYYY" [min]="hoy" placeholder="" [(ngModel)]="fecha"></ion-datetime>
+  </ion-item>
+  <ion-item style="margin-top: 2rem;">
+    <ion-label>Hora</ion-label>
+    <ion-datetime displayFormat="HH:mm" hourValues="12,13,14,15,20,21,22,23" [(ngModel)]="hora" minuteValues="0,15,30,45"></ion-datetime>
+  </ion-item>
+
+  <ion-button (click)="subir()" expand="full" color="success" style="bottom: 2rem; position: absolute;">Solicitar reserva</ion-button>
+
+  <ion-button class="apagar" color="dark" (click)="salir()">
+    <ion-icon name="power"></ion-icon>
+  </ion-button>
+</ion-content>

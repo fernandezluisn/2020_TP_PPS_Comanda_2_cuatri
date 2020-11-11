@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/servicios/auth.service';
 
 @Component({
   selector: 'app-home-supervisor',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class HomeSupervisorPage implements OnInit {
 
-  constructor(private platform: Platform, private route:Router) { }
+  constructor(private platform: Platform, private route:Router, private auth:AuthService) { }
 
   ngOnInit() {
   }
@@ -20,6 +21,11 @@ export class HomeSupervisorPage implements OnInit {
 
   Encuesta(){
     this.route.navigate(['encuesta-supervisor'])
+  }
+
+  salir(){
+    this.auth.LogOut();
+    this.route.navigate(['log-in']);
   }
 
 }

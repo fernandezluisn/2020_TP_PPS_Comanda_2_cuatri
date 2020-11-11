@@ -5,6 +5,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { Vibration } from '@ionic-native/vibration/ngx';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { EncuestaEmpleado } from 'src/app/interfaces/encuestaEmpleado';
+import { AuthService } from 'src/app/servicios/auth.service';
 import { EncuestasService } from 'src/app/servicios/encuestas.service';
 import { ToastService } from 'src/app/servicios/toast.service';
 
@@ -34,7 +35,7 @@ export class EncuestaEmpleadoPage implements OnInit {
     private alertController:AlertController, 
     private loadingCtrl:LoadingController,
     private vibra:Vibration,
-    private toast:ToastService
+    private toast:ToastService,private auth:AuthService
 ) { 
   this.opcion="Ordenado";
   this.comentario="";
@@ -111,6 +112,11 @@ export class EncuestaEmpleadoPage implements OnInit {
 
     
     
+  }
+
+  salir(){
+    this.auth.LogOut();
+    this.router.navigate(['log-in']);
   }
 
 }

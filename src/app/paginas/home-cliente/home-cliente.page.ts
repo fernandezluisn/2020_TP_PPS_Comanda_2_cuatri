@@ -166,6 +166,13 @@ this.spinner.hideSpinner();
       });
     }
 
+    Mover(lugar){
+      this.route.navigate([lugar])
+    }
 
+    salir(){
+      this.clienteService.LogOut();
+      this.route.navigate(['log-in']);
+    }
 
 }

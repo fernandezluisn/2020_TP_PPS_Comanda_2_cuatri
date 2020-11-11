@@ -8,6 +8,8 @@ import { MesasService } from 'src/app/servicios/mesas.service';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { Vibration } from '@ionic-native/vibration/ngx';
 import { ToastService } from 'src/app/servicios/toast.service';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/servicios/auth.service';
 
 @Component({
   selector: 'app-admin-comercio',
@@ -37,7 +39,7 @@ export class AdminComercioPage implements OnInit {
     private barcodeScanner: BarcodeScanner,
     private loadingCtrl:LoadingController,
     private vibra:Vibration,
-    private toast:ToastService) 
+    private toast:ToastService, private route:Router, private auth:AuthService) 
     { 
     this.cantidad=0;
     this.numMesa=0;
@@ -256,5 +258,10 @@ export class AdminComercioPage implements OnInit {
     }else{
       this.alertar("Debe ingresar una cantidad mayor a 0");
     }
+  }
+
+  salir(){
+    this.auth.LogOut();
+    this.route.navigate(['log-in']);
   }
 }

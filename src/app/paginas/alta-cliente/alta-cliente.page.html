@@ -59,4 +59,8 @@
   <ng-container *ngIf="this.tipoRegistro == 'Anónimo'">
     <ion-button (click)="this.cargarUsuario()" expand="full" color="primary">Ingresar como anónimo</ion-button>
   </ng-container>
+
+  <ion-button class="apagar" color="dark" (click)="salir()">
+    <ion-icon name="power"></ion-icon>
+  </ion-button>
 </ion-content>

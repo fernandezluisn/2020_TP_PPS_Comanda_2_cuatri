@@ -114,4 +114,9 @@ export class AltaSupervisorPage implements OnInit {
         console.log('Error', err);
      });
   }
+
+  salir(){
+    this.authService.LogOut();
+    this.router.navigate(['log-in']);
+  }
 }
