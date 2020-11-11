@@ -1453,7 +1453,7 @@ var GraficosPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title>Gráficos</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n  <div>\r\n    <div>\r\n      <div style=\"display: block\">\r\n        <canvas baseChart\r\n          [datasets]=\"barChartData\"\r\n          [labels]=\"barChartLabels\"\r\n          [options]=\"barChartOptions\"\r\n          [plugins]=\"barChartPlugins\"\r\n          [legend]=\"barChartLegend\"\r\n          [chartType]=\"barChartType\">\r\n        </canvas>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div style=\"margin-top: 2rem;\">\r\n    <div>\r\n      <div style=\"display: block\">\r\n        <canvas baseChart\r\n          [datasets]=\"dataDemora\"\r\n          [labels]=\"demoraLabels\"\r\n          [options]=\"barChartOptions\"\r\n          [plugins]=\"barChartPlugins\"\r\n          [legend]=\"barChartLegend\"\r\n          [chartType]=\"barChartType\">\r\n        </canvas>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div style=\"margin-top: 2rem;\">\r\n    <div>\r\n      <div style=\"display: block\">\r\n        <canvas baseChart\r\n          [datasets]=\"dataOrden\"\r\n          [labels]=\"ordenLabels\"\r\n          [options]=\"barChartOptions\"\r\n          [plugins]=\"barChartPlugins\"\r\n          [legend]=\"barChartLegend\"\r\n          [chartType]=\"barChartType\">\r\n        </canvas>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div style=\"margin-top: 2rem;\">\r\n    <div>\r\n      <div style=\"display: block\">\r\n        <canvas baseChart\r\n          [datasets]=\"dataOrden\"\r\n          [labels]=\"ordenLabels\"\r\n          [options]=\"barChartOptions\"\r\n          [plugins]=\"barChartPlugins\"\r\n          [legend]=\"barChartLegend\"\r\n          [chartType]=\"barChartType\">\r\n        </canvas>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div style=\"margin-top: 2rem;\">\r\n    <div>\r\n      <div style=\"display: block\">\r\n        <canvas baseChart\r\n          [datasets]=\"dataNumeros\"\r\n          [labels]=\"numerosLabels\"\r\n          [options]=\"barChartOptions\"\r\n          [plugins]=\"barChartPlugins\"\r\n          [legend]=\"barChartLegend\"\r\n          [chartType]=\"barChartType\">\r\n        </canvas>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</ion-content>\r\n"
+module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title>Gráficos</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n  <div>\r\n    <div>\r\n      <div style=\"display: block\">\r\n        <canvas baseChart\r\n          [datasets]=\"barChartData\"\r\n          [labels]=\"barChartLabels\"\r\n          [options]=\"barChartOptions\"\r\n          [plugins]=\"barChartPlugins\"\r\n          [legend]=\"barChartLegend\"\r\n          [chartType]=\"barChartType\">\r\n        </canvas>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div style=\"margin-top: 2rem;\">\r\n    <div>\r\n      <div style=\"display: block\">\r\n        <canvas baseChart\r\n          [datasets]=\"dataDemora\"\r\n          [labels]=\"demoraLabels\"\r\n          [options]=\"barChartOptions\"\r\n          [plugins]=\"barChartPlugins\"\r\n          [legend]=\"barChartLegend\"\r\n          [chartType]=\"barChartType\">\r\n        </canvas>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div style=\"margin-top: 2rem;\">\r\n    <div>\r\n      <div style=\"display: block\">\r\n        <canvas baseChart\r\n          [datasets]=\"dataOrden\"\r\n          [labels]=\"ordenLabels\"\r\n          [options]=\"barChartOptions\"\r\n          [plugins]=\"barChartPlugins\"\r\n          [legend]=\"barChartLegend\"\r\n          [chartType]=\"barChartType\">\r\n        </canvas>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div style=\"margin-top: 2rem;\">\r\n    <div>\r\n      <div style=\"display: block\">\r\n        <canvas baseChart\r\n          [datasets]=\"dataOrden\"\r\n          [labels]=\"ordenLabels\"\r\n          [options]=\"barChartOptions\"\r\n          [plugins]=\"barChartPlugins\"\r\n          [legend]=\"barChartLegend\"\r\n          [chartType]=\"barChartType\">\r\n        </canvas>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div style=\"margin-top: 2rem;\">\r\n    <div>\r\n      <div style=\"display: block\">\r\n        <canvas baseChart\r\n          [datasets]=\"dataNumeros\"\r\n          [labels]=\"numerosLabels\"\r\n          [options]=\"barChartOptions\"\r\n          [plugins]=\"barChartPlugins\"\r\n          [legend]=\"barChartLegend\"\r\n          [chartType]=\"barChartType\">\r\n        </canvas>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <ion-button class=\"apagar\" color=\"dark\" (click)=\"salir()\">\r\n    <ion-icon name=\"power\"></ion-icon>\r\n  </ion-button>\r\n</ion-content>\r\n"
 
 /***/ }),
 
@@ -1483,14 +1483,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! chartjs-plugin-datalabels */ "./node_modules/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.js");
 /* harmony import */ var chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var src_app_servicios_encuestas_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/servicios/encuestas.service */ "./src/app/servicios/encuestas.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/servicios/auth.service */ "./src/app/servicios/auth.service.ts");
+
+
 
 
 
 
 var GraficosPage = /** @class */ (function () {
-    function GraficosPage(service) {
+    function GraficosPage(service, route, auth) {
         var _this = this;
         this.service = service;
+        this.route = route;
+        this.auth = auth;
         this.verdaderosFila = 0;
         this.falsosFila = 0;
         this.verdaderosFalta = 0;
@@ -1606,13 +1612,17 @@ var GraficosPage = /** @class */ (function () {
     }
     GraficosPage.prototype.ngOnInit = function () {
     };
+    GraficosPage.prototype.salir = function () {
+        this.auth.LogOut();
+        this.route.navigate(['log-in']);
+    };
     GraficosPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-graficos',
             template: __webpack_require__(/*! ./graficos.page.html */ "./src/app/paginas/graficos/graficos.page.html"),
             styles: [__webpack_require__(/*! ./graficos.page.scss */ "./src/app/paginas/graficos/graficos.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_servicios_encuestas_service__WEBPACK_IMPORTED_MODULE_3__["EncuestasService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_servicios_encuestas_service__WEBPACK_IMPORTED_MODULE_3__["EncuestasService"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"], src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"]])
     ], GraficosPage);
     return GraficosPage;
 }());

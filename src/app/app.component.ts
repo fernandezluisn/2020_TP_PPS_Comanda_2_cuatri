@@ -52,28 +52,34 @@ export class AppComponent{
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       timer(4000).subscribe(()=>{this.showSplash=false;})
+
+      this.fcm.getToken().then(
+        (token:string) => {
+          console.log(token)
+        })
+        this.fcm.onTokenRefresh().subscribe(token=>{
+          console.log(token);
+        });
+        
+        this.fcm.onNotification().subscribe(data => {
+          // console.log(data);
+          if (data.wasTapped) {
+            alert(data);
+            console.log('Received in background');
+            //this.router.navigateByUrl('/list-confirmar-cliente-mesa');
+            //this.publicRouter.navigate(['/log-in']);
+          } else {
+             console.log('Received in foreground');
+            //let objetoAuxUno = JSON.stringify(data.title);
+           let objetoAuxDos = JSON.stringify(data.body);
+           this.presentToast( objetoAuxDos);
+          }
+        });
+       // this.fcm.subscribeToTopic('wololo');
+        this.fcm.subscribeToTopic('testeo');
+
     });
 
-    this.fcm.getToken().then(
-    (token:string) => {
-      alert(token)
-    }
-    )
-    
-    this.fcm.onNotification().subscribe(data => {
-      // console.log(data);
-      if (data.wasTapped) {
-        alert(data);
-        // console.log('Received in background');
-        //this.router.navigateByUrl('/list-confirmar-cliente-mesa');
-        this.publicRouter.navigate(['/log-in']);
-      } else {
-        // console.log('Received in foreground');
-        //let objetoAuxUno = JSON.stringify(data.title);
-        let objetoAuxDos = JSON.stringify(data.body);
-        this.presentToast( objetoAuxDos);
-      }
-    });
   }
   async presentToast(mensaje: string) {
     const toast = await this.toastController.create({

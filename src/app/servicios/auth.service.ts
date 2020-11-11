@@ -8,6 +8,7 @@ import { Anonimo, Empleado, Cliente } from '../interfaces/usuario';
 import { Router } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AlertService } from './alert.service';
+import { FcmService } from './fcm.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,8 @@ export class AuthService {
     private firestore: AngularFirestore,
     private fireStorage: AngularFireStorage,
     private router:Router,
-    private alert: AlertService  ) { }
+    private alert: AlertService,
+    private fcmService: FcmService  ) { }
 
   loginAnonimo(usuario, foto) {
     return new Promise((resolved, rejected) => {
@@ -47,57 +49,62 @@ export class AuthService {
           usrs.forEach(element => {
             let obj_element = element.data();
             obj_element.id = element.id;
+            this.fcmService.DesuscribirDeTodas();
 
-             if (obj_element.activo && obj_element.uid == uid) {
-               switch (obj_element.perfil) {
-               case 'bar':
-                this.usuario = obj_element as Empleado;
-                localStorage.setItem('usuario', JSON.stringify(this.usuario));
-                 resolve(this.usuario);
-                 this.router.navigate(["home-cocina"]);
-                 break;
-                case 'cocina':
-                  this.usuario = obj_element as Empleado;
-                  localStorage.setItem('usuario', JSON.stringify(this.usuario));
-                   resolve(this.usuario);
-                   this.router.navigate(["home-cocina"]);
-                   break;
-               case 'supervisor':
-                this.usuario = obj_element as Empleado;
-                localStorage.setItem('usuario', JSON.stringify(this.usuario));
-                 resolve(this.usuario);
-                 this.router.navigate(["home-supervisor"]);
-                 break;
-                case 'mozo':
-                  this.usuario = obj_element as Empleado;
-                  localStorage.setItem('usuario', JSON.stringify(this.usuario));
-                   resolve(this.usuario);
-                   this.router.navigate(["home-mozo"]);
-                   break;
-                case 'metre':
-                  this.usuario = obj_element as Empleado;
-                  localStorage.setItem('usuario', JSON.stringify(this.usuario));
-                   resolve(this.usuario);
-                   this.router.navigate(["home-metre"]);
-                   break;
-                case 'delivery':
-                  this.usuario = obj_element as Empleado;
-                  localStorage.setItem('usuario', JSON.stringify(this.usuario));
-                   resolve(this.usuario);
-                   this.router.navigate(["home-comanda"]);
-                   break;
-                 case 'dueño':
-                   this.usuario = obj_element as Empleado;
-                  localStorage.setItem('usuario', JSON.stringify(this.usuario));
-                   resolve(this.usuario);
-                   this.router.navigate(["home-supervisor"]);
-                   break;
-                 case 'cliente':
-                 this.usuario = obj_element as Cliente;
-                   localStorage.setItem('usuario', JSON.stringify(this.usuario));
-                   resolve(this.usuario);
-                   this.router.navigate(["home-cliente"]);
+            if (obj_element.activo && obj_element.uid == uid) {
+              switch (obj_element.perfil) {
+              case 'bar':
+               this.usuario = obj_element as Empleado;
+               localStorage.setItem('usuario', JSON.stringify(this.usuario));
+                resolve(this.usuario);
+                this.router.navigate(["home-cocina"]);
+                break;
+               case 'cocina':
+                 this.fcmService.SuscribirANotificacion("notificacionCocina")
+                 this.usuario = obj_element as Empleado;
+                 localStorage.setItem('usuario', JSON.stringify(this.usuario));
+                  resolve(this.usuario);
+                  this.router.navigate(["home-cocina"]);
                   break;
+              case 'supervisor':
+               this.usuario = obj_element as Empleado;
+               this.fcmService.SuscribirANotificacion('notificacionSupervisor')
+               localStorage.setItem('usuario', JSON.stringify(this.usuario));
+                resolve(this.usuario);
+                this.router.navigate(["home-supervisor"]);
+                break;
+               case 'mozo':
+                 this.fcmService.SuscribirANotificacion('mozo')
+                 this.usuario = obj_element as Empleado;
+                 localStorage.setItem('usuario', JSON.stringify(this.usuario));
+                  resolve(this.usuario);
+                  this.router.navigate(["home-mozo"]);
+                  break;
+               case 'metre':
+                 this.usuario = obj_element as Empleado;
+                 this.fcmService.SuscribirANotificacion('notificacionListaEspera')
+                 localStorage.setItem('usuario', JSON.stringify(this.usuario));
+                  resolve(this.usuario);
+                  this.router.navigate(["home-metre"]);
+                  break;
+               case 'delivery':
+                 this.usuario = obj_element as Empleado;
+                 localStorage.setItem('usuario', JSON.stringify(this.usuario));
+                  resolve(this.usuario);
+                  this.router.navigate(["home-comanda"]);
+                  break;
+                case 'dueño':
+                  this.usuario = obj_element as Empleado;
+                 localStorage.setItem('usuario', JSON.stringify(this.usuario));
+                  resolve(this.usuario);
+                  this.router.navigate(["home-supervisor"]);
+                  break;
+                case 'cliente':
+                this.usuario = obj_element as Cliente;
+                  localStorage.setItem('usuario', JSON.stringify(this.usuario));
+                  resolve(this.usuario);
+                  this.router.navigate(["home-cliente"]);
+                 break;
                }
              }
              if (obj_element.activo == false && obj_element.uid == uid) {
@@ -122,6 +129,7 @@ export class AuthService {
   }
 
   LogOut() {
+    this.fcmService.DesuscribirDeTodas();
     localStorage.removeItem('usuario');
     this.AFauth.auth.signOut();
   }

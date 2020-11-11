@@ -403,6 +403,107 @@ var MesasService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/servicios/reservas.service.ts":
+/*!***********************************************!*\
+  !*** ./src/app/servicios/reservas.service.ts ***!
+  \***********************************************/
+/*! exports provided: ReservasService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReservasService", function() { return ReservasService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/fire/firestore */ "./node_modules/@angular/fire/firestore/index.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var rxjs_internal_operators_map__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/internal/operators/map */ "./node_modules/rxjs/internal/operators/map.js");
+/* harmony import */ var rxjs_internal_operators_map__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(rxjs_internal_operators_map__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./auth.service */ "./src/app/servicios/auth.service.ts");
+
+
+
+
+
+var ReservasService = /** @class */ (function () {
+    function ReservasService(db, authService) {
+        this.db = db;
+        this.authService = authService;
+        this.listaReservas = this.db.collection('reservas').snapshotChanges().pipe(Object(rxjs_internal_operators_map__WEBPACK_IMPORTED_MODULE_3__["map"])(function (actions) {
+            return actions.map(function (a) {
+                var data = a.payload.doc.data();
+                var id = a.payload.doc.id;
+                return tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({ id: id }, data);
+            });
+        }));
+    }
+    ReservasService.prototype.getReservas = function () {
+        return this.listaReservas;
+    };
+    ReservasService.prototype.getReservasPendientes = function () {
+        return this.db.collection('reservas', function (ref) { return ref.where('estado', '==', 'pendiente'); }).snapshotChanges().pipe(Object(rxjs_internal_operators_map__WEBPACK_IMPORTED_MODULE_3__["map"])(function (reservas) {
+            return reservas.map(function (reserva) {
+                var data = reserva.payload.doc.data();
+                data.id = reserva.payload.doc.id;
+                return data;
+            });
+        }));
+    };
+    ReservasService.prototype.addReserva = function (reserva) {
+        return this.db.collection('reservas').add(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, reserva));
+    };
+    ReservasService.prototype.updateReserva = function (reserva) {
+        return this.db.collection('reservas').doc(reserva.id).set(reserva);
+    };
+    ReservasService.prototype.entrarListaEspera = function (cantidad) {
+        var usr = this.authService.getUsuario();
+        var id = usr['id'];
+        var nombre = usr['nombre'];
+        var fecha = new Date();
+        var anio = fecha.getFullYear().toString();
+        var mes = fecha.getMonth().toString();
+        var dia = fecha.getDate().toString();
+        var hora = fecha.getHours().toString();
+        var minuto = fecha.getMinutes().toString();
+        this.db.collection('lista-espera').add({
+            nombre: nombre,
+            ingreso: anio + '-' + mes + '-' + dia + ' ' + hora + ':' + minuto,
+            cliente: id,
+            cantidad: cantidad
+        }).then(function (ret) { console.log(ret); }).catch(function (err) { console.log(err); });
+    };
+    ReservasService.prototype.getListaEspera = function () {
+        return this.db.collection('lista-espera').snapshotChanges().pipe(Object(rxjs_internal_operators_map__WEBPACK_IMPORTED_MODULE_3__["map"])(function (esperas) {
+            return esperas.map(function (espera) {
+                var data = espera.payload.doc.data();
+                data.id = espera.payload.doc.id;
+                return data;
+            });
+        }));
+    };
+    ReservasService.prototype.EliminarListaEspera = function (id) {
+        this.db.doc('lista-espera/' + id).delete().then(function (ret) { console.log(ret); });
+    };
+    ReservasService.prototype.EliminarDeListaEsperaByIdCliente = function (idCliente, listaEspera) {
+        var _this = this;
+        listaEspera.map(function (espera) {
+            if (espera.cliente === idCliente) {
+                _this.db.doc('lista-espera/' + espera.id).delete();
+            }
+        });
+    };
+    ReservasService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_1__["AngularFirestore"], _auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"]])
+    ], ReservasService);
+    return ReservasService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/servicios/spinner.service.ts":
 /*!**********************************************!*\
   !*** ./src/app/servicios/spinner.service.ts ***!
