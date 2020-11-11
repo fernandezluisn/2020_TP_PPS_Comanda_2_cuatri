@@ -1,16 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
-import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
-import { AuthService } from 'src/app/servicios/auth.service';
-=======
-import { Platform,AlertController } from '@ionic/angular';
 
 import { AuthService } from 'src/app/servicios/auth.service';
 import { Router } from '@angular/router';
 import { AlertService } from 'src/app/servicios/alert.service';
 import { SpinerService } from 'src/app/servicios/spiner.service';
->>>>>>> fd80f0c85c0ce8cfe60dce3e7ae9843ae19e04ee
 
 @Component({
   selector: 'app-mesa-cliente',
@@ -19,25 +13,12 @@ import { SpinerService } from 'src/app/servicios/spiner.service';
 })
 export class MesaClientePage implements OnInit {
 
-<<<<<<< HEAD
-  constructor(private platform: Platform, private route:Router, private auth:AuthService) { }
-=======
-  public usuario: any;
-  constructor(private platform: Platform,private route:Router,public alert: AlertService) { 
-
-  this.usuario = JSON.parse(localStorage.getItem('usuario'));
-  }
->>>>>>> fd80f0c85c0ce8cfe60dce3e7ae9843ae19e04ee
+  constructor(private platform: Platform, private route:Router, private auth:AuthService, private alert:AlertService) { }
 
   ngOnInit() {
     //this.platform.isLandscape();
   }
 
-<<<<<<< HEAD
-  salir(){
-    this.auth.LogOut();
-    this.route.navigate(['log-in']);
-=======
 realizarPedido()
 {
   this.alert.mensaje('','Realizar pedido')
@@ -67,7 +48,17 @@ realizarPedido()
   pedirCuenta()
   {
     this.alert.mensaje('','pedir cuenta')
->>>>>>> fd80f0c85c0ce8cfe60dce3e7ae9843ae19e04ee
+  }
+
+  propina(){
+    //falta completar esto
+
+    //this.route.navigate(['propina/'+ this.idMesaCliente]);
+  }
+
+  salir(){
+    this.auth.LogOut();
+    this.route.navigate(['log-in']);
   }
 
 }

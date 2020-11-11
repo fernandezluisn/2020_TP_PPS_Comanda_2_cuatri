@@ -6,12 +6,26 @@
     <ion-label>Fecha</ion-label>
     <ion-datetime displayFormat="DD MM YYYY" [min]="hoy" placeholder="" [(ngModel)]="fecha"></ion-datetime>
   </ion-item>
-  <ion-item style="margin-top: 2rem;">
+  <ion-item >
     <ion-label>Hora</ion-label>
     <ion-datetime displayFormat="HH:mm" hourValues="12,13,14,15,20,21,22,23" [(ngModel)]="hora" minuteValues="0,15,30,45"></ion-datetime>
   </ion-item>
 
-  <ion-button (click)="subir()" expand="full" color="success" style="bottom: 2rem; position: absolute;">Solicitar reserva</ion-button>
+  <ion-item >
+    <ion-label position="floating">Cantidad de personas</ion-label>
+    <ion-input type="number" [(ngModel)]="cantidad"></ion-input>
+  </ion-item> 
+
+  <ion-item>
+    <ion-label position="floating">Tipo de mesa</ion-label>
+    <ion-select [(ngModel)]="tipo">
+      <ion-select-option>Vip</ion-select-option>
+      <ion-select-option>Discapacitados</ion-select-option>
+      <ion-select-option>Estandar</ion-select-option>
+    </ion-select>
+  </ion-item>  
+
+  <ion-button (click)="subir()" expand="full" color="success">Solicitar reserva</ion-button>
 
   <ion-button class="apagar" color="dark" (click)="salir()">
     <ion-icon name="power"></ion-icon>

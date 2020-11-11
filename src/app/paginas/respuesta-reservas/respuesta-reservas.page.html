@@ -1,10 +1,111 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>respuestaReservas</ion-title>
-  </ion-toolbar>
-</ion-header>
+
 
 <ion-content>
+  <ion-img src="../assets/logo.png"></ion-img>
+  <ion-radio-group [(ngModel)]="ver">
+    <ion-list-header>
+      <ion-label>Reservas a consultar</ion-label>
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label>Solicitudes</ion-label>
+      <ion-radio slot="end" value="Sol"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Del día</ion-label>
+      <ion-radio slot="end" value="Dia"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Confirmadas</ion-label>
+      <ion-radio slot="end" value="Con"></ion-radio>
+    </ion-item>
+
+    
+  </ion-radio-group>
+
+  <ng-container *ngIf="ver=='Sol'" >
+    <h4 style="margin-left: 1rem;">Las siguientes son las reservas solicitadas en el sistema:</h4>
+
+    <ion-list>
+      <div style="border-top: 0.1rem black solid; margin-left: 5%; margin-right: 5%; background-color: rgba(128, 128, 128, 0.575); margin-top: 2rem;" *ngFor="let reserva of reservasAResponder">     
+        
+        
+          <h4>Cliente: {{reserva.nombreCliente}}</h4><br>
+          <h4>Fecha: {{reserva.fecha}}</h4><br>
+          <h4>Hora: {{reserva.hora}}</h4><br>
+        <h4>Comensales: {{reserva.cantidad}}</h4><br>
+        <h4>Tipo: {{reserva.tipo}}</h4><br>
+      
+        
+        <ion-label style="margin-left: 5%; margin-right: 5%; ">Mesas de ese tipo disponibles:</ion-label>
+        
+
+        <ion-item *ngIf="reserva.tipo=='Vip'" style="margin-left: 5%; margin-right: 5%; background-color: rgba(128, 128, 128, 0.575);">
+          <ion-select [(ngModel)]="mesaV" class="form-control" style="width: 12rem;">
+            <ion-select-option [value]="item" *ngFor="let item of mesasVip">Mesa {{item.numero}}</ion-select-option>
+          </ion-select>   
+        </ion-item><br><br>
+
+        <ion-item  *ngIf="reserva.tipo=='Estandar'" style="margin-left: 5%; margin-right: 5%; background-color: rgba(128, 128, 128, 0.575);">
+          <ion-select [(ngModel)]="mesaE" class="form-control" style="width: 12rem;">
+            <ion-select-option [value]="item" *ngFor="let item of mesasEstandar">Mesa {{item.numero}}</ion-select-option>
+          </ion-select>   
+        </ion-item><br><br>
+
+        <ion-item  *ngIf="reserva.tipo=='Discapacitados'" style="margin-left: 5%; margin-right: 5%; background-color: rgba(128, 128, 128, 0.575);">
+          <ion-select [(ngModel)]="mesaD" class="form-control" style="width: 12rem;">
+            <ion-select-option [value]="item" *ngFor="let item of mesasDisc">Mesa {{item.numero}}</ion-select-option>
+          </ion-select>   
+        </ion-item><br><br>
+
+        
+        <ion-button (click)="subir(reserva)" expand="full" color="success">Responder reserva</ion-button>
+
+     
+      </div>
+    </ion-list> 
+  </ng-container>  
+    
+  <ng-container *ngIf="ver=='Dia'" >
+  <ion-list>
+    <div style="border-top: 0.1rem black solid; margin-left: 5%; margin-right: 5%; background-color: rgba(128, 128, 128, 0.575);margin-top: 2rem;" *ngFor="let reserva of reservasDelDia">     
+      
+      
+        <h4>Cliente: {{reserva.nombreCliente}}</h4><br>
+        <h4>Fecha: {{reserva.fecha}}</h4><br>
+        <h4>Hora: {{reserva.hora}}</h4><br>
+      <h4>Mesa: {{reserva.mesa.numero}}</h4><br>      
+      
+
+      
+
+      
+      
+
+   
+    </div>
+  </ion-list> 
+  </ng-container>
+
+  <ng-container *ngIf="ver=='Con'" >
+    <ion-list>
+      <div style="border-top: 0.1rem black solid; margin-left: 5%; margin-right: 5%;background-color: rgba(128, 128, 128, 0.575);margin-top: 2rem;" *ngFor="let reserva of reservasConfirmadas">     
+        
+        
+          <h4>Cliente: {{reserva.nombreCliente}}</h4><br>
+          <h4>Fecha: {{reserva.fecha}}</h4><br>
+          <h4>Hora: {{reserva.hora}}</h4><br>
+        <h4>Mesa: {{reserva.mesa.numero}}</h4><br>         
+        
+  
+     
+      </div>
+    </ion-list> 
+
+  </ng-container>
+
   <ion-button class="apagar" color="dark" (click)="salir()">
     <ion-icon name="power"></ion-icon>
   </ion-button>

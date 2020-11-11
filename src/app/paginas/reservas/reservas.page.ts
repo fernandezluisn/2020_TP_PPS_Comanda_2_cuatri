@@ -18,14 +18,16 @@ export class ReservasPage implements OnInit {
   hoy=new Date().toISOString();
   hoy2;
   hora:Date;
+  cantidad:number;
+  tipo:string;
 
   usuario;
 
   constructor(public datePipe: DatePipe, private alertar:AlertService, private bda:ReservasService, private toast:ToastService, private route:Router, private auth:AuthService) { 
     console.log(this.hoy);
     this.usuario = JSON.parse(localStorage.getItem('usuario'));
-
-    
+    this.cantidad=0;
+    this.tipo="Estandar";
     
     
   }
@@ -34,17 +36,23 @@ export class ReservasPage implements OnInit {
   }
 
   subir(){
+    
     let hor=this.datePipe.transform(this.hora, 'HH:mm');;
     let fech=this.datePipe.transform(this.fecha, 'dd/MM/yyyy');
-    let r=new Reserva(this.usuario.id, fech, hor,"pendiente");
+    let nom=this.usuario.nombre+" "+this.usuario.apellido;    
+    
     if(fech==null && hor==null){
       this.alertar.mensaje("Faltan datos", "Debe ingresar fecha y hora");
     }else if(this.usuario.perfil=="anonimo"){
       this.alertar.mensaje("Usuario anónimo","Debe estar registrado para poder hacer una reserva");
+    }else if(this.cantidad==0){
+      this.alertar.mensaje("ERROR","Debe solicitar una mesa para una persona o más");
     }else{
       try{
+        let r=new Reserva(this.usuario.id, fech, hor,"pendiente", nom, this.cantidad, this.tipo);
         this.bda.addReserva(r);
         this.toast.confirmationToast("Se solicitó la reserva correctamente");
+        this.route.navigate(["home-cliente"]);
       }catch(err){
         this.alertar.mensaje("ERROR", err);
       }

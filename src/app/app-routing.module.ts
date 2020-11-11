@@ -33,19 +33,16 @@ const routes: Routes = [
   { path: 'home-delivery', loadChildren: './paginas/home-delivery/home-delivery.module#HomeDeliveryPageModule' },
   { path: 'home-mozo', loadChildren: './paginas/home-mozo/home-mozo.module#HomeMozoPageModule' },
   { path: 'home-cliente', loadChildren: './paginas/home-cliente/home-cliente.module#HomeClientePageModule' },   
-  { path: 'propina', loadChildren: './paginas/propina/propina.module#PropinaPageModule' },
+  { path: 'propina/:idMesaCliente', loadChildren: './paginas/propina/propina.module#PropinaPageModule' },
   { path: 'mesa-cliente', loadChildren: './paginas/mesa-cliente/mesa-cliente.module#MesaClientePageModule' },
   { path: 'encuesta-supervisor', loadChildren: './paginas/encuesta-supervisor/encuesta-supervisor.module#EncuestaSupervisorPageModule' },
   { path: 'encuesta-empleado', loadChildren: './paginas/encuesta-empleado/encuesta-empleado.module#EncuestaEmpleadoPageModule' },
   { path: 'graficos', loadChildren: './paginas/graficos/graficos.module#GraficosPageModule' },
-<<<<<<< HEAD
   { path: 'reservas', loadChildren: './paginas/reservas/reservas.module#ReservasPageModule' },
   { path: 'respuesta-reservas', loadChildren: './paginas/respuesta-reservas/respuesta-reservas.module#RespuestaReservasPageModule' },
-=======
   { path: 'encuesta-cliente', loadChildren: './paginas/encuesta-cliente/encuesta-cliente.module#EncuestaClientePageModule' },
 
 
->>>>>>> fd80f0c85c0ce8cfe60dce3e7ae9843ae19e04ee
 
  
 ];

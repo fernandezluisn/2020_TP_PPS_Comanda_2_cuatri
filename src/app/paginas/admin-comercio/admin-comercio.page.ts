@@ -59,6 +59,8 @@ export class AdminComercioPage implements OnInit {
     this.alta=false;
     else
     this.alta=true;
+
+    this.image=null;
   }
   
 
