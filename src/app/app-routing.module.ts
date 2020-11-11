@@ -41,10 +41,14 @@ const routes: Routes = [
   { path: 'reservas', loadChildren: './paginas/reservas/reservas.module#ReservasPageModule' },
   { path: 'respuesta-reservas', loadChildren: './paginas/respuesta-reservas/respuesta-reservas.module#RespuestaReservasPageModule' },
   { path: 'encuesta-cliente', loadChildren: './paginas/encuesta-cliente/encuesta-cliente.module#EncuestaClientePageModule' },
+  { path: 'consulta-mozo', loadChildren: './paginas/consulta-mozo/consulta-mozo.module#ConsultaMozoPageModule' },
 
 
+<<<<<<< HEAD
 
  
+=======
+>>>>>>> e14bc3fe9689632cb826636ee19ed280d5d58692
 ];
 @NgModule({
   imports: [
@@ -53,3 +57,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
+
+

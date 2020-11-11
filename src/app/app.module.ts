@@ -19,6 +19,7 @@ import { DatePipe } from '@angular/common';
 import { firebaseConfig } from '../environments/environment';
 
 import { AngularFireModule } from '@angular/fire';
+import {ConsultaMozoPageModule} from '../app/paginas/consulta-mozo/consulta-mozo.module'
 
 import { AngularFireAuthModule } from '@angular/fire/auth'
 import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore'
@@ -26,6 +27,8 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 
 import { EmailComposer } from '@ionic-native/email-composer/ngx';
 import { FCM } from '@ionic-native/fcm/ngx';
+
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -37,6 +40,8 @@ import { FCM } from '@ionic-native/fcm/ngx';
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    ConsultaMozoPageModule,
+    HttpClientModule,
     AngularFireStorageModule
   ],
   providers: [

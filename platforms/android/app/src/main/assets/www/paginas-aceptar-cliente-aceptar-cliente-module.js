@@ -58,7 +58,7 @@ var AceptarClientePageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar color='dark'>\r\n    <ion-title text-center>Clientes a Aceptar</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n<ion-content>\r\n\r\n  <ion-slides style=\"height: 100%\" scrollbar='true' pager=\"true\" [options]=\"slideOpts\">\r\n    <ion-slide style=\"height: 100%\" *ngFor=\"let cliente of this.clientes\">\r\n      <ion-content>\r\n        <ion-item>\r\n          <ion-label>Nombre:</ion-label>\r\n          <ion-input class='input_blanco' type=\"text\" [(ngModel)]=\"cliente.nombre\"></ion-input>\r\n        </ion-item>\r\n\r\n        <ion-item>\r\n          <ion-label>DNI:</ion-label>\r\n          <ion-input class='input_blanco' type=\"text\" [(ngModel)]=\"cliente.dni\"></ion-input>\r\n        </ion-item>\r\n        <ion-item>\r\n          <ion-img [src]=\"cliente.foto\"></ion-img>\r\n        </ion-item>\r\n\r\n\r\n        <ion-footer>\r\n          <ion-toolbar>\r\n            <ion-button color='danger' class=\"mitad\" (click)='this.BorrarCliente(cliente)'>Cancelar</ion-button>\r\n            <ion-button color='success' class=\"mitad\" (click)='this.AceptarCliente(cliente)'>Aceptar Cliente</ion-button>\r\n          </ion-toolbar>\r\n        </ion-footer>\r\n      </ion-content>\r\n    </ion-slide>\r\n  </ion-slides>\r\n</ion-content>"
+module.exports = "<ion-header>\r\n  <ion-toolbar color='dark'>\r\n    <ion-title text-center>Clientes a Aceptar</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n<ion-content>\r\n\r\n  <ion-slides style=\"height: 100%\" scrollbar='true' pager=\"true\" [options]=\"slideOpts\">\r\n    <ion-slide style=\"height: 100%\" *ngFor=\"let cliente of this.clientes\">\r\n      <ion-content>\r\n        <ion-item>\r\n          <ion-label>Nombre:</ion-label>\r\n          <ion-input class='input_blanco' type=\"text\" [(ngModel)]=\"cliente.nombre\"></ion-input>\r\n        </ion-item>\r\n\r\n        <ion-item>\r\n          <ion-label>DNI:</ion-label>\r\n          <ion-input class='input_blanco' type=\"text\" [(ngModel)]=\"cliente.dni\"></ion-input>\r\n        </ion-item>\r\n        <ion-item>\r\n          <ion-img [src]=\"cliente.foto\"></ion-img>\r\n        </ion-item>\r\n\r\n        <ion-button class=\"apagar\" color=\"dark\" (click)=\"salir()\">\r\n          <ion-icon name=\"power\"></ion-icon>\r\n        </ion-button>\r\n\r\n        <ion-footer>\r\n          <ion-toolbar>\r\n            <ion-button color='danger' class=\"mitad\" (click)='this.BorrarCliente(cliente)'>Cancelar</ion-button>\r\n            <ion-button color='success' class=\"mitad\" (click)='this.AceptarCliente(cliente)'>Aceptar Cliente</ion-button>\r\n          </ion-toolbar>\r\n        </ion-footer>\r\n      </ion-content>\r\n    </ion-slide>\r\n  </ion-slides>\r\n</ion-content>"
 
 /***/ }),
 
@@ -89,6 +89,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 /* harmony import */ var src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/servicios/auth.service */ "./src/app/servicios/auth.service.ts");
 /* harmony import */ var src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/servicios/alert.service */ "./src/app/servicios/alert.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
 
 
 
@@ -96,10 +98,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var AceptarClientePage = /** @class */ (function () {
-    function AceptarClientePage(clienteServe, emailComposer, alert) {
+    function AceptarClientePage(clienteServe, emailComposer, alert, route, auth) {
         this.clienteServe = clienteServe;
         this.emailComposer = emailComposer;
         this.alert = alert;
+        this.route = route;
+        this.auth = auth;
         this.clientes = [];
     }
     AceptarClientePage.prototype.ngOnInit = function () {
@@ -170,13 +174,17 @@ var AceptarClientePage = /** @class */ (function () {
         this.ngOnInit();
         // console.log(this.clientes.findIndex(cliente))
     };
+    AceptarClientePage.prototype.salir = function () {
+        this.auth.LogOut();
+        this.route.navigate(['log-in']);
+    };
     AceptarClientePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-aceptar-cliente',
             template: __webpack_require__(/*! ./aceptar-cliente.page.html */ "./src/app/paginas/aceptar-cliente/aceptar-cliente.page.html"),
             styles: [__webpack_require__(/*! ./aceptar-cliente.page.scss */ "./src/app/paginas/aceptar-cliente/aceptar-cliente.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"], _ionic_native_email_composer_ngx__WEBPACK_IMPORTED_MODULE_2__["EmailComposer"], src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_5__["AlertService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"], _ionic_native_email_composer_ngx__WEBPACK_IMPORTED_MODULE_2__["EmailComposer"], src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_5__["AlertService"], _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"], src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"]])
     ], AceptarClientePage);
     return AceptarClientePage;
 }());

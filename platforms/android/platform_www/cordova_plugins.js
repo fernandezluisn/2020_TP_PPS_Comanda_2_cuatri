@@ -93,23 +93,23 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "file": "plugins/cordova-plugin-fcm-with-dependecy-updated/www/FCMPlugin.js",
       "pluginId": "cordova-plugin-fcm-with-dependecy-updated",
       "clobbers": [
-        "FCM"
+        "FCMPlugin"
       ]
     }
   ];
   module.exports.metadata = {
-    "cordova-plugin-vibration": "3.1.1",
     "cordova-plugin-whitelist": "1.3.3",
     "cordova-plugin-statusbar": "2.4.2",
     "cordova-plugin-device": "2.0.2",
     "cordova-plugin-splashscreen": "5.0.2",
-    "cordova-plugin-ionic-webview": "4.0.1",
-    "cordova-plugin-ionic-keyboard": "2.1.3",
+    "cordova-plugin-ionic-webview": "4.2.1",
+    "cordova-plugin-ionic-keyboard": "2.2.0",
     "phonegap-plugin-barcodescanner": "8.0.1",
     "cordova-plugin-camera": "4.0.3",
     "cordova-plugin-email-composer": "0.9.2",
-    "cordova-plugin-fcm-with-dependecy-updated": "7.0.10",
+    "cordova-plugin-vibration": "3.1.1",
+    "cordova-plugin-androidx-adapter": "1.1.3",
     "cordova-plugin-androidx": "3.0.0",
-    "cordova-plugin-androidx-adapter": "1.1.3"
+    "cordova-plugin-fcm-with-dependecy-updated": "4.6.4"
   };
 });

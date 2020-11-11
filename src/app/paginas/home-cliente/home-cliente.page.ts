@@ -13,6 +13,8 @@ import { AlertService } from 'src/app/servicios/alert.service';
 import { MesasService } from 'src/app/servicios/mesas.service';
 import { SpinnerService } from 'src/app/servicios/spinner.service';
 import { MesaClienteService } from 'src/app/servicios/mesa-cliente.service';
+import { FcmService } from 'src/app/servicios/fcm.service';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 @Component({ 
   selector: 'app-home-cliente',
@@ -31,7 +33,8 @@ export class HomeClientePage {
   cliente;
   chat =false;
   constructor(private alert: AlertService, private spinner: SpinnerService, private barcodeScanner: BarcodeScanner, private route: Router,
-    private clienteService:AuthService, private mesaService: MesasService, private mesaClienteService: MesaClienteService) {
+    private clienteService:AuthService, private mesaService: MesasService, private mesaClienteService: MesaClienteService, private http: HttpClient,
+    private fcmService: FcmService) {
     this.cliente = JSON.parse(localStorage.getItem('usuario')); 
 
     this.mesaService.getMesas().subscribe(mesas => { this.mesas = mesas; });
@@ -65,6 +68,11 @@ export class HomeClientePage {
   }
 
 
+
+  
+
+
+
   //Si el usuario se encuentra en estado "desconectado" va a poder scanear el codigo de ingreso e ingresar a la lista de espera hasta que sea aceptado y pase al siguiente estado
   public async scanearEspera() {
     if(localStorage.getItem('Sonido') == 'true')
@@ -85,6 +93,7 @@ this.spinner.showSpinner();
          this.cliente.estado = "EnListaDeEspera"
          this.clienteService.ModificarUsuario(this.cliente);
          this.alert.mensaje('Bienvenido!', 'Usted se encuentra en la lista de espera');
+         this.fcmService.enviarMensaje("Prueba Scan QR", "Prueba Scan QR", "all")
 
        }
       if (!qrValido) {
@@ -164,10 +173,6 @@ this.spinner.hideSpinner();
         this.spinner.hideSpinner();
   
       });
-    }
-
-    Mover(lugar){
-      this.route.navigate([lugar])
     }
 
     salir(){

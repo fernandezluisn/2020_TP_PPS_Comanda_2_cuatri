@@ -88,7 +88,7 @@ var EncuestaEmpleadoPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title>encuestaEmpleado</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n\r\n  <ion-item>\r\n    <ion-label position=\"floating\">En caso de desearlo aquí puede ingresar un comentario</ion-label>\r\n    <ion-textarea [(ngModel)]=\"comentario\"></ion-textarea>\r\n  </ion-item>\r\n\r\n  <ion-label>Del 1 al 5 que tan limpio está su lugar de trabajo</ion-label>\r\n  <ion-item>\r\n    <ion-range [(ngModel)]=\"this.limpieza\" pin=\"true\" snaps=\"true\" ticks=\"false\" min=\"1\" max=\"5\"\r\n      color=\"primary\">\r\n      <ion-label slot=\"start\">1</ion-label>\r\n      <ion-label slot=\"end\">5</ion-label>\r\n    </ion-range>\r\n  </ion-item>      \r\n\r\n    \r\n  \r\n\r\n  <ion-list>\r\n    <ion-list-header>\r\n      <ion-label>Marque si hay algo importante a informar</ion-label>\r\n    </ion-list-header>\r\n    <ion-item>\r\n      <ion-label>Fila en la puerta</ion-label>\r\n      <ion-checkbox slot=\"end\" [(ngModel)]=\"fila\"></ion-checkbox>\r\n    </ion-item>\r\n\r\n    <ion-item>\r\n      <ion-label>Roturas</ion-label>\r\n      <ion-checkbox slot=\"end\" [(ngModel)]=\"roturas\"></ion-checkbox>\r\n    </ion-item>\r\n\r\n    <ion-item>\r\n      <ion-label>Falta de personal</ion-label>\r\n      <ion-checkbox slot=\"end\" [(ngModel)]=\"falta\"></ion-checkbox>\r\n    </ion-item>\r\n  </ion-list><br><br>\r\n\r\n\r\n  <ion-radio-group [(ngModel)]=\"demora\">\r\n    <ion-list-header>\r\n      <ion-label>Demora de la cocina</ion-label>\r\n    </ion-list-header>\r\n\r\n    <ion-item>\r\n      <ion-label>Mucha</ion-label>\r\n      <ion-radio slot=\"start\" value=\"Mucha\"></ion-radio>\r\n    </ion-item>\r\n\r\n    <ion-item>\r\n      <ion-label>Normal</ion-label>\r\n      <ion-radio slot=\"start\" value=\"Normal\"></ion-radio>\r\n    </ion-item>\r\n\r\n    <ion-item>\r\n      <ion-label>Poca</ion-label>\r\n      <ion-radio slot=\"start\" value=\"Poca\"></ion-radio>\r\n    </ion-item>\r\n\r\n    <ion-item>\r\n      <ion-label>Muy Poca</ion-label>\r\n      <ion-radio slot=\"start\" value=\"Muy poca\"></ion-radio>\r\n    </ion-item>\r\n  </ion-radio-group><br><br>\r\n\r\n  <ion-label>Cuán ordenado está su lugar de trabajo</ion-label>\r\n  <ion-item>\r\n    <ion-select [(ngModel)]=\"opcion\" class=\"form-control\" style=\"width: 12rem;\">\r\n      <ion-select-option [value]=\"item\" *ngFor=\"let item of opciones\">{{item}}</ion-select-option>\r\n    </ion-select>   \r\n  </ion-item><br><br>\r\n\r\n  <ion-button color=\"dark\" size=\"small\" (click)=\"sacarFoto()\">Agregar imagen</ion-button>\r\n    <h2 *ngIf=\"image\">Esta es la imagen que quiere subir?</h2>\r\n    <img style=\"border: 0.2rem black solid; height: 25rem; margin-left: 3rem;\" [src]=\"image\" *ngIf=\"image\" /><br><br><br>\r\n\r\n\r\n    <ion-button (click)=\"subir()\">Responder</ion-button>\r\n</ion-content>\r\n"
+module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title>encuestaEmpleado</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n\r\n  <ion-item>\r\n    <ion-label position=\"floating\">En caso de desearlo aquí puede ingresar un comentario</ion-label>\r\n    <ion-textarea [(ngModel)]=\"comentario\"></ion-textarea>\r\n  </ion-item>\r\n\r\n  <ion-label>Del 1 al 5 que tan limpio está su lugar de trabajo</ion-label>\r\n  <ion-item>\r\n    <ion-range [(ngModel)]=\"this.limpieza\" pin=\"true\" snaps=\"true\" ticks=\"false\" min=\"1\" max=\"5\"\r\n      color=\"primary\">\r\n      <ion-label slot=\"start\">1</ion-label>\r\n      <ion-label slot=\"end\">5</ion-label>\r\n    </ion-range>\r\n  </ion-item>      \r\n\r\n    \r\n  \r\n\r\n  <ion-list>\r\n    <ion-list-header>\r\n      <ion-label>Marque si hay algo importante a informar</ion-label>\r\n    </ion-list-header>\r\n    <ion-item>\r\n      <ion-label>Fila en la puerta</ion-label>\r\n      <ion-checkbox slot=\"end\" [(ngModel)]=\"fila\"></ion-checkbox>\r\n    </ion-item>\r\n\r\n    <ion-item>\r\n      <ion-label>Roturas</ion-label>\r\n      <ion-checkbox slot=\"end\" [(ngModel)]=\"roturas\"></ion-checkbox>\r\n    </ion-item>\r\n\r\n    <ion-item>\r\n      <ion-label>Falta de personal</ion-label>\r\n      <ion-checkbox slot=\"end\" [(ngModel)]=\"falta\"></ion-checkbox>\r\n    </ion-item>\r\n  </ion-list><br><br>\r\n\r\n\r\n  <ion-radio-group [(ngModel)]=\"demora\">\r\n    <ion-list-header>\r\n      <ion-label>Demora de la cocina</ion-label>\r\n    </ion-list-header>\r\n\r\n    <ion-item>\r\n      <ion-label>Mucha</ion-label>\r\n      <ion-radio slot=\"start\" value=\"Mucha\"></ion-radio>\r\n    </ion-item>\r\n\r\n    <ion-item>\r\n      <ion-label>Normal</ion-label>\r\n      <ion-radio slot=\"start\" value=\"Normal\"></ion-radio>\r\n    </ion-item>\r\n\r\n    <ion-item>\r\n      <ion-label>Poca</ion-label>\r\n      <ion-radio slot=\"start\" value=\"Poca\"></ion-radio>\r\n    </ion-item>\r\n\r\n    <ion-item>\r\n      <ion-label>Muy Poca</ion-label>\r\n      <ion-radio slot=\"start\" value=\"Muy poca\"></ion-radio>\r\n    </ion-item>\r\n  </ion-radio-group><br><br>\r\n\r\n  <ion-label>Cuán ordenado está su lugar de trabajo</ion-label>\r\n  <ion-item>\r\n    <ion-select [(ngModel)]=\"opcion\" class=\"form-control\" style=\"width: 12rem;\">\r\n      <ion-select-option [value]=\"item\" *ngFor=\"let item of opciones\">{{item}}</ion-select-option>\r\n    </ion-select>   \r\n  </ion-item><br><br>\r\n\r\n  <ion-button color=\"dark\" size=\"small\" (click)=\"sacarFoto()\">Agregar imagen</ion-button>\r\n    <h2 *ngIf=\"image\">Esta es la imagen que quiere subir?</h2>\r\n    <img style=\"border: 0.2rem black solid; height: 25rem; margin-left: 3rem;\" [src]=\"image\" *ngIf=\"image\" /><br><br><br>\r\n\r\n\r\n    <ion-button (click)=\"subir()\">Responder</ion-button>\r\n\r\n    <ion-button class=\"apagar\" color=\"dark\" (click)=\"salir()\">\r\n      <ion-icon name=\"power\"></ion-icon>\r\n    </ion-button>\r\n</ion-content>\r\n"
 
 /***/ }),
 
@@ -121,8 +121,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_vibration_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic-native/vibration/ngx */ "./node_modules/@ionic-native/vibration/ngx/index.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
 /* harmony import */ var src_app_interfaces_encuestaEmpleado__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/interfaces/encuestaEmpleado */ "./src/app/interfaces/encuestaEmpleado.ts");
-/* harmony import */ var src_app_servicios_encuestas_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/servicios/encuestas.service */ "./src/app/servicios/encuestas.service.ts");
-/* harmony import */ var src_app_servicios_toast_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/servicios/toast.service */ "./src/app/servicios/toast.service.ts");
+/* harmony import */ var src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/servicios/auth.service */ "./src/app/servicios/auth.service.ts");
+/* harmony import */ var src_app_servicios_encuestas_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/servicios/encuestas.service */ "./src/app/servicios/encuestas.service.ts");
+/* harmony import */ var src_app_servicios_toast_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/servicios/toast.service */ "./src/app/servicios/toast.service.ts");
+
 
 
 
@@ -134,7 +136,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var EncuestaEmpleadoPage = /** @class */ (function () {
-    function EncuestaEmpleadoPage(encuestasService, camera, storage, router, alertController, loadingCtrl, vibra, toast) {
+    function EncuestaEmpleadoPage(encuestasService, camera, storage, router, alertController, loadingCtrl, vibra, toast, auth) {
         this.encuestasService = encuestasService;
         this.camera = camera;
         this.storage = storage;
@@ -143,6 +145,7 @@ var EncuestaEmpleadoPage = /** @class */ (function () {
         this.loadingCtrl = loadingCtrl;
         this.vibra = vibra;
         this.toast = toast;
+        this.auth = auth;
         this.image = null;
         this.opciones = ["Ordenado", "Desordenado", "Muy desordenado"];
         this.fila = false;
@@ -245,18 +248,22 @@ var EncuestaEmpleadoPage = /** @class */ (function () {
             this.alertar(err);
         }
     };
+    EncuestaEmpleadoPage.prototype.salir = function () {
+        this.auth.LogOut();
+        this.router.navigate(['log-in']);
+    };
     EncuestaEmpleadoPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-encuesta-empleado',
             template: __webpack_require__(/*! ./encuesta-empleado.page.html */ "./src/app/paginas/encuesta-empleado/encuesta-empleado.page.html"),
             styles: [__webpack_require__(/*! ./encuesta-empleado.page.scss */ "./src/app/paginas/encuesta-empleado/encuesta-empleado.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_servicios_encuestas_service__WEBPACK_IMPORTED_MODULE_8__["EncuestasService"], _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_4__["Camera"], _angular_fire_storage__WEBPACK_IMPORTED_MODULE_2__["AngularFireStorage"],
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_servicios_encuestas_service__WEBPACK_IMPORTED_MODULE_9__["EncuestasService"], _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_4__["Camera"], _angular_fire_storage__WEBPACK_IMPORTED_MODULE_2__["AngularFireStorage"],
             _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["AlertController"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["LoadingController"],
             _ionic_native_vibration_ngx__WEBPACK_IMPORTED_MODULE_5__["Vibration"],
-            src_app_servicios_toast_service__WEBPACK_IMPORTED_MODULE_9__["ToastService"]])
+            src_app_servicios_toast_service__WEBPACK_IMPORTED_MODULE_10__["ToastService"], src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_8__["AuthService"]])
     ], EncuestaEmpleadoPage);
     return EncuestaEmpleadoPage;
 }());

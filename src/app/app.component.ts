@@ -6,8 +6,13 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { timer } from 'rxjs';
 import { Router } from '@angular/router';
 import { AuthService } from "./servicios/auth.service";
-import { FCM, NotificationData } from '@ionic-native/fcm/ngx';
+
+
+
+
 import { ToastController  } from '@ionic/angular';
+import { FCM } from '@ionic-native/fcm/ngx';
+
 
 @Component({
   selector: 'app-root',
@@ -38,8 +43,8 @@ export class AppComponent{
     private statusBar: StatusBar,
     private toastController: ToastController,
     private publicRouter:Router,
-    private fcm: FCM,
-        private auth:AuthService
+        private auth:AuthService,
+        private fcm: FCM
     ) {
       this.sound = true;
     this.initializeApp();
@@ -54,26 +59,33 @@ export class AppComponent{
       timer(4000).subscribe(()=>{this.showSplash=false;})
     });
 
-    this.fcm.getToken().then(
-    (token:string) => {
-      alert(token)
-    }
-    )
-    
-    this.fcm.onNotification().subscribe(data => {
-      // console.log(data);
-      if (data.wasTapped) {
-        alert(data);
-        // console.log('Received in background');
-        //this.router.navigateByUrl('/list-confirmar-cliente-mesa');
-        this.publicRouter.navigate(['/log-in']);
-      } else {
-        // console.log('Received in foreground');
-        //let objetoAuxUno = JSON.stringify(data.title);
-        let objetoAuxDos = JSON.stringify(data.body);
-        this.presentToast( objetoAuxDos);
-      }
-    });
+      this.fcm.getToken().then(
+        (token:string) => {
+          console.log(token)
+        })
+        this.fcm.onTokenRefresh().subscribe(token=>{
+          console.log(token);
+        });
+        
+        this.fcm.onNotification().subscribe(data => {
+          // console.log(data);
+          if (data.wasTapped) {
+           // alert(data);
+            console.log('Received in background');
+            //this.router.navigateByUrl('/list-confirmar-cliente-mesa');
+            //this.publicRouter.navigate(['/log-in']);
+          } else {
+             console.log('Received in foreground');
+            //let objetoAuxUno = JSON.stringify(data.title);
+           let objetoAuxDos = JSON.stringify(data.body);
+           this.presentToast( objetoAuxDos);
+          }
+        });
+       // this.fcm.subscribeToTopic('wololo');
+        this.fcm.subscribeToTopic('notificacionListaEspera');
+
+    this.fcm.subscribeToTopic('testeo');
+
   }
   async presentToast(mensaje: string) {
     const toast = await this.toastController.create({
@@ -81,7 +93,7 @@ export class AppComponent{
       message: mensaje,
       //duration: 5000,
       position: 'top',
-      color: 'violetaleon',
+      color: 'success',
       translucent: false,
       cssClass: 'toast-noti',
       buttons: [
