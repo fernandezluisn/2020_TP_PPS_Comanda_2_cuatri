@@ -1,226 +1,609 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[88],{
 
-/***/ "./node_modules/@ionic/core/dist/esm/es5/build/chunk-2f96b3d2.js":
-/*!***********************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm/es5/build/chunk-2f96b3d2.js ***!
-  \***********************************************************************/
-/*! exports provided: a, b, c, d */
+/***/ "./node_modules/@ionic/core/dist/esm-es5/ion-virtual-scroll.entry.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@ionic/core/dist/esm-es5/ion-virtual-scroll.entry.js ***!
+  \***************************************************************************/
+/*! exports provided: ion_virtual_scroll */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return getClassMap; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return openURL; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return createColorClasses; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return hostContext; });
-/* harmony import */ var _polyfills_tslib_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../polyfills/tslib.js */ "./node_modules/@ionic/core/dist/esm/es5/polyfills/tslib.js");
-function hostContext(t,r){return null!==r.closest(t)}function createColorClasses(t){var r;return"string"==typeof t&&t.length>0?((r={"ion-color":!0})["ion-color-"+t]=!0,r):void 0}function getClassList(t){return void 0!==t?(Array.isArray(t)?t:t.split(" ")).filter(function(t){return null!=t}).map(function(t){return t.trim()}).filter(function(t){return""!==t}):[]}function getClassMap(t){var r={};return getClassList(t).forEach(function(t){return r[t]=!0}),r}var SCHEME=/^[a-z][a-z0-9+\-.]*:/;function openURL(t,r,n,e){return _polyfills_tslib_js__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this,void 0,void 0,function(){var o;return _polyfills_tslib_js__WEBPACK_IMPORTED_MODULE_0__["__generator"](this,function(s){switch(s.label){case 0:return null==r||"#"===r[0]||SCHEME.test(r)?[3,2]:(o=t.document.querySelector("ion-router"))?(null!=n&&n.preventDefault(),[4,o.componentOnReady()]):[3,2];case 1:return s.sent(),[2,o.push(r,e)];case 2:return[2,!1]}})})}
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_virtual_scroll", function() { return VirtualScroll; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./core-feeeff0d.js */ "./node_modules/@ionic/core/dist/esm-es5/core-feeeff0d.js");
+/* harmony import */ var _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./config-3c7f3790.js */ "./node_modules/@ionic/core/dist/esm-es5/config-3c7f3790.js");
 
-/***/ }),
 
-/***/ "./node_modules/@ionic/core/dist/esm/es5/build/xajhwvib.entry.js":
-/*!***********************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm/es5/build/xajhwvib.entry.js ***!
-  \***********************************************************************/
-/*! exports provided: IonFab, IonFabButton, IonFabList */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IonFab", function() { return Fab; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IonFabButton", function() { return FabButton; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IonFabList", function() { return FabList; });
-/* harmony import */ var _ionic_core_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../ionic.core.js */ "./node_modules/@ionic/core/dist/esm/es5/ionic.core.js");
-/* harmony import */ var _chunk_2f96b3d2_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./chunk-2f96b3d2.js */ "./node_modules/@ionic/core/dist/esm/es5/build/chunk-2f96b3d2.js");
-var Fab=function(){function t(){this.edge=!1,this.activated=!1}return t.prototype.activatedChanged=function(){var t=this.activated,e=this.getFab();e&&(e.activated=t),Array.from(this.el.querySelectorAll("ion-fab-list")).forEach(function(e){e.activated=t})},t.prototype.componentDidLoad=function(){this.activated&&this.activatedChanged()},t.prototype.getFab=function(){return this.el.querySelector("ion-fab-button")},t.prototype.onClick=function(){var t=!!this.el.querySelector("ion-fab-list"),e=this.getFab();t&&(!e||!e.disabled)&&(this.activated=!this.activated)},t.prototype.close=function(){this.activated=!1},t.prototype.hostData=function(){var t;return{class:(t={},t[""+this.mode]=!0,t["fab-horizontal-"+this.horizontal]=void 0!==this.horizontal,t["fab-vertical-"+this.vertical]=void 0!==this.vertical,t["fab-edge"]=this.edge,t)}},t.prototype.render=function(){return Object(_ionic_core_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot",null)},Object.defineProperty(t,"is",{get:function(){return"ion-fab"},enumerable:!0,configurable:!0}),Object.defineProperty(t,"encapsulation",{get:function(){return"shadow"},enumerable:!0,configurable:!0}),Object.defineProperty(t,"properties",{get:function(){return{activated:{type:Boolean,attr:"activated",mutable:!0,watchCallbacks:["activatedChanged"]},close:{method:!0},edge:{type:Boolean,attr:"edge"},el:{elementRef:!0},horizontal:{type:String,attr:"horizontal"},vertical:{type:String,attr:"vertical"}}},enumerable:!0,configurable:!0}),Object.defineProperty(t,"listeners",{get:function(){return[{name:"click",method:"onClick"}]},enumerable:!0,configurable:!0}),Object.defineProperty(t,"style",{get:function(){return":host{position:absolute;z-index:999}:host(.fab-horizontal-center){left:50%;margin-left:-28px}:host-context([dir=rtl]).fab-horizontal-center,:host-context([dir=rtl]):host(.fab-horizontal-center){left:unset;right:unset;right:50%}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){:host(.fab-horizontal-center){margin-left:unset;-webkit-margin-start:-28px;margin-inline-start:-28px}}:host(.fab-horizontal-start){left:calc(10px + var(--ion-safe-area-left, 0px))}:host-context([dir=rtl]).fab-horizontal-start,:host-context([dir=rtl]):host(.fab-horizontal-start){left:unset;right:unset;right:calc(10px + var(--ion-safe-area-left, 0px))}:host(.fab-horizontal-end){right:calc(10px + var(--ion-safe-area-right, 0px))}:host-context([dir=rtl]).fab-horizontal-end,:host-context([dir=rtl]):host(.fab-horizontal-end){left:unset;right:unset;left:calc(10px + var(--ion-safe-area-right, 0px))}:host(.fab-vertical-top){top:10px}:host(.fab-vertical-top.fab-edge){top:-28px}:host(.fab-vertical-bottom){bottom:10px}:host(.fab-vertical-bottom.fab-edge){bottom:-28px}:host(.fab-vertical-center){margin-top:-28px;top:50%}"},enumerable:!0,configurable:!0}),t}(),FabButton=function(){function t(){var t=this;this.activated=!1,this.disabled=!1,this.routerDirection="forward",this.show=!1,this.translucent=!1,this.type="button",this.onFocus=function(){t.ionFocus.emit()},this.onBlur=function(){t.ionBlur.emit()}}return t.prototype.hostData=function(){var t,e=this,n=e.disabled,o=e.color,i=e.activated,r=e.show,a=e.translucent,c=e.size,s=Object(_chunk_2f96b3d2_js__WEBPACK_IMPORTED_MODULE_1__["d"])("ion-fab-list",e.el);return{"aria-disabled":n?"true":null,class:Object.assign({},Object(_chunk_2f96b3d2_js__WEBPACK_IMPORTED_MODULE_1__["c"])(o),(t={},t[""+this.mode]=!0,t["fab-button-in-list"]=s,t["fab-button-translucent-in-list"]=s&&a,t["fab-button-close-active"]=i,t["fab-button-show"]=r,t["fab-button-disabled"]=n,t["fab-button-translucent"]=a,t["ion-activatable"]=!0,t["ion-focusable"]=!0,t["fab-button-"+c]=void 0!==c,t))}},t.prototype.render=function(){var t=this,e=void 0===this.href?"button":"a";return Object(_ionic_core_js__WEBPACK_IMPORTED_MODULE_0__["h"])(e,Object.assign({},"button"===e?{type:this.type}:{href:this.href},{class:"button-native",disabled:this.disabled,onFocus:this.onFocus,onBlur:this.onBlur,onClick:function(e){return Object(_chunk_2f96b3d2_js__WEBPACK_IMPORTED_MODULE_1__["b"])(t.win,t.href,e,t.routerDirection)}}),Object(_ionic_core_js__WEBPACK_IMPORTED_MODULE_0__["h"])("span",{class:"close-icon"},Object(_ionic_core_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-icon",{name:"close",lazy:!1})),Object(_ionic_core_js__WEBPACK_IMPORTED_MODULE_0__["h"])("span",{class:"button-inner"},Object(_ionic_core_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot",null)),"md"===this.mode&&Object(_ionic_core_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-ripple-effect",null))},Object.defineProperty(t,"is",{get:function(){return"ion-fab-button"},enumerable:!0,configurable:!0}),Object.defineProperty(t,"encapsulation",{get:function(){return"shadow"},enumerable:!0,configurable:!0}),Object.defineProperty(t,"properties",{get:function(){return{activated:{type:Boolean,attr:"activated"},color:{type:String,attr:"color"},disabled:{type:Boolean,attr:"disabled"},el:{elementRef:!0},href:{type:String,attr:"href"},mode:{type:String,attr:"mode"},routerDirection:{type:String,attr:"router-direction"},show:{type:Boolean,attr:"show"},size:{type:String,attr:"size"},translucent:{type:Boolean,attr:"translucent"},type:{type:String,attr:"type"},win:{context:"window"}}},enumerable:!0,configurable:!0}),Object.defineProperty(t,"events",{get:function(){return[{name:"ionFocus",method:"ionFocus",bubbles:!0,cancelable:!0,composed:!0},{name:"ionBlur",method:"ionBlur",bubbles:!0,cancelable:!0,composed:!0}]},enumerable:!0,configurable:!0}),Object.defineProperty(t,"style",{get:function(){return":host{--transition:background-color,opacity 100ms linear;--ripple-color:currentColor;--border-radius:50%;--border-width:0;--border-style:none;--border-color:initial;--padding-top:0;--padding-end:0;--padding-bottom:0;--padding-start:0;margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;display:block;width:56px;height:56px;font-size:14px;text-align:center;text-overflow:ellipsis;text-transform:none;white-space:nowrap;-webkit-font-kerning:none;font-kerning:none}:host(.ion-color) .button-native{background:var(--ion-color-base);color:var(--ion-color-contrast)}:host(.ion-color.activated) .button-native,:host(.ion-color.ion-focused) .button-native{background:var(--ion-color-shade);color:var(--ion-color-contrast)}.button-native{border-radius:var(--border-radius);padding-left:var(--padding-start);padding-right:var(--padding-end);padding-top:var(--padding-top);padding-bottom:var(--padding-bottom);font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;letter-spacing:inherit;text-decoration:inherit;text-overflow:inherit;text-transform:inherit;text-align:inherit;white-space:inherit;color:inherit;display:block;position:relative;width:100%;height:100%;-webkit-transform:var(--transform);transform:var(--transform);-webkit-transition:var(--transition);transition:var(--transition);border-width:var(--border-width);border-style:var(--border-style);border-color:var(--border-color);outline:none;background:var(--background);background-clip:padding-box;color:var(--color);-webkit-box-shadow:var(--box-shadow);box-shadow:var(--box-shadow);contain:strict;cursor:pointer;overflow:hidden;z-index:0;-webkit-appearance:none;-moz-appearance:none;appearance:none;-webkit-box-sizing:border-box;box-sizing:border-box}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.button-native{padding-left:unset;padding-right:unset;-webkit-padding-start:var(--padding-start);padding-inline-start:var(--padding-start);-webkit-padding-end:var(--padding-end);padding-inline-end:var(--padding-end)}}.button-inner{left:0;right:0;top:0;display:-ms-flexbox;display:flex;position:absolute;-ms-flex-flow:row nowrap;flex-flow:row nowrap;-ms-flex-negative:0;flex-shrink:0;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;height:100%;-webkit-transition:all .3s ease-in-out;transition:all .3s ease-in-out;-webkit-transition-property:opacity,-webkit-transform;transition-property:opacity,-webkit-transform;transition-property:transform,opacity;transition-property:transform,opacity,-webkit-transform}:host(.activated) .button-native{background:var(--background-activated);color:var(--color-activated)}:host(.ion-focused) .button-native{background:var(--background-focused);color:var(--color-focused)}:host(.fab-button-disabled){pointer-events:none}:host(.fab-button-disabled) .button-native{cursor:default;opacity:.5;pointer-events:none}::slotted(ion-icon){line-height:1}:host(.fab-button-small){margin-left:8px;margin-right:8px;margin-top:8px;margin-bottom:8px;width:40px;height:40px}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){:host(.fab-button-small){margin-left:unset;margin-right:unset;-webkit-margin-start:8px;margin-inline-start:8px;-webkit-margin-end:8px;margin-inline-end:8px}}.close-icon{left:0;right:0;top:0;display:-ms-flexbox;display:flex;position:absolute;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;height:100%;-webkit-transform:scale(.4) rotate(-45deg);transform:scale(.4) rotate(-45deg);-webkit-transition:all .3s ease-in-out;transition:all .3s ease-in-out;-webkit-transition-property:opacity,-webkit-transform;transition-property:opacity,-webkit-transform;transition-property:transform,opacity;transition-property:transform,opacity,-webkit-transform;opacity:0}:host(.fab-button-close-active) .close-icon{-webkit-transform:scale(1) rotate(0deg);transform:scale(1) rotate(0deg);opacity:1}:host(.fab-button-close-active) .button-inner{-webkit-transform:scale(.4) rotate(45deg);transform:scale(.4) rotate(45deg);opacity:0}ion-ripple-effect{color:var(--ripple-color)}:host{--background:var(--ion-color-primary,#3880ff);--background-activated:var(--background);--background-focused:var(--background-activated);--color:var(--ion-color-primary-contrast,#fff);--color-activated:var(--ion-color-primary-contrast,#fff);--color-focused:var(--color-activated);--box-shadow:0 3px 5px -1px rgba(0,0,0,0.2),0 6px 10px 0 rgba(0,0,0,0.14),0 1px 18px 0 rgba(0,0,0,0.12);--transition:box-shadow 280ms cubic-bezier(0.4,0,0.2,1),background-color 280ms cubic-bezier(0.4,0,0.2,1),color 280ms cubic-bezier(0.4,0,0.2,1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0,0,0.2,1) 0ms}:host(.activated){--box-shadow:0 7px 8px -4px rgba(0,0,0,0.2),0 12px 17px 2px rgba(0,0,0,0.14),0 5px 22px 4px rgba(0,0,0,0.12)}.close-icon,::slotted(ion-icon){font-size:24px}:host(.fab-button-in-list){--color:rgba(var(--ion-text-color-rgb,0,0,0),0.54);--color-activated:rgba(var(--ion-text-color-rgb,0,0,0),0.54);--color-focused:var(--color-activated);--background:var(--ion-color-light,#f4f5f8);--background-activated:var(--ion-color-light-shade,#d7d8da);--background-focused:var(--background-activated)}:host(.fab-button-in-list) ::slotted(ion-icon){font-size:18px}"},enumerable:!0,configurable:!0}),Object.defineProperty(t,"styleMode",{get:function(){return"md"},enumerable:!0,configurable:!0}),t}(),FabList=function(){function t(){this.activated=!1,this.side="bottom"}return t.prototype.activatedChanged=function(t){var e=Array.from(this.el.querySelectorAll("ion-fab-button")),n=t?30:0;e.forEach(function(e,o){setTimeout(function(){return e.show=t},o*n)})},t.prototype.hostData=function(){var t;return{class:(t={},t[""+this.mode]=!0,t["fab-list-active"]=this.activated,t["fab-list-side-"+this.side]=!0,t)}},t.prototype.render=function(){return Object(_ionic_core_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot",null)},Object.defineProperty(t,"is",{get:function(){return"ion-fab-list"},enumerable:!0,configurable:!0}),Object.defineProperty(t,"encapsulation",{get:function(){return"shadow"},enumerable:!0,configurable:!0}),Object.defineProperty(t,"properties",{get:function(){return{activated:{type:Boolean,attr:"activated",watchCallbacks:["activatedChanged"]},el:{elementRef:!0},side:{type:String,attr:"side"}}},enumerable:!0,configurable:!0}),Object.defineProperty(t,"style",{get:function(){return":host{margin-left:0;margin-right:0;margin-top:66px;margin-bottom:66px;display:none;position:absolute;top:0;-ms-flex-direction:column;flex-direction:column;-ms-flex-align:center;align-items:center;min-width:56px;min-height:56px}:host(.fab-list-active){display:-ms-flexbox;display:flex}::slotted(.fab-button-in-list){margin-left:0;margin-right:0;margin-top:8px;margin-bottom:8px;width:40px;height:40px;-webkit-transform:scale(0);transform:scale(0);opacity:0;visibility:hidden}:host(.fab-list-side-bottom) ::slotted(.fab-button-in-list),:host(.fab-list-side-top) ::slotted(.fab-button-in-list){margin-left:0;margin-right:0;margin-top:5px;margin-bottom:5px}:host(.fab-list-side-end) ::slotted(.fab-button-in-list),:host(.fab-list-side-start) ::slotted(.fab-button-in-list){margin-left:5px;margin-right:5px;margin-top:0;margin-bottom:0}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){:host(.fab-list-side-end) ::slotted(.fab-button-in-list),:host(.fab-list-side-start) ::slotted(.fab-button-in-list){margin-left:unset;margin-right:unset;-webkit-margin-start:5px;margin-inline-start:5px;-webkit-margin-end:5px;margin-inline-end:5px}}::slotted(.fab-button-in-list.fab-button-show){-webkit-transform:scale(1);transform:scale(1);opacity:1;visibility:visible}:host(.fab-list-side-top){top:auto;bottom:0;-ms-flex-direction:column-reverse;flex-direction:column-reverse}:host(.fab-list-side-start){margin-left:66px;margin-right:66px;margin-top:0;margin-bottom:0;right:0;-ms-flex-direction:row-reverse;flex-direction:row-reverse}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){:host(.fab-list-side-start){margin-left:unset;margin-right:unset;-webkit-margin-start:66px;margin-inline-start:66px;-webkit-margin-end:66px;margin-inline-end:66px}}:host-context([dir=rtl]).fab-list-side-start,:host-context([dir=rtl]):host(.fab-list-side-start){left:unset;right:unset;left:0}:host(.fab-list-side-end){margin-left:66px;margin-right:66px;margin-top:0;margin-bottom:0;left:0;-ms-flex-direction:row;flex-direction:row}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){:host(.fab-list-side-end){margin-left:unset;margin-right:unset;-webkit-margin-start:66px;margin-inline-start:66px;-webkit-margin-end:66px;margin-inline-end:66px}}:host-context([dir=rtl]).fab-list-side-end,:host-context([dir=rtl]):host(.fab-list-side-end){left:unset;right:unset;right:0}"},enumerable:!0,configurable:!0}),t}();
-
-/***/ }),
-
-/***/ "./node_modules/@ionic/core/dist/esm/es5/polyfills/tslib.js":
-/*!******************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm/es5/polyfills/tslib.js ***!
-  \******************************************************************/
-/*! exports provided: __extends, __assign, __rest, __decorate, __param, __metadata, __awaiter, __generator, __exportStar, __values, __read, __spread, __await, __makeTemplateObject, __importStar, __importDefault */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__extends", function() { return __extends; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__assign", function() { return __assign; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__rest", function() { return __rest; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__decorate", function() { return __decorate; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__param", function() { return __param; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__metadata", function() { return __metadata; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__awaiter", function() { return __awaiter; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__generator", function() { return __generator; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__exportStar", function() { return __exportStar; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__values", function() { return __values; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__read", function() { return __read; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__spread", function() { return __spread; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__await", function() { return __await; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__makeTemplateObject", function() { return __makeTemplateObject; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__importStar", function() { return __importStar; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__importDefault", function() { return __importDefault; });
-// REV: 9dd9aa322c893e5e0b3f1609b1126314ccf37bbb
-
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0
-THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-MERCHANTABLITY OR NON-INFRINGEMENT.
-See the Apache Version 2.0 License for specific language governing permissions
-and limitations under the License.
-***************************************************************************** */
-/* global Reflect, Promise */
-
-var extendStatics = function(d, b) {
-  extendStatics = Object.setPrototypeOf ||
-      ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-      function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-  return extendStatics(d, b);
+var CELL_TYPE_ITEM = 'item';
+var CELL_TYPE_HEADER = 'header';
+var CELL_TYPE_FOOTER = 'footer';
+var NODE_CHANGE_NONE = 0;
+var NODE_CHANGE_POSITION = 1;
+var NODE_CHANGE_CELL = 2;
+var MIN_READS = 2;
+var updateVDom = function (dom, heightIndex, cells, range) {
+    // reset dom
+    for (var _i = 0, dom_1 = dom; _i < dom_1.length; _i++) {
+        var node = dom_1[_i];
+        node.change = NODE_CHANGE_NONE;
+        node.d = true;
+    }
+    // try to match into exisiting dom
+    var toMutate = [];
+    var end = range.offset + range.length;
+    var _loop_1 = function (i) {
+        var cell = cells[i];
+        var node = dom.find(function (n) { return n.d && n.cell === cell; });
+        if (node) {
+            var top = heightIndex[i];
+            if (top !== node.top) {
+                node.top = top;
+                node.change = NODE_CHANGE_POSITION;
+            }
+            node.d = false;
+        }
+        else {
+            toMutate.push(cell);
+        }
+    };
+    for (var i = range.offset; i < end; i++) {
+        _loop_1(i);
+    }
+    // needs to append
+    var pool = dom.filter(function (n) { return n.d; });
+    var _loop_2 = function (cell) {
+        var node = pool.find(function (n) { return n.d && n.cell.type === cell.type; });
+        var index = cell.i;
+        if (node) {
+            node.d = false;
+            node.change = NODE_CHANGE_CELL;
+            node.cell = cell;
+            node.top = heightIndex[index];
+        }
+        else {
+            dom.push({
+                d: false,
+                cell: cell,
+                visible: true,
+                change: NODE_CHANGE_CELL,
+                top: heightIndex[index],
+            });
+        }
+    };
+    for (var _a = 0, toMutate_1 = toMutate; _a < toMutate_1.length; _a++) {
+        var cell = toMutate_1[_a];
+        _loop_2(cell);
+    }
+    dom
+        .filter(function (n) { return n.d && n.top !== -9999; })
+        .forEach(function (n) {
+        n.change = NODE_CHANGE_POSITION;
+        n.top = -9999;
+    });
+};
+var doRender = function (el, nodeRender, dom, updateCellHeight) {
+    var children = Array.from(el.children).filter(function (n) { return n.tagName !== 'TEMPLATE'; });
+    var childrenNu = children.length;
+    var child;
+    for (var i = 0; i < dom.length; i++) {
+        var node = dom[i];
+        var cell = node.cell;
+        // the cell change, the content must be updated
+        if (node.change === NODE_CHANGE_CELL) {
+            if (i < childrenNu) {
+                child = children[i];
+                nodeRender(child, cell, i);
+            }
+            else {
+                var newChild = createNode(el, cell.type);
+                child = nodeRender(newChild, cell, i) || newChild;
+                child.classList.add('virtual-item');
+                el.appendChild(child);
+            }
+            child['$ionCell'] = cell;
+        }
+        else {
+            child = children[i];
+        }
+        // only update position when it changes
+        if (node.change !== NODE_CHANGE_NONE) {
+            child.style.transform = "translate3d(0," + node.top + "px,0)";
+        }
+        // update visibility
+        var visible = cell.visible;
+        if (node.visible !== visible) {
+            if (visible) {
+                child.classList.remove('virtual-loading');
+            }
+            else {
+                child.classList.add('virtual-loading');
+            }
+            node.visible = visible;
+        }
+        // dynamic height
+        if (cell.reads > 0) {
+            updateCellHeight(cell, child);
+            cell.reads--;
+        }
+    }
+};
+var createNode = function (el, type) {
+    var template = getTemplate(el, type);
+    if (template && el.ownerDocument) {
+        return el.ownerDocument.importNode(template.content, true).children[0];
+    }
+    return null;
+};
+var getTemplate = function (el, type) {
+    switch (type) {
+        case CELL_TYPE_ITEM: return el.querySelector('template:not([name])');
+        case CELL_TYPE_HEADER: return el.querySelector('template[name=header]');
+        case CELL_TYPE_FOOTER: return el.querySelector('template[name=footer]');
+    }
+};
+var getViewport = function (scrollTop, vierportHeight, margin) {
+    return {
+        top: Math.max(scrollTop - margin, 0),
+        bottom: scrollTop + vierportHeight + margin
+    };
+};
+var getRange = function (heightIndex, viewport, buffer) {
+    var topPos = viewport.top;
+    var bottomPos = viewport.bottom;
+    // find top index
+    var i = 0;
+    for (; i < heightIndex.length; i++) {
+        if (heightIndex[i] > topPos) {
+            break;
+        }
+    }
+    var offset = Math.max(i - buffer - 1, 0);
+    // find bottom index
+    for (; i < heightIndex.length; i++) {
+        if (heightIndex[i] >= bottomPos) {
+            break;
+        }
+    }
+    var end = Math.min(i + buffer, heightIndex.length);
+    var length = end - offset;
+    return { offset: offset, length: length };
+};
+var getShouldUpdate = function (dirtyIndex, currentRange, range) {
+    var end = range.offset + range.length;
+    return (dirtyIndex <= end ||
+        currentRange.offset !== range.offset ||
+        currentRange.length !== range.length);
+};
+var findCellIndex = function (cells, index) {
+    var max = cells.length > 0 ? cells[cells.length - 1].index : 0;
+    if (index === 0) {
+        return 0;
+    }
+    else if (index === max + 1) {
+        return cells.length;
+    }
+    else {
+        return cells.findIndex(function (c) { return c.index === index; });
+    }
+};
+var inplaceUpdate = function (dst, src, offset) {
+    if (offset === 0 && src.length >= dst.length) {
+        return src;
+    }
+    for (var i = 0; i < src.length; i++) {
+        dst[i + offset] = src[i];
+    }
+    return dst;
+};
+var calcCells = function (items, itemHeight, headerHeight, footerHeight, headerFn, footerFn, approxHeaderHeight, approxFooterHeight, approxItemHeight, j, offset, len) {
+    var cells = [];
+    var end = len + offset;
+    for (var i = offset; i < end; i++) {
+        var item = items[i];
+        if (headerFn) {
+            var value = headerFn(item, i, items);
+            if (value != null) {
+                cells.push({
+                    i: j++,
+                    type: CELL_TYPE_HEADER,
+                    value: value,
+                    index: i,
+                    height: headerHeight ? headerHeight(value, i) : approxHeaderHeight,
+                    reads: headerHeight ? 0 : MIN_READS,
+                    visible: !!headerHeight,
+                });
+            }
+        }
+        cells.push({
+            i: j++,
+            type: CELL_TYPE_ITEM,
+            value: item,
+            index: i,
+            height: itemHeight ? itemHeight(item, i) : approxItemHeight,
+            reads: itemHeight ? 0 : MIN_READS,
+            visible: !!itemHeight,
+        });
+        if (footerFn) {
+            var value = footerFn(item, i, items);
+            if (value != null) {
+                cells.push({
+                    i: j++,
+                    type: CELL_TYPE_FOOTER,
+                    value: value,
+                    index: i,
+                    height: footerHeight ? footerHeight(value, i) : approxFooterHeight,
+                    reads: footerHeight ? 0 : MIN_READS,
+                    visible: !!footerHeight,
+                });
+            }
+        }
+    }
+    return cells;
+};
+var calcHeightIndex = function (buf, cells, index) {
+    var acum = buf[index];
+    for (var i = index; i < buf.length; i++) {
+        buf[i] = acum;
+        acum += cells[i].height;
+    }
+    return acum;
+};
+var resizeBuffer = function (buf, len) {
+    if (!buf) {
+        return new Uint32Array(len);
+    }
+    if (buf.length === len) {
+        return buf;
+    }
+    else if (len > buf.length) {
+        var newBuf = new Uint32Array(len);
+        newBuf.set(buf);
+        return newBuf;
+    }
+    else {
+        return buf.subarray(0, len);
+    }
+};
+var positionForIndex = function (index, cells, heightIndex) {
+    var cell = cells.find(function (c) { return c.type === CELL_TYPE_ITEM && c.index === index; });
+    if (cell) {
+        return heightIndex[cell.i];
+    }
+    return -1;
+};
+var VirtualScroll = /** @class */ (function () {
+    function class_1(hostRef) {
+        var _this = this;
+        Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
+        this.range = { offset: 0, length: 0 };
+        this.viewportHeight = 0;
+        this.cells = [];
+        this.virtualDom = [];
+        this.isEnabled = false;
+        this.viewportOffset = 0;
+        this.currentScrollTop = 0;
+        this.indexDirty = 0;
+        this.lastItemLen = 0;
+        this.totalHeight = 0;
+        /**
+         * It is important to provide this
+         * if virtual item height will be significantly larger than the default
+         * The approximate height of each virtual item template's cell.
+         * This dimension is used to help determine how many cells should
+         * be created when initialized, and to help calculate the height of
+         * the scrollable area. This height value can only use `px` units.
+         * Note that the actual rendered size of each cell comes from the
+         * app's CSS, whereas this approximation is used to help calculate
+         * initial dimensions before the item has been rendered.
+         */
+        this.approxItemHeight = 45;
+        /**
+         * The approximate height of each header template's cell.
+         * This dimension is used to help determine how many cells should
+         * be created when initialized, and to help calculate the height of
+         * the scrollable area. This height value can only use `px` units.
+         * Note that the actual rendered size of each cell comes from the
+         * app's CSS, whereas this approximation is used to help calculate
+         * initial dimensions before the item has been rendered.
+         */
+        this.approxHeaderHeight = 30;
+        /**
+         * The approximate width of each footer template's cell.
+         * This dimension is used to help determine how many cells should
+         * be created when initialized, and to help calculate the height of
+         * the scrollable area. This height value can only use `px` units.
+         * Note that the actual rendered size of each cell comes from the
+         * app's CSS, whereas this approximation is used to help calculate
+         * initial dimensions before the item has been rendered.
+         */
+        this.approxFooterHeight = 30;
+        this.onScroll = function () {
+            _this.updateVirtualScroll();
+        };
+    }
+    class_1.prototype.itemsChanged = function () {
+        this.calcCells();
+        this.updateVirtualScroll();
+    };
+    class_1.prototype.connectedCallback = function () {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
+            var contentEl, _a;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        contentEl = this.el.closest('ion-content');
+                        if (!contentEl) {
+                            console.error('<ion-virtual-scroll> must be used inside an <ion-content>');
+                            return [2 /*return*/];
+                        }
+                        _a = this;
+                        return [4 /*yield*/, contentEl.getScrollElement()];
+                    case 1:
+                        _a.scrollEl = _b.sent();
+                        this.contentEl = contentEl;
+                        this.calcCells();
+                        this.updateState();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    class_1.prototype.componentDidUpdate = function () {
+        this.updateState();
+    };
+    class_1.prototype.disconnectedCallback = function () {
+        this.scrollEl = undefined;
+    };
+    class_1.prototype.onResize = function () {
+        this.calcCells();
+        this.updateVirtualScroll();
+    };
+    /**
+     * Returns the position of the virtual item at the given index.
+     */
+    class_1.prototype.positionForItem = function (index) {
+        return Promise.resolve(positionForIndex(index, this.cells, this.getHeightIndex()));
+    };
+    /**
+     * This method marks a subset of items as dirty, so they can be re-rendered. Items should be marked as
+     * dirty any time the content or their style changes.
+     *
+     * The subset of items to be updated can are specifing by an offset and a length.
+     */
+    class_1.prototype.checkRange = function (offset, len) {
+        if (len === void 0) { len = -1; }
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
+            var length, cellIndex, cells;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
+                // TODO: kind of hacky how we do in-place updated of the cells
+                // array. this part needs a complete refactor
+                if (!this.items) {
+                    return [2 /*return*/];
+                }
+                length = (len === -1)
+                    ? this.items.length - offset
+                    : len;
+                cellIndex = findCellIndex(this.cells, offset);
+                cells = calcCells(this.items, this.itemHeight, this.headerHeight, this.footerHeight, this.headerFn, this.footerFn, this.approxHeaderHeight, this.approxFooterHeight, this.approxItemHeight, cellIndex, offset, length);
+                this.cells = inplaceUpdate(this.cells, cells, cellIndex);
+                this.lastItemLen = this.items.length;
+                this.indexDirty = Math.max(offset - 1, 0);
+                this.scheduleUpdate();
+                return [2 /*return*/];
+            });
+        });
+    };
+    /**
+     * This method marks the tail the items array as dirty, so they can be re-rendered.
+     *
+     * It's equivalent to calling:
+     *
+     * ```js
+     * virtualScroll.checkRange(lastItemLen);
+     * ```
+     */
+    class_1.prototype.checkEnd = function () {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
+                if (this.items) {
+                    this.checkRange(this.lastItemLen);
+                }
+                return [2 /*return*/];
+            });
+        });
+    };
+    class_1.prototype.updateVirtualScroll = function () {
+        // do nothing if virtual-scroll is disabled
+        if (!this.isEnabled || !this.scrollEl) {
+            return;
+        }
+        // unschedule future updates
+        if (this.timerUpdate) {
+            clearTimeout(this.timerUpdate);
+            this.timerUpdate = undefined;
+        }
+        // schedule DOM operations into the stencil queue
+        Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_1__["f"])(this.readVS.bind(this));
+        Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_1__["w"])(this.writeVS.bind(this));
+    };
+    class_1.prototype.readVS = function () {
+        var _a = this, contentEl = _a.contentEl, scrollEl = _a.scrollEl, el = _a.el;
+        var topOffset = 0;
+        var node = el;
+        while (node && node !== contentEl) {
+            topOffset += node.offsetTop;
+            node = node.parentElement;
+        }
+        this.viewportOffset = topOffset;
+        if (scrollEl) {
+            this.viewportHeight = scrollEl.offsetHeight;
+            this.currentScrollTop = scrollEl.scrollTop;
+        }
+    };
+    class_1.prototype.writeVS = function () {
+        var dirtyIndex = this.indexDirty;
+        // get visible viewport
+        var scrollTop = this.currentScrollTop - this.viewportOffset;
+        var viewport = getViewport(scrollTop, this.viewportHeight, 100);
+        // compute lazily the height index
+        var heightIndex = this.getHeightIndex();
+        // get array bounds of visible cells base in the viewport
+        var range = getRange(heightIndex, viewport, 2);
+        // fast path, do nothing
+        var shouldUpdate = getShouldUpdate(dirtyIndex, this.range, range);
+        if (!shouldUpdate) {
+            return;
+        }
+        this.range = range;
+        // in place mutation of the virtual DOM
+        updateVDom(this.virtualDom, heightIndex, this.cells, range);
+        // Write DOM
+        // Different code paths taken depending of the render API used
+        if (this.nodeRender) {
+            doRender(this.el, this.nodeRender, this.virtualDom, this.updateCellHeight.bind(this));
+        }
+        else if (this.domRender) {
+            this.domRender(this.virtualDom);
+        }
+        else if (this.renderItem) {
+            this.el.forceUpdate();
+        }
+    };
+    class_1.prototype.updateCellHeight = function (cell, node) {
+        var _this = this;
+        var update = function () {
+            if (node['$ionCell'] === cell) {
+                var style = window.getComputedStyle(node);
+                var height = node.offsetHeight + parseFloat(style.getPropertyValue('margin-bottom'));
+                _this.setCellHeight(cell, height);
+            }
+        };
+        if (node && node.componentOnReady) {
+            node.componentOnReady().then(update);
+        }
+        else {
+            update();
+        }
+    };
+    class_1.prototype.setCellHeight = function (cell, height) {
+        var index = cell.i;
+        // the cell might changed since the height update was scheduled
+        if (cell !== this.cells[index]) {
+            return;
+        }
+        if (cell.height !== height || cell.visible !== true) {
+            cell.visible = true;
+            cell.height = height;
+            this.indexDirty = Math.min(this.indexDirty, index);
+            this.scheduleUpdate();
+        }
+    };
+    class_1.prototype.scheduleUpdate = function () {
+        var _this = this;
+        clearTimeout(this.timerUpdate);
+        this.timerUpdate = setTimeout(function () { return _this.updateVirtualScroll(); }, 100);
+    };
+    class_1.prototype.updateState = function () {
+        var shouldEnable = !!(this.scrollEl &&
+            this.cells);
+        if (shouldEnable !== this.isEnabled) {
+            this.enableScrollEvents(shouldEnable);
+            if (shouldEnable) {
+                this.updateVirtualScroll();
+            }
+        }
+    };
+    class_1.prototype.calcCells = function () {
+        if (!this.items) {
+            return;
+        }
+        this.lastItemLen = this.items.length;
+        this.cells = calcCells(this.items, this.itemHeight, this.headerHeight, this.footerHeight, this.headerFn, this.footerFn, this.approxHeaderHeight, this.approxFooterHeight, this.approxItemHeight, 0, 0, this.lastItemLen);
+        this.indexDirty = 0;
+    };
+    class_1.prototype.getHeightIndex = function () {
+        if (this.indexDirty !== Infinity) {
+            this.calcHeightIndex(this.indexDirty);
+        }
+        return this.heightIndex;
+    };
+    class_1.prototype.calcHeightIndex = function (index) {
+        if (index === void 0) { index = 0; }
+        // TODO: optimize, we don't need to calculate all the cells
+        this.heightIndex = resizeBuffer(this.heightIndex, this.cells.length);
+        this.totalHeight = calcHeightIndex(this.heightIndex, this.cells, index);
+        this.indexDirty = Infinity;
+    };
+    class_1.prototype.enableScrollEvents = function (shouldListen) {
+        var _this = this;
+        if (this.rmEvent) {
+            this.rmEvent();
+            this.rmEvent = undefined;
+        }
+        var scrollEl = this.scrollEl;
+        if (scrollEl) {
+            this.isEnabled = shouldListen;
+            scrollEl.addEventListener('scroll', this.onScroll);
+            this.rmEvent = function () {
+                scrollEl.removeEventListener('scroll', _this.onScroll);
+            };
+        }
+    };
+    class_1.prototype.renderVirtualNode = function (node) {
+        var _a = node.cell, type = _a.type, value = _a.value, index = _a.index;
+        switch (type) {
+            case CELL_TYPE_ITEM: return this.renderItem(value, index);
+            case CELL_TYPE_HEADER: return this.renderHeader(value, index);
+            case CELL_TYPE_FOOTER: return this.renderFooter(value, index);
+        }
+    };
+    class_1.prototype.render = function () {
+        var _this = this;
+        return (Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_1__["H"], { style: {
+                height: this.totalHeight + "px"
+            } }, this.renderItem && (Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_1__["h"])(VirtualProxy, { dom: this.virtualDom }, this.virtualDom.map(function (node) { return _this.renderVirtualNode(node); })))));
+    };
+    Object.defineProperty(class_1.prototype, "el", {
+        get: function () { return Object(_core_feeeff0d_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(class_1, "watchers", {
+        get: function () {
+            return {
+                "itemHeight": ["itemsChanged"],
+                "headerHeight": ["itemsChanged"],
+                "footerHeight": ["itemsChanged"],
+                "items": ["itemsChanged"]
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(class_1, "style", {
+        get: function () { return "ion-virtual-scroll{display:block;position:relative;width:100%;contain:strict;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}ion-virtual-scroll>.virtual-loading{opacity:0}ion-virtual-scroll>.virtual-item{position:absolute!important;top:0!important;right:0!important;left:0!important;-webkit-transition-duration:0ms;transition-duration:0ms;will-change:transform}"; },
+        enumerable: true,
+        configurable: true
+    });
+    return class_1;
+}());
+var VirtualProxy = function (_a, children, utils) {
+    var dom = _a.dom;
+    return utils.map(children, function (child, i) {
+        var node = dom[i];
+        var vattrs = child.vattrs || {};
+        var classes = vattrs.class || '';
+        classes += 'virtual-item ';
+        if (!node.visible) {
+            classes += 'virtual-loading';
+        }
+        return Object.assign(Object.assign({}, child), { vattrs: Object.assign(Object.assign({}, vattrs), { class: classes, style: Object.assign(Object.assign({}, vattrs.style), { transform: "translate3d(0," + node.top + "px,0)" }) }) });
+    });
 };
 
-function __extends(d, b) {
-  extendStatics(d, b);
-  function __() { this.constructor = d; }
-  d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-}
 
-var __assign = function() {
-  __assign = Object.assign || function __assign(t) {
-      for (var s, i = 1, n = arguments.length; i < n; i++) {
-          s = arguments[i];
-          for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
-      }
-      return t;
-  }
-  return __assign.apply(this, arguments);
-}
-
-function __rest(s, e) {
-  var t = {};
-  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-      t[p] = s[p];
-  if (s != null && typeof Object.getOwnPropertySymbols === "function")
-      for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-          t[p[i]] = s[p[i]];
-  return t;
-}
-
-function __decorate(decorators, target, key, desc) {
-  var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-  if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-  else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-  return c > 3 && r && Object.defineProperty(target, key, r), r;
-}
-
-function __param(paramIndex, decorator) {
-  return function (target, key) { decorator(target, key, paramIndex); }
-}
-
-function __metadata(metadataKey, metadataValue) {
-  if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
-}
-
-function __awaiter(thisArg, _arguments, P, generator) {
-  return new (P || (P = Promise))(function (resolve, reject) {
-      function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-      function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-      function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-      step((generator = generator.apply(thisArg, _arguments || [])).next());
-  });
-}
-
-function __generator(thisArg, body) {
-  var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-  return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-  function verb(n) { return function (v) { return step([n, v]); }; }
-  function step(op) {
-      if (f) throw new TypeError("Generator is already executing.");
-      while (_) try {
-          if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-          if (y = 0, t) op = [op[0] & 2, t.value];
-          switch (op[0]) {
-              case 0: case 1: t = op; break;
-              case 4: _.label++; return { value: op[1], done: false };
-              case 5: _.label++; y = op[1]; op = [0]; continue;
-              case 7: op = _.ops.pop(); _.trys.pop(); continue;
-              default:
-                  if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                  if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                  if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                  if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                  if (t[2]) _.ops.pop();
-                  _.trys.pop(); continue;
-          }
-          op = body.call(thisArg, _);
-      } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-      if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-  }
-}
-
-function __exportStar(m, exports) {
-  for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-
-function __values(o) {
-  var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
-  if (m) return m.call(o);
-  return {
-      next: function () {
-          if (o && i >= o.length) o = void 0;
-          return { value: o && o[i++], done: !o };
-      }
-  };
-}
-
-function __read(o, n) {
-  var m = typeof Symbol === "function" && o[Symbol.iterator];
-  if (!m) return o;
-  var i = m.call(o), r, ar = [], e;
-  try {
-      while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
-  }
-  catch (error) { e = { error: error }; }
-  finally {
-      try {
-          if (r && !r.done && (m = i["return"])) m.call(i);
-      }
-      finally { if (e) throw e.error; }
-  }
-  return ar;
-}
-
-function __spread() {
-  for (var ar = [], i = 0; i < arguments.length; i++)
-      ar = ar.concat(__read(arguments[i]));
-  return ar;
-}
-
-function __await(v) {
-  return this instanceof __await ? (this.v = v, this) : new __await(v);
-}
-
-function __makeTemplateObject(cooked, raw) {
-  if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
-  return cooked;
-};
-
-function __importStar(mod) {
-  if (mod && mod.__esModule) return mod;
-  var result = {};
-  if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-  result.default = mod;
-  return result;
-}
-
-function __importDefault(mod) {
-  return (mod && mod.__esModule) ? mod : { default: mod };
-}
 
 /***/ })
 

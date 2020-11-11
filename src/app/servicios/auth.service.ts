@@ -74,7 +74,7 @@ export class AuthService {
                 this.router.navigate(["home-supervisor"]);
                 break;
                case 'mozo':
-                 this.fcmService.SuscribirANotificacion('mozo')
+                 this.fcmService.SuscribirANotificacion('notificacionMozo')
                  this.usuario = obj_element as Empleado;
                  localStorage.setItem('usuario', JSON.stringify(this.usuario));
                   resolve(this.usuario);
@@ -94,12 +94,14 @@ export class AuthService {
                   this.router.navigate(["home-comanda"]);
                   break;
                 case 'dueño':
+                  this.fcmService.SuscribirANotificacion('notificacionDueño')
                   this.usuario = obj_element as Empleado;
                  localStorage.setItem('usuario', JSON.stringify(this.usuario));
                   resolve(this.usuario);
                   this.router.navigate(["home-supervisor"]);
                   break;
                 case 'cliente':
+                  this.fcmService.SuscribirANotificacion('notificacionCliente')
                 this.usuario = obj_element as Cliente;
                   localStorage.setItem('usuario', JSON.stringify(this.usuario));
                   resolve(this.usuario);

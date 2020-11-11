@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ReservasService } from 'src/app/servicios/reservas.service';
 import { AuthService } from 'src/app/servicios/auth.service';
+import { AlertService } from 'src/app/servicios/alert.service';
 
 @Component({
   selector: 'app-home-metre',
@@ -13,7 +14,7 @@ export class HomeMetrePage implements OnInit {
   clientesEnEspera = [];
   clientes;
   cantClientesEnEspera = 100;
-  constructor(private reservasService: ReservasService, private authService: AuthService, private route:Router) {
+  constructor(private reservasService: ReservasService, private authService: AuthService, private route:Router, private alertService: AlertService) {
     this.clientesEnEspera = [];
    }
 
@@ -30,7 +31,7 @@ export class HomeMetrePage implements OnInit {
     });
     if ( this.clientesEnEspera.length > this.cantClientesEnEspera ) {
       //TODO -> PUSH NOTIFICATION
-     alert("nuevoCliente");
+     this.alertService.mensaje("", "Nuevo Cliente");
     }
     this.cantClientesEnEspera = this.clientesEnEspera.length;
      console.log(this.clientesEnEspera);

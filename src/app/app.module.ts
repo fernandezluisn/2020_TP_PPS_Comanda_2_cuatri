@@ -26,6 +26,7 @@ import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/fi
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { EmailComposer } from '@ionic-native/email-composer/ngx';
 import { FCM } from '@ionic-native/fcm/ngx';
+
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({

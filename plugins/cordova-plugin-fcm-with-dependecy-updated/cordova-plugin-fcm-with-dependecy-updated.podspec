@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "cordova-plugin-fcm-with-dependecy-updated"
-  spec.version      = "7.0.10"
+  spec.version      = "4.6.4"
   spec.summary      = "Google FCM Push Notifications Cordova Plugin"
 
   # This description is used to generate tags and improve search results.
@@ -119,11 +119,11 @@ DESC
   #  the lib prefix of their name.
   #
 
-  # spec.frameworks  = "AddressBook", "Security", "UIKit"
+  spec.frameworks  = "AddressBook", "Security", "UIKit"
   # spec.framework  = "SomeFramework"
   # spec.frameworks = "SomeFramework", "AnotherFramework"
 
-  # spec.libraries   = "sqlite3", "z", "c++"
+  spec.libraries   = "sqlite3", "z", "c++"
   # spec.library   = "iconv"
   # spec.libraries = "iconv", "xml2"
 

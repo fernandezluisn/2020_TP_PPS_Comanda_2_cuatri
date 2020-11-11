@@ -11,7 +11,7 @@ export class FcmService {
 
        headers = new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': 'key=AAAA0TsmZ2E:APA91bGT3AsRQz1SWKT_lIaUxFeweYs-KStunNKIeJFWjg3l-KzU9GldGdwGvy_ZfF1y1ig9774bk5lvm1S6aCrOq4SLLh0H3CmOuS354CtX55cBIH0EUI9gvfwbAqtF2GXmulyamUvo'
+        'Authorization': 'key=AAAAPeAihMI:APA91bHLdWsfXxe_cwQ9qeWzLY1DIl7KINyt8tYadtt0k3QAjK1X2uvpIMudD6Uoy8b6uQGrb9GCsj80dkp0KTqTNuJE7pv7Q3Sc6ehXaRsNLqOtrOSs1loGj9ulUhvwNIze0tl7DhN2'
       })
 
 
@@ -26,6 +26,12 @@ export class FcmService {
        DesuscribirDeTodas(){
         this.fcm.unsubscribeFromTopic('notificacionMozo');
         this.fcm.unsubscribeFromTopic('notificacionListaEspera');
+        this.fcm.unsubscribeFromTopic('notificacionCocina');
+        this.fcm.unsubscribeFromTopic('notificacionSupervisor');
+        this.fcm.unsubscribeFromTopic('notificacionMozo');
+        this.fcm.unsubscribeFromTopic('notificacionDueño');
+        this.fcm.unsubscribeFromTopic('notificacionCliente');
+
       }
 
        enviarMensaje(titulo:string, texto:string,topic:string){
