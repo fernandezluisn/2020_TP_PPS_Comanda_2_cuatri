@@ -38,14 +38,12 @@ const routes: Routes = [
   { path: 'encuesta-supervisor', loadChildren: './paginas/encuesta-supervisor/encuesta-supervisor.module#EncuestaSupervisorPageModule' },
   { path: 'encuesta-empleado', loadChildren: './paginas/encuesta-empleado/encuesta-empleado.module#EncuestaEmpleadoPageModule' },
   { path: 'graficos', loadChildren: './paginas/graficos/graficos.module#GraficosPageModule' },
-<<<<<<< HEAD
   { path: 'reservas', loadChildren: './paginas/reservas/reservas.module#ReservasPageModule' },
   { path: 'respuesta-reservas', loadChildren: './paginas/respuesta-reservas/respuesta-reservas.module#RespuestaReservasPageModule' },
-=======
-  { path: 'encuesta-cliente', loadChildren: './paginas/encuesta-cliente/encuesta-cliente.module#EncuestaClientePageModule' },
+  { path: 'encuesta-cliente', loadChildren: './paginas/encuesta-cliente/encuesta-cliente.module#EncuestaClientePageModule' },  { path: 'consulta-mozo', loadChildren: './paginas/consulta-mozo/consulta-mozo.module#ConsultaMozoPageModule' },
 
 
->>>>>>> fd80f0c85c0ce8cfe60dce3e7ae9843ae19e04ee
+
 
  
 ];

@@ -1173,6 +1173,9 @@ var map = {
 		"common",
 		"paginas-alta-supervisor-alta-supervisor-module"
 	],
+	"./paginas/consulta-mozo/consulta-mozo.module": [
+		"./src/app/paginas/consulta-mozo/consulta-mozo.module.ts"
+	],
 	"./paginas/encuesta-cliente/encuesta-cliente.module": [
 		"./src/app/paginas/encuesta-cliente/encuesta-cliente.module.ts",
 		"common",
@@ -1212,6 +1215,7 @@ var map = {
 	],
 	"./paginas/home-metre/home-metre.module": [
 		"./src/app/paginas/home-metre/home-metre.module.ts",
+		"common",
 		"paginas-home-metre-home-metre-module"
 	],
 	"./paginas/home-mozo/home-mozo.module": [
@@ -1228,12 +1232,23 @@ var map = {
 	],
 	"./paginas/mesa-cliente/mesa-cliente.module": [
 		"./src/app/paginas/mesa-cliente/mesa-cliente.module.ts",
+		"common",
 		"paginas-mesa-cliente-mesa-cliente-module"
 	],
 	"./paginas/propina/propina.module": [
 		"./src/app/paginas/propina/propina.module.ts",
 		"common",
 		"paginas-propina-propina-module"
+	],
+	"./paginas/reservas/reservas.module": [
+		"./src/app/paginas/reservas/reservas.module.ts",
+		"common",
+		"paginas-reservas-reservas-module"
+	],
+	"./paginas/respuesta-reservas/respuesta-reservas.module": [
+		"./src/app/paginas/respuesta-reservas/respuesta-reservas.module.ts",
+		"common",
+		"paginas-respuesta-reservas-respuesta-reservas-module"
 	]
 };
 function webpackAsyncContext(req) {
@@ -1311,7 +1326,10 @@ var routes = [
     { path: 'encuesta-supervisor', loadChildren: './paginas/encuesta-supervisor/encuesta-supervisor.module#EncuestaSupervisorPageModule' },
     { path: 'encuesta-empleado', loadChildren: './paginas/encuesta-empleado/encuesta-empleado.module#EncuestaEmpleadoPageModule' },
     { path: 'graficos', loadChildren: './paginas/graficos/graficos.module#GraficosPageModule' },
+    { path: 'reservas', loadChildren: './paginas/reservas/reservas.module#ReservasPageModule' },
+    { path: 'respuesta-reservas', loadChildren: './paginas/respuesta-reservas/respuesta-reservas.module#RespuestaReservasPageModule' },
     { path: 'encuesta-cliente', loadChildren: './paginas/encuesta-cliente/encuesta-cliente.module#EncuestaClientePageModule' },
+    { path: 'consulta-mozo', loadChildren: './paginas/consulta-mozo/consulta-mozo.module#ConsultaMozoPageModule' },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -1349,7 +1367,7 @@ module.exports = "<ion-app>\r\n  <div *ngIf=\"this.showSplash\" class=\"splash\"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".splash {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  z-index: 999;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background-color: #A599B5; }\n  .splash .animate {\n    -webkit-animation: shake 0.5s;\n            animation: shake 0.5s;\n    -webkit-animation-iteration-count: infinite;\n            animation-iteration-count: infinite; }\n  @-webkit-keyframes shake {\n  0% {\n    -webkit-transform: translate(1px, 1px) rotate(0deg);\n            transform: translate(1px, 1px) rotate(0deg); }\n  10% {\n    -webkit-transform: translate(-1px, -2px) rotate(-1deg);\n            transform: translate(-1px, -2px) rotate(-1deg); }\n  20% {\n    -webkit-transform: translate(-3px, 0px) rotate(1deg);\n            transform: translate(-3px, 0px) rotate(1deg); }\n  30% {\n    -webkit-transform: translate(3px, 2px) rotate(0deg);\n            transform: translate(3px, 2px) rotate(0deg); }\n  40% {\n    -webkit-transform: translate(1px, -1px) rotate(1deg);\n            transform: translate(1px, -1px) rotate(1deg); }\n  50% {\n    -webkit-transform: translate(-1px, 2px) rotate(-1deg);\n            transform: translate(-1px, 2px) rotate(-1deg); }\n  60% {\n    -webkit-transform: translate(-3px, 1px) rotate(0deg);\n            transform: translate(-3px, 1px) rotate(0deg); }\n  70% {\n    -webkit-transform: translate(3px, 1px) rotate(-1deg);\n            transform: translate(3px, 1px) rotate(-1deg); }\n  80% {\n    -webkit-transform: translate(-1px, -1px) rotate(1deg);\n            transform: translate(-1px, -1px) rotate(1deg); }\n  90% {\n    -webkit-transform: translate(1px, 2px) rotate(0deg);\n            transform: translate(1px, 2px) rotate(0deg); }\n  100% {\n    -webkit-transform: translate(1px, -2px) rotate(-1deg);\n            transform: translate(1px, -2px) rotate(-1deg); } }\n  @keyframes shake {\n  0% {\n    -webkit-transform: translate(1px, 1px) rotate(0deg);\n            transform: translate(1px, 1px) rotate(0deg); }\n  10% {\n    -webkit-transform: translate(-1px, -2px) rotate(-1deg);\n            transform: translate(-1px, -2px) rotate(-1deg); }\n  20% {\n    -webkit-transform: translate(-3px, 0px) rotate(1deg);\n            transform: translate(-3px, 0px) rotate(1deg); }\n  30% {\n    -webkit-transform: translate(3px, 2px) rotate(0deg);\n            transform: translate(3px, 2px) rotate(0deg); }\n  40% {\n    -webkit-transform: translate(1px, -1px) rotate(1deg);\n            transform: translate(1px, -1px) rotate(1deg); }\n  50% {\n    -webkit-transform: translate(-1px, 2px) rotate(-1deg);\n            transform: translate(-1px, 2px) rotate(-1deg); }\n  60% {\n    -webkit-transform: translate(-3px, 1px) rotate(0deg);\n            transform: translate(-3px, 1px) rotate(0deg); }\n  70% {\n    -webkit-transform: translate(3px, 1px) rotate(-1deg);\n            transform: translate(3px, 1px) rotate(-1deg); }\n  80% {\n    -webkit-transform: translate(-1px, -1px) rotate(1deg);\n            transform: translate(-1px, -1px) rotate(1deg); }\n  90% {\n    -webkit-transform: translate(1px, 2px) rotate(0deg);\n            transform: translate(1px, 2px) rotate(0deg); }\n  100% {\n    -webkit-transform: translate(1px, -2px) rotate(-1deg);\n            transform: translate(1px, -2px) rotate(-1deg); } }\n  .rotate {\n  -webkit-animation: rotation 8s infinite linear;\n          animation: rotation 8s infinite linear; }\n  @-webkit-keyframes rotation {\n  from {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  to {\n    -webkit-transform: rotate(359deg);\n            transform: rotate(359deg); } }\n  @keyframes rotation {\n  from {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  to {\n    -webkit-transform: rotate(359deg);\n            transform: rotate(359deg); } }\n  .rotating-landscape {\n  width: 100vw;\n  height: 100vw; }\n  .rotating {\n  position: absolute;\n  display: flex;\n  align-items: center;\n  justify-content: center; }\n  .spinner-portrait {\n  width: 100vh;\n  height: 100vh; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvRTpcXERlc2Nhcmdhc1xcbWFzdGVyNS9zcmNcXGFwcFxcYXBwLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usa0JBQWtCO0VBQ2xCLFdBQVc7RUFDWCxZQUFZO0VBQ1osWUFBWTtFQUNaLGFBQWE7RUFDYixtQkFBbUI7RUFDbkIsdUJBQXVCO0VBRXZCLHlCQUF5QixFQUFBO0VBVDNCO0lBWUksNkJBQXFCO1lBQXJCLHFCQUFxQjtJQUNyQiwyQ0FBbUM7WUFBbkMsbUNBQW1DLEVBQUE7RUFHckM7RUFDRjtJQUFLLG1EQUEyQztZQUEzQywyQ0FBMkMsRUFBQTtFQUNoRDtJQUFNLHNEQUE4QztZQUE5Qyw4Q0FBOEMsRUFBQTtFQUNwRDtJQUFNLG9EQUE0QztZQUE1Qyw0Q0FBNEMsRUFBQTtFQUNsRDtJQUFNLG1EQUEyQztZQUEzQywyQ0FBMkMsRUFBQTtFQUNqRDtJQUFNLG9EQUE0QztZQUE1Qyw0Q0FBNEMsRUFBQTtFQUNsRDtJQUFNLHFEQUE2QztZQUE3Qyw2Q0FBNkMsRUFBQTtFQUNuRDtJQUFNLG9EQUE0QztZQUE1Qyw0Q0FBNEMsRUFBQTtFQUNsRDtJQUFNLG9EQUE0QztZQUE1Qyw0Q0FBNEMsRUFBQTtFQUNsRDtJQUFNLHFEQUE2QztZQUE3Qyw2Q0FBNkMsRUFBQTtFQUNuRDtJQUFNLG1EQUEyQztZQUEzQywyQ0FBMkMsRUFBQTtFQUNqRDtJQUFPLHFEQUE2QztZQUE3Qyw2Q0FBNkMsRUFBQSxFQUFBO0VBWGxEO0VBQ0Y7SUFBSyxtREFBMkM7WUFBM0MsMkNBQTJDLEVBQUE7RUFDaEQ7SUFBTSxzREFBOEM7WUFBOUMsOENBQThDLEVBQUE7RUFDcEQ7SUFBTSxvREFBNEM7WUFBNUMsNENBQTRDLEVBQUE7RUFDbEQ7SUFBTSxtREFBMkM7WUFBM0MsMkNBQTJDLEVBQUE7RUFDakQ7SUFBTSxvREFBNEM7WUFBNUMsNENBQTRDLEVBQUE7RUFDbEQ7SUFBTSxxREFBNkM7WUFBN0MsNkNBQTZDLEVBQUE7RUFDbkQ7SUFBTSxvREFBNEM7WUFBNUMsNENBQTRDLEVBQUE7RUFDbEQ7SUFBTSxvREFBNEM7WUFBNUMsNENBQTRDLEVBQUE7RUFDbEQ7SUFBTSxxREFBNkM7WUFBN0MsNkNBQTZDLEVBQUE7RUFDbkQ7SUFBTSxtREFBMkM7WUFBM0MsMkNBQTJDLEVBQUE7RUFDakQ7SUFBTyxxREFBNkM7WUFBN0MsNkNBQTZDLEVBQUEsRUFBQTtFQUlwRDtFQUNFLDhDQUFzQztVQUF0QyxzQ0FBc0MsRUFBQTtFQUd4QztFQUNFO0lBQ0UsK0JBQXVCO1lBQXZCLHVCQUF1QixFQUFBO0VBRXpCO0lBQ0UsaUNBQXlCO1lBQXpCLHlCQUF5QixFQUFBLEVBQUE7RUFMN0I7RUFDRTtJQUNFLCtCQUF1QjtZQUF2Qix1QkFBdUIsRUFBQTtFQUV6QjtJQUNFLGlDQUF5QjtZQUF6Qix5QkFBeUIsRUFBQSxFQUFBO0VBSTdCO0VBQ0UsWUFBWTtFQUNaLGFBQWEsRUFBQTtFQUdmO0VBQ0Usa0JBQWtCO0VBQ2xCLGFBQWE7RUFDYixtQkFBbUI7RUFDbkIsdUJBQXVCLEVBQUE7RUFHekI7RUFDRSxZQUFZO0VBQ1osYUFBYSxFQUFBIiwiZmlsZSI6InNyYy9hcHAvYXBwLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnNwbGFzaCB7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIGhlaWdodDogMTAwJTtcclxuICB6LWluZGV4OiA5OTk7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gIC8vIGJhY2tncm91bmQ6ICNmZjc0MDA7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogI0E1OTlCNTtcclxuXHJcbiAgLmFuaW1hdGUge1xyXG4gICAgYW5pbWF0aW9uOiBzaGFrZSAwLjVzO1xyXG4gICAgYW5pbWF0aW9uLWl0ZXJhdGlvbi1jb3VudDogaW5maW5pdGU7XHJcbiAgfVxyXG4gIFxyXG4gIEBrZXlmcmFtZXMgc2hha2Uge1xyXG4wJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKDFweCwgMXB4KSByb3RhdGUoMGRlZyk7IH1cclxuMTAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTFweCwgLTJweCkgcm90YXRlKC0xZGVnKTsgfVxyXG4yMCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgtM3B4LCAwcHgpIHJvdGF0ZSgxZGVnKTsgfVxyXG4zMCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgzcHgsIDJweCkgcm90YXRlKDBkZWcpOyB9XHJcbjQwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKDFweCwgLTFweCkgcm90YXRlKDFkZWcpOyB9XHJcbjUwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKC0xcHgsIDJweCkgcm90YXRlKC0xZGVnKTsgfVxyXG42MCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgtM3B4LCAxcHgpIHJvdGF0ZSgwZGVnKTsgfVxyXG43MCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgzcHgsIDFweCkgcm90YXRlKC0xZGVnKTsgfVxyXG44MCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgtMXB4LCAtMXB4KSByb3RhdGUoMWRlZyk7IH1cclxuOTAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoMXB4LCAycHgpIHJvdGF0ZSgwZGVnKTsgfVxyXG4xMDAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoMXB4LCAtMnB4KSByb3RhdGUoLTFkZWcpOyB9XHJcbiAgfVxyXG59XHJcblxyXG4ucm90YXRlIHtcclxuICBhbmltYXRpb246IHJvdGF0aW9uIDhzIGluZmluaXRlIGxpbmVhcjtcclxufVxyXG5cclxuQGtleWZyYW1lcyByb3RhdGlvbiB7XHJcbiAgZnJvbSB7XHJcbiAgICB0cmFuc2Zvcm06IHJvdGF0ZSgwZGVnKTtcclxuICB9XHJcbiAgdG8ge1xyXG4gICAgdHJhbnNmb3JtOiByb3RhdGUoMzU5ZGVnKTtcclxuICB9XHJcbn1cclxuXHJcbi5yb3RhdGluZy1sYW5kc2NhcGUge1xyXG4gIHdpZHRoOiAxMDB2dztcclxuICBoZWlnaHQ6IDEwMHZ3O1xyXG59XHJcblxyXG4ucm90YXRpbmcge1xyXG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbn1cclxuXHJcbi5zcGlubmVyLXBvcnRyYWl0IHtcclxuICB3aWR0aDogMTAwdmg7XHJcbiAgaGVpZ2h0OiAxMDB2aDtcclxufVxyXG4iXX0= */"
+module.exports = ".splash {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  z-index: 999;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background-color: #A599B5; }\n  .splash .animate {\n    -webkit-animation: shake 0.5s;\n            animation: shake 0.5s;\n    -webkit-animation-iteration-count: infinite;\n            animation-iteration-count: infinite; }\n  @-webkit-keyframes shake {\n  0% {\n    -webkit-transform: translate(1px, 1px) rotate(0deg);\n            transform: translate(1px, 1px) rotate(0deg); }\n  10% {\n    -webkit-transform: translate(-1px, -2px) rotate(-1deg);\n            transform: translate(-1px, -2px) rotate(-1deg); }\n  20% {\n    -webkit-transform: translate(-3px, 0px) rotate(1deg);\n            transform: translate(-3px, 0px) rotate(1deg); }\n  30% {\n    -webkit-transform: translate(3px, 2px) rotate(0deg);\n            transform: translate(3px, 2px) rotate(0deg); }\n  40% {\n    -webkit-transform: translate(1px, -1px) rotate(1deg);\n            transform: translate(1px, -1px) rotate(1deg); }\n  50% {\n    -webkit-transform: translate(-1px, 2px) rotate(-1deg);\n            transform: translate(-1px, 2px) rotate(-1deg); }\n  60% {\n    -webkit-transform: translate(-3px, 1px) rotate(0deg);\n            transform: translate(-3px, 1px) rotate(0deg); }\n  70% {\n    -webkit-transform: translate(3px, 1px) rotate(-1deg);\n            transform: translate(3px, 1px) rotate(-1deg); }\n  80% {\n    -webkit-transform: translate(-1px, -1px) rotate(1deg);\n            transform: translate(-1px, -1px) rotate(1deg); }\n  90% {\n    -webkit-transform: translate(1px, 2px) rotate(0deg);\n            transform: translate(1px, 2px) rotate(0deg); }\n  100% {\n    -webkit-transform: translate(1px, -2px) rotate(-1deg);\n            transform: translate(1px, -2px) rotate(-1deg); } }\n  @keyframes shake {\n  0% {\n    -webkit-transform: translate(1px, 1px) rotate(0deg);\n            transform: translate(1px, 1px) rotate(0deg); }\n  10% {\n    -webkit-transform: translate(-1px, -2px) rotate(-1deg);\n            transform: translate(-1px, -2px) rotate(-1deg); }\n  20% {\n    -webkit-transform: translate(-3px, 0px) rotate(1deg);\n            transform: translate(-3px, 0px) rotate(1deg); }\n  30% {\n    -webkit-transform: translate(3px, 2px) rotate(0deg);\n            transform: translate(3px, 2px) rotate(0deg); }\n  40% {\n    -webkit-transform: translate(1px, -1px) rotate(1deg);\n            transform: translate(1px, -1px) rotate(1deg); }\n  50% {\n    -webkit-transform: translate(-1px, 2px) rotate(-1deg);\n            transform: translate(-1px, 2px) rotate(-1deg); }\n  60% {\n    -webkit-transform: translate(-3px, 1px) rotate(0deg);\n            transform: translate(-3px, 1px) rotate(0deg); }\n  70% {\n    -webkit-transform: translate(3px, 1px) rotate(-1deg);\n            transform: translate(3px, 1px) rotate(-1deg); }\n  80% {\n    -webkit-transform: translate(-1px, -1px) rotate(1deg);\n            transform: translate(-1px, -1px) rotate(1deg); }\n  90% {\n    -webkit-transform: translate(1px, 2px) rotate(0deg);\n            transform: translate(1px, 2px) rotate(0deg); }\n  100% {\n    -webkit-transform: translate(1px, -2px) rotate(-1deg);\n            transform: translate(1px, -2px) rotate(-1deg); } }\n  .rotate {\n  -webkit-animation: rotation 8s infinite linear;\n          animation: rotation 8s infinite linear; }\n  @-webkit-keyframes rotation {\n  from {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  to {\n    -webkit-transform: rotate(359deg);\n            transform: rotate(359deg); } }\n  @keyframes rotation {\n  from {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  to {\n    -webkit-transform: rotate(359deg);\n            transform: rotate(359deg); } }\n  .rotating-landscape {\n  width: 100vw;\n  height: 100vw; }\n  .rotating {\n  position: absolute;\n  display: flex;\n  align-items: center;\n  justify-content: center; }\n  .spinner-portrait {\n  width: 100vh;\n  height: 100vh; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvRTpcXERlc2Nhcmdhc1xcbWFzdGVyMTExMVxcbWFzdGVyMTExMS9zcmNcXGFwcFxcYXBwLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLFdBQVc7RUFDWCxZQUFZO0VBQ1osWUFBWTtFQUNaLGFBQWE7RUFDYixtQkFBbUI7RUFDbkIsdUJBQXVCO0VBRXZCLHlCQUF5QixFQUFBO0VBVDNCO0lBWUksNkJBQXFCO1lBQXJCLHFCQUFxQjtJQUNyQiwyQ0FBbUM7WUFBbkMsbUNBQW1DLEVBQUE7RUFHckM7RUFDRjtJQUFLLG1EQUEyQztZQUEzQywyQ0FBMkMsRUFBQTtFQUNoRDtJQUFNLHNEQUE4QztZQUE5Qyw4Q0FBOEMsRUFBQTtFQUNwRDtJQUFNLG9EQUE0QztZQUE1Qyw0Q0FBNEMsRUFBQTtFQUNsRDtJQUFNLG1EQUEyQztZQUEzQywyQ0FBMkMsRUFBQTtFQUNqRDtJQUFNLG9EQUE0QztZQUE1Qyw0Q0FBNEMsRUFBQTtFQUNsRDtJQUFNLHFEQUE2QztZQUE3Qyw2Q0FBNkMsRUFBQTtFQUNuRDtJQUFNLG9EQUE0QztZQUE1Qyw0Q0FBNEMsRUFBQTtFQUNsRDtJQUFNLG9EQUE0QztZQUE1Qyw0Q0FBNEMsRUFBQTtFQUNsRDtJQUFNLHFEQUE2QztZQUE3Qyw2Q0FBNkMsRUFBQTtFQUNuRDtJQUFNLG1EQUEyQztZQUEzQywyQ0FBMkMsRUFBQTtFQUNqRDtJQUFPLHFEQUE2QztZQUE3Qyw2Q0FBNkMsRUFBQSxFQUFBO0VBWGxEO0VBQ0Y7SUFBSyxtREFBMkM7WUFBM0MsMkNBQTJDLEVBQUE7RUFDaEQ7SUFBTSxzREFBOEM7WUFBOUMsOENBQThDLEVBQUE7RUFDcEQ7SUFBTSxvREFBNEM7WUFBNUMsNENBQTRDLEVBQUE7RUFDbEQ7SUFBTSxtREFBMkM7WUFBM0MsMkNBQTJDLEVBQUE7RUFDakQ7SUFBTSxvREFBNEM7WUFBNUMsNENBQTRDLEVBQUE7RUFDbEQ7SUFBTSxxREFBNkM7WUFBN0MsNkNBQTZDLEVBQUE7RUFDbkQ7SUFBTSxvREFBNEM7WUFBNUMsNENBQTRDLEVBQUE7RUFDbEQ7SUFBTSxvREFBNEM7WUFBNUMsNENBQTRDLEVBQUE7RUFDbEQ7SUFBTSxxREFBNkM7WUFBN0MsNkNBQTZDLEVBQUE7RUFDbkQ7SUFBTSxtREFBMkM7WUFBM0MsMkNBQTJDLEVBQUE7RUFDakQ7SUFBTyxxREFBNkM7WUFBN0MsNkNBQTZDLEVBQUEsRUFBQTtFQUlwRDtFQUNFLDhDQUFzQztVQUF0QyxzQ0FBc0MsRUFBQTtFQUd4QztFQUNFO0lBQ0UsK0JBQXVCO1lBQXZCLHVCQUF1QixFQUFBO0VBRXpCO0lBQ0UsaUNBQXlCO1lBQXpCLHlCQUF5QixFQUFBLEVBQUE7RUFMN0I7RUFDRTtJQUNFLCtCQUF1QjtZQUF2Qix1QkFBdUIsRUFBQTtFQUV6QjtJQUNFLGlDQUF5QjtZQUF6Qix5QkFBeUIsRUFBQSxFQUFBO0VBSTdCO0VBQ0UsWUFBWTtFQUNaLGFBQWEsRUFBQTtFQUdmO0VBQ0Usa0JBQWtCO0VBQ2xCLGFBQWE7RUFDYixtQkFBbUI7RUFDbkIsdUJBQXVCLEVBQUE7RUFHekI7RUFDRSxZQUFZO0VBQ1osYUFBYSxFQUFBIiwiZmlsZSI6InNyYy9hcHAvYXBwLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXHJcblxyXG4uc3BsYXNoIHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgaGVpZ2h0OiAxMDAlO1xyXG4gIHotaW5kZXg6IDk5OTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgLy8gYmFja2dyb3VuZDogI2ZmNzQwMDtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjQTU5OUI1O1xyXG5cclxuICAuYW5pbWF0ZSB7XHJcbiAgICBhbmltYXRpb246IHNoYWtlIDAuNXM7XHJcbiAgICBhbmltYXRpb24taXRlcmF0aW9uLWNvdW50OiBpbmZpbml0ZTtcclxuICB9XHJcbiAgXHJcbiAgQGtleWZyYW1lcyBzaGFrZSB7XHJcbjAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoMXB4LCAxcHgpIHJvdGF0ZSgwZGVnKTsgfVxyXG4xMCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgtMXB4LCAtMnB4KSByb3RhdGUoLTFkZWcpOyB9XHJcbjIwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKC0zcHgsIDBweCkgcm90YXRlKDFkZWcpOyB9XHJcbjMwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKDNweCwgMnB4KSByb3RhdGUoMGRlZyk7IH1cclxuNDAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoMXB4LCAtMXB4KSByb3RhdGUoMWRlZyk7IH1cclxuNTAlIHsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTFweCwgMnB4KSByb3RhdGUoLTFkZWcpOyB9XHJcbjYwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKC0zcHgsIDFweCkgcm90YXRlKDBkZWcpOyB9XHJcbjcwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKDNweCwgMXB4KSByb3RhdGUoLTFkZWcpOyB9XHJcbjgwJSB7IHRyYW5zZm9ybTogdHJhbnNsYXRlKC0xcHgsIC0xcHgpIHJvdGF0ZSgxZGVnKTsgfVxyXG45MCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgxcHgsIDJweCkgcm90YXRlKDBkZWcpOyB9XHJcbjEwMCUgeyB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgxcHgsIC0ycHgpIHJvdGF0ZSgtMWRlZyk7IH1cclxuICB9XHJcbn1cclxuXHJcbi5yb3RhdGUge1xyXG4gIGFuaW1hdGlvbjogcm90YXRpb24gOHMgaW5maW5pdGUgbGluZWFyO1xyXG59XHJcblxyXG5Aa2V5ZnJhbWVzIHJvdGF0aW9uIHtcclxuICBmcm9tIHtcclxuICAgIHRyYW5zZm9ybTogcm90YXRlKDBkZWcpO1xyXG4gIH1cclxuICB0byB7XHJcbiAgICB0cmFuc2Zvcm06IHJvdGF0ZSgzNTlkZWcpO1xyXG4gIH1cclxufVxyXG5cclxuLnJvdGF0aW5nLWxhbmRzY2FwZSB7XHJcbiAgd2lkdGg6IDEwMHZ3O1xyXG4gIGhlaWdodDogMTAwdnc7XHJcbn1cclxuXHJcbi5yb3RhdGluZyB7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxufVxyXG5cclxuLnNwaW5uZXItcG9ydHJhaXQge1xyXG4gIHdpZHRoOiAxMDB2aDtcclxuICBoZWlnaHQ6IDEwMHZoO1xyXG59XHJcbiJdfQ== */"
 
 /***/ }),
 
@@ -1414,24 +1432,29 @@ var AppComponent = /** @class */ (function () {
             _this.statusBar.styleDefault();
             _this.splashScreen.hide();
             Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["timer"])(4000).subscribe(function () { _this.showSplash = false; });
-        });
-        this.fcm.getToken().then(function (token) {
-            alert(token);
-        });
-        this.fcm.onNotification().subscribe(function (data) {
-            // console.log(data);
-            if (data.wasTapped) {
-                alert(data);
-                // console.log('Received in background');
-                //this.router.navigateByUrl('/list-confirmar-cliente-mesa');
-                _this.publicRouter.navigate(['/log-in']);
-            }
-            else {
-                // console.log('Received in foreground');
-                //let objetoAuxUno = JSON.stringify(data.title);
-                var objetoAuxDos = JSON.stringify(data.body);
-                _this.presentToast(objetoAuxDos);
-            }
+            _this.fcm.getToken().then(function (token) {
+                console.log(token);
+            });
+            _this.fcm.onTokenRefresh().subscribe(function (token) {
+                console.log(token);
+            });
+            _this.fcm.onNotification().subscribe(function (data) {
+                // console.log(data);
+                if (data.wasTapped) {
+                    alert(data);
+                    console.log('Received in background');
+                    //this.router.navigateByUrl('/list-confirmar-cliente-mesa');
+                    //this.publicRouter.navigate(['/log-in']);
+                }
+                else {
+                    console.log('Received in foreground');
+                    //let objetoAuxUno = JSON.stringify(data.title);
+                    var objetoAuxDos = JSON.stringify(data.body);
+                    _this.presentToast(objetoAuxDos);
+                }
+            });
+            // this.fcm.subscribeToTopic('wololo');
+            _this.fcm.subscribeToTopic('testeo');
         });
     };
     AppComponent.prototype.presentToast = function (mensaje) {
@@ -1527,13 +1550,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
 /* harmony import */ var ng2_charts__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ng2-charts */ "./node_modules/ng2-charts/fesm5/ng2-charts.js");
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _angular_fire__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/fire */ "./node_modules/@angular/fire/index.js");
-/* harmony import */ var _angular_fire_auth__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/fire/auth */ "./node_modules/@angular/fire/auth/index.js");
-/* harmony import */ var _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/fire/firestore */ "./node_modules/@angular/fire/firestore/index.js");
-/* harmony import */ var _angular_fire_storage__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @angular/fire/storage */ "./node_modules/@angular/fire/storage/index.js");
-/* harmony import */ var _ionic_native_email_composer_ngx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @ionic-native/email-composer/ngx */ "./node_modules/@ionic-native/email-composer/ngx/index.js");
-/* harmony import */ var _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @ionic-native/fcm/ngx */ "./node_modules/@ionic-native/fcm/ngx/index.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _angular_fire__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/fire */ "./node_modules/@angular/fire/index.js");
+/* harmony import */ var _app_paginas_consulta_mozo_consulta_mozo_module__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../app/paginas/consulta-mozo/consulta-mozo.module */ "./src/app/paginas/consulta-mozo/consulta-mozo.module.ts");
+/* harmony import */ var _angular_fire_auth__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @angular/fire/auth */ "./node_modules/@angular/fire/auth/index.js");
+/* harmony import */ var _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @angular/fire/firestore */ "./node_modules/@angular/fire/firestore/index.js");
+/* harmony import */ var _angular_fire_storage__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/fire/storage */ "./node_modules/@angular/fire/storage/index.js");
+/* harmony import */ var _ionic_native_email_composer_ngx__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @ionic-native/email-composer/ngx */ "./node_modules/@ionic-native/email-composer/ngx/index.js");
+/* harmony import */ var _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @ionic-native/fcm/ngx */ "./node_modules/@ionic-native/fcm/ngx/index.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+
+
+
 
 
 
@@ -1565,21 +1594,24 @@ var AppModule = /** @class */ (function () {
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"],
                 _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(),
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_11__["AppRoutingModule"],
-                _angular_fire__WEBPACK_IMPORTED_MODULE_14__["AngularFireModule"].initializeApp(_environments_environment__WEBPACK_IMPORTED_MODULE_13__["firebaseConfig"]),
-                _angular_fire_auth__WEBPACK_IMPORTED_MODULE_15__["AngularFireAuthModule"],
-                _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_16__["AngularFirestoreModule"],
-                _angular_fire_storage__WEBPACK_IMPORTED_MODULE_17__["AngularFireStorageModule"]
+                _angular_fire__WEBPACK_IMPORTED_MODULE_15__["AngularFireModule"].initializeApp(_environments_environment__WEBPACK_IMPORTED_MODULE_14__["firebaseConfig"]),
+                _angular_fire_auth__WEBPACK_IMPORTED_MODULE_17__["AngularFireAuthModule"],
+                _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_18__["AngularFirestoreModule"],
+                _app_paginas_consulta_mozo_consulta_mozo_module__WEBPACK_IMPORTED_MODULE_16__["ConsultaMozoPageModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_22__["HttpClientModule"],
+                _angular_fire_storage__WEBPACK_IMPORTED_MODULE_19__["AngularFireStorageModule"]
             ],
             providers: [
                 _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"],
                 _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"],
                 _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_7__["BarcodeScanner"],
                 _ionic_native_vibration_ngx__WEBPACK_IMPORTED_MODULE_9__["Vibration"],
+                _angular_common__WEBPACK_IMPORTED_MODULE_13__["DatePipe"],
                 { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"] },
-                { provide: _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_16__["FirestoreSettingsToken"], useValue: {} },
+                { provide: _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_18__["FirestoreSettingsToken"], useValue: {} },
                 _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_8__["Camera"],
-                _ionic_native_email_composer_ngx__WEBPACK_IMPORTED_MODULE_18__["EmailComposer"],
-                _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_19__["FCM"],
+                _ionic_native_email_composer_ngx__WEBPACK_IMPORTED_MODULE_20__["EmailComposer"],
+                _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_21__["FCM"],
                 ng2_charts__WEBPACK_IMPORTED_MODULE_12__["ChartsModule"]
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_10__["AppComponent"]]
@@ -1673,6 +1705,121 @@ var SepararGuard = /** @class */ (function () {
             _servicios_auth_service__WEBPACK_IMPORTED_MODULE_6__["AuthService"]])
     ], SepararGuard);
     return SepararGuard;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/paginas/consulta-mozo/consulta-mozo.module.ts":
+/*!***************************************************************!*\
+  !*** ./src/app/paginas/consulta-mozo/consulta-mozo.module.ts ***!
+  \***************************************************************/
+/*! exports provided: ConsultaMozoPageModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConsultaMozoPageModule", function() { return ConsultaMozoPageModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _consulta_mozo_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./consulta-mozo.page */ "./src/app/paginas/consulta-mozo/consulta-mozo.page.ts");
+
+
+
+
+
+
+
+var routes = [
+    {
+        path: '',
+        component: _consulta_mozo_page__WEBPACK_IMPORTED_MODULE_6__["ConsultaMozoPage"]
+    }
+];
+var ConsultaMozoPageModule = /** @class */ (function () {
+    function ConsultaMozoPageModule() {
+    }
+    ConsultaMozoPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+            imports: [
+                _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
+                _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["IonicModule"],
+                _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"].forChild(routes)
+            ],
+            declarations: [_consulta_mozo_page__WEBPACK_IMPORTED_MODULE_6__["ConsultaMozoPage"]]
+        })
+    ], ConsultaMozoPageModule);
+    return ConsultaMozoPageModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/paginas/consulta-mozo/consulta-mozo.page.html":
+/*!***************************************************************!*\
+  !*** ./src/app/paginas/consulta-mozo/consulta-mozo.page.html ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n\n\n<ion-item>\n  <ion-col>\n    <ion-row>\n      <ion-textarea placeholder=\"Ingrese su consulta aquí...\" [(ngModel)]=\"this.consulta\" ></ion-textarea>\n    </ion-row>\n    <ion-row style=\"display: flex;justify-content: flex-end;\">\n      \n      <ion-button expand=\"block\" color=\"danger\" (click)=\"cancelar()\" > <ion-icon name=\"close\"></ion-icon></ion-button>\n      <ion-button expand=\"block\" color=\"success\" (click)=\"enviar()\" ><ion-icon name=\"send\"></ion-icon></ion-button>\n    </ion-row>\n  </ion-col>\n</ion-item>"
+
+/***/ }),
+
+/***/ "./src/app/paginas/consulta-mozo/consulta-mozo.page.scss":
+/*!***************************************************************!*\
+  !*** ./src/app/paginas/consulta-mozo/consulta-mozo.page.scss ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2luYXMvY29uc3VsdGEtbW96by9jb25zdWx0YS1tb3pvLnBhZ2Uuc2NzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/paginas/consulta-mozo/consulta-mozo.page.ts":
+/*!*************************************************************!*\
+  !*** ./src/app/paginas/consulta-mozo/consulta-mozo.page.ts ***!
+  \*************************************************************/
+/*! exports provided: ConsultaMozoPage */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConsultaMozoPage", function() { return ConsultaMozoPage; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+
+
+
+var ConsultaMozoPage = /** @class */ (function () {
+    function ConsultaMozoPage(modalControler) {
+        this.modalControler = modalControler;
+    }
+    ConsultaMozoPage.prototype.ngOnInit = function () { };
+    ConsultaMozoPage.prototype.cancelar = function () {
+        this.modalControler.dismiss();
+    };
+    ConsultaMozoPage.prototype.enviar = function () {
+        this.modalControler.dismiss(this.consulta);
+    };
+    ConsultaMozoPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-consulta-mozo',
+            template: __webpack_require__(/*! ./consulta-mozo.page.html */ "./src/app/paginas/consulta-mozo/consulta-mozo.page.html"),
+            styles: [__webpack_require__(/*! ./consulta-mozo.page.scss */ "./src/app/paginas/consulta-mozo/consulta-mozo.page.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["PopoverController"]])
+    ], ConsultaMozoPage);
+    return ConsultaMozoPage;
 }());
 
 
@@ -1825,6 +1972,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _angular_fire_storage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/fire/storage */ "./node_modules/@angular/fire/storage/index.js");
 /* harmony import */ var _alert_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./alert.service */ "./src/app/servicios/alert.service.ts");
+/* harmony import */ var _fcm_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./fcm.service */ "./src/app/servicios/fcm.service.ts");
+
 
 
 
@@ -1834,12 +1983,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var AuthService = /** @class */ (function () {
-    function AuthService(AFauth, firestore, fireStorage, router, alert) {
+    function AuthService(AFauth, firestore, fireStorage, router, alert, fcmService) {
         this.AFauth = AFauth;
         this.firestore = firestore;
         this.fireStorage = fireStorage;
         this.router = router;
         this.alert = alert;
+        this.fcmService = fcmService;
         this.usuario = false;
         this.usuarios = [];
         this.clientes = [];
@@ -1869,6 +2019,7 @@ var AuthService = /** @class */ (function () {
                     usrs.forEach(function (element) {
                         var obj_element = element.data();
                         obj_element.id = element.id;
+                        _this.fcmService.DesuscribirDeTodas();
                         if (obj_element.activo && obj_element.uid == uid) {
                             switch (obj_element.perfil) {
                                 case 'bar':
@@ -1878,6 +2029,7 @@ var AuthService = /** @class */ (function () {
                                     _this.router.navigate(["home-cocina"]);
                                     break;
                                 case 'cocina':
+                                    _this.fcmService.SuscribirANotificacion("notificacionCocina");
                                     _this.usuario = obj_element;
                                     localStorage.setItem('usuario', JSON.stringify(_this.usuario));
                                     resolve(_this.usuario);
@@ -1885,11 +2037,13 @@ var AuthService = /** @class */ (function () {
                                     break;
                                 case 'supervisor':
                                     _this.usuario = obj_element;
+                                    _this.fcmService.SuscribirANotificacion('notificacionSupervisor');
                                     localStorage.setItem('usuario', JSON.stringify(_this.usuario));
                                     resolve(_this.usuario);
                                     _this.router.navigate(["home-supervisor"]);
                                     break;
                                 case 'mozo':
+                                    _this.fcmService.SuscribirANotificacion('mozo');
                                     _this.usuario = obj_element;
                                     localStorage.setItem('usuario', JSON.stringify(_this.usuario));
                                     resolve(_this.usuario);
@@ -1897,6 +2051,7 @@ var AuthService = /** @class */ (function () {
                                     break;
                                 case 'metre':
                                     _this.usuario = obj_element;
+                                    _this.fcmService.SuscribirANotificacion('notificacionListaEspera');
                                     localStorage.setItem('usuario', JSON.stringify(_this.usuario));
                                     resolve(_this.usuario);
                                     _this.router.navigate(["home-metre"]);
@@ -1942,6 +2097,7 @@ var AuthService = /** @class */ (function () {
         });
     };
     AuthService.prototype.LogOut = function () {
+        this.fcmService.DesuscribirDeTodas();
         localStorage.removeItem('usuario');
         this.AFauth.auth.signOut();
     };
@@ -2054,9 +2210,78 @@ var AuthService = /** @class */ (function () {
             _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_3__["AngularFirestore"],
             _angular_fire_storage__WEBPACK_IMPORTED_MODULE_6__["AngularFireStorage"],
             _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"],
-            _alert_service__WEBPACK_IMPORTED_MODULE_7__["AlertService"]])
+            _alert_service__WEBPACK_IMPORTED_MODULE_7__["AlertService"],
+            _fcm_service__WEBPACK_IMPORTED_MODULE_8__["FcmService"]])
     ], AuthService);
     return AuthService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/servicios/fcm.service.ts":
+/*!******************************************!*\
+  !*** ./src/app/servicios/fcm.service.ts ***!
+  \******************************************/
+/*! exports provided: FcmService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FcmService", function() { return FcmService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic-native/fcm/ngx */ "./node_modules/@ionic-native/fcm/ngx/index.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+
+
+
+
+var FcmService = /** @class */ (function () {
+    function FcmService(fcm, http) {
+        this.fcm = fcm;
+        this.http = http;
+        this.headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
+            'Content-Type': 'application/json',
+            'Authorization': 'key=AAAA0TsmZ2E:APA91bGT3AsRQz1SWKT_lIaUxFeweYs-KStunNKIeJFWjg3l-KzU9GldGdwGvy_ZfF1y1ig9774bk5lvm1S6aCrOq4SLLh0H3CmOuS354CtX55cBIH0EUI9gvfwbAqtF2GXmulyamUvo'
+        });
+    }
+    FcmService.prototype.SuscribirANotificacion = function (notificacion) {
+        this.fcm.subscribeToTopic(notificacion);
+    };
+    FcmService.prototype.DesuscribirANotificacion = function (notificacion) {
+        this.fcm.unsubscribeFromTopic(notificacion);
+    };
+    FcmService.prototype.DesuscribirDeTodas = function () {
+        this.fcm.unsubscribeFromTopic('notificacionMozo');
+        this.fcm.unsubscribeFromTopic('notificacionListaEspera');
+    };
+    FcmService.prototype.enviarMensaje = function (titulo, texto, topic) {
+        var body = {
+            "notification": {
+                "title": titulo,
+                "body": texto,
+                "sound": "default",
+                "click_action": "FCM_PLUGIN_ACTIVITY",
+                "icon": "fcm_push_icon"
+            },
+            //Un solo ID, topico o grupo
+            //"to": to,
+            // Multiples IDs
+            "to": "/topics/" + topic,
+            "priority": "high",
+            "restricted_package_name": ""
+        };
+        return this.http.post("https://fcm.googleapis.com/fcm/send", body, { headers: this.headers }).subscribe();
+    };
+    FcmService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_native_fcm_ngx__WEBPACK_IMPORTED_MODULE_2__["FCM"], _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]])
+    ], FcmService);
+    return FcmService;
 }());
 
 
@@ -2134,7 +2359,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! E:\Descargas\master5\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! E:\Descargas\master1111\master1111\src\main.ts */"./src/main.ts");
 
 
 /***/ })

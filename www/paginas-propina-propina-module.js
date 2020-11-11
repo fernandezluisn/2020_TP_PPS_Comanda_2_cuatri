@@ -58,7 +58,7 @@ var PropinaPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title>Propina</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n  <h2>¿Cuál es su grado de satisfacción con respecto a la atención del mozo?</h2>\r\n\r\n  <ion-button  color=\"dark\" size=\"small\" (click)=\"escanear()\">Cargar</ion-button>\r\n  <h1 *ngIf=\"satisfaccion\">Usted piensa que la atención ha sido {{satisfaccion}}</h1>\r\n\r\n  <ion-button  color=\"dark\" size=\"small\" (click)=\"limpiar()\">Limpiar</ion-button>\r\n\r\n  <ion-button  (click)=\"subirPropina()\">Confirmar Propina</ion-button>\r\n</ion-content>\r\n"
+module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title>Propina</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n  <h2>¿Cuál es su grado de satisfacción con respecto a la atención del mozo?</h2>\r\n\r\n  <ion-button  color=\"dark\" size=\"small\" (click)=\"escanear()\">Cargar</ion-button>\r\n  <h1 *ngIf=\"satisfaccion\">Usted piensa que la atención ha sido {{satisfaccion}}</h1>\r\n\r\n  <ion-button  color=\"dark\" size=\"small\" (click)=\"limpiar()\">Limpiar</ion-button>\r\n\r\n  <ion-button  (click)=\"subirPropina()\">Confirmar Propina</ion-button>\r\n\r\n  <ion-button class=\"apagar\" color=\"dark\" (click)=\"salir()\">\r\n    <ion-icon name=\"power\"></ion-icon>\r\n  </ion-button>\r\n</ion-content>\r\n"
 
 /***/ }),
 
@@ -89,7 +89,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic-native/barcode-scanner/ngx */ "./node_modules/@ionic-native/barcode-scanner/ngx/index.js");
 /* harmony import */ var _ionic_native_vibration_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/vibration/ngx */ "./node_modules/@ionic-native/vibration/ngx/index.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
-/* harmony import */ var src_app_servicios_mesa_cliente_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/servicios/mesa-cliente.service */ "./src/app/servicios/mesa-cliente.service.ts");
+/* harmony import */ var src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/servicios/auth.service */ "./src/app/servicios/auth.service.ts");
+/* harmony import */ var src_app_servicios_mesa_cliente_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/servicios/mesa-cliente.service */ "./src/app/servicios/mesa-cliente.service.ts");
+
 
 
 
@@ -98,7 +100,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var PropinaPage = /** @class */ (function () {
-    function PropinaPage(alertController, router, bda, loadingCtrl, barcodeScanner, vibra, tomarId) {
+    function PropinaPage(alertController, router, bda, loadingCtrl, barcodeScanner, vibra, tomarId, auth) {
         var _this = this;
         this.alertController = alertController;
         this.router = router;
@@ -107,6 +109,7 @@ var PropinaPage = /** @class */ (function () {
         this.barcodeScanner = barcodeScanner;
         this.vibra = vibra;
         this.tomarId = tomarId;
+        this.auth = auth;
         this.satisfaccion = null;
         this.idMesaCliente = this.tomarId.snapshot.paramMap.get('idMesaCliente');
         this.bda.devolverListadoMesas().subscribe(function (lista) {
@@ -212,15 +215,19 @@ var PropinaPage = /** @class */ (function () {
             this.alertar(e);
         }
     };
+    PropinaPage.prototype.salir = function () {
+        this.auth.LogOut();
+        this.router.navigate(['log-in']);
+    };
     PropinaPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-propina',
             template: __webpack_require__(/*! ./propina.page.html */ "./src/app/paginas/propina/propina.page.html"),
             styles: [__webpack_require__(/*! ./propina.page.scss */ "./src/app/paginas/propina/propina.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_5__["AlertController"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], src_app_servicios_mesa_cliente_service__WEBPACK_IMPORTED_MODULE_6__["MesaClienteService"],
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_5__["AlertController"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], src_app_servicios_mesa_cliente_service__WEBPACK_IMPORTED_MODULE_7__["MesaClienteService"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["LoadingController"], _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_3__["BarcodeScanner"], _ionic_native_vibration_ngx__WEBPACK_IMPORTED_MODULE_4__["Vibration"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_6__["AuthService"]])
     ], PropinaPage);
     return PropinaPage;
 }());
