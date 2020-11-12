@@ -42,13 +42,11 @@ const routes: Routes = [
   { path: 'respuesta-reservas', loadChildren: './paginas/respuesta-reservas/respuesta-reservas.module#RespuestaReservasPageModule' },
   { path: 'encuesta-cliente', loadChildren: './paginas/encuesta-cliente/encuesta-cliente.module#EncuestaClientePageModule' },
   { path: 'consulta-mozo', loadChildren: './paginas/consulta-mozo/consulta-mozo.module#ConsultaMozoPageModule' },
+  { path: 'hacer-pedido', loadChildren: './paginas/hacer-pedido/hacer-pedido.module#HacerPedidoPageModule' }
 
 
-<<<<<<< HEAD
 
  
-=======
->>>>>>> e14bc3fe9689632cb826636ee19ed280d5d58692
 ];
 @NgModule({
   imports: [

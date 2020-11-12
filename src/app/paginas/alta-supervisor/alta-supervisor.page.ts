@@ -6,8 +6,9 @@ import { ErrorService } from 'src/app/servicios/error.service';
 import { Empleado } from 'src/app/interfaces/usuario';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { Router } from '@angular/router';
-import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { BarcodeScannerOptions, BarcodeScanResult, BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { AlertService } from 'src/app/servicios/alert.service';
+
 
 @Component({
   selector: 'app-alta-supervisor',
@@ -21,7 +22,7 @@ export class AltaSupervisorPage implements OnInit {
   public emailmal: boolean;
   private imageData: string;
   public faltaFoto: boolean;
-
+  public dataDNI: string[];
   constructor(private camera: Camera, private fotosService: FirestorageService,
     private errorHand: ErrorService, private authService: AuthService,
     private router: Router, private barcodeScanner: BarcodeScanner, 
@@ -43,6 +44,15 @@ export class AltaSupervisorPage implements OnInit {
   ngOnInit() {
   }
 
+  public tomarDatosDNI() {
+    const options: BarcodeScannerOptions = { prompt: 'Escanee el DNI', formats: 'PDF_417' };
+    this.barcodeScanner.scan(options).then((resultado: BarcodeScanResult) => {
+      this.dataDNI = (resultado.text).split('@');
+      this.empleado.dni = this.dataDNI[4].trim();
+      this.empleado.apellido = this.dataDNI[1];
+      this.empleado.nombre = this.dataDNI[2];
+    });
+  }
   public Ingresar() {
     this.faltan = false;
     this.emailmal = false;
@@ -97,24 +107,6 @@ export class AltaSupervisorPage implements OnInit {
     });
   }
   
-  public LeerQR() {
-    this.barcodeScanner.scan().then(barcodeData => {
-      // alert(barcodeData.text);
-      try {
-        const datos = barcodeData.text.split('@');
-        this.empleado.cuil = datos[0];
-        this.empleado.apellido = datos[1];
-        this.empleado.nombre = datos[2];
-        this.empleado.dni = datos[4];
-      } catch (err) {
-        this.errorHand.MostrarErrorSoloLower('Error: ' + err);
-      }
-     }).catch(err => {
-        this.errorHand.MostrarErrorSoloLower('Error: ' + err);
-        console.log('Error', err);
-     });
-  }
-
   salir(){
     this.authService.LogOut();
     this.router.navigate(['log-in']);

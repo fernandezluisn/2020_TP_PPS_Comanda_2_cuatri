@@ -37,6 +37,16 @@ export class MesasService {
     }));
   }
 
+  getMesaPorID(idMesa: string) {
+    return this.db.collection('mesas').ref.where('id', '==', idMesa).get()
+    .then(async pedidos => {
+       return await pedidos.docs.map(documento => {
+        const data = documento.data() as Mesa;
+        data.id = documento.id;
+        return data;
+      });
+    });
+  }
 
   createMesa(mesa:Mesa): Promise<DocumentReference> {
     return this.db.collection('mesas').add({...mesa});

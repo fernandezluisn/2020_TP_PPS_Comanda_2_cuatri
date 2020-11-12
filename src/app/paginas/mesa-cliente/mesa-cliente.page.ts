@@ -1,23 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
-import { Platform } from '@ionic/angular';
-=======
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { Platform,AlertController, PopoverController } from '@ionic/angular';
->>>>>>> e14bc3fe9689632cb826636ee19ed280d5d58692
-
 import { AlertService } from 'src/app/servicios/alert.service';
 import { SpinerService } from 'src/app/servicios/spiner.service';
-<<<<<<< HEAD
-=======
 import { ModalController } from '@ionic/angular';
 import { ConsultaMozoPage } from '../consulta-mozo/consulta-mozo.page';
 import { SpinnerService } from 'src/app/servicios/spinner.service';
 import { ConsultaService } from 'src/app/servicios/consulta.service';
 import { Consulta } from 'src/app/interfaces/Consulta';
 import { FcmService } from 'src/app/servicios/fcm.service';
->>>>>>> e14bc3fe9689632cb826636ee19ed280d5d58692
+
 
 @Component({
   selector: 'app-mesa-cliente',
@@ -26,9 +19,7 @@ import { FcmService } from 'src/app/servicios/fcm.service';
 })
 export class MesaClientePage implements OnInit {
 
-<<<<<<< HEAD
-  constructor(private platform: Platform, private route:Router, private auth:AuthService, private alert:AlertService) { }
-=======
+
   public usuario: any;
   constructor(private platform: Platform,private route:Router,public alert: AlertService, private auth: AuthService,
     public modalController: ModalController,   private popoverCtrl: PopoverController, private spinnerService: SpinnerService,
@@ -36,22 +27,19 @@ export class MesaClientePage implements OnInit {
 
   this.usuario = JSON.parse(localStorage.getItem('usuario'));
   }
->>>>>>> e14bc3fe9689632cb826636ee19ed280d5d58692
+
 
   ngOnInit() {
     //this.platform.isLandscape();
   }
 
-<<<<<<< HEAD
-=======
-  salir(){
-    this.auth.LogOut();
-    this.route.navigate(['log-in']);
-  }
->>>>>>> e14bc3fe9689632cb826636ee19ed280d5d58692
 realizarPedido()
 {
-  this.alert.mensaje('','Realizar pedido')
+  let audio = new Audio();
+  audio.src = '../assets/click.m4a';
+  audio.load();
+  audio.play();
+  this.route.navigate(['hacer-pedido'])
 }
   escanearQr()
   {
@@ -96,7 +84,6 @@ realizarPedido()
   pedirCuenta()
   {
     this.alert.mensaje('','pedir cuenta')
-<<<<<<< HEAD
   }
 
   propina(){
@@ -108,8 +95,7 @@ realizarPedido()
   salir(){
     this.auth.LogOut();
     this.route.navigate(['log-in']);
-=======
->>>>>>> e14bc3fe9689632cb826636ee19ed280d5d58692
+
   }
 
 }
