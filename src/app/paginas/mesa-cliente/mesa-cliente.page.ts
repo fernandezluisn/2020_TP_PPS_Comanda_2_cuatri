@@ -11,7 +11,6 @@ import { ConsultaService } from 'src/app/servicios/consulta.service';
 import { Consulta } from 'src/app/interfaces/Consulta';
 import { FcmService } from 'src/app/servicios/fcm.service';
 
-
 @Component({
   selector: 'app-mesa-cliente',
   templateUrl: './mesa-cliente.page.html',
@@ -27,7 +26,6 @@ export class MesaClientePage implements OnInit {
 
   this.usuario = JSON.parse(localStorage.getItem('usuario'));
   }
-
 
   ngOnInit() {
     //this.platform.isLandscape();
@@ -97,5 +95,6 @@ realizarPedido()
     this.route.navigate(['log-in']);
 
   }
+
 
 }
