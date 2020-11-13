@@ -3,6 +3,7 @@ import { FirestorageService } from './../../servicios/firestorage.service';
 import { Component } from '@angular/core';
 import { EncuestasService } from 'src/app/servicios/encuestas.service';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-encuesta-cliente',
@@ -25,7 +26,7 @@ export class EncuestaClientePage {
   public usuario: any;
 
   constructor(private encuestasService: EncuestasService, private camera: Camera,
-    private firestorageService: FirestorageService, private alert: AlertService) {
+    private firestorageService: FirestorageService, private alert: AlertService,private route:Router,) {
     this.nivelSatisfaccion = 6;
     this.calidadComida = false;
     this.calidadBebida = false;
@@ -84,5 +85,7 @@ export class EncuestaClientePage {
     }).then(() => {
       this.alert.mensaje('', 'Encuesta cargada exitosamente!');
     }).catch(error => { this.alert.mensaje('ERROR', error); });
+
+    this.route.navigate(['mesa-cliente']);
   }
 }
