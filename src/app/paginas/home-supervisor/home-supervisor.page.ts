@@ -36,6 +36,11 @@ export class HomeSupervisorPage implements OnInit {
     this.route.navigate(['encuesta-supervisor'])
   }
 
+
+  EncuestaCliente(){
+    this.route.navigate(['graficos-cliente'])
+  }
+  
   chequearReservas(){
       
     let fech=this.datePipe.transform(this.fecha, 'dd/MM/yyyy');
@@ -65,6 +70,7 @@ export class HomeSupervisorPage implements OnInit {
       })
     })
     
+
   }
 
   salir(){

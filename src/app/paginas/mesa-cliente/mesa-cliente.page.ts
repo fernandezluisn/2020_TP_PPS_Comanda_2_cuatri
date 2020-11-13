@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/servicios/auth.service';
-<<<<<<< HEAD
-import { Platform, PopoverController } from '@ionic/angular';
 
-=======
 import { Platform,AlertController, PopoverController } from '@ionic/angular';
->>>>>>> 0632c5ebd6a753d9695393182276eb2c72edf55e
+
 import { AlertService } from 'src/app/servicios/alert.service';
 import { SpinerService } from 'src/app/servicios/spiner.service';
 import { ModalController } from '@ionic/angular';
@@ -23,10 +20,7 @@ import { FcmService } from 'src/app/servicios/fcm.service';
 })
 export class MesaClientePage implements OnInit {
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 0632c5ebd6a753d9695393182276eb2c72edf55e
   public usuario: any;
   constructor(private platform: Platform,private route:Router,public alert: AlertService, private auth: AuthService,
     public modalController: ModalController,   private popoverCtrl: PopoverController, private spinnerService: SpinnerService,
@@ -39,13 +33,6 @@ export class MesaClientePage implements OnInit {
     //this.platform.isLandscape();
   }
 
-<<<<<<< HEAD
-  salir(){
-    this.auth.LogOut();
-    this.route.navigate(['log-in']);
-  }
-=======
->>>>>>> 0632c5ebd6a753d9695393182276eb2c72edf55e
 realizarPedido()
 {
   let audio = new Audio();
@@ -97,8 +84,7 @@ realizarPedido()
   pedirCuenta()
   {
     this.alert.mensaje('','pedir cuenta')
-<<<<<<< HEAD
-=======
+
   }
 
   propina(){
@@ -111,7 +97,7 @@ realizarPedido()
     this.auth.LogOut();
     this.route.navigate(['log-in']);
 
->>>>>>> 0632c5ebd6a753d9695393182276eb2c72edf55e
+
   }
 
 
