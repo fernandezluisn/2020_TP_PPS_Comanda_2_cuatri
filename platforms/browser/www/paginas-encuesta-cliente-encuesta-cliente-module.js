@@ -89,6 +89,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var src_app_servicios_encuestas_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/servicios/encuestas.service */ "./src/app/servicios/encuestas.service.ts");
 /* harmony import */ var _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic-native/camera/ngx */ "./node_modules/@ionic-native/camera/ngx/index.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
 
 
 
@@ -96,11 +98,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var EncuestaClientePage = /** @class */ (function () {
-    function EncuestaClientePage(encuestasService, camera, firestorageService, alert) {
+    function EncuestaClientePage(encuestasService, camera, firestorageService, alert, route) {
         this.encuestasService = encuestasService;
         this.camera = camera;
         this.firestorageService = firestorageService;
         this.alert = alert;
+        this.route = route;
         this.nivelSatisfaccion = 6;
         this.calidadComida = false;
         this.calidadBebida = false;
@@ -163,6 +166,7 @@ var EncuestaClientePage = /** @class */ (function () {
         }).then(function () {
             _this.alert.mensaje('', 'Encuesta cargada exitosamente!');
         }).catch(function (error) { _this.alert.mensaje('ERROR', error); });
+        this.route.navigate(['mesa-cliente']);
     };
     EncuestaClientePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
@@ -171,7 +175,7 @@ var EncuestaClientePage = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./encuesta-cliente.page.scss */ "./src/app/paginas/encuesta-cliente/encuesta-cliente.page.scss")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_servicios_encuestas_service__WEBPACK_IMPORTED_MODULE_4__["EncuestasService"], _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_5__["Camera"],
-            _servicios_firestorage_service__WEBPACK_IMPORTED_MODULE_2__["FirestorageService"], src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_1__["AlertService"]])
+            _servicios_firestorage_service__WEBPACK_IMPORTED_MODULE_2__["FirestorageService"], src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_1__["AlertService"], _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"]])
     ], EncuestaClientePage);
     return EncuestaClientePage;
 }());

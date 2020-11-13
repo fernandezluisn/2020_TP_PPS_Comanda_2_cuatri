@@ -677,6 +677,22 @@ var MesasService = /** @class */ (function () {
             });
         }));
     };
+    MesasService.prototype.getMesaPorID = function (idMesa) {
+        var _this = this;
+        return this.db.collection('mesas').ref.where('id', '==', idMesa).get()
+            .then(function (pedidos) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, pedidos.docs.map(function (documento) {
+                            var data = documento.data();
+                            data.id = documento.id;
+                            return data;
+                        })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        }); });
+    };
     MesasService.prototype.createMesa = function (mesa) {
         return this.db.collection('mesas').add(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, mesa));
     };
@@ -701,6 +717,60 @@ var MesasService = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_2__["AngularFirestore"]])
     ], MesasService);
     return MesasService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/servicios/productos.service.ts":
+/*!************************************************!*\
+  !*** ./src/app/servicios/productos.service.ts ***!
+  \************************************************/
+/*! exports provided: ProductosService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductosService", function() { return ProductosService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/fire/firestore */ "./node_modules/@angular/fire/firestore/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+
+
+
+
+var ProductosService = /** @class */ (function () {
+    function ProductosService(db) {
+        this.db = db;
+        this.productos = this.db.collection("productos").snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (actions) {
+            return actions.map(function (a) {
+                var data = a.payload.doc.data();
+                var id = a.payload.doc.id;
+                return tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({ id: id }, data);
+            });
+        }));
+    }
+    ProductosService.prototype.createProducto = function (producto) {
+        return this.db.collection('productos').add(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, producto));
+    };
+    ProductosService.prototype.devolverListadoProductos = function () {
+        return this.productos;
+    };
+    ProductosService.prototype.actualizarProducto = function (prod) {
+        this.db.doc('productos' + '/' + prod.id).update(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, prod));
+    };
+    ProductosService.prototype.BorrarProducto = function (prod) {
+        this.db.doc('productos/' + prod.id).delete().then();
+    };
+    ProductosService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_2__["AngularFirestore"]])
+    ], ProductosService);
+    return ProductosService;
 }());
 
 
@@ -802,6 +872,59 @@ var ReservasService = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_1__["AngularFirestore"], _auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"]])
     ], ReservasService);
     return ReservasService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/servicios/spiner.service.ts":
+/*!*********************************************!*\
+  !*** ./src/app/servicios/spiner.service.ts ***!
+  \*********************************************/
+/*! exports provided: SpinerService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SpinerService", function() { return SpinerService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+
+
+
+var SpinerService = /** @class */ (function () {
+    function SpinerService(loadingCtrl) {
+        this.loadingCtrl = loadingCtrl;
+    }
+    SpinerService.prototype.GetAllPageSpinner = function (messageSpinner) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var loader;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.loadingCtrl.create({
+                            spinner: null,
+                            keyboardClose: true,
+                            message: '<div class="spinner-css"><img src="assets/loading.png"></div>' + messageSpinner + '',
+                            showBackdrop: false,
+                            duration: 30000,
+                            cssClass: 'cajaSpinner'
+                        })];
+                    case 1:
+                        loader = _a.sent();
+                        return [2 /*return*/, loader];
+                }
+            });
+        });
+    };
+    SpinerService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"]])
+    ], SpinerService);
+    return SpinerService;
 }());
 
 

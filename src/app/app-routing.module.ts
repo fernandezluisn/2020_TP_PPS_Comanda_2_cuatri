@@ -43,7 +43,7 @@ const routes: Routes = [
   { path: 'encuesta-cliente', loadChildren: './paginas/encuesta-cliente/encuesta-cliente.module#EncuestaClientePageModule' },
   { path: 'consulta-mozo', loadChildren: './paginas/consulta-mozo/consulta-mozo.module#ConsultaMozoPageModule' },
   { path: 'hacer-pedido', loadChildren: './paginas/hacer-pedido/hacer-pedido.module#HacerPedidoPageModule' },
-  { path: 'graficos-cliente', loadChildren: './paginas/graficos-clientes/graficos-cliente.module#GraficosClientesPageModule' },
+ // { path: 'graficos-cliente', loadChildren: './paginas/graficos-clientes/graficos-cliente.module#GraficosClientesPageModule' },
 ];
 @NgModule({
   imports: [

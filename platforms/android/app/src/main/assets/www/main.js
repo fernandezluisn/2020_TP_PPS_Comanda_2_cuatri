@@ -930,7 +930,7 @@ var routes = [
     { path: 'respuesta-reservas', loadChildren: './paginas/respuesta-reservas/respuesta-reservas.module#RespuestaReservasPageModule' },
     { path: 'encuesta-cliente', loadChildren: './paginas/encuesta-cliente/encuesta-cliente.module#EncuestaClientePageModule' },
     { path: 'consulta-mozo', loadChildren: './paginas/consulta-mozo/consulta-mozo.module#ConsultaMozoPageModule' },
-    { path: 'hacer-pedido', loadChildren: './paginas/hacer-pedido/hacer-pedido.module#HacerPedidoPageModule' }
+    { path: 'hacer-pedido', loadChildren: './paginas/hacer-pedido/hacer-pedido.module#HacerPedidoPageModule' },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -1646,7 +1646,7 @@ var AuthService = /** @class */ (function () {
                                     break;
                                 case 'mozo':
                                     _this.usuario = obj_element;
-                                    _this.fcmService.SuscribirANotificacion('mozo');
+                                    _this.fcmService.SuscribirANotificacion('notificacionMozo');
                                     localStorage.setItem('usuario', JSON.stringify(_this.usuario));
                                     resolve(_this.usuario);
                                     _this.router.navigate(["home-mozo"]);

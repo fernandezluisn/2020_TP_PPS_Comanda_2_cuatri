@@ -149,6 +149,7 @@ var AceptarClientePage = /** @class */ (function () {
         };
         // Send a text message using default options
         this.emailComposer.open(email).then(function (ret) { console.log(ret); }).catch(function (err) { console.log(err); });
+        this.route.navigate(['home-supervisor']);
     };
     AceptarClientePage.prototype.SendNotAcceptedEmail = function (cliente) {
         this.emailComposer.isAvailable().then(function (available) {
