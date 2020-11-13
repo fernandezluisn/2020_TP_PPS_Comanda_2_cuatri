@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { Vibration } from '@ionic-native/vibration/ngx';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { LoadingController } from '@ionic/angular';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { Producto } from 'src/app/interfaces/producto';
 import { ProductosService } from 'src/app/servicios/productos.service';
@@ -10,6 +10,7 @@ import { finalize } from 'rxjs/operators';
 import { ToastService } from 'src/app/servicios/toast.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/servicios/auth.service';
+import { AlertService } from 'src/app/servicios/alert.service';
 
 
 
@@ -35,13 +36,17 @@ export class AltaProductoPage implements OnInit {
   image2: string = null;
   image3: string = null;
 
+  url1=null;
+  url2=null;
+  url3=null;
+
   alta=true;
   usuario;
 
 
   constructor(private storage:AngularFireStorage,     
     private camera: Camera, 
-    private alertController:AlertController, 
+    private alertService:AlertService,
     private barcodeScanner: BarcodeScanner,
     private loadingCtrl:LoadingController,
     private vibra:Vibration,
@@ -74,16 +79,31 @@ export class AltaProductoPage implements OnInit {
         this.qr=barcodeData.text;
         
       }else{
-        this.alertar("El código debe ser QR");
+        this.alertService.mensaje("Error","El código debe ser QR");
         this.vibra.vibrate(500);
       }
       
      }).catch(err => {
-         this.alertar("No se ha podido cargar el código.");
+         this.alertService.mensaje("Error","No se ha podido cargar el código.");
          this.vibra.vibrate(500);
      });
 
      
+  }
+
+  async foto1(){
+    await this.sacarFoto(1);
+    await this.guardarImagen1();
+  }
+
+  async foto2(){
+    await this.sacarFoto(2);
+    await this.guardarImagen2();
+  }
+
+  async foto3(){
+    await this.sacarFoto(3);
+    await this.guardarImagen3();
   }
 
   async sacarFoto(id:number){
@@ -104,7 +124,7 @@ export class AltaProductoPage implements OnInit {
       else
       this.image3 = `data:image/jpeg;base64,${imageData}`;
      }, (err) => {
-      this.alertar(err);
+      this.alertService.mensaje("Error",err);
      });
   }
 
@@ -117,18 +137,7 @@ export class AltaProductoPage implements OnInit {
     return this.loading.present();
 
     
-  }
-
-  async alertar(mensaje:string){
-    const alert= this.alertController.create({
-      cssClass: 'danger-alert-btn',
-      header: 'Error',      
-      message: mensaje,
-      buttons: ['OK']
-    });
-
-    (await alert).present();
-  }
+  }  
 
   async subir(){
     this.presentLoading("Subiendo el producto.");
@@ -137,39 +146,13 @@ export class AltaProductoPage implements OnInit {
     m="bebida";
     else
     m="comida";
-
-    let p=new Producto(this.nombre, this.descripcion, this.minutos, this.precio, m);
-    try{    
-     
-      if(this.image3!=null){
-        let imagenes=new Array();
-        imagenes.push(this.image1, this.image2, this.image3)
-        p= await this.guardarImagen(imagenes, p);    
-        this.cargarProd=true;
-      }
-         
-    }catch(err){
-      this.alertar(err);
-    }finally{
-      try{
-        if(this.cargarProd){
-          await this.cargarProducto(p,1);
-        }
-        else{
-          this.alertar("El producto debe tener tres imagenes asignadas!!");          
-        }  
-      }catch(err){
-        this.alertar(err);
-      }finally{      
-        this.image1=null;
-        this.image2=null;
-        this.image3=null;
-        this.nombre="";
-        this.descripcion="";
-        this.minutos=0;
-        this.precio=0;
-      }
+    if(this.url1!=null && this.url2!=null && this.url3!=null){
+      let p=new Producto(this.nombre, this.descripcion, this.minutos, this.precio, m, this.url1, this.url2, this.url3);   
+      this.cargarProducto(p, 1);
+    }else{
+      this.alertService.mensaje("Error","Deben estar subidas las tres imagenes para poder cargar el producto")
     }
+       
     
   }
 
@@ -180,7 +163,7 @@ export class AltaProductoPage implements OnInit {
         this.toast.confirmationToast("Se guardó el producto.");
 
       }  catch(err){
-        this.alertar(err);
+        this.alertService.mensaje("Error",err);
       }  
       
     }else if(prod.precio>0 && prod.nombre.length>3 && prod.tiempo>10 && prod.descripcion.length>20 && modalidad==2){
@@ -189,27 +172,29 @@ export class AltaProductoPage implements OnInit {
         this.toast.confirmationToast("Se actualizó el producto.");
 
       }  catch(err){
-        this.alertar(err);
+        this.alertService.mensaje("Error",err);
       }  
     }
     else if(prod.precio==0){
-      this.alertar("El precio debe ser mayor a 0")
+      this.alertService.mensaje("Error","El precio debe ser mayor a 0")
     }else if(prod.nombre.length<4){
-      this.alertar("El nombre debe tener más de 3 caracteres");
+      this.alertService.mensaje("Error","El nombre debe tener más de 3 caracteres");
     }else if(prod.tiempo<11){
-      this.alertar("Los productos tienen un mínimo de producción de 10 minutos");      
+      this.alertService.mensaje("Error","Los productos tienen un mínimo de producción de 10 minutos");      
     }else{
-      this.alertar("La descripción debe tener más de 20 caracteres");      
+      this.alertService.mensaje("Error","La descripción debe tener más de 20 caracteres");      
     }
   }
 
-  async guardarImagen(images:any[], producto:Producto){
-    for (let index = 0; index < 3; index++) {
-      const image = images[index];
-      try{
-        const com=this.nombre+this.precio+index;
+  async guardarImagen1(){
+    
+    if(this.image1){
+        try{
+
+        
+        const com=this.nombre+this.precio+this.minutos+1;
         let img;
-        await fetch(image)
+        await fetch(this.image1)
         .then(res => res.blob().then(r=>{
           img=r
         }))
@@ -219,24 +204,83 @@ export class AltaProductoPage implements OnInit {
         const ref=this.storage.ref(path);    
         const task=this.storage.upload(path, file);     
         await task.snapshotChanges().pipe(finalize(()=>ref.getDownloadURL().subscribe(url=>{
-          if(index==0)
-          producto.foto_1=url;      
-          else if(index==1)
-          producto.foto_2=url;
-          else
-          producto.foto_3=url;
+          this.url1=url;       
+        
         } ))).subscribe(); 
-        
-        
-      }catch(err){
-        this.alertar(err);
-        
-      } 
-
-      return producto;
+        }catch(e){
+          
+        }
+         
+    }else{
+      this.alertService.mensaje("Error", "No está cargada la imagen 1");
     }
-      
+   
   }
+
+  async guardarImagen2(){
+    
+    if(this.image2){
+        try{
+
+        
+        const com=this.nombre+this.precio+this.minutos+2;
+        let img;
+        await fetch(this.image2)
+        .then(res => res.blob().then(r=>{
+          img=r
+        }))
+        
+        const file= img;
+        const path= com;
+        const ref=this.storage.ref(path);    
+        const task=this.storage.upload(path, file);     
+        await task.snapshotChanges().pipe(finalize(()=>ref.getDownloadURL().subscribe(url=>{
+          this.url2=url;       
+        
+        } ))).subscribe(); 
+        }catch(e){
+          
+        }
+         
+    }else{
+      this.alertService.mensaje("Error", "No está cargada la imagen 2");
+    }
+   
+  }
+      
+        
+  async guardarImagen3(){
+    
+    if(this.image3){
+        try{
+
+        
+        const com=this.nombre+this.precio+this.minutos+3;
+        let img;
+        await fetch(this.image3)
+        .then(res => res.blob().then(r=>{
+          img=r
+        }))
+        
+        const file= img;
+        const path= com;
+        const ref=this.storage.ref(path);    
+        const task=this.storage.upload(path, file);     
+        await task.snapshotChanges().pipe(finalize(()=>ref.getDownloadURL().subscribe(url=>{
+          this.url3=url;       
+        
+        } ))).subscribe(); 
+        }catch(e){
+          
+        }
+         
+    }else{
+      this.alertService.mensaje("Error", "No está cargada la imagen 3");
+    }
+   
+  }  
+      
+  
 
 
   cambiar(){
@@ -252,7 +296,7 @@ export class AltaProductoPage implements OnInit {
       await this.bda.BorrarProducto(this.productoElegido);
       this.toast.confirmationToast("se eliminó el producto.");
     }catch(e){
-      this.alertar(e);
+      this.alertService.mensaje("Error",e);
     }finally{
       this.productoElegido=null;
     }
@@ -271,7 +315,7 @@ export class AltaProductoPage implements OnInit {
       await this.cargarProducto(p,2);  
 
     }catch(err){
-      this.alertar(err);
+      this.alertService.mensaje("Error",err);
     }finally
     {
       this.productoElegido=null;
