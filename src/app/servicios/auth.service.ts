@@ -177,6 +177,8 @@ export class AuthService {
     });
   }
 
+  
+
   CrearAuth(mail, pass, usuario, foto) {
     return new Promise((resolve, rejected) => {
       this.AFauth.auth.createUserWithEmailAndPassword(mail, pass).then(nuevousuario => {
