@@ -25,7 +25,8 @@ var Mesa = /** @class */ (function () {
 var MesasEstados;
 (function (MesasEstados) {
     MesasEstados[MesasEstados["Vacia"] = 0] = "Vacia";
-    MesasEstados[MesasEstados["Ocupada"] = 1] = "Ocupada";
+    MesasEstados[MesasEstados["Reservada"] = 1] = "Reservada";
+    MesasEstados[MesasEstados["Ocupada"] = 2] = "Ocupada";
 })(MesasEstados || (MesasEstados = {}));
 
 

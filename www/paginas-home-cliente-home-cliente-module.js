@@ -111,15 +111,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _interfaces_mesa_cliente__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../interfaces/mesa-cliente */ "./src/app/interfaces/mesa-cliente.ts");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic-native/barcode-scanner/ngx */ "./node_modules/@ionic-native/barcode-scanner/ngx/index.js");
-/* harmony import */ var src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/servicios/auth.service */ "./src/app/servicios/auth.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/servicios/alert.service */ "./src/app/servicios/alert.service.ts");
-/* harmony import */ var src_app_servicios_mesas_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/servicios/mesas.service */ "./src/app/servicios/mesas.service.ts");
-/* harmony import */ var src_app_servicios_spinner_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/servicios/spinner.service */ "./src/app/servicios/spinner.service.ts");
-/* harmony import */ var src_app_servicios_mesa_cliente_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/servicios/mesa-cliente.service */ "./src/app/servicios/mesa-cliente.service.ts");
-/* harmony import */ var src_app_servicios_fcm_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/servicios/fcm.service */ "./src/app/servicios/fcm.service.ts");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/barcode-scanner/ngx */ "./node_modules/@ionic-native/barcode-scanner/ngx/index.js");
+/* harmony import */ var src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/servicios/auth.service */ "./src/app/servicios/auth.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/servicios/alert.service */ "./src/app/servicios/alert.service.ts");
+/* harmony import */ var src_app_servicios_mesas_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/servicios/mesas.service */ "./src/app/servicios/mesas.service.ts");
+/* harmony import */ var src_app_servicios_spinner_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/servicios/spinner.service */ "./src/app/servicios/spinner.service.ts");
+/* harmony import */ var src_app_servicios_mesa_cliente_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/servicios/mesa-cliente.service */ "./src/app/servicios/mesa-cliente.service.ts");
+/* harmony import */ var src_app_servicios_fcm_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/servicios/fcm.service */ "./src/app/servicios/fcm.service.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var src_app_servicios_reservas_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! src/app/servicios/reservas.service */ "./src/app/servicios/reservas.service.ts");
+
+
+
 
 
 
@@ -133,8 +139,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var HomeClientePage = /** @class */ (function () {
-    function HomeClientePage(alert, spinner, barcodeScanner, route, clienteService, mesaService, mesaClienteService, http, fcmService) {
+    function HomeClientePage(platform, datePipe, alert, spinner, barcodeScanner, route, clienteService, mesaService, mesaClienteService, http, fcmService, reservaService) {
         var _this = this;
+        this.platform = platform;
+        this.datePipe = datePipe;
         this.alert = alert;
         this.spinner = spinner;
         this.barcodeScanner = barcodeScanner;
@@ -144,10 +152,15 @@ var HomeClientePage = /** @class */ (function () {
         this.mesaClienteService = mesaClienteService;
         this.http = http;
         this.fcmService = fcmService;
+        this.reservaService = reservaService;
+        this.fecha = new Date();
         this.pedidos = [];
         this.chat = false;
         this.cliente = JSON.parse(localStorage.getItem('usuario'));
-        this.mesaService.getMesas().subscribe(function (mesas) { _this.mesas = mesas; });
+        this.mesaService.getMesas().subscribe(function (mesas) {
+            _this.mesas = mesas;
+            _this.chequearReservas();
+        });
         //obtengo el cliente usando el uid generado con local storage
         console.log(this.cliente);
         this.clienteService.obtenerCliente(this.cliente.uid).subscribe(function (resp) {
@@ -159,7 +172,6 @@ var HomeClientePage = /** @class */ (function () {
                     _this.alert.mensaje("", "Ha sido aceptado! ya puede ingresar al local");
                 }
                 _this.estadoActualCliente = user.estado;
-                console.log("aca");
             });
         });
         if (this.cliente.estado == "ConMesaAsignada") {
@@ -225,7 +237,7 @@ var HomeClientePage = /** @class */ (function () {
                             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                                 if (resultado.text === mesa.qr) {
                                     qrValido = true;
-                                    if (mesa.estado == "Ocupada") {
+                                    if (mesa.estado == "Ocupada" || mesa.estado == "Reservada") {
                                         this.alert.mensaje('', 'La mesa esta ocupada');
                                     }
                                     else {
@@ -275,15 +287,44 @@ var HomeClientePage = /** @class */ (function () {
         this.clienteService.LogOut();
         this.route.navigate(['log-in']);
     };
+    HomeClientePage.prototype.chequearReservas = function () {
+        var _this = this;
+        var fech = this.datePipe.transform(this.fecha, 'dd/MM/yyyy');
+        this.fecha.setMinutes(this.fecha.getMinutes() - 40);
+        var resD = new Array();
+        this.reservaService.getReservas().subscribe(function (list) {
+            list.filter(function (res) {
+                if (res.fecha == fech) {
+                    resD.push(res);
+                }
+            });
+            resD.forEach(function (resDia) {
+                var hor = new Date(resDia.fecha + " " + resDia.hora);
+                if (hor > _this.fecha) {
+                    _this.mesas.filter(function (mesa) {
+                        if (mesa.numero == resDia.mesa.numero && mesa.estado == "Vacia") {
+                            mesa.estado = "Reservada";
+                            _this.mesaService.actualizarMesa(mesa);
+                            resDia.mesa = mesa;
+                            _this.reservaService.updateReserva(resDia);
+                        }
+                    });
+                }
+            });
+        });
+    };
+    HomeClientePage.prototype.Mover = function (lugar) {
+        this.route.navigate([lugar]);
+    };
     HomeClientePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({
             selector: 'app-home-cliente',
             template: __webpack_require__(/*! ./home-cliente.page.html */ "./src/app/paginas/home-cliente/home-cliente.page.html"),
             styles: [__webpack_require__(/*! ./home-cliente.page.scss */ "./src/app/paginas/home-cliente/home-cliente.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_6__["AlertService"], src_app_servicios_spinner_service__WEBPACK_IMPORTED_MODULE_8__["SpinnerService"], _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_3__["BarcodeScanner"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"],
-            src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"], src_app_servicios_mesas_service__WEBPACK_IMPORTED_MODULE_7__["MesasService"], src_app_servicios_mesa_cliente_service__WEBPACK_IMPORTED_MODULE_9__["MesaClienteService"], _angular_common_http__WEBPACK_IMPORTED_MODULE_11__["HttpClient"],
-            src_app_servicios_fcm_service__WEBPACK_IMPORTED_MODULE_10__["FcmService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Platform"], _angular_common__WEBPACK_IMPORTED_MODULE_13__["DatePipe"], src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_7__["AlertService"], src_app_servicios_spinner_service__WEBPACK_IMPORTED_MODULE_9__["SpinnerService"], _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_4__["BarcodeScanner"], _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"],
+            src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"], src_app_servicios_mesas_service__WEBPACK_IMPORTED_MODULE_8__["MesasService"], src_app_servicios_mesa_cliente_service__WEBPACK_IMPORTED_MODULE_10__["MesaClienteService"], _angular_common_http__WEBPACK_IMPORTED_MODULE_12__["HttpClient"],
+            src_app_servicios_fcm_service__WEBPACK_IMPORTED_MODULE_11__["FcmService"], src_app_servicios_reservas_service__WEBPACK_IMPORTED_MODULE_14__["ReservasService"]])
     ], HomeClientePage);
     return HomeClientePage;
 }());

@@ -822,6 +822,7 @@ var map = {
 	],
 	"./paginas/home-supervisor/home-supervisor.module": [
 		"./src/app/paginas/home-supervisor/home-supervisor.module.ts",
+		"common",
 		"paginas-home-supervisor-home-supervisor-module"
 	],
 	"./paginas/log-in/log-in.module": [

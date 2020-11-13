@@ -13,10 +13,10 @@ import { AuthService } from 'src/app/servicios/auth.service';
 
 @Component({
   selector: 'app-graficos-cliente',
-  templateUrl: './graficos-cliente.component.html',
-  styleUrls: ['./graficos-cliente.component.scss'],
+  templateUrl: './graficos-cliente.page.html',
+  styleUrls: ['./graficos-cliente.page.scss'],
 })
-export class GraficosClienteComponent implements OnInit {
+export class GraficosClientePage implements OnInit {
 
   encuestasEmpleados:EncuestaEmpleado[];
   verdaderosFila=0;
