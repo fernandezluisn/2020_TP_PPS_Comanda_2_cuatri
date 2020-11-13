@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ReservasService } from 'src/app/servicios/reservas.service';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { AlertService } from 'src/app/servicios/alert.service';
+import { FcmService } from 'src/app/servicios/fcm.service';
 
 @Component({
   selector: 'app-home-metre',
@@ -14,7 +15,9 @@ export class HomeMetrePage implements OnInit {
   clientesEnEspera = [];
   clientes;
   cantClientesEnEspera = 100;
-  constructor(private reservasService: ReservasService, private authService: AuthService, private route:Router, private alertService: AlertService) {
+  constructor(private reservasService: ReservasService, private authService: AuthService, private route:Router,
+     private alertService: AlertService, private fcmService: FcmService) {
+       this.fcmService.SuscribirANotificacion('notificacionListaEspera')
     this.clientesEnEspera = [];
    }
 
