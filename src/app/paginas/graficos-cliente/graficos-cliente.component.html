@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Gráficos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <div>
+      <div style="display: block">
+        <canvas baseChart
+          [datasets]="barChartData"
+          [labels]="barChartLabels"
+          [options]="barChartOptions"
+          [plugins]="barChartPlugins"
+          [legend]="barChartLegend"
+          [chartType]="barChartType">
+        </canvas>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 2rem;">
+    <div>
+      <div style="display: block">
+        <canvas baseChart
+          [datasets]="dataDemora"
+          [labels]="demoraLabels"
+          [options]="barChartOptions"
+          [plugins]="barChartPlugins"
+          [legend]="barChartLegend"
+          [chartType]="barChartType">
+        </canvas>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 2rem;">
+    <div>
+      <div style="display: block">
+        <canvas baseChart
+          [datasets]="dataOrden"
+          [labels]="ordenLabels"
+          [options]="barChartOptions"
+          [plugins]="barChartPlugins"
+          [legend]="barChartLegend"
+          [chartType]="barChartType">
+        </canvas>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 2rem;">
+    <div>
+      <div style="display: block">
+        <canvas baseChart
+          [datasets]="dataOrden"
+          [labels]="ordenLabels"
+          [options]="barChartOptions"
+          [plugins]="barChartPlugins"
+          [legend]="barChartLegend"
+          [chartType]="barChartType">
+        </canvas>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 2rem;">
+    <div>
+      <div style="display: block">
+        <canvas baseChart
+          [datasets]="dataNumeros"
+          [labels]="numerosLabels"
+          [options]="barChartOptions"
+          [plugins]="barChartPlugins"
+          [legend]="barChartLegend"
+          [chartType]="barChartType">
+        </canvas>
+      </div>
+    </div>
+  </div>
+
+  <ion-button class="apagar" color="dark" (click)="salir()">
+    <ion-icon name="power"></ion-icon>
+  </ion-button>
+</ion-content>

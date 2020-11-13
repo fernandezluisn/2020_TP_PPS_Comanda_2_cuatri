@@ -53,9 +53,10 @@
   <h3 *ngIf="emailmal" class="error">Ingrese correo válido!</h3>
   <br>
   
-    <!--ion-button (click)="LeerQR()" color="danger" expand="block">
-      Cargar con QR del DNI
-    </ion-button-->
+ 
+  <ion-button (click)="this.tomarDatosDNI()" expand="full" color="primary">
+    Escanear DNI
+  </ion-button>
     <ion-button (click)="SacarFoto()" color="primary" expand="block">
       Sacar foto
     </ion-button>

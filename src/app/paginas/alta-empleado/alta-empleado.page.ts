@@ -5,7 +5,7 @@ import { FirestorageService } from 'src/app/servicios/firestorage.service';
 import { ErrorService } from 'src/app/servicios/error.service';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { Router } from '@angular/router';
-import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { BarcodeScannerOptions, BarcodeScanResult, BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { AlertService } from 'src/app/servicios/alert.service';
 
 @Component({
@@ -20,6 +20,7 @@ export class AltaEmpleadoPage implements OnInit {
   public emailmal: boolean;
   private imageData: string;
   public faltaFoto: boolean;
+  public dataDNI: string[];
 
   constructor(private camera: Camera, private fotosService: FirestorageService,
     private errorHand: ErrorService, private authService: AuthService,
@@ -41,6 +42,17 @@ export class AltaEmpleadoPage implements OnInit {
 
   ngOnInit() {
   }
+
+  public tomarDatosDNI() {
+    const options: BarcodeScannerOptions = { prompt: 'Escanee el DNI', formats: 'PDF_417' };
+    this.barcodeScanner.scan(options).then((resultado: BarcodeScanResult) => {
+      this.dataDNI = (resultado.text).split('@');
+      this.empleado.dni = this.dataDNI[4].trim();
+      this.empleado.apellido = this.dataDNI[1];
+      this.empleado.nombre = this.dataDNI[2];
+    });
+  }
+  
   public SacarFoto() {
     const camOptions: CameraOptions = {
       quality: 50,
