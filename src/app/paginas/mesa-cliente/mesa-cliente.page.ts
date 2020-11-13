@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/servicios/auth.service';
+
 import { Platform,AlertController, PopoverController } from '@ionic/angular';
+
 import { AlertService } from 'src/app/servicios/alert.service';
 import { SpinerService } from 'src/app/servicios/spiner.service';
 import { ModalController } from '@ionic/angular';
@@ -82,6 +84,7 @@ realizarPedido()
   pedirCuenta()
   {
     this.alert.mensaje('','pedir cuenta')
+
   }
 
   propina(){
@@ -93,6 +96,7 @@ realizarPedido()
   salir(){
     this.auth.LogOut();
     this.route.navigate(['log-in']);
+
 
   }
 

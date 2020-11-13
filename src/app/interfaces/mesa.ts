@@ -19,5 +19,6 @@ export class Mesa {
 
 export enum MesasEstados{
     "Vacia",
+    "Reservada",    
     "Ocupada",
 }

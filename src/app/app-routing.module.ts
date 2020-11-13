@@ -44,9 +44,6 @@ const routes: Routes = [
   { path: 'consulta-mozo', loadChildren: './paginas/consulta-mozo/consulta-mozo.module#ConsultaMozoPageModule' },
   { path: 'hacer-pedido', loadChildren: './paginas/hacer-pedido/hacer-pedido.module#HacerPedidoPageModule' }
 
-
-
- 
 ];
 @NgModule({
   imports: [
