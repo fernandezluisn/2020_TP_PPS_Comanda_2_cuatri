@@ -23,6 +23,10 @@ export class HomeSupervisorPage implements OnInit {
     this.route.navigate(['encuesta-supervisor'])
   }
 
+  EncuestaCliente(){
+    this.route.navigate(['graficos-cliente'])
+  }
+
   salir(){
     this.auth.LogOut();
     this.route.navigate(['log-in']);

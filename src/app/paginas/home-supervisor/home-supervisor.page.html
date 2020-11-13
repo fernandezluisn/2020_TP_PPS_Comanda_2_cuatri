@@ -57,6 +57,11 @@
       <ion-icon name="bookmarks" [ngClass]="{ 'icon-horizontal': this.platform.isLandscape(), 'icon-vertical': !this.platform.isLandscape() }"></ion-icon>
       <h2>Encuesta</h2>
     </ion-card>
+    <ion-card class="ion-activatable" (click)="this.EncuestaCliente()" [ngClass]="{ 'card-vertical': !this.platform.isLandscape(), 'card-horizontal': this.platform.isLandscape() }">
+      <ion-ripple-effect></ion-ripple-effect>
+      <ion-icon name="bookmarks" [ngClass]="{ 'icon-horizontal': this.platform.isLandscape(), 'icon-vertical': !this.platform.isLandscape() }"></ion-icon>
+      <h2>Encuesta cliente</h2>
+    </ion-card>
 
     <ion-button class="apagar" color="dark" (click)="salir()">
       <ion-icon name="power"></ion-icon>

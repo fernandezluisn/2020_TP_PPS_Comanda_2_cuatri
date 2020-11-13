@@ -11,11 +11,14 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Reserva", function() { return Reserva; });
 var Reserva = /** @class */ (function () {
-    function Reserva(idCliente, fecha, hora, estado) {
+    function Reserva(idCliente, fecha, hora, estado, nombreCliente, cantidad, tipo) {
         this.fecha = fecha;
         this.hora = hora;
         this.idCliente = idCliente;
         this.estado = estado;
+        this.nombreCliente = nombreCliente;
+        this.cantidad = cantidad;
+        this.tipo = tipo;
     }
     return Reserva;
 }());
@@ -82,7 +85,7 @@ var ReservasPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n\r\n<ion-content>\r\n  <ion-img src=\"../assets/logo.png\"></ion-img>\r\n  <ion-item style=\"margin-top: 2rem;\">\r\n    <ion-label>Fecha</ion-label>\r\n    <ion-datetime displayFormat=\"DD MM YYYY\" [min]=\"hoy\" placeholder=\"\" [(ngModel)]=\"fecha\"></ion-datetime>\r\n  </ion-item>\r\n  <ion-item style=\"margin-top: 2rem;\">\r\n    <ion-label>Hora</ion-label>\r\n    <ion-datetime displayFormat=\"HH:mm\" hourValues=\"12,13,14,15,20,21,22,23\" [(ngModel)]=\"hora\" minuteValues=\"0,15,30,45\"></ion-datetime>\r\n  </ion-item>\r\n\r\n  <ion-button (click)=\"subir()\" expand=\"full\" color=\"success\" style=\"bottom: 2rem; position: absolute;\">Solicitar reserva</ion-button>\r\n\r\n  <ion-button class=\"apagar\" color=\"dark\" (click)=\"salir()\">\r\n    <ion-icon name=\"power\"></ion-icon>\r\n  </ion-button>\r\n</ion-content>\r\n"
+module.exports = "\r\n\r\n<ion-content>\r\n  <ion-img src=\"../assets/logo.png\"></ion-img>\r\n  <ion-item style=\"margin-top: 2rem;\">\r\n    <ion-label>Fecha</ion-label>\r\n    <ion-datetime displayFormat=\"DD MM YYYY\" [min]=\"hoy\" placeholder=\"\" [(ngModel)]=\"fecha\"></ion-datetime>\r\n  </ion-item>\r\n  <ion-item >\r\n    <ion-label>Hora</ion-label>\r\n    <ion-datetime displayFormat=\"HH:mm\" hourValues=\"12,13,14,15,20,21,22,23\" [(ngModel)]=\"hora\" minuteValues=\"0,15,30,45\"></ion-datetime>\r\n  </ion-item>\r\n\r\n  <ion-item >\r\n    <ion-label position=\"floating\">Cantidad de personas</ion-label>\r\n    <ion-input type=\"number\" [(ngModel)]=\"cantidad\"></ion-input>\r\n  </ion-item> \r\n\r\n  <ion-item>\r\n    <ion-label position=\"floating\">Tipo de mesa</ion-label>\r\n    <ion-select [(ngModel)]=\"tipo\">\r\n      <ion-select-option>Vip</ion-select-option>\r\n      <ion-select-option>Discapacitados</ion-select-option>\r\n      <ion-select-option>Estandar</ion-select-option>\r\n    </ion-select>\r\n  </ion-item>  \r\n\r\n  <ion-button (click)=\"subir()\" expand=\"full\" color=\"success\">Solicitar reserva</ion-button>\r\n\r\n  <ion-button class=\"apagar\" color=\"dark\" (click)=\"salir()\">\r\n    <ion-icon name=\"power\"></ion-icon>\r\n  </ion-button>\r\n</ion-content>\r\n"
 
 /***/ }),
 
@@ -136,6 +139,8 @@ var ReservasPage = /** @class */ (function () {
         this.hoy = new Date().toISOString();
         console.log(this.hoy);
         this.usuario = JSON.parse(localStorage.getItem('usuario'));
+        this.cantidad = 0;
+        this.tipo = "Estandar";
     }
     ReservasPage.prototype.ngOnInit = function () {
     };
@@ -143,17 +148,22 @@ var ReservasPage = /** @class */ (function () {
         var hor = this.datePipe.transform(this.hora, 'HH:mm');
         ;
         var fech = this.datePipe.transform(this.fecha, 'dd/MM/yyyy');
-        var r = new src_app_interfaces_reserva__WEBPACK_IMPORTED_MODULE_3__["Reserva"](this.usuario.id, fech, hor, "pendiente");
+        var nom = this.usuario.nombre + " " + this.usuario.apellido;
         if (fech == null && hor == null) {
             this.alertar.mensaje("Faltan datos", "Debe ingresar fecha y hora");
         }
         else if (this.usuario.perfil == "anonimo") {
             this.alertar.mensaje("Usuario anónimo", "Debe estar registrado para poder hacer una reserva");
         }
+        else if (this.cantidad == 0) {
+            this.alertar.mensaje("ERROR", "Debe solicitar una mesa para una persona o más");
+        }
         else {
             try {
+                var r = new src_app_interfaces_reserva__WEBPACK_IMPORTED_MODULE_3__["Reserva"](this.usuario.id, fech, hor, "pendiente", nom, this.cantidad, this.tipo);
                 this.bda.addReserva(r);
                 this.toast.confirmationToast("Se solicitó la reserva correctamente");
+                this.route.navigate(["home-cliente"]);
             }
             catch (err) {
                 this.alertar.mensaje("ERROR", err);

@@ -88,16 +88,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var src_app_servicios_reservas_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/servicios/reservas.service */ "./src/app/servicios/reservas.service.ts");
 /* harmony import */ var src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/servicios/auth.service */ "./src/app/servicios/auth.service.ts");
+/* harmony import */ var src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/servicios/alert.service */ "./src/app/servicios/alert.service.ts");
+
 
 
 
 
 
 var HomeMetrePage = /** @class */ (function () {
-    function HomeMetrePage(reservasService, authService, route) {
+    function HomeMetrePage(reservasService, authService, route, alertService) {
         this.reservasService = reservasService;
         this.authService = authService;
         this.route = route;
+        this.alertService = alertService;
         this.clientesEnEspera = [];
         this.cantClientesEnEspera = 100;
         this.clientesEnEspera = [];
@@ -115,7 +118,7 @@ var HomeMetrePage = /** @class */ (function () {
             });
             if (_this.clientesEnEspera.length > _this.cantClientesEnEspera) {
                 //TODO -> PUSH NOTIFICATION
-                alert("nuevoCliente");
+                _this.alertService.mensaje("", "Nuevo Cliente");
             }
             _this.cantClientesEnEspera = _this.clientesEnEspera.length;
             console.log(_this.clientesEnEspera);
@@ -141,7 +144,7 @@ var HomeMetrePage = /** @class */ (function () {
             template: __webpack_require__(/*! ./home-metre.page.html */ "./src/app/paginas/home-metre/home-metre.page.html"),
             styles: [__webpack_require__(/*! ./home-metre.page.scss */ "./src/app/paginas/home-metre/home-metre.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_servicios_reservas_service__WEBPACK_IMPORTED_MODULE_3__["ReservasService"], src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_servicios_reservas_service__WEBPACK_IMPORTED_MODULE_3__["ReservasService"], src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_5__["AlertService"]])
     ], HomeMetrePage);
     return HomeMetrePage;
 }());
