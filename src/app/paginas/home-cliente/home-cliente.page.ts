@@ -15,6 +15,8 @@ import { SpinnerService } from 'src/app/servicios/spinner.service';
 import { MesaClienteService } from 'src/app/servicios/mesa-cliente.service';
 import { FcmService } from 'src/app/servicios/fcm.service';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
+import { ReservasService } from 'src/app/servicios/reservas.service';
 
 @Component({ 
   selector: 'app-home-cliente',
@@ -22,6 +24,10 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
   styleUrls: ['./home-cliente.page.scss'],
 })
 export class HomeClientePage {
+
+  fecha=new Date();
+
+
   public mesas: Mesa[];
   public reservas: Reserva[];
   public listaEspera: Espera[];
@@ -32,12 +38,18 @@ export class HomeClientePage {
   private estadoActualCliente;
   cliente;
   chat =false;
-  constructor(private alert: AlertService, private spinner: SpinnerService, private barcodeScanner: BarcodeScanner, private route: Router,
+  constructor(private platform:Platform ,public datePipe: DatePipe,private alert: AlertService, private spinner: SpinnerService, private barcodeScanner: BarcodeScanner, private route: Router,
     private clienteService:AuthService, private mesaService: MesasService, private mesaClienteService: MesaClienteService, private http: HttpClient,
-    private fcmService: FcmService) {
+    private fcmService: FcmService, private reservaService:ReservasService) {
     this.cliente = JSON.parse(localStorage.getItem('usuario')); 
 
-    this.mesaService.getMesas().subscribe(mesas => { this.mesas = mesas; });
+
+    this.mesaService.getMesas().subscribe(mesas => { this.mesas = mesas; 
+      this.chequearReservas();
+
+    });
+
+
 
     //obtengo el cliente usando el uid generado con local storage
     console.log(this.cliente);
@@ -52,7 +64,6 @@ export class HomeClientePage {
           }        
           this.estadoActualCliente = user.estado;     
 
-          console.log("aca");
       });        
     });
 
@@ -127,7 +138,7 @@ this.spinner.hideSpinner();
           this.mesas.forEach(async mesa => {
             if (resultado.text === mesa.qr) {
               qrValido = true;
-              if(mesa.estado == "Ocupada"){
+              if(mesa.estado == "Ocupada" || mesa.estado=="Reservada"){
                 this.alert.mensaje('', 'La mesa esta ocupada');
               }
               else{           
@@ -178,6 +189,41 @@ this.spinner.hideSpinner();
     salir(){
       this.clienteService.LogOut();
       this.route.navigate(['log-in']);
+    }
+
+    chequearReservas(){
+      
+      let fech=this.datePipe.transform(this.fecha, 'dd/MM/yyyy');
+      this.fecha.setMinutes(this.fecha.getMinutes()-40);
+      let resD:Reserva[]=new Array();      
+      
+      this.reservaService.getReservas().subscribe(list=>{
+        list.filter(res=>{
+          
+          if(res.fecha==fech){
+            resD.push(res);
+          }
+        })
+  
+        resD.forEach(resDia=>{
+          let hor=new Date(resDia.fecha+" "+resDia.hora);          
+          if(hor>this.fecha){
+            this.mesas.filter(mesa=>{
+              if(mesa.numero==resDia.mesa.numero && mesa.estado=="Vacia"){
+                mesa.estado="Reservada";              
+                this.mesaService.actualizarMesa(mesa);
+                resDia.mesa=mesa;
+                this.reservaService.updateReserva(resDia);
+              }
+            })
+          }
+        })
+      })
+      
+    }
+
+    Mover(lugar){
+      this.route.navigate([lugar])
     }
 
 }

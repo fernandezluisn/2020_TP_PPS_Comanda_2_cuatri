@@ -10,9 +10,8 @@ import { Observable } from 'rxjs';
 })
 export class ReservasService {
 
-
   listaReservas:Observable<Reserva[]>;
-  constructor(private db: AngularFirestore, private authService:AuthService) {
+  constructor( private db: AngularFirestore, private authService:AuthService) {
 
     this.listaReservas=this.db.collection('reservas').snapshotChanges().pipe(
       map(actions=>{
@@ -29,6 +28,8 @@ export class ReservasService {
   
      
     );
+
+
    }
 
   getReservas() {
@@ -94,4 +95,6 @@ export class ReservasService {
       }
     });
   }
+
+  
 }
