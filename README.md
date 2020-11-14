@@ -48,17 +48,20 @@
 
 <h3>Diagrama código Qr (mesa)</h3><br><br>
 
-mesa1:<br>
-<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/qr/Mesa/Mesa1.PNG" width="400"/>
+Ingreso a lista de espera:<br>
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/qr/QR_EntrarAListaDeEspera.PNG" width="400"/><br>
 
-mesa 2:<br>
-<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/qr/Mesa/Mesa2.PNG" width="400"/>
+Mesa 1:<br>
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/qr/Mesa/Mesa1.PNG" width="400"/><br>
 
-mesa3:<br>
-<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/qr/Mesa/Mesa3.PNG" width="400"/>
+Mesa 2:<br>
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/qr/Mesa/Mesa2.PNG" width="400"/><br>
 
-mesa 4:<br>
-<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/qr/Mesa/mesa4.PNG" width="400"/><br><br>
+Mesa3:<br>
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/qr/Mesa/Mesa3.PNG" width="400"/><br>
+
+Mesa 4:<br>
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/qr/Mesa/mesa4.PNG" width="400"/><br><br><br>
 
 <h2>Responsabilidades semanales ✍️</h2><br>
 
@@ -143,7 +146,7 @@ Los empleados tienen su propia encuesta que deben completar al llegar y retirars
 
 El supervisor también tiene su propia encuesta para ingresar información sobre el rendimiento de los empleados.<br>
 
-<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/encuestaSupervisor.jpeg" width="300"/><br>
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/encuestaSupervisor.jpeg" width="300"/><br><br><br>
 
 
 <h3>Alta de productos 📝</h3><br><br>
