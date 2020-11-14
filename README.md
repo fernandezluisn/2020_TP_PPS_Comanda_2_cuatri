@@ -48,16 +48,16 @@
 
 <h3>Diagrama código Qr (mesa)</h3><br><br>
 
-mesa1:
+mesa1:<br>
 <img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/qr/Mesa/Mesa1.PNG" width="400"/>
 
-mesa 2:
+mesa 2:<br>
 <img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/qr/Mesa/Mesa2.PNG" width="400"/>
 
-mesa3:
+mesa3:<br>
 <img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/qr/Mesa/Mesa3.PNG" width="400"/>
 
-mesa 4:
+mesa 4:<br>
 <img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/qr/Mesa/mesa4.PNG" width="400"/><br><br>
 
 <h2>Responsabilidades semanales ✍️</h2><br>
