@@ -48,10 +48,17 @@
 
 <h3>Diagrama código Qr (mesa)</h3><br><br>
 
-<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/qr/Mesa/Mesa1.PNG" width="200"/>
-<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/qr/Mesa/Mesa2.PNG" width="200"/>
-<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/qr/Mesa/Mesa3.PNG" width="200"/>
-<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/qr/Mesa/Mesa4.PNG" width="200"/>
+mesa1:
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/qr/Mesa/Mesa1.PNG" width="400"/>
+
+mesa 2:
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/qr/Mesa/Mesa2.PNG" width="400"/>
+
+mesa3:
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/qr/Mesa/Mesa3.PNG" width="400"/>
+
+mesa 4:
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/qr/Mesa/mesa4.PNG" width="400"/><br><br>
 
 <h2>Responsabilidades semanales ✍️</h2><br>
 
