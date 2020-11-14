@@ -104,7 +104,7 @@ this.spinner.showSpinner();
          this.cliente.estado = "EnListaDeEspera"
          this.clienteService.ModificarUsuario(this.cliente);
          this.alert.mensaje('Bienvenido!', 'Usted se encuentra en la lista de espera');
-         this.fcmService.enviarMensaje("Prueba Scan QR", "Prueba Scan QR", "all")
+         this.fcmService.enviarMensaje("Nuevo Cliente", "nuevo cliente en lista de espera", "notificacionListaEspera")
 
        }
       if (!qrValido) {

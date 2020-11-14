@@ -82,7 +82,7 @@ export class AppComponent{
           }
         });
        // this.fcm.subscribeToTopic('wololo');
-        this.fcm.subscribeToTopic('notificacionListaEspera');
+       // this.fcm.subscribeToTopic('notificacionListaEspera');
 
     this.fcm.subscribeToTopic('testeo');
 

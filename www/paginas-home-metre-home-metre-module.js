@@ -58,7 +58,7 @@ var HomeMetrePageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar color=\"primary\">\r\n    <ion-title>METRE</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content padding color=\"dark\"> \r\n\r\n  <br>\r\n  <ion-list-header lines=\"inset\" color=\"dark\">\r\n    <ion-label>LISTA DE ESPERA</ion-label>\r\n  </ion-list-header>\r\n<div *ngFor=\"let cliente of this.clientesEnEspera\">\r\n  <ion-item color=\"dark\">\r\n    <ion-label style=\"color:black\" >{{cliente.nombre}} {{cliente.apellido}}</ion-label>\r\n    <ion-button fill=\"outline\" (click)=\"aceptarCliente(cliente)\">ACEPTAR</ion-button>\r\n  </ion-item>\r\n</div>\r\n<div *ngIf=\"clientesEnEspera.length === 0\">\r\n  <ion-item color=\"dark\">\r\n    <ion-label >Sin clientes en espera</ion-label>\r\n  </ion-item>\r\n</div>\r\n\r\n<ion-button class=\"apagar\" color=\"dark\" (click)=\"salir()\">\r\n  <ion-icon name=\"power\"></ion-icon>\r\n</ion-button>\r\n\r\n</ion-content>\r\n\r\n\r\n<ion-footer>\r\n  <ion-toolbar>\r\n    <ion-button color='dark' expand=\"full\" (click)='this.AltaCliente()' >Alta Cliente</ion-button>\r\n  </ion-toolbar>\r\n</ion-footer>\r\n"
+module.exports = "<ion-header>\r\n  <ion-toolbar color=\"primary\">\r\n    <ion-title>Metre</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content padding color=\"dark\"> \r\n\r\n  <br>\r\n  <ion-list-header lines=\"inset\" color=\"dark\">\r\n    <ion-label>LISTA DE ESPERA</ion-label>\r\n  </ion-list-header>\r\n<div *ngFor=\"let cliente of this.clientesEnEspera\">\r\n  <ion-item color=\"dark\">\r\n    <ion-label style=\"color:black\" >{{cliente.nombre}} {{cliente.apellido}}</ion-label>\r\n    <ion-button fill=\"outline\" (click)=\"aceptarCliente(cliente)\">ACEPTAR</ion-button>\r\n  </ion-item>\r\n</div>\r\n<div *ngIf=\"clientesEnEspera.length === 0\">\r\n  <ion-item color=\"dark\">\r\n    <ion-label >Sin clientes en lista de espera.</ion-label>\r\n  </ion-item>\r\n</div>\r\n\r\n<ion-button class=\"apagar\" color=\"dark\" (click)=\"salir()\">\r\n  <ion-icon name=\"power\"></ion-icon>\r\n</ion-button>\r\n\r\n</ion-content>\r\n\r\n\r\n<ion-footer>\r\n  <ion-toolbar>\r\n    <ion-button color='dark' expand=\"full\" (click)='this.AltaCliente()' >Alta Cliente</ion-button>\r\n  </ion-toolbar>\r\n</ion-footer>\r\n"
 
 /***/ }),
 
@@ -89,6 +89,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_servicios_reservas_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/servicios/reservas.service */ "./src/app/servicios/reservas.service.ts");
 /* harmony import */ var src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/servicios/auth.service */ "./src/app/servicios/auth.service.ts");
 /* harmony import */ var src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/servicios/alert.service */ "./src/app/servicios/alert.service.ts");
+/* harmony import */ var src_app_servicios_fcm_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/servicios/fcm.service */ "./src/app/servicios/fcm.service.ts");
+
 
 
 
@@ -96,13 +98,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var HomeMetrePage = /** @class */ (function () {
-    function HomeMetrePage(reservasService, authService, route, alertService) {
+    function HomeMetrePage(reservasService, authService, route, alertService, fcmService) {
         this.reservasService = reservasService;
         this.authService = authService;
         this.route = route;
         this.alertService = alertService;
+        this.fcmService = fcmService;
         this.clientesEnEspera = [];
         this.cantClientesEnEspera = 100;
+        this.fcmService.SuscribirANotificacion('notificacionListaEspera');
         this.clientesEnEspera = [];
     }
     HomeMetrePage.prototype.ngOnInit = function () {
@@ -144,7 +148,8 @@ var HomeMetrePage = /** @class */ (function () {
             template: __webpack_require__(/*! ./home-metre.page.html */ "./src/app/paginas/home-metre/home-metre.page.html"),
             styles: [__webpack_require__(/*! ./home-metre.page.scss */ "./src/app/paginas/home-metre/home-metre.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_servicios_reservas_service__WEBPACK_IMPORTED_MODULE_3__["ReservasService"], src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_5__["AlertService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_servicios_reservas_service__WEBPACK_IMPORTED_MODULE_3__["ReservasService"], src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
+            src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_5__["AlertService"], src_app_servicios_fcm_service__WEBPACK_IMPORTED_MODULE_6__["FcmService"]])
     ], HomeMetrePage);
     return HomeMetrePage;
 }());

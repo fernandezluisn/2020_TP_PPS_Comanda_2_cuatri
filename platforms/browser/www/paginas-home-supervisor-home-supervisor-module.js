@@ -58,7 +58,7 @@ var HomeSupervisorPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-content>\r\n    <ion-card class=\"ion-activatable\" (click)=\"this.Mover('aceptar-cliente')\" [ngClass]=\"{ 'card-vertical': !this.platform.isLandscape(), 'card-horizontal': this.platform.isLandscape() }\">\r\n        <ion-ripple-effect></ion-ripple-effect>\r\n        <ion-icon name=\"person-add\" [ngClass]=\"{ 'icon-horizontal': this.platform.isLandscape(), 'icon-vertical': !this.platform.isLandscape() }\"></ion-icon>\r\n        <h2>Activar un cliente</h2>\r\n    </ion-card>\r\n\r\n\r\n    <ion-card class=\"ion-activatable\" (click)=\"this.Mover('alta-empleado')\" [ngClass]=\"{ 'card-vertical': !this.platform.isLandscape(), 'card-horizontal': this.platform.isLandscape() }\">\r\n        <ion-ripple-effect></ion-ripple-effect>\r\n        <ion-icon name=\"restaurant\" [ngClass]=\"{ 'icon-horizontal': this.platform.isLandscape(), 'icon-vertical': !this.platform.isLandscape() }\"></ion-icon>\r\n        <h2>Dar de alta empleado</h2>\r\n      </ion-card>\r\n\r\n      <ion-card class=\"ion-activatable\" (click)=\"this.Mover('respuesta-reservas')\" [ngClass]=\"{ 'card-vertical': !this.platform.isLandscape(), 'card-horizontal': this.platform.isLandscape() }\">\r\n        <ion-ripple-effect></ion-ripple-effect>\r\n        <ion-icon name=\"thumbs-up\" [ngClass]=\"{ 'icon-horizontal': this.platform.isLandscape(), 'icon-vertical': !this.platform.isLandscape() }\"></ion-icon>\r\n        <h2>Responder reservas</h2>\r\n      </ion-card>\r\n  \r\n\r\n  <ion-card class=\"ion-activatable\" (click)=\"this.Mover('cuenta')\" [ngClass]=\"{ 'card-vertical': !this.platform.isLandscape(), 'card-horizontal': this.platform.isLandscape() }\">\r\n    <ion-ripple-effect></ion-ripple-effect>\r\n    <ion-icon name=\"logo-usd\" [ngClass]=\"{ 'icon-horizontal': this.platform.isLandscape(), 'icon-vertical': !this.platform.isLandscape() }\"></ion-icon>\r\n    <h2>Cobrar Una mesa</h2>\r\n  </ion-card>\r\n\r\n \r\n\r\n \r\n\r\n  <ion-card class=\"ion-activatable\" (click)=\"this.Mover('alta-supervisor')\" [ngClass]=\"{ 'card-vertical': !this.platform.isLandscape(), 'card-horizontal': this.platform.isLandscape() }\">\r\n    <ion-ripple-effect></ion-ripple-effect>\r\n    <ion-icon name=\"checkbox-outline\"></ion-icon>\r\n    <h2>Dar de alta supervisor</h2>\r\n  </ion-card>\r\n\r\n \r\n\r\n  <ion-card class=\"ion-activatable\" (click)=\"this.Mover('confirmar-reserva')\" [ngClass]=\"{ 'card-vertical': !this.platform.isLandscape(), 'card-horizontal': this.platform.isLandscape() }\">\r\n    <ion-ripple-effect></ion-ripple-effect>\r\n    <ion-icon name=\"calendar\" [ngClass]=\"{ 'icon-horizontal': this.platform.isLandscape(), 'icon-vertical': !this.platform.isLandscape() }\"></ion-icon>\r\n    <h2>Confirmar reservas</h2>\r\n  </ion-card>\r\n\r\n  <ion-card class=\"ion-activatable\" (click)=\"this.Mover('mozo-aceptar')\" [ngClass]=\"{ 'card-vertical': !this.platform.isLandscape(), 'card-horizontal': this.platform.isLandscape() }\">\r\n    <ion-ripple-effect></ion-ripple-effect>\r\n    <ion-icon name=\"logo-model-s\" [ngClass]=\"{ 'icon-horizontal': this.platform.isLandscape(), 'icon-vertical': !this.platform.isLandscape() }\"></ion-icon>\r\n    <h2>Delivery</h2>\r\n  </ion-card>\r\n\r\n\r\n  <ion-card class=\"ion-activatable\" (click)=\"this.Mover('alta-mesa')\" [ngClass]=\"{ 'card-vertical': !this.platform.isLandscape(), 'card-horizontal': this.platform.isLandscape() }\">\r\n    <ion-ripple-effect></ion-ripple-effect>\r\n    <ion-icon name=\"add-circle\" [ngClass]=\"{ 'icon-horizontal': this.platform.isLandscape(), 'icon-vertical': !this.platform.isLandscape() }\"></ion-icon>\r\n    <h2>Agregar mesa</h2>\r\n  </ion-card>\r\n\r\n  <ion-card class=\"ion-activatable\" (click)=\"this.Encuesta()\" [ngClass]=\"{ 'card-vertical': !this.platform.isLandscape(), 'card-horizontal': this.platform.isLandscape() }\">\r\n      <ion-ripple-effect></ion-ripple-effect>\r\n      <ion-icon name=\"bookmarks\" [ngClass]=\"{ 'icon-horizontal': this.platform.isLandscape(), 'icon-vertical': !this.platform.isLandscape() }\"></ion-icon>\r\n      <h2>Encuesta</h2>\r\n    </ion-card>\r\n\r\n    <ion-button class=\"apagar\" color=\"dark\" (click)=\"salir()\">\r\n      <ion-icon name=\"power\"></ion-icon>\r\n    </ion-button>\r\n</ion-content>"
+module.exports = "<ion-content>\r\n    <ion-card class=\"ion-activatable\" (click)=\"this.Mover('aceptar-cliente')\" [ngClass]=\"{ 'card-vertical': !this.platform.isLandscape(), 'card-horizontal': this.platform.isLandscape() }\">\r\n        <ion-ripple-effect></ion-ripple-effect>\r\n        <ion-icon name=\"person-add\" [ngClass]=\"{ 'icon-horizontal': this.platform.isLandscape(), 'icon-vertical': !this.platform.isLandscape() }\"></ion-icon>\r\n        <h2>Activar un cliente</h2>\r\n    </ion-card>\r\n\r\n\r\n    <ion-card class=\"ion-activatable\" (click)=\"this.Mover('alta-empleado')\" [ngClass]=\"{ 'card-vertical': !this.platform.isLandscape(), 'card-horizontal': this.platform.isLandscape() }\">\r\n        <ion-ripple-effect></ion-ripple-effect>\r\n        <ion-icon name=\"restaurant\" [ngClass]=\"{ 'icon-horizontal': this.platform.isLandscape(), 'icon-vertical': !this.platform.isLandscape() }\"></ion-icon>\r\n        <h2>Dar de alta empleado</h2>\r\n      </ion-card>\r\n\r\n      \r\n  \r\n\r\n  <ion-card class=\"ion-activatable\" (click)=\"this.Mover('cuenta')\" [ngClass]=\"{ 'card-vertical': !this.platform.isLandscape(), 'card-horizontal': this.platform.isLandscape() }\">\r\n    <ion-ripple-effect></ion-ripple-effect>\r\n    <ion-icon name=\"logo-usd\" [ngClass]=\"{ 'icon-horizontal': this.platform.isLandscape(), 'icon-vertical': !this.platform.isLandscape() }\"></ion-icon>\r\n    <h2>Cobrar Una mesa</h2>\r\n  </ion-card>\r\n\r\n \r\n\r\n \r\n\r\n  <ion-card class=\"ion-activatable\" (click)=\"this.Mover('alta-supervisor')\" [ngClass]=\"{ 'card-vertical': !this.platform.isLandscape(), 'card-horizontal': this.platform.isLandscape() }\">\r\n    <ion-ripple-effect></ion-ripple-effect>\r\n    <ion-icon name=\"checkbox-outline\"></ion-icon>\r\n    <h2>Dar de alta supervisor</h2>\r\n  </ion-card>\r\n\r\n \r\n\r\n  <ion-card class=\"ion-activatable\" (click)=\"this.Mover('respuesta-reservas')\" [ngClass]=\"{ 'card-vertical': !this.platform.isLandscape(), 'card-horizontal': this.platform.isLandscape() }\">\r\n    <ion-ripple-effect></ion-ripple-effect>\r\n    <ion-icon name=\"calendar\" [ngClass]=\"{ 'icon-horizontal': this.platform.isLandscape(), 'icon-vertical': !this.platform.isLandscape() }\"></ion-icon>\r\n    <h2>Confirmar reservas</h2>\r\n  </ion-card>\r\n\r\n  <ion-card class=\"ion-activatable\" (click)=\"this.Mover('mozo-aceptar')\" [ngClass]=\"{ 'card-vertical': !this.platform.isLandscape(), 'card-horizontal': this.platform.isLandscape() }\">\r\n    <ion-ripple-effect></ion-ripple-effect>\r\n    <ion-icon name=\"logo-model-s\" [ngClass]=\"{ 'icon-horizontal': this.platform.isLandscape(), 'icon-vertical': !this.platform.isLandscape() }\"></ion-icon>\r\n    <h2>Delivery</h2>\r\n  </ion-card>\r\n\r\n\r\n  <ion-card class=\"ion-activatable\" (click)=\"this.Mover('alta-mesa')\" [ngClass]=\"{ 'card-vertical': !this.platform.isLandscape(), 'card-horizontal': this.platform.isLandscape() }\">\r\n    <ion-ripple-effect></ion-ripple-effect>\r\n    <ion-icon name=\"add-circle\" [ngClass]=\"{ 'icon-horizontal': this.platform.isLandscape(), 'icon-vertical': !this.platform.isLandscape() }\"></ion-icon>\r\n    <h2>Agregar mesa</h2>\r\n  </ion-card>\r\n\r\n  <ion-card class=\"ion-activatable\" (click)=\"this.Encuesta()\" [ngClass]=\"{ 'card-vertical': !this.platform.isLandscape(), 'card-horizontal': this.platform.isLandscape() }\">\r\n      <ion-ripple-effect></ion-ripple-effect>\r\n      <ion-icon name=\"bookmarks\" [ngClass]=\"{ 'icon-horizontal': this.platform.isLandscape(), 'icon-vertical': !this.platform.isLandscape() }\"></ion-icon>\r\n      <h2>Encuesta</h2>\r\n    </ion-card>\r\n    <ion-card class=\"ion-activatable\" (click)=\"this.EncuestaCliente()\" [ngClass]=\"{ 'card-vertical': !this.platform.isLandscape(), 'card-horizontal': this.platform.isLandscape() }\">\r\n      <ion-ripple-effect></ion-ripple-effect>\r\n      <ion-icon name=\"bookmarks\" [ngClass]=\"{ 'icon-horizontal': this.platform.isLandscape(), 'icon-vertical': !this.platform.isLandscape() }\"></ion-icon>\r\n      <h2>Encuesta cliente</h2>\r\n    </ion-card>\r\n\r\n    <ion-button class=\"apagar\" color=\"dark\" (click)=\"salir()\">\r\n      <ion-icon name=\"power\"></ion-icon>\r\n    </ion-button>\r\n</ion-content>"
 
 /***/ }),
 
@@ -88,16 +88,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/servicios/auth.service */ "./src/app/servicios/auth.service.ts");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var src_app_servicios_mesas_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/servicios/mesas.service */ "./src/app/servicios/mesas.service.ts");
+/* harmony import */ var src_app_servicios_reservas_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/servicios/reservas.service */ "./src/app/servicios/reservas.service.ts");
+
+
+
 
 
 
 
 
 var HomeSupervisorPage = /** @class */ (function () {
-    function HomeSupervisorPage(platform, route, auth) {
+    function HomeSupervisorPage(mesaService, datePipe, platform, route, auth, reservaService) {
+        var _this = this;
+        this.mesaService = mesaService;
+        this.datePipe = datePipe;
         this.platform = platform;
         this.route = route;
         this.auth = auth;
+        this.reservaService = reservaService;
+        this.fecha = new Date();
+        this.mesaService.getMesas().subscribe(function (mesas) {
+            _this.mesas = mesas;
+            _this.chequearReservas();
+        });
     }
     HomeSupervisorPage.prototype.ngOnInit = function () {
     };
@@ -106,6 +121,35 @@ var HomeSupervisorPage = /** @class */ (function () {
     };
     HomeSupervisorPage.prototype.Encuesta = function () {
         this.route.navigate(['encuesta-supervisor']);
+    };
+    HomeSupervisorPage.prototype.EncuestaCliente = function () {
+        this.route.navigate(['graficos-cliente']);
+    };
+    HomeSupervisorPage.prototype.chequearReservas = function () {
+        var _this = this;
+        var fech = this.datePipe.transform(this.fecha, 'dd/MM/yyyy');
+        this.fecha.setMinutes(this.fecha.getMinutes() - 40);
+        var resD = new Array();
+        this.reservaService.getReservas().subscribe(function (list) {
+            list.filter(function (res) {
+                if (res.fecha == fech) {
+                    resD.push(res);
+                }
+            });
+            resD.forEach(function (resDia) {
+                var hor = new Date(resDia.fecha + " " + resDia.hora);
+                if (hor > _this.fecha) {
+                    _this.mesas.filter(function (mesa) {
+                        if (mesa.numero == resDia.mesa.numero && mesa.estado == "Vacia") {
+                            mesa.estado = "Reservada";
+                            _this.mesaService.actualizarMesa(mesa);
+                            resDia.mesa = mesa;
+                            _this.reservaService.updateReserva(resDia);
+                        }
+                    });
+                }
+            });
+        });
     };
     HomeSupervisorPage.prototype.salir = function () {
         this.auth.LogOut();
@@ -117,7 +161,7 @@ var HomeSupervisorPage = /** @class */ (function () {
             template: __webpack_require__(/*! ./home-supervisor.page.html */ "./src/app/paginas/home-supervisor/home-supervisor.page.html"),
             styles: [__webpack_require__(/*! ./home-supervisor.page.scss */ "./src/app/paginas/home-supervisor/home-supervisor.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_servicios_mesas_service__WEBPACK_IMPORTED_MODULE_6__["MesasService"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["DatePipe"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"], src_app_servicios_reservas_service__WEBPACK_IMPORTED_MODULE_7__["ReservasService"]])
     ], HomeSupervisorPage);
     return HomeSupervisorPage;
 }());

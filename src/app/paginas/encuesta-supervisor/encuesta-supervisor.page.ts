@@ -5,6 +5,7 @@ import { AuthService } from '../../servicios/auth.service'
 import { Empleado } from '../../interfaces/usuario'
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { AlertService } from 'src/app/servicios/alert.service';
 
 @Component({
   selector: 'app-encuesta-supervisor',
@@ -34,7 +35,7 @@ export class EncuestaSupervisorPage implements OnInit {
   limpieza_dest:any;
 
   constructor(private encuestasService: EncuestasService, private firestorageService: FirestorageService, private auth: AuthService, private alertController: AlertController, 
-    private route:Router) {
+    private route:Router, private alert: AlertService) {
     this.limpieza = 6;
     this.rapido = false;
     this.calidadBebida = false;
@@ -122,7 +123,7 @@ export class EncuestaSupervisorPage implements OnInit {
       puntualidad_dest:this.amabilidad_dest === undefined ? false : this.amabilidad_dest === 'true' ? true : false,
       fecha: new Date()
     }).then(() => {
-      alert('Encuesta cargada exitosamente!');
+      this.alert.mensaje("", "Encuesta Cargada Exitosamente")
     }).catch(error => { alert(error); });
   }
 

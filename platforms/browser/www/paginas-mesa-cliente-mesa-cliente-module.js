@@ -84,7 +84,7 @@ var MesaClientePageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar color=\"primary\" >\r\n    <ion-buttons slot=\"end\">\r\n      <ion-button color=\"tertiary\" size=\"small\">\r\n          <!-- <img class=\"icon-img\" src=\"assets/icon/logout.png\"> -->\r\n          <ion-icon name=\"log-out\" ></ion-icon>\r\n      </ion-button>\r\n    </ion-buttons>\r\n    <ion-title class=\"titulo-header\">\r\n     Cliente\r\n    </ion-title>\r\n    <ion-buttons slot=\"start\">\r\n      <ion-button color=\"tertiary\" size=\"small\">\r\n        <ion-icon name=\"person\" slot=\"icon-only\"></ion-icon>\r\n      </ion-button>\r\n    </ion-buttons>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n  <ion-card class=\"ion-activatable\" (click)=\"this.escanearQr()\">\r\n    <ion-ripple-effect></ion-ripple-effect>\r\n    <ion-icon name=\"qr-scanner\"></ion-icon>\r\n    <h2>Escanear QR</h2>\r\n  </ion-card>\r\n\r\n  <ion-card class=\"ion-activatable\" (click)=\"this.realizarPedido()\">\r\n    <ion-ripple-effect></ion-ripple-effect>\r\n    <ion-icon name=\"restaurant\"></ion-icon>\r\n    <h2>Realizar un Pedido</h2>\r\n  </ion-card>\r\n\r\n  <ion-card class=\"ion-activatable\" (click)=\"this.consultarMozo()\">\r\n    <ion-ripple-effect></ion-ripple-effect>\r\n    <ion-icon name=\"person\"></ion-icon>\r\n    <h2>Consulta al Mozo</h2>\r\n    </ion-card>\r\n    \r\n\r\n    <ion-card class=\"ion-activatable\" (click)=\"this.realizarEncuesta()\">\r\n      <ion-ripple-effect></ion-ripple-effect>\r\n      <ion-icon name=\"checkbox-outline\"></ion-icon>\r\n      <h2>Encuesta</h2>\r\n    </ion-card>\r\n\r\n    <ion-card class=\"ion-activatable\" (click)=\"this.jugar()\">\r\n      <ion-ripple-effect></ion-ripple-effect>\r\n      <ion-icon name=\"logo-game-controller-b\"></ion-icon>\r\n      <h2>Jugar</h2>\r\n      </ion-card>\r\n      \r\n      <ion-card class=\"ion-activatable\" (click)=\"this.pedirCuenta()\">\r\n      <ion-ripple-effect></ion-ripple-effect>\r\n      <ion-icon name=\"list\" ></ion-icon>\r\n      <h2>Pedir cuenta</h2>\r\n      </ion-card>\r\n\r\n      <ion-button class=\"apagar\" color=\"dark\" (click)=\"salir()\">\r\n        <ion-icon name=\"power\"></ion-icon>\r\n      </ion-button>\r\n</ion-content>"
+module.exports = "<ion-header>\r\n  <ion-toolbar color=\"primary\" >\r\n    <ion-buttons slot=\"end\">\r\n      <ion-button color=\"tertiary\" size=\"small\">\r\n          <!-- <img class=\"icon-img\" src=\"assets/icon/logout.png\"> -->\r\n          <ion-icon name=\"log-out\" ></ion-icon>\r\n      </ion-button>\r\n    </ion-buttons>\r\n    <ion-title class=\"titulo-header\">\r\n     Cliente\r\n    </ion-title>\r\n    <ion-buttons slot=\"start\">\r\n      <ion-button color=\"tertiary\" size=\"small\">\r\n        <ion-icon name=\"person\" slot=\"icon-only\"></ion-icon>\r\n      </ion-button>\r\n    </ion-buttons>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n  <ion-card class=\"ion-activatable\" (click)=\"this.escanearQr()\">\r\n    <ion-ripple-effect></ion-ripple-effect>\r\n    <ion-icon name=\"qr-scanner\"></ion-icon>\r\n    <h2>Escanear QR</h2>\r\n  </ion-card>\r\n\r\n  <ion-card class=\"ion-activatable\" (click)=\"this.realizarPedido()\">\r\n    <ion-ripple-effect></ion-ripple-effect>\r\n    <ion-icon name=\"restaurant\"></ion-icon>\r\n    <h2>Realizar un Pedido</h2>\r\n  </ion-card>\r\n\r\n  <ion-card class=\"ion-activatable\" (click)=\"this.consultarMozo()\">\r\n    <ion-ripple-effect></ion-ripple-effect>\r\n    <ion-icon name=\"person\"></ion-icon>\r\n    <h2>Consulta al Mozo</h2>\r\n    </ion-card>\r\n    \r\n\r\n    <ion-card class=\"ion-activatable\" (click)=\"this.realizarEncuesta()\">\r\n      <ion-ripple-effect></ion-ripple-effect>\r\n      <ion-icon name=\"checkbox-outline\"></ion-icon>\r\n      <h2>Encuesta</h2>\r\n    </ion-card>\r\n\r\n    <ion-card class=\"ion-activatable\" (click)=\"this.propina()\">\r\n      <ion-ripple-effect></ion-ripple-effect>\r\n      <ion-icon name=\"trophy\"></ion-icon>\r\n      <h2>Propina</h2>\r\n    </ion-card>\r\n\r\n    <ion-card class=\"ion-activatable\" (click)=\"this.jugar()\">\r\n      <ion-ripple-effect></ion-ripple-effect>\r\n      <ion-icon name=\"logo-game-controller-b\"></ion-icon>\r\n      <h2>Jugar</h2>\r\n      </ion-card>\r\n      \r\n      <ion-card class=\"ion-activatable\" (click)=\"this.pedirCuenta()\">\r\n      <ion-ripple-effect></ion-ripple-effect>\r\n      <ion-icon name=\"list\" ></ion-icon>\r\n      <h2>Pedir cuenta</h2>\r\n      </ion-card>\r\n\r\n      <ion-button class=\"apagar\" color=\"dark\" (click)=\"salir()\">\r\n        <ion-icon name=\"power\"></ion-icon>\r\n      </ion-button>\r\n</ion-content>"
 
 /***/ }),
 
@@ -148,12 +148,12 @@ var MesaClientePage = /** @class */ (function () {
     MesaClientePage.prototype.ngOnInit = function () {
         //this.platform.isLandscape();
     };
-    MesaClientePage.prototype.salir = function () {
-        this.auth.LogOut();
-        this.route.navigate(['log-in']);
-    };
     MesaClientePage.prototype.realizarPedido = function () {
-        this.alert.mensaje('', 'Realizar pedido');
+        var audio = new Audio();
+        audio.src = '../assets/click.m4a';
+        audio.load();
+        audio.play();
+        this.route.navigate(['hacer-pedido']);
     };
     MesaClientePage.prototype.escanearQr = function () {
         this.alert.mensaje('', 'escanear');
@@ -179,7 +179,7 @@ var MesaClientePage = /** @class */ (function () {
                                     //TODO -> PUSH NOTIFICATION.
                                     _this.spinnerService.hideSpinner();
                                     _this.alert.mensaje("", "Se ha enviado su consulta.");
-                                    _this.fcmService.enviarMensaje("Nueva Consulta", "Mesa1" + data.data, "notificacionMozo");
+                                    _this.fcmService.enviarMensaje("Nueva Consulta", "Mesa1" + data.data, "mozo");
                                 }
                                 else {
                                     _this.alert.mensaje("", "Consulta Cancelada");
@@ -202,6 +202,14 @@ var MesaClientePage = /** @class */ (function () {
     };
     MesaClientePage.prototype.pedirCuenta = function () {
         this.alert.mensaje('', 'pedir cuenta');
+    };
+    MesaClientePage.prototype.propina = function () {
+        //falta completar esto
+        //this.route.navigate(['propina/'+ this.idMesaCliente]);
+    };
+    MesaClientePage.prototype.salir = function () {
+        this.auth.LogOut();
+        this.route.navigate(['log-in']);
     };
     MesaClientePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

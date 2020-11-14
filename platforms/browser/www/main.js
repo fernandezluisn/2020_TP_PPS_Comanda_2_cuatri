@@ -789,6 +789,11 @@ var map = {
 		"common",
 		"paginas-graficos-graficos-module"
 	],
+	"./paginas/hacer-pedido/hacer-pedido.module": [
+		"./src/app/paginas/hacer-pedido/hacer-pedido.module.ts",
+		"common",
+		"paginas-hacer-pedido-hacer-pedido-module"
+	],
 	"./paginas/home-cliente/home-cliente.module": [
 		"./src/app/paginas/home-cliente/home-cliente.module.ts",
 		"common",
@@ -817,10 +822,12 @@ var map = {
 	],
 	"./paginas/home-supervisor/home-supervisor.module": [
 		"./src/app/paginas/home-supervisor/home-supervisor.module.ts",
+		"common",
 		"paginas-home-supervisor-home-supervisor-module"
 	],
 	"./paginas/log-in/log-in.module": [
 		"./src/app/paginas/log-in/log-in.module.ts",
+		"common",
 		"paginas-log-in-log-in-module"
 	],
 	"./paginas/mesa-cliente/mesa-cliente.module": [
@@ -914,7 +921,7 @@ var routes = [
     { path: 'home-delivery', loadChildren: './paginas/home-delivery/home-delivery.module#HomeDeliveryPageModule' },
     { path: 'home-mozo', loadChildren: './paginas/home-mozo/home-mozo.module#HomeMozoPageModule' },
     { path: 'home-cliente', loadChildren: './paginas/home-cliente/home-cliente.module#HomeClientePageModule' },
-    { path: 'propina', loadChildren: './paginas/propina/propina.module#PropinaPageModule' },
+    { path: 'propina/:idMesaCliente', loadChildren: './paginas/propina/propina.module#PropinaPageModule' },
     { path: 'mesa-cliente', loadChildren: './paginas/mesa-cliente/mesa-cliente.module#MesaClientePageModule' },
     { path: 'encuesta-supervisor', loadChildren: './paginas/encuesta-supervisor/encuesta-supervisor.module#EncuestaSupervisorPageModule' },
     { path: 'encuesta-empleado', loadChildren: './paginas/encuesta-empleado/encuesta-empleado.module#EncuestaEmpleadoPageModule' },
@@ -923,6 +930,7 @@ var routes = [
     { path: 'respuesta-reservas', loadChildren: './paginas/respuesta-reservas/respuesta-reservas.module#RespuestaReservasPageModule' },
     { path: 'encuesta-cliente', loadChildren: './paginas/encuesta-cliente/encuesta-cliente.module#EncuestaClientePageModule' },
     { path: 'consulta-mozo', loadChildren: './paginas/consulta-mozo/consulta-mozo.module#ConsultaMozoPageModule' },
+    { path: 'hacer-pedido', loadChildren: './paginas/hacer-pedido/hacer-pedido.module#HacerPedidoPageModule' },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -1025,30 +1033,30 @@ var AppComponent = /** @class */ (function () {
             _this.statusBar.styleDefault();
             _this.splashScreen.hide();
             Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["timer"])(4000).subscribe(function () { _this.showSplash = false; });
-            _this.fcm.getToken().then(function (token) {
-                console.log(token);
-            });
-            _this.fcm.onTokenRefresh().subscribe(function (token) {
-                console.log(token);
-            });
-            _this.fcm.onNotification().subscribe(function (data) {
-                // console.log(data);
-                if (data.wasTapped) {
-                    alert(data);
-                    console.log('Received in background');
-                    //this.router.navigateByUrl('/list-confirmar-cliente-mesa');
-                    //this.publicRouter.navigate(['/log-in']);
-                }
-                else {
-                    console.log('Received in foreground');
-                    //let objetoAuxUno = JSON.stringify(data.title);
-                    var objetoAuxDos = JSON.stringify(data.body);
-                    _this.presentToast(objetoAuxDos);
-                }
-            });
-            // this.fcm.subscribeToTopic('wololo');
-            _this.fcm.subscribeToTopic('notificacionListaEspera');
         });
+        this.fcm.getToken().then(function (token) {
+            console.log(token);
+        });
+        this.fcm.onTokenRefresh().subscribe(function (token) {
+            console.log(token);
+        });
+        this.fcm.onNotification().subscribe(function (data) {
+            // console.log(data);
+            if (data.wasTapped) {
+                // alert(data);
+                console.log('Received in background');
+                //this.router.navigateByUrl('/list-confirmar-cliente-mesa');
+                //this.publicRouter.navigate(['/log-in']);
+            }
+            else {
+                console.log('Received in foreground');
+                //let objetoAuxUno = JSON.stringify(data.title);
+                var objetoAuxDos = JSON.stringify(data.body);
+                _this.presentToast(objetoAuxDos);
+            }
+        });
+        // this.fcm.subscribeToTopic('wololo');
+        // this.fcm.subscribeToTopic('notificacionListaEspera');
         this.fcm.subscribeToTopic('testeo');
     };
     AppComponent.prototype.presentToast = function (mensaje) {
@@ -1061,7 +1069,7 @@ var AppComponent = /** @class */ (function () {
                             message: mensaje,
                             //duration: 5000,
                             position: 'top',
-                            color: 'violetaleon',
+                            color: 'success',
                             translucent: false,
                             cssClass: 'toast-noti',
                             buttons: [
@@ -1613,7 +1621,7 @@ var AuthService = /** @class */ (function () {
                     usrs.forEach(function (element) {
                         var obj_element = element.data();
                         obj_element.id = element.id;
-                        _this.fcmService.DesuscribirDeTodas();
+                        //    this.fcmService.DesuscribirDeTodas();
                         if (obj_element.activo && obj_element.uid == uid) {
                             switch (obj_element.perfil) {
                                 case 'bar':
@@ -1623,8 +1631,8 @@ var AuthService = /** @class */ (function () {
                                     _this.router.navigate(["home-cocina"]);
                                     break;
                                 case 'cocina':
-                                    _this.fcmService.SuscribirANotificacion("notificacionCocina");
                                     _this.usuario = obj_element;
+                                    _this.fcmService.SuscribirANotificacion("notificacionCocina");
                                     localStorage.setItem('usuario', JSON.stringify(_this.usuario));
                                     resolve(_this.usuario);
                                     _this.router.navigate(["home-cocina"]);
@@ -1637,8 +1645,8 @@ var AuthService = /** @class */ (function () {
                                     _this.router.navigate(["home-supervisor"]);
                                     break;
                                 case 'mozo':
-                                    _this.fcmService.SuscribirANotificacion('mozo');
                                     _this.usuario = obj_element;
+                                    _this.fcmService.SuscribirANotificacion('notificacionMozo');
                                     localStorage.setItem('usuario', JSON.stringify(_this.usuario));
                                     resolve(_this.usuario);
                                     _this.router.navigate(["home-mozo"]);
@@ -1657,12 +1665,14 @@ var AuthService = /** @class */ (function () {
                                     _this.router.navigate(["home-comanda"]);
                                     break;
                                 case 'dueño':
+                                    _this.fcmService.SuscribirANotificacion('notificacionDueño');
                                     _this.usuario = obj_element;
                                     localStorage.setItem('usuario', JSON.stringify(_this.usuario));
                                     resolve(_this.usuario);
                                     _this.router.navigate(["home-supervisor"]);
                                     break;
                                 case 'cliente':
+                                    _this.fcmService.SuscribirANotificacion('notificacionCliente');
                                     _this.usuario = obj_element;
                                     localStorage.setItem('usuario', JSON.stringify(_this.usuario));
                                     resolve(_this.usuario);
@@ -1838,7 +1848,7 @@ var FcmService = /** @class */ (function () {
         this.http = http;
         this.headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
             'Content-Type': 'application/json',
-            'Authorization': 'key=AAAA0TsmZ2E:APA91bGT3AsRQz1SWKT_lIaUxFeweYs-KStunNKIeJFWjg3l-KzU9GldGdwGvy_ZfF1y1ig9774bk5lvm1S6aCrOq4SLLh0H3CmOuS354CtX55cBIH0EUI9gvfwbAqtF2GXmulyamUvo'
+            'Authorization': 'key=AAAAPeAihMI:APA91bHLdWsfXxe_cwQ9qeWzLY1DIl7KINyt8tYadtt0k3QAjK1X2uvpIMudD6Uoy8b6uQGrb9GCsj80dkp0KTqTNuJE7pv7Q3Sc6ehXaRsNLqOtrOSs1loGj9ulUhvwNIze0tl7DhN2'
         });
     }
     FcmService.prototype.SuscribirANotificacion = function (notificacion) {
@@ -1850,6 +1860,11 @@ var FcmService = /** @class */ (function () {
     FcmService.prototype.DesuscribirDeTodas = function () {
         this.fcm.unsubscribeFromTopic('notificacionMozo');
         this.fcm.unsubscribeFromTopic('notificacionListaEspera');
+        this.fcm.unsubscribeFromTopic('notificacionCocina');
+        this.fcm.unsubscribeFromTopic('notificacionSupervisor');
+        this.fcm.unsubscribeFromTopic('notificacionMozo');
+        this.fcm.unsubscribeFromTopic('notificacionDueño');
+        this.fcm.unsubscribeFromTopic('notificacionCliente');
     };
     FcmService.prototype.enviarMensaje = function (titulo, texto, topic) {
         var body = {
