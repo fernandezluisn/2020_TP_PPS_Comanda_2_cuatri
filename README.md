@@ -28,8 +28,8 @@
 
 | Tarea | Descripcion | Estado | Desarrollado por | Fecha
 |---|---|---|---|---|
-| A | Alta dueño | Pendiente | Zamora | 
-| B | Alta empleado | Pendiente | Zamora | 
+| A | Alta dueño | Hecho | Zamora | 
+| B | Alta empleado | Hecho | Zamora | 
 | C | Alta producto | Hecho | Fernández | 
 | D | Alta cliente | Hecho | Ramundo | 
 | E | Alta mesa | Hecho | Fernández |
@@ -116,7 +116,7 @@ El cliente puede registrarse utilizando el código QR de su DNI o introduciendo 
 <h3>Consultas ✉️</h3><br><br>
 En caso de tener alguna duda, el cliente puede consultar a un mozo que le responderá a la brevedad.
 
-<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/consulta.jpeg" width="300"/>
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/consulta.jpeg" width="300"/><br>
 
 <h3>Encuestas 📓</h3><br><br>
 
@@ -130,7 +130,7 @@ Los empleados tienen su propia encuesta que deben completar al llegar y retirars
 
 El supervisor también tiene su propia encuesta para ingresar información sobre el rendimiento de los empleados.
 
-<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/encuestaSupervisor.jpeg" width="300"/>
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/encuestaSupervisor.jpeg" width="300"/><br>
 
 
 <h3>Alta de productos 📝</h3><br><br>
