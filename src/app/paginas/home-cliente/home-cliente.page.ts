@@ -193,27 +193,35 @@ this.spinner.hideSpinner();
 
     chequearReservas(){
       
-      let fech=this.datePipe.transform(this.fecha, 'dd/MM/yyyy');
-      this.fecha.setMinutes(this.fecha.getMinutes()-40);
-      let resD:Reserva[]=new Array();      
-      
-      this.reservaService.getReservas().subscribe(list=>{
-        list.filter(res=>{
-          
-          if(res.fecha==fech){
-            resD.push(res);
-          }
-        })
+      let fech1=this.datePipe.transform(this.fecha, 'dd/MM/yyyy');
+    let fech2=this.datePipe.transform(this.fecha, 'yyyy-MM-dd');
+    this.fecha.setMinutes(this.fecha.getMinutes()-40);
+    let resD:Reserva[]=new Array();      
+    
+    this.reservaService.getReservas().subscribe(list=>{
+      list.filter(res=>{
+        if(res.fecha==fech1 && res.estado=="confirmada"){
+          resD.push(res);
+        }else if(Number(Date.parse( res.fecha2))<Number(Date.parse( fech2)) && res.estado!="expirada"){
+          res.estado="expirada";
+          this.reservaService.updateReserva(res);
+        }
+      })
   
         resD.forEach(resDia=>{
           let hor=new Date(resDia.fecha+" "+resDia.hora);          
           if(hor>this.fecha){
             this.mesas.filter(mesa=>{
-              if(mesa.numero==resDia.mesa.numero && mesa.estado=="Vacia"){
+              if(mesa.numero==resDia.mesa.numero && mesa.estado=="Vacia" && resDia.situacion=="a reservar"){
                 mesa.estado="Reservada";              
                 this.mesaService.actualizarMesa(mesa);
+                resDia.situacion="hecha";
                 resDia.mesa=mesa;
                 this.reservaService.updateReserva(resDia);
+                this.fcmService.enviarMensaje("Mesa"+mesa.numero, "Le informamos que se encuentra reservada la mesa "+mesa.numero, 'notificacionListaEspera');
+              }else if(mesa.numero==resDia.mesa.numero && mesa.estado=="Ocupada" && resDia.situacion=="a reservar"){
+                this.fcmService.enviarMensaje("Mesa"+mesa.numero, "Le informamos que se encuentra reservada la mesa "+mesa.numero+", debe desocuparla en un plazo menor a 40 minutos.", 'notificacionListaEspera');
+
               }
             })
           }

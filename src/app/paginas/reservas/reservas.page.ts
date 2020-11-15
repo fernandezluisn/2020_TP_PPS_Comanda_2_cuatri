@@ -40,6 +40,7 @@ export class ReservasPage implements OnInit {
     let hor=this.datePipe.transform(this.hora, 'HH:mm');;
     let fech=this.datePipe.transform(this.fecha, 'dd/MM/yyyy');
     let nom=this.usuario.nombre+" "+this.usuario.apellido;    
+    let fech2=this.datePipe.transform(this.fecha, 'yyyy-MM-dd');
     
     if(fech==null && hor==null){
       this.alertar.mensaje("Faltan datos", "Debe ingresar fecha y hora");
@@ -49,7 +50,7 @@ export class ReservasPage implements OnInit {
       this.alertar.mensaje("ERROR","Debe solicitar una mesa para una persona o más");
     }else{
       try{
-        let r=new Reserva(this.usuario.id, fech, hor,"pendiente", nom, this.cantidad, this.tipo);
+        let r=new Reserva(this.usuario.id, fech, hor,"pendiente", nom, this.cantidad, this.tipo, fech2);
         this.bda.addReserva(r);
         this.toast.confirmationToast("Se solicitó la reserva correctamente");
         this.route.navigate(["home-cliente"]);

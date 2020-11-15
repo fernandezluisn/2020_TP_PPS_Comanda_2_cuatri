@@ -56,6 +56,7 @@ export class AuthService {
               case 'bar':
                this.usuario = obj_element as Empleado;
                localStorage.setItem('usuario', JSON.stringify(this.usuario));
+               this.fcmService.SuscribirANotificacion("notificacionBar")
                 resolve(this.usuario);
                 this.router.navigate(["home-cocina"]);
                 break;

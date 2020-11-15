@@ -4,6 +4,10 @@ import { ReservasService } from 'src/app/servicios/reservas.service';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { AlertService } from 'src/app/servicios/alert.service';
 import { FcmService } from 'src/app/servicios/fcm.service';
+import { DatePipe } from '@angular/common';
+import { Reserva } from 'src/app/interfaces/reserva';
+import { MesasService } from 'src/app/servicios/mesas.service';
+import { Mesa } from 'src/app/interfaces/mesa';
 
 @Component({
   selector: 'app-home-metre',
@@ -12,13 +16,21 @@ import { FcmService } from 'src/app/servicios/fcm.service';
 })
 export class HomeMetrePage implements OnInit {
 
+  fecha=new Date();
+  mesas:Mesa[];
+
   clientesEnEspera = [];
   clientes;
   cantClientesEnEspera = 100;
-  constructor(private reservasService: ReservasService, private authService: AuthService, private route:Router,
-     private alertService: AlertService, private fcmService: FcmService) {
+  constructor(private mesaService: MesasService, private reservasService: ReservasService, private authService: AuthService, private route:Router,
+     private alertService: AlertService, private reservaService:ReservasService, private fcmService: FcmService, public datePipe: DatePipe,) {
        this.fcmService.SuscribirANotificacion('notificacionListaEspera')
     this.clientesEnEspera = [];
+
+    this.mesaService.getMesas().subscribe(mesas => { this.mesas = mesas; 
+      this.chequearReservas();
+
+    });
    }
 
   ngOnInit() {
@@ -57,6 +69,45 @@ export class HomeMetrePage implements OnInit {
   salir(){
     this.authService.LogOut();
     this.route.navigate(['log-in']);
+  }
+
+  chequearReservas(){
+      
+    let fech1=this.datePipe.transform(this.fecha, 'dd/MM/yyyy');
+    let fech2=this.datePipe.transform(this.fecha, 'yyyy-MM-dd');
+    this.fecha.setMinutes(this.fecha.getMinutes()-40);
+    let resD:Reserva[]=new Array();      
+    
+    this.reservaService.getReservas().subscribe(list=>{
+      list.filter(res=>{
+        if(res.fecha==fech1 && res.estado=="confirmada"){
+          resD.push(res);
+        }else if(Number(Date.parse( res.fecha2))<Number(Date.parse( fech2)) && res.estado!="expirada"){
+          res.estado="expirada";
+          this.reservaService.updateReserva(res);
+        }
+      })
+
+      resD.forEach(resDia=>{
+        let hor=new Date(resDia.fecha+" "+resDia.hora);          
+        if(hor>this.fecha){
+          this.mesas.filter(mesa=>{
+            if(mesa.numero==resDia.mesa.numero && mesa.estado=="Vacia" && resDia.situacion=="a reservar"){
+              mesa.estado="Reservada";              
+              this.mesaService.actualizarMesa(mesa);
+              resDia.situacion="hecha";
+              resDia.mesa=mesa;
+              this.reservaService.updateReserva(resDia);
+              this.fcmService.enviarMensaje("Mesa"+mesa.numero, "Le informamos que se encuentra reservada la mesa "+mesa.numero, 'notificacionListaEspera');
+            }else if(mesa.numero==resDia.mesa.numero && mesa.estado=="Ocupada" && resDia.situacion=="a reservar"){
+              this.fcmService.enviarMensaje("Mesa"+mesa.numero, "Le informamos que se encuentra reservada la mesa "+mesa.numero+", debe desocuparla en un plazo menor a 40 minutos.", 'notificacionListaEspera');
+
+            }
+          })
+        }
+      })
+    })
+    
   }
 
 }
