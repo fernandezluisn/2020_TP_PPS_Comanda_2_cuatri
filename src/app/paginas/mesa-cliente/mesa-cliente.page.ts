@@ -70,7 +70,11 @@ realizarPedido()
   jugar()
   {
     //falta completar esto
+    //if(this.mesacliente.juegoDescuento==null)
     //this.route.navigate(["juego/"+this.idMesaCliente]);
+    /*else{
+      this.alert.mensaje('','Solo puede intentar el descuento una vez');
+    }*/
   }
   realizarEncuesta()
   {
