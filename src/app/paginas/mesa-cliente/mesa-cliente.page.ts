@@ -69,7 +69,8 @@ realizarPedido()
         })  }
   jugar()
   {
-    this.alert.mensaje('','jugar')
+    //falta completar esto
+    //this.route.navigate(["juego/"+this.idMesaCliente]);
   }
   realizarEncuesta()
   {
