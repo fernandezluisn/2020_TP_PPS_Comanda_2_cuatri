@@ -56,8 +56,9 @@ export class HomeClientePage {
     this.clienteService.obtenerCliente(this.cliente.uid).subscribe((resp:any) =>{
       resp.forEach(user => {
         console.log(user.estado);
+        var id = this.cliente.id;
           this.cliente = user;      
-
+          this.cliente.id = id;
           //chequeo si cambio el estado del cliente para poder darle un mensaje de aviso.
           if(this.cliente.estado == "aceptado" && this.estadoActualCliente == "EnListaDeEspera"){
             this.alert.mensaje("","Ha sido aceptado! ya puede ingresar al local");
@@ -86,6 +87,8 @@ export class HomeClientePage {
 
   //Si el usuario se encuentra en estado "desconectado" va a poder scanear el codigo de ingreso e ingresar a la lista de espera hasta que sea aceptado y pase al siguiente estado
   public async scanearEspera() {
+
+ 
     if(localStorage.getItem('Sonido') == 'true')
       {
         let audio = new Audio();
@@ -112,6 +115,7 @@ this.spinner.showSpinner();
       }
 this.spinner.hideSpinner();
     });
+    
   }
 
 

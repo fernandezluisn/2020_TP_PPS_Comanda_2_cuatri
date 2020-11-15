@@ -28,8 +28,8 @@
 
 | Tarea | Descripcion | Estado | Desarrollado por | Fecha
 |---|---|---|---|---|
-| A | Alta dueño | Pendiente | Zamora | 
-| B | Alta empleado | Pendiente | Zamora | 
+| A | Alta dueño | Hecho | Zamora | 
+| B | Alta empleado | Hecho | Zamora | 
 | C | Alta producto | Hecho | Fernández | 
 | D | Alta cliente | Hecho | Ramundo | 
 | E | Alta mesa | Hecho | Fernández |
@@ -47,6 +47,21 @@
 
 
 <h3>Diagrama código Qr (mesa)</h3><br><br>
+
+Ingreso a lista de espera:<br>
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/qr/QR_EntrarAListaDeEspera.PNG" width="400"/><br>
+
+Mesa 1:<br>
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/qr/Mesa/Mesa1.PNG" width="400"/><br>
+
+Mesa 2:<br>
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/qr/Mesa/Mesa2.PNG" width="400"/><br>
+
+Mesa3:<br>
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/qr/Mesa/Mesa3.PNG" width="400"/><br>
+
+Mesa 4:<br>
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/qr/Mesa/mesa4.PNG" width="400"/><br><br><br>
 
 <h2>Responsabilidades semanales ✍️</h2><br>
 
@@ -109,32 +124,33 @@ El cliente puede registrarse utilizando el código QR de su DNI o introduciendo 
 
 <h4>Cliente:</h4>
 
-<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/registro.jpeg" width="300"/>
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/registro.jpeg" width="300"/><br>
 
 <h4>Usuario anónimo:</h4><br>
 
 <h3>Consultas ✉️</h3><br><br>
-En caso de tener alguna duda, el cliente puede consultar a un mozo que le responderá a la brevedad.
 
-<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/consulta.jpeg" width="300"/>
+En caso de tener alguna duda, el cliente puede consultar a un mozo que le responderá a la brevedad.<br>
+
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/consulta.jpeg" width="300"/><br>
 
 <h3>Encuestas 📓</h3><br><br>
 
-Además, el cliente puede completar la encuesta para dejar registrada su opinión sobre el local.
+El cliente puede completar una encuesta para dejar registrada su opinión sobre el local.<br>
 
-<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/encuestaCliente.jpeg" width="300"/>
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/encuestaCliente.jpeg" width="300"/><br>
 
-Los empleados tienen su propia encuesta que deben completar al llegar y retirarse.
+Los empleados tienen su propia encuesta que deben completar al llegar y retirarse.<br>
 
-<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/encuestaEmpleado.jpeg" width="300"/>
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/encuestaEmpleado.jpeg" width="300"/><br>
 
-El supervisor también tiene su propia encuesta para ingresar información sobre el rendimiento de los empleados.
+El supervisor también tiene su propia encuesta para ingresar información sobre el rendimiento de los empleados.<br>
 
-<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/encuestaSupervisor.jpeg" width="300"/>
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/encuestaSupervisor.jpeg" width="300"/><br><br><br>
 
 
 <h3>Alta de productos 📝</h3><br><br>
 
-Se permite tanto que el cocinero como el barman ingresen comidas o bebidas con su propia descripción, precio e imagenes.
+Se permite tanto que el cocinero como el barman ingresen comidas o bebidas con su propia descripción, precio e imagenes.<br>
 
-<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/mostaza.jpeg" width="300"/>
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/mostaza.jpeg" width="300"/><br>
