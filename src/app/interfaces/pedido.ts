@@ -6,6 +6,7 @@ export interface Pedido {
     id_mesa: string;
     estado:string;
     comienzo: string;
+    email: string;
 }
 
 export interface PedidoProducto {

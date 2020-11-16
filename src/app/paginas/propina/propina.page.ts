@@ -113,10 +113,12 @@ export class PropinaPage implements OnInit {
       this.presentLoading("Cargando propina");
       this.mesaCliente.propina=this.propina;
       this.bda.actualizarMesa(this.mesaCliente);
-      this.router.navigate(["home-cliente"]);
+     this.router.navigate(["cuenta-cliente"]);
+
     }catch(e){
       this.alertar(e);
     }
+
     
   }
 
