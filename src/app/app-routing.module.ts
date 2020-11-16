@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { SepararGuard } from './guard/separar.guard';
 
-
 const routes: Routes = [
+ 
   {
     path: '',
     redirectTo: 'log-in',
@@ -43,10 +43,10 @@ const routes: Routes = [
   { path: 'encuesta-cliente', loadChildren: './paginas/encuesta-cliente/encuesta-cliente.module#EncuestaClientePageModule' },
   { path: 'consulta-mozo', loadChildren: './paginas/consulta-mozo/consulta-mozo.module#ConsultaMozoPageModule' },
   { path: 'hacer-pedido', loadChildren: './paginas/hacer-pedido/hacer-pedido.module#HacerPedidoPageModule' },
-  { path: 'juego/:idMesaCliente', loadChildren: './paginas/juego/juego.module#JuegoPageModule' },  { path: 'cuenta-cliente', loadChildren: './paginas/cuenta-cliente/cuenta-cliente.module#CuentaClientePageModule' },
+  { path: 'graficos-cliente', loadChildren: './paginas/graficos-cliente/graficos-cliente.module#GraficosClientePageModule' },
+  { path: 'juego/:idMesaCliente', loadChildren: './paginas/juego/juego.module#JuegoPageModule' },
+   { path: 'cuenta-cliente', loadChildren: './paginas/cuenta-cliente/cuenta-cliente.module#CuentaClientePageModule' },
 
-
- // { path: 'graficos-cliente', loadChildren: './paginas/graficos-clientes/graficos-cliente.module#GraficosClientesPageModule' },
 ];
 @NgModule({
   imports: [
@@ -55,5 +55,8 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
+
+
+
 
 

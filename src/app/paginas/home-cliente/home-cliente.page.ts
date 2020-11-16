@@ -131,7 +131,21 @@ this.spinner.hideSpinner();
           audio.play();
         }
         this.spinner.showSpinner();
-      this.barcodeScanner.scan().then(resultado => {
+        //agrego para debug ----------------------------
+        // let mesaOcupada = false;
+        // var mesa;
+        // mesa.id="AmPff5mH2nU7qhUn4XXE"
+        // mesa.qr="Mesa1"
+        // mesa.estado = "Ocupada";    
+        // this.mesaService.actualizarMesa(mesa);
+        // this.cliente.estado = "ConMesaAsignada"
+        // this.clienteService.ModificarUsuario(this.cliente);       
+        // this.alert.mensaje('', 'Ya puede sentarse en la mesa seleccionada!!');
+        // this.mesaClienteService.createMesaCliente(new MesaCliente(mesa.id,this.cliente.id,mesa.qr));
+        // this.route.navigate(['mesa-cliente']);  
+        //-----------------------------------------
+        //comento para debug ----------------------
+       this.barcodeScanner.scan().then(resultado => {
         let qrValido = false;
         let mesaOcupada = false;
          var mesa;
@@ -158,24 +172,6 @@ this.spinner.hideSpinner();
             }
           })
           
-      
-   /*
-          this.mesaService.obtenerMesaQr(resultado.text).subscribe((resp:any) =>{
-            resp.forEach(mesa => {
-              if(mesa.estado == "Ocupada"){
-                this.alert.mensaje('', 'La mesa esta ocupada');
-              }
-              else{
-                mesa.estado = "Ocupada";    
-                this.mesaService.actualizarMesa(mesa);
-                this.cliente.estado = "ConMesaAsignada"
-                this.clienteService.ModificarUsuario(this.cliente);       
-                this.alert.mensaje('', 'Ya puede sentarse en la mesa seleccionada!!');
-                this.route.navigate(['mesa-cliente']);      
-                }           
-           });      
-                     });
-  */
          }
 
           else {
