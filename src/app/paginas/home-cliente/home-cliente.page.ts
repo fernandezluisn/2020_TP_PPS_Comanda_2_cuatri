@@ -56,8 +56,9 @@ export class HomeClientePage {
     this.clienteService.obtenerCliente(this.cliente.uid).subscribe((resp:any) =>{
       resp.forEach(user => {
         console.log(user.estado);
+        var id = this.cliente.id;
           this.cliente = user;      
-
+          this.cliente.id = id;
           //chequeo si cambio el estado del cliente para poder darle un mensaje de aviso.
           if(this.cliente.estado == "aceptado" && this.estadoActualCliente == "EnListaDeEspera"){
             this.alert.mensaje("","Ha sido aceptado! ya puede ingresar al local");
@@ -86,6 +87,8 @@ export class HomeClientePage {
 
   //Si el usuario se encuentra en estado "desconectado" va a poder scanear el codigo de ingreso e ingresar a la lista de espera hasta que sea aceptado y pase al siguiente estado
   public async scanearEspera() {
+
+ 
     if(localStorage.getItem('Sonido') == 'true')
       {
         let audio = new Audio();
@@ -104,7 +107,7 @@ this.spinner.showSpinner();
          this.cliente.estado = "EnListaDeEspera"
          this.clienteService.ModificarUsuario(this.cliente);
          this.alert.mensaje('Bienvenido!', 'Usted se encuentra en la lista de espera');
-         this.fcmService.enviarMensaje("Prueba Scan QR", "Prueba Scan QR", "all")
+         this.fcmService.enviarMensaje("Nuevo Cliente", "nuevo cliente en lista de espera", "notificacionListaEspera")
 
        }
       if (!qrValido) {
@@ -112,6 +115,7 @@ this.spinner.showSpinner();
       }
 this.spinner.hideSpinner();
     });
+    
   }
 
 
@@ -127,7 +131,21 @@ this.spinner.hideSpinner();
           audio.play();
         }
         this.spinner.showSpinner();
-      this.barcodeScanner.scan().then(resultado => {
+        //agrego para debug ----------------------------
+        // let mesaOcupada = false;
+        // var mesa;
+        // mesa.id="AmPff5mH2nU7qhUn4XXE"
+        // mesa.qr="Mesa1"
+        // mesa.estado = "Ocupada";    
+        // this.mesaService.actualizarMesa(mesa);
+        // this.cliente.estado = "ConMesaAsignada"
+        // this.clienteService.ModificarUsuario(this.cliente);       
+        // this.alert.mensaje('', 'Ya puede sentarse en la mesa seleccionada!!');
+        // this.mesaClienteService.createMesaCliente(new MesaCliente(mesa.id,this.cliente.id,mesa.qr));
+        // this.route.navigate(['mesa-cliente']);  
+        //-----------------------------------------
+        //comento para debug ----------------------
+       this.barcodeScanner.scan().then(resultado => {
         let qrValido = false;
         let mesaOcupada = false;
          var mesa;
@@ -154,24 +172,6 @@ this.spinner.hideSpinner();
             }
           })
           
-      
-   /*
-          this.mesaService.obtenerMesaQr(resultado.text).subscribe((resp:any) =>{
-            resp.forEach(mesa => {
-              if(mesa.estado == "Ocupada"){
-                this.alert.mensaje('', 'La mesa esta ocupada');
-              }
-              else{
-                mesa.estado = "Ocupada";    
-                this.mesaService.actualizarMesa(mesa);
-                this.cliente.estado = "ConMesaAsignada"
-                this.clienteService.ModificarUsuario(this.cliente);       
-                this.alert.mensaje('', 'Ya puede sentarse en la mesa seleccionada!!');
-                this.route.navigate(['mesa-cliente']);      
-                }           
-           });      
-                     });
-  */
          }
 
           else {
@@ -193,27 +193,35 @@ this.spinner.hideSpinner();
 
     chequearReservas(){
       
-      let fech=this.datePipe.transform(this.fecha, 'dd/MM/yyyy');
-      this.fecha.setMinutes(this.fecha.getMinutes()-40);
-      let resD:Reserva[]=new Array();      
-      
-      this.reservaService.getReservas().subscribe(list=>{
-        list.filter(res=>{
-          
-          if(res.fecha==fech){
-            resD.push(res);
-          }
-        })
+      let fech1=this.datePipe.transform(this.fecha, 'dd/MM/yyyy');
+    let fech2=this.datePipe.transform(this.fecha, 'yyyy-MM-dd');
+    this.fecha.setMinutes(this.fecha.getMinutes()-40);
+    let resD:Reserva[]=new Array();      
+    
+    this.reservaService.getReservas().subscribe(list=>{
+      list.filter(res=>{
+        if(res.fecha==fech1 && res.estado=="confirmada"){
+          resD.push(res);
+        }else if(Number(Date.parse( res.fecha2))<Number(Date.parse( fech2)) && res.estado!="expirada"){
+          res.estado="expirada";
+          this.reservaService.updateReserva(res);
+        }
+      })
   
         resD.forEach(resDia=>{
           let hor=new Date(resDia.fecha+" "+resDia.hora);          
           if(hor>this.fecha){
             this.mesas.filter(mesa=>{
-              if(mesa.numero==resDia.mesa.numero && mesa.estado=="Vacia"){
+              if(mesa.numero==resDia.mesa.numero && mesa.estado=="Vacia" && resDia.situacion=="a reservar"){
                 mesa.estado="Reservada";              
                 this.mesaService.actualizarMesa(mesa);
+                resDia.situacion="hecha";
                 resDia.mesa=mesa;
                 this.reservaService.updateReserva(resDia);
+                this.fcmService.enviarMensaje("Mesa"+mesa.numero, "Le informamos que se encuentra reservada la mesa "+mesa.numero, 'notificacionListaEspera');
+              }else if(mesa.numero==resDia.mesa.numero && mesa.estado=="Ocupada" && resDia.situacion=="a reservar"){
+                this.fcmService.enviarMensaje("Mesa"+mesa.numero, "Le informamos que se encuentra reservada la mesa "+mesa.numero+", debe desocuparla en un plazo menor a 40 minutos.", 'notificacionListaEspera');
+
               }
             })
           }

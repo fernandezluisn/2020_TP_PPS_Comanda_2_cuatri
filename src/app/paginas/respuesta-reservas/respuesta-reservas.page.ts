@@ -5,6 +5,7 @@ import { Mesa } from 'src/app/interfaces/mesa';
 import { Reserva } from 'src/app/interfaces/reserva';
 import { AlertService } from 'src/app/servicios/alert.service';
 import { AuthService } from 'src/app/servicios/auth.service';
+import { FcmService } from 'src/app/servicios/fcm.service';
 import { MesasService } from 'src/app/servicios/mesas.service';
 import { ReservasService } from 'src/app/servicios/reservas.service';
 import { ToastService } from 'src/app/servicios/toast.service';
@@ -34,7 +35,8 @@ export class RespuestaReservasPage implements OnInit {
 
   constructor(public datePipe: DatePipe, private route:Router, private auth:AuthService, private bda:ReservasService, private bdaMEsas:MesasService,
     private alert:AlertService,
-    private toast:ToastService) {
+    private toast:ToastService,
+    private fcm:FcmService) {
     this.bda.getReservas().subscribe(list=>{
       let fech=this.datePipe.transform(this.fecha, 'dd/MM/yyyy');
       let resA:Reserva[]=new Array();
@@ -47,6 +49,7 @@ export class RespuestaReservasPage implements OnInit {
           resA.push(elem);
         }else if(elem.estado=="confirmada" && elem.fecha==fech){
           resD.push(elem);
+          console.log(elem);
         }else if(elem.estado=="confirmada" && elem.fecha!=fech){
           resC.push(elem);
         }
@@ -56,8 +59,8 @@ export class RespuestaReservasPage implements OnInit {
       this.reservasAResponder=resA;
       this.reservasConfirmadas=resC;
       this.reservasDelDia.sort((a,b) => Number(Date.parse(a.hora.toString())) - Number(Date.parse(b.hora.toString())));
-      this.reservasAResponder.sort((a,b) => Number(Date.parse(a.fecha.toString())) - Number(Date.parse(b.fecha.toString())));
-      this.reservasConfirmadas.sort((a,b) => Number(Date.parse(a.fecha.toString())) - Number(Date.parse(b.fecha.toString())));
+      this.reservasAResponder.sort((a,b) => Number(Date.parse(a.fecha2.toString())) - Number(Date.parse(b.fecha2.toString())));
+      this.reservasConfirmadas.sort((a,b) => Number(Date.parse(a.fecha2.toString())) - Number(Date.parse(b.fecha2.toString())));
 
       this.reservasAResponder.reverse();
       this.reservasConfirmadas.reverse();
@@ -102,6 +105,8 @@ export class RespuestaReservasPage implements OnInit {
         res.mesa=this.mesaV;
         res.estado="confirmada";
         this.bda.updateReserva(res);
+        this.fcm.enviarMensaje("Reserva confirmada", "Se confirmó su reserva para el día "+res.fecha,'notificacionCliente');
+
       }
     }else if(res.tipo=="Estandar"){
       if(this.mesaE==null){
@@ -110,6 +115,8 @@ export class RespuestaReservasPage implements OnInit {
         res.mesa=this.mesaE;
         res.estado="confirmada";
         this.bda.updateReserva(res);
+        this.fcm.enviarMensaje("Reserva confirmada", "Se confirmó su reserva para el día "+res.fecha,'notificacionCliente');
+
       }
     }else{
       if(this.mesaD==null){
@@ -120,8 +127,17 @@ export class RespuestaReservasPage implements OnInit {
         res.estado="confirmada";
         this.bda.updateReserva(res);
         this.toast.confirmationToast("Se confirmó la reserva");
+        this.fcm.enviarMensaje("Reserva confirmada", "Se confirmó su reserva para el día "+res.fecha,'notificacionCliente');
+
       }
     }
+  }
+
+  eliminar(reserva:Reserva){
+    reserva.estado="rechazada";
+    this.bda.updateReserva(reserva);
+    this.toast.confirmationToast("Se rechazó la reserva");
+    this.fcm.enviarMensaje("Reserva rechazada", "Se rechazó su reserva para el día "+reserva.fecha,'notificacionCliente');
   }
 
   salir(){

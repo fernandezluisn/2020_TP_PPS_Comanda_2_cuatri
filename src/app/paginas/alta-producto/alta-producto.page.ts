@@ -69,6 +69,8 @@ export class AltaProductoPage implements OnInit {
   ngOnInit() {
   }
 
+  
+
   escanear(){  
 
       
@@ -288,6 +290,10 @@ export class AltaProductoPage implements OnInit {
     this.alta=false;
     else
     this.alta=true;
+
+    this.image1=null;
+    this.image2=null;
+    this.image3=null;
   }
 
   async eliminar(){

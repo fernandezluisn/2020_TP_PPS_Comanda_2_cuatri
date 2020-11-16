@@ -1,0 +1,24 @@
+<ion-content>
+  <div class="container" [hidden]="!resultado">
+    <div  class="card">
+        <img class="img-thumbnail"   src="{{paisE.foto}}" alt="Avatar" style="width:100%">
+    </div>
+    <h2 style="text-align: center;"> Pista: {{paisE.pista}}</h2>
+    <h2 style="text-align: center;"></h2>
+
+    <ion-button (click)="ganar(string1)" color="primary" expand="full" style="margin-top: 2rem;">{{string1}}</ion-button>
+    <ion-button (click)="ganar(string2)" color="success" expand="full" style="margin-top: 2rem;">{{string2}}</ion-button>
+    <ion-button (click)="ganar(string3)" color="danger" expand="full" style="margin-top: 2rem;">{{string3}}</ion-button>
+    <ion-button (click)="ganar(string4)" color="dark" expand="full" style="margin-top: 2rem;">{{string4}}</ion-button>
+
+    
+</div>
+
+<div [hidden]="resultado" style="height: 40rem; justify-content: center; text-align: center;">
+    <h1 style="margin-top: 13rem;" [hidden]="ganarB">Ganaste un descuento!!</h1>
+    <h1 style="margin-top: 13rem;" [hidden]="perder">Perdiste!!</h1>
+    <h2 [hidden]="perder" style="margin-top: 2rem;">La respuesta era {{paisE.nombre}} </h2>
+    
+    <ion-button (click)="volver()" color="dark" expand="full" style="margin-top: 2rem;">Volver a la página principal</ion-button>
+</div>
+</ion-content>

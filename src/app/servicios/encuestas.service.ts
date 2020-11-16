@@ -1,4 +1,4 @@
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, DocumentReference } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
 import { EncuestaCliente } from '../interfaces/encuesta';
 import { Observable } from 'rxjs';
@@ -39,8 +39,8 @@ export class EncuestasService {
       });
     });
   }
-  public addEncuestaEmpleado(encuesta:EncuestaEmpleado) {
-    return this.db.collection('encuestas-empleados').add({...encuesta});
+  public addEncuestaEmpleado(encuesta:EncuestaEmpleado): Promise<DocumentReference> {
+    return this.db.collection('encuestas-empleados').add({...encuesta});    
   }
   
     

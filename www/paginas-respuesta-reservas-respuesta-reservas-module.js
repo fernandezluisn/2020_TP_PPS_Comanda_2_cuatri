@@ -69,7 +69,7 @@ module.exports = "\r\n\r\n<ion-content>\r\n  <ion-img src=\"../assets/logo.png\"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "h4 {\n  margin-left: 2rem; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnaW5hcy9yZXNwdWVzdGEtcmVzZXJ2YXMvQzpcXFVzZXJzXFxyYXVsLnphbW9yYVxcQW5uZ3VsYXJcXDIwMjBfVFBfUFBTL3NyY1xcYXBwXFxwYWdpbmFzXFxyZXNwdWVzdGEtcmVzZXJ2YXNcXHJlc3B1ZXN0YS1yZXNlcnZhcy5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxpQkFBaUIsRUFBQSIsImZpbGUiOiJzcmMvYXBwL3BhZ2luYXMvcmVzcHVlc3RhLXJlc2VydmFzL3Jlc3B1ZXN0YS1yZXNlcnZhcy5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJoNHtcclxuICAgIG1hcmdpbi1sZWZ0OiAycmVtO1xyXG59Il19 */"
+module.exports = "h4 {\n  margin-left: 2rem; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnaW5hcy9yZXNwdWVzdGEtcmVzZXJ2YXMvRTpcXERlc2Nhcmdhc1xcTWFzdGVyUHJlXFxNYXN0ZXJQcmUvc3JjXFxhcHBcXHBhZ2luYXNcXHJlc3B1ZXN0YS1yZXNlcnZhc1xccmVzcHVlc3RhLXJlc2VydmFzLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGlCQUFpQixFQUFBIiwiZmlsZSI6InNyYy9hcHAvcGFnaW5hcy9yZXNwdWVzdGEtcmVzZXJ2YXMvcmVzcHVlc3RhLXJlc2VydmFzLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImg0e1xyXG4gICAgbWFyZ2luLWxlZnQ6IDJyZW07XHJcbn0iXX0= */"
 
 /***/ }),
 

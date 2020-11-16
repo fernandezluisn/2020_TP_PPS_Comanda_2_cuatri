@@ -27,6 +27,7 @@ export class FcmService {
         this.fcm.unsubscribeFromTopic('notificacionMozo');
         this.fcm.unsubscribeFromTopic('notificacionListaEspera');
         this.fcm.unsubscribeFromTopic('notificacionCocina');
+        this.fcm.unsubscribeFromTopic('notificacionBar');
         this.fcm.unsubscribeFromTopic('notificacionSupervisor');
         this.fcm.unsubscribeFromTopic('notificacionMozo');
         this.fcm.unsubscribeFromTopic('notificacionDueño');

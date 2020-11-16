@@ -11,12 +11,15 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Producto", function() { return Producto; });
 var Producto = /** @class */ (function () {
-    function Producto(nombre, descripcion, tiempo, precio, tipo) {
+    function Producto(nombre, descripcion, tiempo, precio, tipo, imagen1, imagen2, imagen3) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.tiempo = tiempo;
         this.precio = precio;
         this.tipo = tipo;
+        this.foto_1 = imagen1;
+        this.foto_2 = imagen2;
+        this.foto_3 = imagen3;
     }
     return Producto;
 }());
@@ -83,7 +86,7 @@ var AltaProductoPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title>Productos</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n  \r\n  <ion-button (click)=\"cambiar()\">Cambiar formulario</ion-button>\r\n\r\n\r\n  <ng-container *ngIf=\"alta\">\r\n    \r\n    <ion-item>\r\n      <ion-label position=\"floating\">Nombre del producto</ion-label>\r\n      <ion-input type=\"text\" [(ngModel)]=\"nombre\"></ion-input>\r\n    </ion-item>\r\n\r\n    <ion-item>\r\n      <ion-label position=\"floating\">Descripción del producto</ion-label>\r\n      <ion-textarea [(ngModel)]=\"descripcion\"></ion-textarea>\r\n    </ion-item>\r\n   \r\n     <ion-item>\r\n       <ion-label position=\"floating\">Cantidad de minutos de elaboración</ion-label>\r\n       <ion-input type=\"number\" [(ngModel)]=\"minutos\"></ion-input>\r\n     </ion-item>\r\n \r\n     <ion-item>\r\n      <ion-label position=\"floating\">Precio</ion-label>\r\n      <ion-input type=\"number\" [(ngModel)]=\"precio\" placeholder=\"$$$\"></ion-input>\r\n    </ion-item>\r\n \r\n     <ion-button  color=\"dark\" size=\"small\" (click)=\"escanear()\">Escanear QR</ion-button><br>\r\n \r\n     <ion-button color=\"dark\" size=\"small\" (click)=\"sacarFoto(1)\" *ngIf=\"!image1\">Tomar una foto</ion-button><br><br>\r\n     <ion-item *ngIf=\"image1\">\r\n      <ion-img [src]=\"image1\"></ion-img>\r\n      </ion-item>\r\n     <ion-button color=\"dark\" size=\"small\" (click)=\"sacarFoto(2)\" *ngIf=\"image1 && !image2\">Tomar segunda foto</ion-button>\r\n     <ion-item *ngIf=\"image2\">\r\n      <ion-img [src]=\"image2\"></ion-img>\r\n      </ion-item>\r\n     <ion-button color=\"dark\" size=\"small\" (click)=\"sacarFoto(3)\" *ngIf=\"image2\">Tomar tercera foto</ion-button>\r\n     <ion-item *ngIf=\"image3\">\r\n      <ion-img [src]=\"image3\"></ion-img>\r\n      </ion-item>\r\n     \r\n     <ion-button (click)=\"subir()\">Subir Producto</ion-button>\r\n     \r\n   </ng-container>\r\n\r\n\r\n   <ng-container *ngIf=\"!alta\">\r\n\r\n    <ion-item style=\"margin-bottom:3rem;\">\r\n      <ion-label>Producto a modificar y/o eliminar</ion-label>\r\n      <ion-select  [(ngModel)]=\"productoElegido\" >\r\n        <ion-select-option [value]=\"item\" *ngFor=\"let item of listaProductos\">{{item.nombre}} ${{item.precio}}</ion-select-option>        \r\n      </ion-select>\r\n    </ion-item >\r\n    \r\n    <ng-container *ngIf=\"productoElegido\">\r\n      <ion-item>\r\n        <ion-label position=\"floating\">Nombre</ion-label>\r\n        <ion-input type=\"text\" [(ngModel)]=\"productoElegido.nombre\"></ion-input>\r\n      </ion-item> \r\n\r\n      <ion-item>\r\n        <ion-label position=\"floating\">Descripción del producto</ion-label>\r\n        <ion-textarea [(ngModel)]=\"productoElegido.descripcion\"></ion-textarea>\r\n      </ion-item>\r\n\r\n      <ion-item>\r\n        <ion-label position=\"floating\">Precio</ion-label>\r\n        <ion-input type=\"number\" [(ngModel)]=\"productoElegido.precio\"></ion-input>\r\n      </ion-item> \r\n\r\n      <ion-item>\r\n        <ion-label position=\"floating\">Cantidad de minutos de elaboración</ion-label>\r\n        <ion-input type=\"number\" [(ngModel)]=\"productoElegido.minutos\"></ion-input>\r\n      </ion-item>\r\n\r\n      <ion-button  color=\"dark\" size=\"small\" (click)=\"escanear()\">Ingresar nuevo QR</ion-button><br><br>\r\n \r\n      <ion-item *ngIf=\"productoElegido.foto_1\">\r\n        <ion-img [src]=\"productoElegido.foto_1\"></ion-img>\r\n      </ion-item>\r\n\r\n     <ion-item *ngIf=\"productoElegido.foto_2\">\r\n      <ion-img [src]=\"productoElegido.foto_2\"></ion-img>\r\n    </ion-item>\r\n     \r\n     <ion-item *ngIf=\"productoElegido.foto_3\">\r\n      <ion-img [src]=\"productoElegido.foto_3\"></ion-img>\r\n    </ion-item>\r\n\r\n      <ion-button (click)=\"modificar()\">Actualizar Producto</ion-button>\r\n      <ion-button (click)=\"eliminar()\">Eliminar Producto</ion-button>\r\n    </ng-container>\r\n\r\n   </ng-container>\r\n   <ion-button class=\"apagar\" color=\"dark\" (click)=\"salir()\">\r\n    <ion-icon name=\"power\"></ion-icon>\r\n  </ion-button>\r\n\r\n</ion-content>\r\n"
+module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title>Productos</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n  \r\n  <ion-button (click)=\"cambiar()\">Cambiar formulario</ion-button>\r\n\r\n\r\n  <ng-container *ngIf=\"alta\">\r\n    \r\n    <ion-item>\r\n      <ion-label position=\"floating\">Nombre del producto</ion-label>\r\n      <ion-input type=\"text\" [(ngModel)]=\"nombre\"></ion-input>\r\n    </ion-item>\r\n\r\n    <ion-item>\r\n      <ion-label position=\"floating\">Descripción del producto</ion-label>\r\n      <ion-textarea [(ngModel)]=\"descripcion\"></ion-textarea>\r\n    </ion-item>\r\n   \r\n     <ion-item>\r\n       <ion-label position=\"floating\">Cantidad de minutos de elaboración</ion-label>\r\n       <ion-input type=\"number\" [(ngModel)]=\"minutos\"></ion-input>\r\n     </ion-item>\r\n \r\n     <ion-item>\r\n      <ion-label position=\"floating\">Precio</ion-label>\r\n      <ion-input type=\"number\" [(ngModel)]=\"precio\" placeholder=\"$$$\"></ion-input>\r\n    </ion-item>\r\n \r\n     <ion-button  color=\"dark\" size=\"small\" (click)=\"escanear()\">Escanear QR</ion-button><br>\r\n \r\n     <ion-button color=\"dark\" size=\"small\" (click)=\"foto1()\" *ngIf=\"!image1\">Tomar una foto</ion-button><br><br>\r\n     <ion-item *ngIf=\"image1\">\r\n      <ion-img [src]=\"image1\"></ion-img>\r\n      </ion-item>\r\n     <ion-button color=\"dark\" size=\"small\" (click)=\"foto2()\" *ngIf=\"image1 && !image2\">Tomar segunda foto</ion-button>\r\n     <ion-item *ngIf=\"image2\">\r\n      <ion-img [src]=\"image2\"></ion-img>\r\n      </ion-item>\r\n     <ion-button color=\"dark\" size=\"small\" (click)=\"foto3()\" *ngIf=\"image2\">Tomar tercera foto</ion-button>\r\n     <ion-item *ngIf=\"image3\">\r\n      <ion-img [src]=\"image3\"></ion-img>\r\n      </ion-item>\r\n     \r\n     <ion-button (click)=\"subir()\">Subir Producto</ion-button>\r\n     \r\n   </ng-container>\r\n\r\n\r\n   <ng-container *ngIf=\"!alta\">\r\n\r\n    <ion-item style=\"margin-bottom:3rem;\">\r\n      <ion-label>Producto a modificar y/o eliminar</ion-label>\r\n      <ion-select  [(ngModel)]=\"productoElegido\" >\r\n        <ion-select-option [value]=\"item\" *ngFor=\"let item of listaProductos\">{{item.nombre}} ${{item.precio}}</ion-select-option>        \r\n      </ion-select>\r\n    </ion-item >\r\n    \r\n    <ng-container *ngIf=\"productoElegido\">\r\n      <ion-item>\r\n        <ion-label position=\"floating\">Nombre</ion-label>\r\n        <ion-input type=\"text\" [(ngModel)]=\"productoElegido.nombre\"></ion-input>\r\n      </ion-item> \r\n\r\n      <ion-item>\r\n        <ion-label position=\"floating\">Descripción del producto</ion-label>\r\n        <ion-textarea [(ngModel)]=\"productoElegido.descripcion\"></ion-textarea>\r\n      </ion-item>\r\n\r\n      <ion-item>\r\n        <ion-label position=\"floating\">Precio</ion-label>\r\n        <ion-input type=\"number\" [(ngModel)]=\"productoElegido.precio\"></ion-input>\r\n      </ion-item> \r\n\r\n      <ion-item>\r\n        <ion-label position=\"floating\">Cantidad de minutos de elaboración</ion-label>\r\n        <ion-input type=\"number\" [(ngModel)]=\"productoElegido.minutos\"></ion-input>\r\n      </ion-item>\r\n\r\n      <ion-button  color=\"dark\" size=\"small\" (click)=\"escanear()\">Ingresar nuevo QR</ion-button><br><br>\r\n \r\n      <ion-item *ngIf=\"productoElegido.foto_1\">\r\n        <ion-img [src]=\"productoElegido.foto_1\"></ion-img>\r\n      </ion-item>\r\n\r\n     <ion-item *ngIf=\"productoElegido.foto_2\">\r\n      <ion-img [src]=\"productoElegido.foto_2\"></ion-img>\r\n    </ion-item>\r\n     \r\n     <ion-item *ngIf=\"productoElegido.foto_3\">\r\n      <ion-img [src]=\"productoElegido.foto_3\"></ion-img>\r\n    </ion-item>\r\n\r\n      <ion-button (click)=\"modificar()\">Actualizar Producto</ion-button>\r\n      <ion-button (click)=\"eliminar()\">Eliminar Producto</ion-button>\r\n    </ng-container>\r\n\r\n   </ng-container>\r\n   <ion-button class=\"apagar\" color=\"dark\" (click)=\"salir()\">\r\n    <ion-icon name=\"power\"></ion-icon>\r\n  </ion-button>\r\n\r\n</ion-content>\r\n"
 
 /***/ }),
 
@@ -94,7 +97,7 @@ module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title>Productos</i
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "ion-card {\n  text-align: center;\n  --background: rgb(230, 230, 230);\n  display: block;\n  border-radius: 0;\n  margin: 0;\n  padding: 0; }\n\nion-card ion-icon {\n  font-size: 80px;\n  color: #333333; }\n\n.card-vertical {\n  height: 33.33%;\n  width: 100%;\n  float: left; }\n\n.card-horizontal {\n  height: 100%;\n  width: 33.33%;\n  float: left; }\n\nion-ripple-effect {\n  color: #ef5c5c; }\n\n.icon-vertical {\n  margin-top: 13.5%; }\n\n.icon-horizontal {\n  margin-top: 4%; }\n\nh2 {\n  font-size: 20px;\n  font-weight: bold;\n  /*line-height: 0px;*/\n  padding-top: 0;\n  margin-top: 0;\n  color: #181717; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnaW5hcy9hbHRhLXByb2R1Y3RvL0M6XFxVc2Vyc1xccmF1bC56YW1vcmFcXEFubmd1bGFyXFwyMDIwX1RQX1BQUy9zcmNcXGFwcFxccGFnaW5hc1xcYWx0YS1wcm9kdWN0b1xcYWx0YS1wcm9kdWN0by5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRUE7RUFDSSxrQkFBa0I7RUFDbEIsZ0NBQWE7RUFDYixjQUFjO0VBQ2QsZ0JBQWdCO0VBQ2hCLFNBQVM7RUFDVCxVQUFVLEVBQUE7O0FBR2Q7RUFDSSxlQUFlO0VBQ2YsY0FBc0IsRUFBQTs7QUFHMUI7RUFDSSxjQUFjO0VBQ2QsV0FBVztFQUNYLFdBQVcsRUFBQTs7QUFHZjtFQUNJLFlBQVk7RUFDWixhQUFhO0VBQ2IsV0FBVyxFQUFBOztBQUdmO0VBQ0ksY0FBdUIsRUFBQTs7QUFHM0I7RUFDSSxpQkFBaUIsRUFBQTs7QUFHckI7RUFDSSxjQUFjLEVBQUE7O0FBR2xCO0VBQ0ksZUFBZTtFQUNmLGlCQUFpQjtFQUNqQixvQkFBQTtFQUNBLGNBQWM7RUFDZCxhQUFhO0VBQ2IsY0FBc0IsRUFBQSIsImZpbGUiOiJzcmMvYXBwL3BhZ2luYXMvYWx0YS1wcm9kdWN0by9hbHRhLXByb2R1Y3RvLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi8vIENPTlRFTlRcclxuXHJcbmlvbi1jYXJkIHtcclxuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICAgIC0tYmFja2dyb3VuZDogcmdiKDIzMCwgMjMwLCAyMzApO1xyXG4gICAgZGlzcGxheTogYmxvY2s7XHJcbiAgICBib3JkZXItcmFkaXVzOiAwO1xyXG4gICAgbWFyZ2luOiAwO1xyXG4gICAgcGFkZGluZzogMDtcclxufVxyXG5cclxuaW9uLWNhcmQgaW9uLWljb24ge1xyXG4gICAgZm9udC1zaXplOiA4MHB4O1xyXG4gICAgY29sb3I6IHJnYig1MSwgNTEsIDUxKTtcclxufVxyXG5cclxuLmNhcmQtdmVydGljYWwge1xyXG4gICAgaGVpZ2h0OiAzMy4zMyU7XHJcbiAgICB3aWR0aDogMTAwJTtcclxuICAgIGZsb2F0OiBsZWZ0O1xyXG59XHJcblxyXG4uY2FyZC1ob3Jpem9udGFsIHtcclxuICAgIGhlaWdodDogMTAwJTtcclxuICAgIHdpZHRoOiAzMy4zMyU7XHJcbiAgICBmbG9hdDogbGVmdDtcclxufVxyXG5cclxuaW9uLXJpcHBsZS1lZmZlY3Qge1xyXG4gICAgY29sb3I6IHJnYigyMzksIDkyLCA5Mik7XHJcbn1cclxuXHJcbi5pY29uLXZlcnRpY2FsIHtcclxuICAgIG1hcmdpbi10b3A6IDEzLjUlO1xyXG59XHJcblxyXG4uaWNvbi1ob3Jpem9udGFsIHtcclxuICAgIG1hcmdpbi10b3A6IDQlO1xyXG59XHJcblxyXG5oMiB7XHJcbiAgICBmb250LXNpemU6IDIwcHg7XHJcbiAgICBmb250LXdlaWdodDogYm9sZDtcclxuICAgIC8qbGluZS1oZWlnaHQ6IDBweDsqL1xyXG4gICAgcGFkZGluZy10b3A6IDA7XHJcbiAgICBtYXJnaW4tdG9wOiAwO1xyXG4gICAgY29sb3I6IHJnYigyNCwgMjMsIDIzKTtcclxufSJdfQ== */"
+module.exports = "ion-card {\n  text-align: center;\n  --background: rgb(230, 230, 230);\n  display: block;\n  border-radius: 0;\n  margin: 0;\n  padding: 0; }\n\nion-card ion-icon {\n  font-size: 80px;\n  color: #333333; }\n\n.card-vertical {\n  height: 33.33%;\n  width: 100%;\n  float: left; }\n\n.card-horizontal {\n  height: 100%;\n  width: 33.33%;\n  float: left; }\n\nion-ripple-effect {\n  color: #ef5c5c; }\n\n.icon-vertical {\n  margin-top: 13.5%; }\n\n.icon-horizontal {\n  margin-top: 4%; }\n\nh2 {\n  font-size: 20px;\n  font-weight: bold;\n  /*line-height: 0px;*/\n  padding-top: 0;\n  margin-top: 0;\n  color: #181717; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnaW5hcy9hbHRhLXByb2R1Y3RvL0U6XFxEZXNjYXJnYXNcXE1hc3RlclByZVxcTWFzdGVyUHJlL3NyY1xcYXBwXFxwYWdpbmFzXFxhbHRhLXByb2R1Y3RvXFxhbHRhLXByb2R1Y3RvLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFQTtFQUNJLGtCQUFrQjtFQUNsQixnQ0FBYTtFQUNiLGNBQWM7RUFDZCxnQkFBZ0I7RUFDaEIsU0FBUztFQUNULFVBQVUsRUFBQTs7QUFHZDtFQUNJLGVBQWU7RUFDZixjQUFzQixFQUFBOztBQUcxQjtFQUNJLGNBQWM7RUFDZCxXQUFXO0VBQ1gsV0FBVyxFQUFBOztBQUdmO0VBQ0ksWUFBWTtFQUNaLGFBQWE7RUFDYixXQUFXLEVBQUE7O0FBR2Y7RUFDSSxjQUF1QixFQUFBOztBQUczQjtFQUNJLGlCQUFpQixFQUFBOztBQUdyQjtFQUNJLGNBQWMsRUFBQTs7QUFHbEI7RUFDSSxlQUFlO0VBQ2YsaUJBQWlCO0VBQ2pCLG9CQUFBO0VBQ0EsY0FBYztFQUNkLGFBQWE7RUFDYixjQUFzQixFQUFBIiwiZmlsZSI6InNyYy9hcHAvcGFnaW5hcy9hbHRhLXByb2R1Y3RvL2FsdGEtcHJvZHVjdG8ucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLy8gQ09OVEVOVFxyXG5cclxuaW9uLWNhcmQge1xyXG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gICAgLS1iYWNrZ3JvdW5kOiByZ2IoMjMwLCAyMzAsIDIzMCk7XHJcbiAgICBkaXNwbGF5OiBibG9jaztcclxuICAgIGJvcmRlci1yYWRpdXM6IDA7XHJcbiAgICBtYXJnaW46IDA7XHJcbiAgICBwYWRkaW5nOiAwO1xyXG59XHJcblxyXG5pb24tY2FyZCBpb24taWNvbiB7XHJcbiAgICBmb250LXNpemU6IDgwcHg7XHJcbiAgICBjb2xvcjogcmdiKDUxLCA1MSwgNTEpO1xyXG59XHJcblxyXG4uY2FyZC12ZXJ0aWNhbCB7XHJcbiAgICBoZWlnaHQ6IDMzLjMzJTtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgZmxvYXQ6IGxlZnQ7XHJcbn1cclxuXHJcbi5jYXJkLWhvcml6b250YWwge1xyXG4gICAgaGVpZ2h0OiAxMDAlO1xyXG4gICAgd2lkdGg6IDMzLjMzJTtcclxuICAgIGZsb2F0OiBsZWZ0O1xyXG59XHJcblxyXG5pb24tcmlwcGxlLWVmZmVjdCB7XHJcbiAgICBjb2xvcjogcmdiKDIzOSwgOTIsIDkyKTtcclxufVxyXG5cclxuLmljb24tdmVydGljYWwge1xyXG4gICAgbWFyZ2luLXRvcDogMTMuNSU7XHJcbn1cclxuXHJcbi5pY29uLWhvcml6b250YWwge1xyXG4gICAgbWFyZ2luLXRvcDogNCU7XHJcbn1cclxuXHJcbmgyIHtcclxuICAgIGZvbnQtc2l6ZTogMjBweDtcclxuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xyXG4gICAgLypsaW5lLWhlaWdodDogMHB4OyovXHJcbiAgICBwYWRkaW5nLXRvcDogMDtcclxuICAgIG1hcmdpbi10b3A6IDA7XHJcbiAgICBjb2xvcjogcmdiKDI0LCAyMywgMjMpO1xyXG59Il19 */"
 
 /***/ }),
 
@@ -121,6 +124,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_servicios_toast_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/servicios/toast.service */ "./src/app/servicios/toast.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/servicios/auth.service */ "./src/app/servicios/auth.service.ts");
+/* harmony import */ var src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! src/app/servicios/alert.service */ "./src/app/servicios/alert.service.ts");
+
 
 
 
@@ -135,11 +140,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var AltaProductoPage = /** @class */ (function () {
-    function AltaProductoPage(storage, camera, alertController, barcodeScanner, loadingCtrl, vibra, bda, toast, route, auth) {
+    function AltaProductoPage(storage, camera, alertService, barcodeScanner, loadingCtrl, vibra, bda, toast, route, auth) {
         var _this = this;
         this.storage = storage;
         this.camera = camera;
-        this.alertController = alertController;
+        this.alertService = alertService;
         this.barcodeScanner = barcodeScanner;
         this.loadingCtrl = loadingCtrl;
         this.vibra = vibra;
@@ -152,6 +157,9 @@ var AltaProductoPage = /** @class */ (function () {
         this.image1 = null;
         this.image2 = null;
         this.image3 = null;
+        this.url1 = null;
+        this.url2 = null;
+        this.url3 = null;
         this.alta = true;
         this.usuario = JSON.parse(localStorage.getItem('usuario'));
         this.bda.devolverListadoProductos().subscribe(function (lista) {
@@ -173,14 +181,59 @@ var AltaProductoPage = /** @class */ (function () {
                     this.qr = barcodeData.text;
                 }
                 else {
-                    this.alertar("El código debe ser QR");
+                    this.alertService.mensaje("Error", "El código debe ser QR");
                     this.vibra.vibrate(500);
                 }
                 return [2 /*return*/];
             });
         }); }).catch(function (err) {
-            _this.alertar("No se ha podido cargar el código.");
+            _this.alertService.mensaje("Error", "No se ha podido cargar el código.");
             _this.vibra.vibrate(500);
+        });
+    };
+    AltaProductoPage.prototype.foto1 = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.sacarFoto(1)];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, this.guardarImagen1()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AltaProductoPage.prototype.foto2 = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.sacarFoto(2)];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, this.guardarImagen2()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AltaProductoPage.prototype.foto3 = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.sacarFoto(3)];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, this.guardarImagen3()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
         });
     };
     AltaProductoPage.prototype.sacarFoto = function (id) {
@@ -206,7 +259,7 @@ var AltaProductoPage = /** @class */ (function () {
                                 else
                                     _this.image3 = "data:image/jpeg;base64," + imageData;
                             }, function (err) {
-                                _this.alertar(err);
+                                _this.alertService.mensaje("Error", err);
                             })];
                     case 1:
                         _a.sent();
@@ -234,81 +287,23 @@ var AltaProductoPage = /** @class */ (function () {
             });
         });
     };
-    AltaProductoPage.prototype.alertar = function (mensaje) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var alert;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        alert = this.alertController.create({
-                            cssClass: 'danger-alert-btn',
-                            header: 'Error',
-                            message: mensaje,
-                            buttons: ['OK']
-                        });
-                        return [4 /*yield*/, alert];
-                    case 1:
-                        (_a.sent()).present();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
     AltaProductoPage.prototype.subir = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var m, p, imagenes, err_1, err_2;
+            var m, p;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        this.presentLoading("Subiendo el producto.");
-                        if (this.usuario.perfil == 'bar')
-                            m = "bebida";
-                        else
-                            m = "comida";
-                        p = new src_app_interfaces_producto__WEBPACK_IMPORTED_MODULE_7__["Producto"](this.nombre, this.descripcion, this.minutos, this.precio, m);
-                        _a.label = 1;
-                    case 1:
-                        _a.trys.push([1, 4, 5, 12]);
-                        if (!(this.image3 != null)) return [3 /*break*/, 3];
-                        imagenes = new Array();
-                        imagenes.push(this.image1, this.image2, this.image3);
-                        return [4 /*yield*/, this.guardarImagen(imagenes, p)];
-                    case 2:
-                        p = _a.sent();
-                        this.cargarProd = true;
-                        _a.label = 3;
-                    case 3: return [3 /*break*/, 12];
-                    case 4:
-                        err_1 = _a.sent();
-                        this.alertar(err_1);
-                        return [3 /*break*/, 12];
-                    case 5:
-                        _a.trys.push([5, 9, 10, 11]);
-                        if (!this.cargarProd) return [3 /*break*/, 7];
-                        return [4 /*yield*/, this.cargarProducto(p, 1)];
-                    case 6:
-                        _a.sent();
-                        return [3 /*break*/, 8];
-                    case 7:
-                        this.alertar("El producto debe tener tres imagenes asignadas!!");
-                        _a.label = 8;
-                    case 8: return [3 /*break*/, 11];
-                    case 9:
-                        err_2 = _a.sent();
-                        this.alertar(err_2);
-                        return [3 /*break*/, 11];
-                    case 10:
-                        this.image1 = null;
-                        this.image2 = null;
-                        this.image3 = null;
-                        this.nombre = "";
-                        this.descripcion = "";
-                        this.minutos = 0;
-                        this.precio = 0;
-                        return [7 /*endfinally*/];
-                    case 11: return [7 /*endfinally*/];
-                    case 12: return [2 /*return*/];
+                this.presentLoading("Subiendo el producto.");
+                if (this.usuario.perfil == 'bar')
+                    m = "bebida";
+                else
+                    m = "comida";
+                if (this.url1 != null && this.url2 != null && this.url3 != null) {
+                    p = new src_app_interfaces_producto__WEBPACK_IMPORTED_MODULE_7__["Producto"](this.nombre, this.descripcion, this.minutos, this.precio, m, this.url1, this.url2, this.url3);
+                    this.cargarProducto(p, 1);
                 }
+                else {
+                    this.alertService.mensaje("Error", "Deben estar subidas las tres imagenes para poder cargar el producto");
+                }
+                return [2 /*return*/];
             });
         });
     };
@@ -319,7 +314,7 @@ var AltaProductoPage = /** @class */ (function () {
                 this.toast.confirmationToast("Se guardó el producto.");
             }
             catch (err) {
-                this.alertar(err);
+                this.alertService.mensaje("Error", err);
             }
         }
         else if (prod.precio > 0 && prod.nombre.length > 3 && prod.tiempo > 10 && prod.descripcion.length > 20 && modalidad == 2) {
@@ -328,82 +323,138 @@ var AltaProductoPage = /** @class */ (function () {
                 this.toast.confirmationToast("Se actualizó el producto.");
             }
             catch (err) {
-                this.alertar(err);
+                this.alertService.mensaje("Error", err);
             }
         }
         else if (prod.precio == 0) {
-            this.alertar("El precio debe ser mayor a 0");
+            this.alertService.mensaje("Error", "El precio debe ser mayor a 0");
         }
         else if (prod.nombre.length < 4) {
-            this.alertar("El nombre debe tener más de 3 caracteres");
+            this.alertService.mensaje("Error", "El nombre debe tener más de 3 caracteres");
         }
         else if (prod.tiempo < 11) {
-            this.alertar("Los productos tienen un mínimo de producción de 10 minutos");
+            this.alertService.mensaje("Error", "Los productos tienen un mínimo de producción de 10 minutos");
         }
         else {
-            this.alertar("La descripción debe tener más de 20 caracteres");
+            this.alertService.mensaje("Error", "La descripción debe tener más de 20 caracteres");
         }
     };
-    AltaProductoPage.prototype.guardarImagen = function (images, producto) {
+    AltaProductoPage.prototype.guardarImagen1 = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var _loop_1, this_1, index, state_1;
+            var com, img_1, file, path, ref_1, task, e_1;
+            var _this = this;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _loop_1 = function (index) {
-                            var image, com, img_1, file, path, ref_1, task, err_3;
-                            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                                switch (_a.label) {
-                                    case 0:
-                                        image = images[index];
-                                        _a.label = 1;
-                                    case 1:
-                                        _a.trys.push([1, 4, , 5]);
-                                        com = this_1.nombre + this_1.precio + index;
-                                        return [4 /*yield*/, fetch(image)
-                                                .then(function (res) { return res.blob().then(function (r) {
-                                                img_1 = r;
-                                            }); })];
-                                    case 2:
-                                        _a.sent();
-                                        file = img_1;
-                                        path = com;
-                                        ref_1 = this_1.storage.ref(path);
-                                        task = this_1.storage.upload(path, file);
-                                        return [4 /*yield*/, task.snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_9__["finalize"])(function () { return ref_1.getDownloadURL().subscribe(function (url) {
-                                                if (index == 0)
-                                                    producto.foto_1 = url;
-                                                else if (index == 1)
-                                                    producto.foto_2 = url;
-                                                else
-                                                    producto.foto_3 = url;
-                                            }); })).subscribe()];
-                                    case 3:
-                                        _a.sent();
-                                        return [3 /*break*/, 5];
-                                    case 4:
-                                        err_3 = _a.sent();
-                                        this_1.alertar(err_3);
-                                        return [3 /*break*/, 5];
-                                    case 5: return [2 /*return*/, { value: producto }];
-                                }
-                            });
-                        };
-                        this_1 = this;
-                        index = 0;
+                        if (!this.image1) return [3 /*break*/, 6];
                         _a.label = 1;
                     case 1:
-                        if (!(index < 3)) return [3 /*break*/, 4];
-                        return [5 /*yield**/, _loop_1(index)];
+                        _a.trys.push([1, 4, , 5]);
+                        com = this.nombre + this.precio + this.minutos + 1;
+                        return [4 /*yield*/, fetch(this.image1)
+                                .then(function (res) { return res.blob().then(function (r) {
+                                img_1 = r;
+                            }); })];
                     case 2:
-                        state_1 = _a.sent();
-                        if (typeof state_1 === "object")
-                            return [2 /*return*/, state_1.value];
-                        _a.label = 3;
+                        _a.sent();
+                        file = img_1;
+                        path = com;
+                        ref_1 = this.storage.ref(path);
+                        task = this.storage.upload(path, file);
+                        return [4 /*yield*/, task.snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_9__["finalize"])(function () { return ref_1.getDownloadURL().subscribe(function (url) {
+                                _this.url1 = url;
+                            }); })).subscribe()];
                     case 3:
-                        index++;
-                        return [3 /*break*/, 1];
-                    case 4: return [2 /*return*/];
+                        _a.sent();
+                        return [3 /*break*/, 5];
+                    case 4:
+                        e_1 = _a.sent();
+                        return [3 /*break*/, 5];
+                    case 5: return [3 /*break*/, 7];
+                    case 6:
+                        this.alertService.mensaje("Error", "No está cargada la imagen 1");
+                        _a.label = 7;
+                    case 7: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AltaProductoPage.prototype.guardarImagen2 = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var com, img_2, file, path, ref_2, task, e_2;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!this.image2) return [3 /*break*/, 6];
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 4, , 5]);
+                        com = this.nombre + this.precio + this.minutos + 2;
+                        return [4 /*yield*/, fetch(this.image2)
+                                .then(function (res) { return res.blob().then(function (r) {
+                                img_2 = r;
+                            }); })];
+                    case 2:
+                        _a.sent();
+                        file = img_2;
+                        path = com;
+                        ref_2 = this.storage.ref(path);
+                        task = this.storage.upload(path, file);
+                        return [4 /*yield*/, task.snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_9__["finalize"])(function () { return ref_2.getDownloadURL().subscribe(function (url) {
+                                _this.url2 = url;
+                            }); })).subscribe()];
+                    case 3:
+                        _a.sent();
+                        return [3 /*break*/, 5];
+                    case 4:
+                        e_2 = _a.sent();
+                        return [3 /*break*/, 5];
+                    case 5: return [3 /*break*/, 7];
+                    case 6:
+                        this.alertService.mensaje("Error", "No está cargada la imagen 2");
+                        _a.label = 7;
+                    case 7: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AltaProductoPage.prototype.guardarImagen3 = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var com, img_3, file, path, ref_3, task, e_3;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!this.image3) return [3 /*break*/, 6];
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 4, , 5]);
+                        com = this.nombre + this.precio + this.minutos + 3;
+                        return [4 /*yield*/, fetch(this.image3)
+                                .then(function (res) { return res.blob().then(function (r) {
+                                img_3 = r;
+                            }); })];
+                    case 2:
+                        _a.sent();
+                        file = img_3;
+                        path = com;
+                        ref_3 = this.storage.ref(path);
+                        task = this.storage.upload(path, file);
+                        return [4 /*yield*/, task.snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_9__["finalize"])(function () { return ref_3.getDownloadURL().subscribe(function (url) {
+                                _this.url3 = url;
+                            }); })).subscribe()];
+                    case 3:
+                        _a.sent();
+                        return [3 /*break*/, 5];
+                    case 4:
+                        e_3 = _a.sent();
+                        return [3 /*break*/, 5];
+                    case 5: return [3 /*break*/, 7];
+                    case 6:
+                        this.alertService.mensaje("Error", "No está cargada la imagen 3");
+                        _a.label = 7;
+                    case 7: return [2 /*return*/];
                 }
             });
         });
@@ -416,7 +467,7 @@ var AltaProductoPage = /** @class */ (function () {
     };
     AltaProductoPage.prototype.eliminar = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var e_1;
+            var e_4;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -430,8 +481,8 @@ var AltaProductoPage = /** @class */ (function () {
                         this.toast.confirmationToast("se eliminó el producto.");
                         return [3 /*break*/, 5];
                     case 3:
-                        e_1 = _a.sent();
-                        this.alertar(e_1);
+                        e_4 = _a.sent();
+                        this.alertService.mensaje("Error", e_4);
                         return [3 /*break*/, 5];
                     case 4:
                         this.productoElegido = null;
@@ -443,7 +494,7 @@ var AltaProductoPage = /** @class */ (function () {
     };
     AltaProductoPage.prototype.modificar = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var p, err_4;
+            var p, err_1;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -461,8 +512,8 @@ var AltaProductoPage = /** @class */ (function () {
                         _a.sent();
                         return [3 /*break*/, 5];
                     case 3:
-                        err_4 = _a.sent();
-                        this.alertar(err_4);
+                        err_1 = _a.sent();
+                        this.alertService.mensaje("Error", err_1);
                         return [3 /*break*/, 5];
                     case 4:
                         this.productoElegido = null;
@@ -484,7 +535,7 @@ var AltaProductoPage = /** @class */ (function () {
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_fire_storage__WEBPACK_IMPORTED_MODULE_2__["AngularFireStorage"],
             _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_6__["Camera"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["AlertController"],
+            src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_13__["AlertService"],
             _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_3__["BarcodeScanner"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["LoadingController"],
             _ionic_native_vibration_ngx__WEBPACK_IMPORTED_MODULE_4__["Vibration"],

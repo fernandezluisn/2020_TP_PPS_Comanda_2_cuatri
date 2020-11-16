@@ -58,7 +58,7 @@ var AltaSupervisorPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title color=\"danger\">Crear de dueño o supervisor</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n  <ion-item>\r\n    <ion-label position=\"floating\">Nombre:</ion-label>\r\n    <ion-input type=\"text\" [(ngModel)]=\"empleado.nombre\"></ion-input>\r\n  </ion-item>\r\n  <ion-item>\r\n    <ion-label position=\"floating\">Apellido:</ion-label>\r\n    <ion-input type=\"text\" [(ngModel)]=\"empleado.apellido\"></ion-input>\r\n  </ion-item>\r\n  <ion-item>\r\n    <ion-label position=\"floating\">Correo:</ion-label>\r\n    <ion-input inputmode=\"email\" [(ngModel)]=\"empleado.mail\"></ion-input>\r\n  </ion-item>\r\n  <ion-item>\r\n    <ion-label position=\"floating\">Contraseña:</ion-label>\r\n    <ion-input type=\"password\" [(ngModel)]=\"password\"></ion-input>\r\n  </ion-item>\r\n  <ion-item>\r\n    <ion-label position=\"floating\">DNI:</ion-label>\r\n    <ion-input type=\"text\" [(ngModel)]=\"empleado.dni\"></ion-input>\r\n  </ion-item>\r\n  <ion-item>\r\n    <ion-label position=\"floating\">CUIL:</ion-label>\r\n    <ion-input type=\"text\" [(ngModel)]=\"empleado.cuil\"></ion-input>\r\n  </ion-item>\r\n  <ion-item>\r\n    <ion-label position=\"floating\">Perfil:</ion-label>\r\n    <ion-select [(ngModel)]=\"empleado.perfil\" placeholder=\"perfil\">\r\n      <ion-select-option value=\"dueño\">Dueño</ion-select-option>\r\n      <ion-select-option value=\"supervisor\" selected>Supervisor</ion-select-option>\r\n    </ion-select>\r\n  </ion-item>\r\n  <ion-item>\r\n    <ion-label>Foto: </ion-label>\r\n    <ion-label *ngIf=\"empleado.foto == ''\">Sin subir</ion-label>\r\n    <ion-label *ngIf=\"empleado.foto != ''\">Subida</ion-label>\r\n    <ion-thumbnail  *ngIf=\"empleado.foto != ''\">\r\n      <ion-img [src]=\"empleado.foto\"></ion-img>\r\n    </ion-thumbnail>\r\n  </ion-item>\r\n\r\n  <br>\r\n  <h3 *ngIf=\"faltan\" class=\"error\">Faltan datos en el registro!</h3>\r\n  <h3 *ngIf=\"faltaFoto\" class=\"error\">Falta subir foto de usuario!</h3>\r\n  <h3 *ngIf=\"emailmal\" class=\"error\">Ingrese correo válido!</h3>\r\n  <br>\r\n\r\n  <!-- <ion-button (click)=\"LeerQR()\" color=\"danger\" expand=\"block\">\r\n    Cargar con QR del DNI\r\n  </ion-button> -->\r\n  <ion-button (click)=\"SacarFoto()\" color=\"danger\" expand=\"block\">\r\n    Sacar foto\r\n  </ion-button>\r\n  <ion-button (click)=\"Ingresar()\" color=\"danger\" expand=\"block\">\r\n    Guardar Usuario\r\n  </ion-button>\r\n  <ion-button class=\"apagar\" color=\"dark\" (click)=\"salir()\">\r\n    <ion-icon name=\"power\"></ion-icon>\r\n  </ion-button>\r\n</ion-content>\r\n"
+module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title color=\"danger\">Crear de dueño o supervisor</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n  <ion-item>\r\n    <ion-label position=\"floating\">Nombre:</ion-label>\r\n    <ion-input type=\"text\" [(ngModel)]=\"empleado.nombre\"></ion-input>\r\n  </ion-item>\r\n  <ion-item>\r\n    <ion-label position=\"floating\">Apellido:</ion-label>\r\n    <ion-input type=\"text\" [(ngModel)]=\"empleado.apellido\"></ion-input>\r\n  </ion-item>\r\n  <ion-item>\r\n    <ion-label position=\"floating\">Correo:</ion-label>\r\n    <ion-input inputmode=\"email\" [(ngModel)]=\"empleado.mail\"></ion-input>\r\n  </ion-item>\r\n  <ion-item>\r\n    <ion-label position=\"floating\">Contraseña:</ion-label>\r\n    <ion-input type=\"password\" [(ngModel)]=\"password\"></ion-input>\r\n  </ion-item>\r\n  <ion-item>\r\n    <ion-label position=\"floating\">DNI:</ion-label>\r\n    <ion-input type=\"text\" [(ngModel)]=\"empleado.dni\"></ion-input>\r\n  </ion-item>\r\n  <ion-item>\r\n    <ion-label position=\"floating\">CUIL:</ion-label>\r\n    <ion-input type=\"text\" [(ngModel)]=\"empleado.cuil\"></ion-input>\r\n  </ion-item>\r\n  <ion-item>\r\n    <ion-label position=\"floating\">Perfil:</ion-label>\r\n    <ion-select [(ngModel)]=\"empleado.perfil\" placeholder=\"perfil\">\r\n      <ion-select-option value=\"dueño\">Dueño</ion-select-option>\r\n      <ion-select-option value=\"supervisor\" selected>Supervisor</ion-select-option>\r\n    </ion-select>\r\n  </ion-item>\r\n  <ion-item>\r\n    <ion-label>Foto: </ion-label>\r\n    <ion-label *ngIf=\"empleado.foto == ''\">Sin subir</ion-label>\r\n    <ion-label *ngIf=\"empleado.foto != ''\">Subida</ion-label>\r\n    <ion-thumbnail  *ngIf=\"empleado.foto != ''\">\r\n      <ion-img [src]=\"empleado.foto\"></ion-img>\r\n    </ion-thumbnail>\r\n  </ion-item>\r\n\r\n  <br>\r\n  <h3 *ngIf=\"faltan\" class=\"error\">Faltan datos en el registro!</h3>\r\n  <h3 *ngIf=\"faltaFoto\" class=\"error\">Falta subir foto de usuario!</h3>\r\n  <h3 *ngIf=\"emailmal\" class=\"error\">Ingrese correo válido!</h3>\r\n  <br>\r\n\r\n  <ion-button (click)=\"this.tomarDatosDNI()\" expand=\"full\" color=\"primary\">\r\n    Escanear DNI\r\n  </ion-button>\r\n  <ion-button (click)=\"SacarFoto()\" color=\"danger\" expand=\"block\">\r\n    Sacar foto\r\n  </ion-button>\r\n  <ion-button (click)=\"Ingresar()\" color=\"danger\" expand=\"block\">\r\n    Guardar Usuario\r\n  </ion-button>\r\n  <ion-button class=\"apagar\" color=\"dark\" (click)=\"salir()\">\r\n    <ion-icon name=\"power\"></ion-icon>\r\n  </ion-button>\r\n</ion-content>\r\n"
 
 /***/ }),
 
@@ -126,6 +126,16 @@ var AltaSupervisorPage = /** @class */ (function () {
     }
     AltaSupervisorPage.prototype.ngOnInit = function () {
     };
+    AltaSupervisorPage.prototype.tomarDatosDNI = function () {
+        var _this = this;
+        var options = { prompt: 'Escanee el DNI', formats: 'PDF_417' };
+        this.barcodeScanner.scan(options).then(function (resultado) {
+            _this.dataDNI = (resultado.text).split('@');
+            _this.empleado.dni = _this.dataDNI[4].trim();
+            _this.empleado.apellido = _this.dataDNI[1];
+            _this.empleado.nombre = _this.dataDNI[2];
+        });
+    };
     AltaSupervisorPage.prototype.Ingresar = function () {
         var _this = this;
         this.faltan = false;
@@ -182,25 +192,6 @@ var AltaSupervisorPage = /** @class */ (function () {
             console.log(error);
         }).catch(function (err) {
             console.log(err);
-        });
-    };
-    AltaSupervisorPage.prototype.LeerQR = function () {
-        var _this = this;
-        this.barcodeScanner.scan().then(function (barcodeData) {
-            // alert(barcodeData.text);
-            try {
-                var datos = barcodeData.text.split('@');
-                _this.empleado.cuil = datos[0];
-                _this.empleado.apellido = datos[1];
-                _this.empleado.nombre = datos[2];
-                _this.empleado.dni = datos[4];
-            }
-            catch (err) {
-                _this.errorHand.MostrarErrorSoloLower('Error: ' + err);
-            }
-        }).catch(function (err) {
-            _this.errorHand.MostrarErrorSoloLower('Error: ' + err);
-            console.log('Error', err);
         });
     };
     AltaSupervisorPage.prototype.salir = function () {

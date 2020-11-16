@@ -5,13 +5,15 @@ export class Reserva {
     mesa: Mesa;
     idCliente: string;
     fecha: string;
-    estado: string; // 'pendiente', 'confirmada', 'expirada'
+    fecha2:string;
+    estado: string; // 'pendiente', 'confirmada', 'rechazada', 'expirada'
     hora:string;
     nombreCliente:string;
     cantidad:number;
     tipo:string;
+    situacion:string;
 
-    constructor(idCliente:string, fecha:string, hora:string, estado:string, nombreCliente:string, cantidad:number, tipo:string){
+    constructor(idCliente:string, fecha:string, hora:string, estado:string, nombreCliente:string, cantidad:number, tipo:string, fecha2:string){
         this.fecha=fecha;
         this.hora=hora;
         this.idCliente=idCliente;
@@ -19,6 +21,8 @@ export class Reserva {
         this.nombreCliente=nombreCliente;
         this.cantidad=cantidad;
         this.tipo=tipo;
+        this.situacion="a reservar";
+        this.fecha2=fecha2;
     }
 }
 

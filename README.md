@@ -28,25 +28,40 @@
 
 | Tarea | Descripcion | Estado | Desarrollado por | Fecha
 |---|---|---|---|---|
-| A | Alta dueño | Pendiente | Zamora | 
-| B | Alta empleado | Pendiente | Zamora | 
+| A | Alta dueño | Hecho | Zamora | 
+| B | Alta empleado | Hecho | Zamora | 
 | C | Alta producto | Hecho | Fernández | 
 | D | Alta cliente | Hecho | Ramundo | 
 | E | Alta mesa | Hecho | Fernández |
 | F | Ingreso Local | Hecho | Ramundo | 
-| G | QR mesa | Pendiente | Ramundo | 
-| H | QR Propina | Pendiente | Fernández | 
-| I | Encuesta cliente | Pendiente | Zamora | 
-| J | Encuesta empleado | Pendiente | Fernández | 
-| K | Pedir plato y bebida | Pendiente | Zamora | 
-| L | Tomar Pedido | Pendiente | Ramundo | 
-| M | Hacer reserva | Pendiente | Fernández |
+| G | QR mesa | Hecho | Ramundo | 
+| H | QR Propina | Hecho | Fernández | 
+| I | Encuesta cliente | Hecho | Zamora | 
+| J | Encuesta empleado | Hecho | Fernández | 
+| K | Pedir plato y bebida | Hecho | Zamora | 
+| L | Tomar Pedido | Hecho | Ramundo | 
+| M | Hacer reserva | Hecho | Fernández |
 | N | Realizar pedido direccion | Pendiente |  | 
 | O | Chat delivery | Pendiente | | 
-| P | Juego descuento | Pendiente |  | 
+| P | Juego descuento | Pendiente | Fernández | 
 
 
 <h3>Diagrama código Qr (mesa)</h3><br><br>
+
+Ingreso a lista de espera:<br>
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/qr/QR_EntrarAListaDeEspera.PNG" width="400"/><br>
+
+Mesa 1:<br>
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/qr/Mesa/Mesa1.PNG" width="400"/><br>
+
+Mesa 2:<br>
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/qr/Mesa/Mesa2.PNG" width="400"/><br>
+
+Mesa3:<br>
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/qr/Mesa/Mesa3.PNG" width="400"/><br>
+
+Mesa 4:<br>
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/qr/Mesa/mesa4.PNG" width="400"/><br><br><br>
 
 <h2>Responsabilidades semanales ✍️</h2><br>
 
@@ -82,7 +97,15 @@
 |---|---|---|---|
 | Tareas | reservas agendadas <br> Push N reservas | Pedir plato y bebida <br> Push N pedir platos y bebidas | Push N Mesa <br> Tomar pedido | 
 | Fecha inicio | 7/11 | 7/11 | 7/11 | 
-| Fecha finalizaciíon |  |  |  | 
+| Fecha finalizaciíon | 14/11 | 14/11 | 14/11 | 
+
+<h3>Semana 5 :sunglasses:</h3><br>
+
+|  | Alfa | Beta | Gammaa 
+|---|---|---|---|
+| Tareas | correcciones <br> Juego | correcciones | correcciones | 
+| Fecha inicio | 7/11 | 7/11 | 7/11 | 
+| Fecha finalizaciíon | 14/11 | 14/11 | 14/11 | 
 
 <h2>
   Guía de uso :computer:
@@ -90,11 +113,44 @@
 
 <h3>Ingreso</h3><br><br>
 
-<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/ingresoComanda.jpeg" width="300"/>
-
 La aplicación permite el ingreso con correo y contraseña, así como también entrar como usuario anonimo.
 
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/ingresoComanda.jpeg" width="300"/>
 
 
 
+<h3>Registro cliente 📝</h3><br><br>
+El cliente puede registrarse utilizando el código QR de su DNI o introduciendo los datos de manera manual. Una vez verificado el correo electrónico y, luego de que el supervisor apruebe su ingreso, el cliente podrá ingresar a la aplicación.
 
+<h4>Cliente:</h4>
+
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/registro.jpeg" width="300"/><br>
+
+<h4>Usuario anónimo:</h4><br>
+
+<h3>Consultas ✉️</h3><br><br>
+
+En caso de tener alguna duda, el cliente puede consultar a un mozo que le responderá a la brevedad.<br>
+
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/consulta.jpeg" width="300"/><br>
+
+<h3>Encuestas 📓</h3><br><br>
+
+El cliente puede completar una encuesta para dejar registrada su opinión sobre el local.<br>
+
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/encuestaCliente.jpeg" width="300"/><br>
+
+Los empleados tienen su propia encuesta que deben completar al llegar y retirarse.<br>
+
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/encuestaEmpleado.jpeg" width="300"/><br>
+
+El supervisor también tiene su propia encuesta para ingresar información sobre el rendimiento de los empleados.<br>
+
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/encuestaSupervisor.jpeg" width="300"/><br><br><br>
+
+
+<h3>Alta de productos 📝</h3><br><br>
+
+Se permite tanto que el cocinero como el barman ingresen comidas o bebidas con su propia descripción, precio e imagenes.<br>
+
+<img src="https://github.com/fernandezluisn/2020_TP_PPS_Comanda_2_cuatri/blob/master/src/assets/mostaza.jpeg" width="300"/><br>

@@ -44,6 +44,7 @@ const routes: Routes = [
   { path: 'consulta-mozo', loadChildren: './paginas/consulta-mozo/consulta-mozo.module#ConsultaMozoPageModule' },
   { path: 'hacer-pedido', loadChildren: './paginas/hacer-pedido/hacer-pedido.module#HacerPedidoPageModule' },
   { path: 'graficos-cliente', loadChildren: './paginas/graficos-cliente/graficos-cliente.module#GraficosClientePageModule' },
+  { path: 'juego/:idMesaCliente', loadChildren: './paginas/juego/juego.module#JuegoPageModule' },
 ];
 @NgModule({
   imports: [

@@ -49,19 +49,20 @@ export class AuthService {
           usrs.forEach(element => {
             let obj_element = element.data();
             obj_element.id = element.id;
-            this.fcmService.DesuscribirDeTodas();
+        //    this.fcmService.DesuscribirDeTodas();
 
             if (obj_element.activo && obj_element.uid == uid) {
               switch (obj_element.perfil) {
               case 'bar':
                this.usuario = obj_element as Empleado;
                localStorage.setItem('usuario', JSON.stringify(this.usuario));
+               this.fcmService.SuscribirANotificacion("notificacionBar")
                 resolve(this.usuario);
                 this.router.navigate(["home-cocina"]);
                 break;
                case 'cocina':
-                 this.fcmService.SuscribirANotificacion("notificacionCocina")
                  this.usuario = obj_element as Empleado;
+                 this.fcmService.SuscribirANotificacion("notificacionCocina")
                  localStorage.setItem('usuario', JSON.stringify(this.usuario));
                   resolve(this.usuario);
                   this.router.navigate(["home-cocina"]);
@@ -74,8 +75,8 @@ export class AuthService {
                 this.router.navigate(["home-supervisor"]);
                 break;
                case 'mozo':
-                 this.fcmService.SuscribirANotificacion('notificacionMozo')
                  this.usuario = obj_element as Empleado;
+                 this.fcmService.SuscribirANotificacion('notificacionMozo')
                  localStorage.setItem('usuario', JSON.stringify(this.usuario));
                   resolve(this.usuario);
                   this.router.navigate(["home-mozo"]);
@@ -176,6 +177,8 @@ export class AuthService {
       }).catch(err=>{rejected(err)});
     });
   }
+
+  
 
   CrearAuth(mail, pass, usuario, foto) {
     return new Promise((resolve, rejected) => {

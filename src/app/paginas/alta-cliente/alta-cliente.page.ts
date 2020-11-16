@@ -144,10 +144,10 @@ export class AltaClientePage {
       return;
     }
 
-    if (this.urlFotoUsuario === '') {
+  /*  if (this.urlFotoUsuario === '') {
       this.alert.mensaje('', 'Debe cargar una foto');
      return;
-    }
+    }*/
 
     this.spinnerService.showSpinner();
 
