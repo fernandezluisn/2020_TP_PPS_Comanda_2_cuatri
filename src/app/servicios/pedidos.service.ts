@@ -55,6 +55,18 @@ export class PedidosService {
     });
   }
 
+  getPedidoPorEmailCliente(email: string) {
+    return this.firestore.collection('pedidos').ref.where('email', '==', email).get()
+    .then(async pedidos => {
+       return await pedidos.docs.map(documento => {
+        const data = documento.data() as Pedido;
+        data.id = documento.id;
+        return data;
+      });
+    });
+  }
+
+
   getPedidoProductos() {
     return this.firestore.collection('pedido-productos').snapshotChanges().pipe(map((pedidos) => {
       return pedidos.map((pedido) => {

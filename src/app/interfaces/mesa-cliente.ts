@@ -11,6 +11,8 @@ export class MesaCliente {
     juegoPostre: number;
     propina: number;
     qrMesa: string;
+    estado: string;
+    pago: number;
 
     constructor( idMesa:string, idCliente:string, qrMesa: string){
         this.cerrada=false;

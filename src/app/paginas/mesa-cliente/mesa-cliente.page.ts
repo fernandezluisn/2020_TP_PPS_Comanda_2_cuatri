@@ -88,15 +88,17 @@ realizarPedido()
  
   pedirCuenta()
   {
-    this.alert.mensaje('','pedir cuenta')
-
+    if(localStorage.getItem('Sonido') == 'true')
+    {
+      let audio = new Audio();
+      audio.src = '../assets/click.m4a';
+      audio.load();
+      audio.play();
+    }
+  this.route.navigate(['/cuenta-cliente']);
   }
 
-  propina(){
-    //falta completar esto
-
-    //this.route.navigate(['propina/'+ this.idMesaCliente]);
-  }
+ 
 
   salir(){
     this.auth.LogOut();
