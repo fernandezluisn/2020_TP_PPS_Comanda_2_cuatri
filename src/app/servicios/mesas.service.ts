@@ -28,7 +28,7 @@ export class MesasService {
 
  //zamora: error en la mesa
   getMesas() {
-    return this.db.collection('mesaClientes').snapshotChanges().pipe(map(mesas => {
+    return this.db.collection('mesas').snapshotChanges().pipe(map(mesas => {
       return mesas.map(mesa => {
         const data = mesa.payload.doc.data() as Mesa;
         data.id = mesa.payload.doc.id;
@@ -38,7 +38,7 @@ export class MesasService {
   }
 
   getMesaPorID(idMesa: string) {
-    return this.db.collection('mesaClientes').ref.where('id', '==', idMesa).get()
+    return this.db.collection('mesas').ref.where('id', '==', idMesa).get()
     .then(async pedidos => {
        return await pedidos.docs.map(documento => {
         const data = documento.data() as Mesa;

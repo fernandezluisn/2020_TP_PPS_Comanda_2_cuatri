@@ -90,6 +90,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _servicios_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../servicios/auth.service */ "./src/app/servicios/auth.service.ts");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/servicios/alert.service */ "./src/app/servicios/alert.service.ts");
+
 
 
 
@@ -98,12 +100,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var EncuestaSupervisorPage = /** @class */ (function () {
-    function EncuestaSupervisorPage(encuestasService, firestorageService, auth, alertController, route) {
+    function EncuestaSupervisorPage(encuestasService, firestorageService, auth, alertController, route, alert) {
         this.encuestasService = encuestasService;
         this.firestorageService = firestorageService;
         this.auth = auth;
         this.alertController = alertController;
         this.route = route;
+        this.alert = alert;
         this.empleado = '';
         this.empleados = [];
         this.limpieza = 6;
@@ -182,6 +185,7 @@ var EncuestaSupervisorPage = /** @class */ (function () {
         });
     };
     EncuestaSupervisorPage.prototype.enviarEncuesta = function () {
+        var _this = this;
         console.log(this.empleado);
         this.encuestasService.addEncuestaDueño({
             idDueño: this.usuario.id,
@@ -197,7 +201,7 @@ var EncuestaSupervisorPage = /** @class */ (function () {
             puntualidad_dest: this.amabilidad_dest === undefined ? false : this.amabilidad_dest === 'true' ? true : false,
             fecha: new Date()
         }).then(function () {
-            alert('Encuesta cargada exitosamente!');
+            _this.alert.mensaje("", "Encuesta Cargada Exitosamente");
         }).catch(function (error) { alert(error); });
     };
     EncuestaSupervisorPage.prototype.salir = function () {
@@ -211,7 +215,7 @@ var EncuestaSupervisorPage = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./encuesta-supervisor.page.scss */ "./src/app/paginas/encuesta-supervisor/encuesta-supervisor.page.scss")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_servicios_encuestas_service__WEBPACK_IMPORTED_MODULE_2__["EncuestasService"], _servicios_firestorage_service__WEBPACK_IMPORTED_MODULE_3__["FirestorageService"], _servicios_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"], _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["AlertController"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"]])
+            _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"], src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_7__["AlertService"]])
     ], EncuestaSupervisorPage);
     return EncuestaSupervisorPage;
 }());

@@ -215,10 +215,10 @@ var AltaClientePage = /** @class */ (function () {
             this.alert.mensaje('', 'Debe ingresar un e-mail válido');
             return;
         }
-        if (this.urlFotoUsuario === '') {
+        /*  if (this.urlFotoUsuario === '') {
             this.alert.mensaje('', 'Debe cargar una foto');
-            return;
-        }
+           return;
+          }*/
         this.spinnerService.showSpinner();
         if (this.tipoRegistro === 'Usuario') {
             this.authService.CrearAuth(this.correoUsuario, this.claveUsuario, {

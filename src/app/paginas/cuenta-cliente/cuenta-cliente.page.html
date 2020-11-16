@@ -41,9 +41,14 @@
         </ion-item>
         <ion-button *ngIf="!delivery" (click)="darPropina()" color="success">Dar Propina</ion-button>
       </ng-container>
+
+        <ion-item style="text-align: center;">
+          <h1>Descuentos: ${{descuentos}}</h1>
+        </ion-item>
+      
       <br>
       <ion-item  *ngIf="!delivery">
-        <h1>Total final más propina: ${{TotalMasPropina}}</h1>
+        <h1>Total final: ${{TotalMasPropina}}</h1>
       </ion-item>
       <br>
       <ng-container *ngIf="!delivery">
@@ -57,7 +62,7 @@
       </ion-item>
       <ng-container>
         <ion-item>
-          <h1>Total final más propina: ${{TotalFinal}}</h1>
+          <h1>Total final(propina y descuentos): ${{TotalMasPropina}}</h1>
         </ion-item>
         <br>
         <ion-button color="success" expand="full" (click)="Pagar()">Guardar Pago</ion-button>

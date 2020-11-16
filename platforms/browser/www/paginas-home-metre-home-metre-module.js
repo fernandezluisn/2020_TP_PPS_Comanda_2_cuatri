@@ -90,6 +90,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/servicios/auth.service */ "./src/app/servicios/auth.service.ts");
 /* harmony import */ var src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/servicios/alert.service */ "./src/app/servicios/alert.service.ts");
 /* harmony import */ var src_app_servicios_fcm_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/servicios/fcm.service */ "./src/app/servicios/fcm.service.ts");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var src_app_servicios_mesas_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/servicios/mesas.service */ "./src/app/servicios/mesas.service.ts");
+
+
 
 
 
@@ -98,16 +102,25 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var HomeMetrePage = /** @class */ (function () {
-    function HomeMetrePage(reservasService, authService, route, alertService, fcmService) {
+    function HomeMetrePage(mesaService, reservasService, authService, route, alertService, reservaService, fcmService, datePipe) {
+        var _this = this;
+        this.mesaService = mesaService;
         this.reservasService = reservasService;
         this.authService = authService;
         this.route = route;
         this.alertService = alertService;
+        this.reservaService = reservaService;
         this.fcmService = fcmService;
+        this.datePipe = datePipe;
+        this.fecha = new Date();
         this.clientesEnEspera = [];
         this.cantClientesEnEspera = 100;
         this.fcmService.SuscribirANotificacion('notificacionListaEspera');
         this.clientesEnEspera = [];
+        this.mesaService.getMesas().subscribe(function (mesas) {
+            _this.mesas = mesas;
+            _this.chequearReservas();
+        });
     }
     HomeMetrePage.prototype.ngOnInit = function () {
         var _this = this;
@@ -142,14 +155,50 @@ var HomeMetrePage = /** @class */ (function () {
         this.authService.LogOut();
         this.route.navigate(['log-in']);
     };
+    HomeMetrePage.prototype.chequearReservas = function () {
+        var _this = this;
+        var fech1 = this.datePipe.transform(this.fecha, 'dd/MM/yyyy');
+        var fech2 = this.datePipe.transform(this.fecha, 'yyyy-MM-dd');
+        this.fecha.setMinutes(this.fecha.getMinutes() - 40);
+        var resD = new Array();
+        this.reservaService.getReservas().subscribe(function (list) {
+            list.filter(function (res) {
+                if (res.fecha == fech1 && res.estado == "confirmada") {
+                    resD.push(res);
+                }
+                else if (Number(Date.parse(res.fecha2)) < Number(Date.parse(fech2)) && res.estado != "expirada") {
+                    res.estado = "expirada";
+                    _this.reservaService.updateReserva(res);
+                }
+            });
+            resD.forEach(function (resDia) {
+                var hor = new Date(resDia.fecha + " " + resDia.hora);
+                if (hor > _this.fecha) {
+                    _this.mesas.filter(function (mesa) {
+                        if (mesa.numero == resDia.mesa.numero && mesa.estado == "Vacia" && resDia.situacion == "a reservar") {
+                            mesa.estado = "Reservada";
+                            _this.mesaService.actualizarMesa(mesa);
+                            resDia.situacion = "hecha";
+                            resDia.mesa = mesa;
+                            _this.reservaService.updateReserva(resDia);
+                            _this.fcmService.enviarMensaje("Mesa" + mesa.numero, "Le informamos que se encuentra reservada la mesa " + mesa.numero, 'notificacionListaEspera');
+                        }
+                        else if (mesa.numero == resDia.mesa.numero && mesa.estado == "Ocupada" && resDia.situacion == "a reservar") {
+                            _this.fcmService.enviarMensaje("Mesa" + mesa.numero, "Le informamos que se encuentra reservada la mesa " + mesa.numero + ", debe desocuparla en un plazo menor a 40 minutos.", 'notificacionListaEspera');
+                        }
+                    });
+                }
+            });
+        });
+    };
     HomeMetrePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-home-metre',
             template: __webpack_require__(/*! ./home-metre.page.html */ "./src/app/paginas/home-metre/home-metre.page.html"),
             styles: [__webpack_require__(/*! ./home-metre.page.scss */ "./src/app/paginas/home-metre/home-metre.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_servicios_reservas_service__WEBPACK_IMPORTED_MODULE_3__["ReservasService"], src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
-            src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_5__["AlertService"], src_app_servicios_fcm_service__WEBPACK_IMPORTED_MODULE_6__["FcmService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_servicios_mesas_service__WEBPACK_IMPORTED_MODULE_8__["MesasService"], src_app_servicios_reservas_service__WEBPACK_IMPORTED_MODULE_3__["ReservasService"], src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
+            src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_5__["AlertService"], src_app_servicios_reservas_service__WEBPACK_IMPORTED_MODULE_3__["ReservasService"], src_app_servicios_fcm_service__WEBPACK_IMPORTED_MODULE_6__["FcmService"], _angular_common__WEBPACK_IMPORTED_MODULE_7__["DatePipe"]])
     ], HomeMetrePage);
     return HomeMetrePage;
 }());

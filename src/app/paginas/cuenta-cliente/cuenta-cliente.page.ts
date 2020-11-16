@@ -22,6 +22,7 @@ export class CuentaClientePage implements OnInit {
     private   propina;
     idMesa;
     mesaCliente;
+    descuentos;
     //TODO calcular total..
     total = 100;
     TotalMasPropina;
@@ -32,6 +33,7 @@ export class CuentaClientePage implements OnInit {
       console.log("es nan" + this.propina)
       this.propina  = 0;
     }
+this.descuentos = 0;
 
     this.clienteService.obtenerCliente(this.cliente.uid).subscribe((resp:any) =>{
       resp.forEach(user => {
@@ -61,11 +63,19 @@ export class CuentaClientePage implements OnInit {
                         this.propina = 0;
                         this.idMesa = mesa.id;
                         this.mesaCliente = mesa;
+                      
+                        this.descuentos = mesa.juegoDescuento
+                        if(this.descuentos == undefined)
+                        this.descuentos = 0;
 
                         if(this.propina != 0)
                         this.TotalMasPropina =  this.total * (this.propina);
                         else
                         this.TotalMasPropina =  this.total;
+
+                        if(this.mesaCliente.juegoDescuento != undefined)
+                          this.TotalMasPropina = this.TotalMasPropina - this.descuentos;
+                        
                       }
                          });
               });   
