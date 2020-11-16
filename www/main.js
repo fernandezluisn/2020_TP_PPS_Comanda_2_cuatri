@@ -769,6 +769,11 @@ var map = {
 	"./paginas/consulta-mozo/consulta-mozo.module": [
 		"./src/app/paginas/consulta-mozo/consulta-mozo.module.ts"
 	],
+	"./paginas/cuenta-cliente/cuenta-cliente.module": [
+		"./src/app/paginas/cuenta-cliente/cuenta-cliente.module.ts",
+		"common",
+		"paginas-cuenta-cliente-cuenta-cliente-module"
+	],
 	"./paginas/encuesta-cliente/encuesta-cliente.module": [
 		"./src/app/paginas/encuesta-cliente/encuesta-cliente.module.ts",
 		"common",
@@ -824,6 +829,11 @@ var map = {
 		"./src/app/paginas/home-supervisor/home-supervisor.module.ts",
 		"common",
 		"paginas-home-supervisor-home-supervisor-module"
+	],
+	"./paginas/juego/juego.module": [
+		"./src/app/paginas/juego/juego.module.ts",
+		"common",
+		"paginas-juego-juego-module"
 	],
 	"./paginas/log-in/log-in.module": [
 		"./src/app/paginas/log-in/log-in.module.ts",
@@ -931,6 +941,8 @@ var routes = [
     { path: 'encuesta-cliente', loadChildren: './paginas/encuesta-cliente/encuesta-cliente.module#EncuestaClientePageModule' },
     { path: 'consulta-mozo', loadChildren: './paginas/consulta-mozo/consulta-mozo.module#ConsultaMozoPageModule' },
     { path: 'hacer-pedido', loadChildren: './paginas/hacer-pedido/hacer-pedido.module#HacerPedidoPageModule' },
+    { path: 'juego/:idMesaCliente', loadChildren: './paginas/juego/juego.module#JuegoPageModule' },
+    { path: 'cuenta-cliente', loadChildren: './paginas/cuenta-cliente/cuenta-cliente.module#CuentaClientePageModule' },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -1627,6 +1639,7 @@ var AuthService = /** @class */ (function () {
                                 case 'bar':
                                     _this.usuario = obj_element;
                                     localStorage.setItem('usuario', JSON.stringify(_this.usuario));
+                                    _this.fcmService.SuscribirANotificacion("notificacionBar");
                                     resolve(_this.usuario);
                                     _this.router.navigate(["home-cocina"]);
                                     break;
@@ -1861,6 +1874,7 @@ var FcmService = /** @class */ (function () {
         this.fcm.unsubscribeFromTopic('notificacionMozo');
         this.fcm.unsubscribeFromTopic('notificacionListaEspera');
         this.fcm.unsubscribeFromTopic('notificacionCocina');
+        this.fcm.unsubscribeFromTopic('notificacionBar');
         this.fcm.unsubscribeFromTopic('notificacionSupervisor');
         this.fcm.unsubscribeFromTopic('notificacionMozo');
         this.fcm.unsubscribeFromTopic('notificacionDueño');

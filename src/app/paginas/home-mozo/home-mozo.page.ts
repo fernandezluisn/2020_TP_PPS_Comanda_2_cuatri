@@ -20,7 +20,7 @@ export class HomeMozoPage implements OnInit {
     this.router.navigate(['/hacer-pedido']);
   }
   public ConfirmarPago() {
-    this.router.navigate(['/cuenta']);
+    this.router.navigate(['/confirmar-pago']);
   }
   public ConfirmarPedidos() {
     this.router.navigate(['/mozo-aceptar']);
@@ -32,6 +32,8 @@ export class HomeMozoPage implements OnInit {
   encuesta(){
     this.router.navigate(['/encuesta-empleado']);
   }
+
+
 
   salir(){
     this.auth.LogOut();
