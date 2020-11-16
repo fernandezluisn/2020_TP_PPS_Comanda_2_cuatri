@@ -16,6 +16,7 @@ import { SpinnerService } from 'src/app/servicios/spinner.service';
 import { ConsultaService } from 'src/app/servicios/consulta.service';
 import { Consulta } from 'src/app/interfaces/Consulta';
 import { FcmService } from 'src/app/servicios/fcm.service';
+import { MesaClienteService } from 'src/app/servicios/mesa-cliente.service';
 
 
 @Component({
@@ -45,6 +46,7 @@ export class HacerPedidoPage implements OnInit {
   esCliente:boolean;
   constructor(private platform: Platform,private prodServ: ProductosService, private pedidoServ: PedidosService,
     private mesaServ: MesasService, private authServ: AuthService,
+    private MesaClienteService: MesaClienteService,
     private router: Router, private barcodeScanner: BarcodeScanner, 
     private alertServ: AlertService,private popoverCtrl: PopoverController, private spinnerService: SpinnerService,
     private consultaService: ConsultaService, private fcmService: FcmService)    
@@ -61,7 +63,7 @@ export class HacerPedidoPage implements OnInit {
     this.usuario = this.authServ.getUsuario();
     this.pedido.foto = this.usuario['foto'];
     this.pedido.email = this.usuario['mail'];
-    this.mesaServ.getMesas().subscribe( (data) => {
+    this.MesaClienteService.getMesas().subscribe( (data) => {
       this.mesasClientes = data;
       if (this.usuario.perfil != 'cliente' && this.usuario.perfil != 'anonimo') {
         this.esMozo = true;
@@ -108,9 +110,9 @@ export class HacerPedidoPage implements OnInit {
             this.pedido['id-mesa'] = mCliente.idMesa;
 
             
-            this.mesaServ.getMesaPorID(mCliente.idMesa).then(mesas => {
+            this.MesaClienteService.getMesaPorID(mCliente.idMesa).then(mesas => {
               mesas[0].estado = 'esperando pedido';
-              this.mesaServ.actualizarMesa(mesas[0]);
+              this.MesaClienteService.actualizarMesa(mesas[0]);
             });
           }
         });
