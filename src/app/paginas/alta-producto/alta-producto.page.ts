@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { Vibration } from '@ionic-native/vibration/ngx';
-import { LoadingController } from '@ionic/angular';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { Producto } from 'src/app/interfaces/producto';
 import { ProductosService } from 'src/app/servicios/productos.service';
@@ -11,6 +10,7 @@ import { ToastService } from 'src/app/servicios/toast.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { AlertService } from 'src/app/servicios/alert.service';
+import { SpinnerService } from 'src/app/servicios/spinner.service';
 
 
 
@@ -30,7 +30,7 @@ export class AltaProductoPage implements OnInit {
   cargarProd=false;
   listaProductos:Producto[];
   productoElegido:Producto=null;
-  loading;
+  
 
   image1: string = null;
   image2: string = null;
@@ -48,9 +48,10 @@ export class AltaProductoPage implements OnInit {
     private camera: Camera, 
     private alertService:AlertService,
     private barcodeScanner: BarcodeScanner,
-    private loadingCtrl:LoadingController,
+    
     private vibra:Vibration,
     private bda:ProductosService,
+    private spi:SpinnerService,
     private toast:ToastService, private route:Router, private auth:AuthService) { 
       this.usuario = JSON.parse(localStorage.getItem('usuario'));
 
@@ -109,7 +110,7 @@ export class AltaProductoPage implements OnInit {
   }
 
   async sacarFoto(id:number){
-    this.presentLoading("Cargando imagen");
+    this.spi.showSpinner();
     const options: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
@@ -128,21 +129,14 @@ export class AltaProductoPage implements OnInit {
      }, (err) => {
       this.alertService.mensaje("Error",err);
      });
+
+     this.spi.hideSpinner();
   }
 
-  async presentLoading(message: string) {
-    this.loading = await this.loadingCtrl.create({
-        message,
-        spinner: "crescent",
-        duration: 3500
-    });
-    return this.loading.present();
-
-    
-  }  
+  
 
   async subir(){
-    this.presentLoading("Subiendo el producto.");
+    this.spi.showSpinner();
     let m:string;
     if(this.usuario.perfil=='bar')
     m="bebida";
@@ -155,7 +149,7 @@ export class AltaProductoPage implements OnInit {
       this.alertService.mensaje("Error","Deben estar subidas las tres imagenes para poder cargar el producto")
     }
        
-    
+    this.spi.hideSpinner();
   }
 
   cargarProducto(prod:Producto, modalidad:number){
@@ -297,7 +291,7 @@ export class AltaProductoPage implements OnInit {
   }
 
   async eliminar(){
-    this.presentLoading("Eliminando");
+    this.spi.showSpinner();
     try{
       await this.bda.BorrarProducto(this.productoElegido);
       this.toast.confirmationToast("se eliminó el producto.");
@@ -305,12 +299,13 @@ export class AltaProductoPage implements OnInit {
       this.alertService.mensaje("Error",e);
     }finally{
       this.productoElegido=null;
+      this.spi.hideSpinner();
     }
     
   }
 
   async modificar(){
-    this.presentLoading("Subiendo el producto.");
+    this.spi.showSpinner();    
     let p=this.productoElegido;
     p.nombre=this.productoElegido.nombre;
     p.precio=this.productoElegido.precio;
@@ -325,6 +320,7 @@ export class AltaProductoPage implements OnInit {
     }finally
     {
       this.productoElegido=null;
+      this.spi.hideSpinner();
     }
     
   }
