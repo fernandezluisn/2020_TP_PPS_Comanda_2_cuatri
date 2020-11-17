@@ -23,7 +23,7 @@ export class HomeMozoPage implements OnInit {
     this.router.navigate(['/confirmar-pago']);
   }
   public ConfirmarPedidos() {
-    this.router.navigate(['/mozo-aceptar']);
+    this.router.navigate(['/aceptar-pedido']);
   }
   public TerminarPedidos() {
     this.router.navigate(['/mozo-terminar']);

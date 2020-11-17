@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Confirmar Pedidos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngFor="let pedido of this.pedidos">
+    <ion-item lines="full" *ngIf="pedido.estado == 'sconfirmar'">
+      <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+         <b>Pedido de </b>
+          <b>Usuario</b>: {{this.pedido.email}}<br>
+  
+        </ion-col>
+        <ion-col size="6">
+          <ion-button (click)="this.confirmarPedido(pedido)" expand="full" >Confirmar</ion-button>
+          <ion-button (click)="this.rechazarReserva(this.reserva)" expand="full" color="danger" >Rechazar</ion-button>
+        </ion-col>
+      </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ng-container>
+</ion-content>

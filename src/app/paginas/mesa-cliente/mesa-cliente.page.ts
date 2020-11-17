@@ -43,8 +43,8 @@ realizarPedido()
 }
   escanearQr()
   {
-    this.alert.mensaje('','escanear')
-  }
+
+    }
   
   async consultarMozo()
   {
@@ -62,7 +62,7 @@ realizarPedido()
           //TODO -> PUSH NOTIFICATION.
           this.spinnerService.hideSpinner();
           this.alert.mensaje("", "Se ha enviado su consulta.");
-          this.fcmService.enviarMensaje("Nueva Consulta", "Mesa1"+data.data, "mozo")
+          this.fcmService.enviarMensaje("Nueva Consulta", "Mesa1"+data.data, "notificacionMozo")
         }else{
              this.alert.mensaje("", "Consulta Cancelada");
           }
