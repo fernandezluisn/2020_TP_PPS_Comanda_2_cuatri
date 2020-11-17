@@ -3,7 +3,6 @@
     <ion-buttons slot="end">
       <ion-button color="tertiary" size="small">
           <!-- <img class="icon-img" src="assets/icon/logout.png"> -->
-          <ion-icon name="log-out" ></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-title class="titulo-header">
@@ -34,20 +33,17 @@
     <ion-ripple-effect></ion-ripple-effect>
     <ion-icon name="person"></ion-icon>
     <h2>Consulta al Mozo</h2>
-    </ion-card>
+    </ion-card>    
+
     
 
-    <ion-card class="ion-activatable" (click)="this.realizarEncuesta()">
+    <ion-card class="ion-activatable" (click)="this.propina()">
       <ion-ripple-effect></ion-ripple-effect>
-      <ion-icon name="checkbox-outline"></ion-icon>
-      <h2>Encuesta</h2>
+      <ion-icon name="trophy"></ion-icon>
+      <h2>Propina</h2>
     </ion-card>
 
-    <ion-card class="ion-activatable" (click)="this.jugar()">
-      <ion-ripple-effect></ion-ripple-effect>
-      <ion-icon name="logo-game-controller-b"></ion-icon>
-      <h2>Jugar</h2>
-      </ion-card>
+    
       
       <ion-card class="ion-activatable" (click)="this.pedirCuenta()">
       <ion-ripple-effect></ion-ripple-effect>

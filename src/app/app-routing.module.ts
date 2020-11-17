@@ -45,7 +45,8 @@ const routes: Routes = [
   { path: 'hacer-pedido', loadChildren: './paginas/hacer-pedido/hacer-pedido.module#HacerPedidoPageModule' },
   { path: 'graficos-cliente', loadChildren: './paginas/graficos-cliente/graficos-cliente.module#GraficosClientePageModule' },
   { path: 'juego/:idMesaCliente', loadChildren: './paginas/juego/juego.module#JuegoPageModule' },
-   { path: 'cuenta-cliente', loadChildren: './paginas/cuenta-cliente/cuenta-cliente.module#CuentaClientePageModule' },  { path: 'confirmar-pago', loadChildren: './paginas/confirmar-pago/confirmar-pago.module#ConfirmarPagoPageModule' },
+   { path: 'cuenta-cliente', loadChildren: './paginas/cuenta-cliente/cuenta-cliente.module#CuentaClientePageModule' },
+  { path: 'confirmar-pago', loadChildren: './paginas/confirmar-pago/confirmar-pago.module#ConfirmarPagoPageModule' },
   { path: 'aceptar-pedido', loadChildren: './paginas/aceptar-pedido/aceptar-pedido.module#AceptarPedidoPageModule' },
   { path: 'preparacion', loadChildren: './paginas/preparacion/preparacion.module#PreparacionPageModule' },
 
@@ -58,6 +59,8 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
+
+
 
 
 

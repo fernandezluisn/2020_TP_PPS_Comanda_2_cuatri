@@ -38,6 +38,7 @@ export class HomeClientePage {
   private estadoActualCliente;
   cliente;
   chat =false;
+  
   constructor(private platform:Platform ,public datePipe: DatePipe,private alert: AlertService, private spinner: SpinnerService, private barcodeScanner: BarcodeScanner, private route: Router,
     private clienteService:AuthService, private mesaService: MesasService, private mesaClienteService: MesaClienteService, private http: HttpClient,
     private fcmService: FcmService, private reservaService:ReservasService) {
@@ -154,10 +155,33 @@ this.spinner.hideSpinner();
     /*Obtengo la mesa mediante su campo QR, que tiene que tener el mismo valor de una mesa generada y verifico que no este ocupada
           Si no esta ocupada, modifico el estado del usuario y y lo redirecciono a la mesa.*/
           this.mesas.forEach(async mesa => {
+            let reserva:Reserva;
+            this.reservas.filter(elemen=>{
+              if(elemen.mesa.numero==mesa.numero && elemen.estado=="confirmada" && elemen.idCliente==this.cliente.id){
+                reserva=elemen;
+              }
+            })
             if (resultado.text === mesa.qr) {
               qrValido = true;
-              if(mesa.estado == "Ocupada" || mesa.estado=="Reservada"){
+              if(mesa.estado == "Ocupada" || (mesa.estado=="Reservada" && reserva.idCliente!=this.cliente.id)){
                 this.alert.mensaje('', 'La mesa esta ocupada');
+              }else if(mesa.estado=="Reservada" && reserva.idCliente==this.cliente.id ){
+                mesa.estado = "Ocupada";    
+                this.mesaService.actualizarMesa(mesa);
+                this.cliente.estado = "ConMesaAsignada"
+                this.clienteService.ModificarUsuario(this.cliente);       
+                this.alert.mensaje('', 'Ya puede sentarse en la mesa seleccionada!!');
+                reserva.estado=="expirada";
+                this.reservaService.updateReserva(reserva);
+                let r=new MesaCliente(mesa.id,this.cliente.id,mesa.qr);
+                this.mesaClienteService.createMesaCliente(r);
+                this.mesaClienteService.devolverListadoMesas().subscribe(lista=>{
+                  lista.filter(el=>{
+                    if(el.idCliente==this.cliente.if && mesa.id==el.idMesa)
+                    localStorage.setItem('mesaClienteID', JSON.stringify(el.id));
+                  })
+                });
+                this.route.navigate(['mesa-cliente']);  
               }
               else{           
                 mesa.estado = "Ocupada";    
@@ -165,7 +189,14 @@ this.spinner.hideSpinner();
                 this.cliente.estado = "ConMesaAsignada"
                 this.clienteService.ModificarUsuario(this.cliente);       
                 this.alert.mensaje('', 'Ya puede sentarse en la mesa seleccionada!!');
-                this.mesaClienteService.createMesaCliente(new MesaCliente(mesa.id,this.cliente.id,mesa.qr));
+                let r=new MesaCliente(mesa.id,this.cliente.id,mesa.qr);
+                this.mesaClienteService.createMesaCliente(r);
+                this.mesaClienteService.devolverListadoMesas().subscribe(lista=>{
+                  lista.filter(el=>{
+                    if(el.idCliente==this.cliente.if && mesa.id==el.idMesa)
+                    localStorage.setItem('mesaClienteID', JSON.stringify(el.id));
+                  })
+                });
                 this.route.navigate(['mesa-cliente']);      
                 }           
 
@@ -207,7 +238,7 @@ this.spinner.hideSpinner();
           this.reservaService.updateReserva(res);
         }
       })
-  
+      this.reservas=resD;
         resD.forEach(resDia=>{
           let hor=new Date(resDia.fecha+" "+resDia.hora);          
           if(hor>this.fecha){

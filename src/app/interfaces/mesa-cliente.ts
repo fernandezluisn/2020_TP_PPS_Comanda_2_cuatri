@@ -19,6 +19,9 @@ export class MesaCliente {
         this.idCliente=idCliente;
         this.idMesa=idMesa;
         this.qrMesa = qrMesa;
+        this.juegoDescuento=null;
        // this.idMozo=idMozo;
+       this.propina=null;
+       this.juegoDescuento=null;
     }
 }
