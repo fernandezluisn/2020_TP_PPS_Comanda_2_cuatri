@@ -37,7 +37,8 @@ export class HacerPedidoPage implements OnInit {
     delivery:false,
     direccion:'',
     foto:'',
-    email:''
+    email:'',
+    Mesa: ""
   };
   public pedidosProductos = [];
   public mesasClientes = [];
@@ -116,6 +117,8 @@ export class HacerPedidoPage implements OnInit {
             //ACTUALIZO LA MESA 
             this.mesaServ.getMesaPorID(mCliente.idMesa).then(mesas => {
               mesas[0].estado = 'esperando pedido';
+              this.pedido.Mesa = mesas[0].qrMesa;
+              this.MesaClienteService.actualizarMesa(mesas[0]);
               this.mesaServ.actualizarMesa(mesas[0]);
             });
           }

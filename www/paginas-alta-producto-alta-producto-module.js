@@ -116,15 +116,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_fire_storage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/fire/storage */ "./node_modules/@angular/fire/storage/index.js");
 /* harmony import */ var _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic-native/barcode-scanner/ngx */ "./node_modules/@ionic-native/barcode-scanner/ngx/index.js");
 /* harmony import */ var _ionic_native_vibration_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/vibration/ngx */ "./node_modules/@ionic-native/vibration/ngx/index.js");
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
-/* harmony import */ var _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic-native/camera/ngx */ "./node_modules/@ionic-native/camera/ngx/index.js");
-/* harmony import */ var src_app_interfaces_producto__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/interfaces/producto */ "./src/app/interfaces/producto.ts");
-/* harmony import */ var src_app_servicios_productos_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/servicios/productos.service */ "./src/app/servicios/productos.service.ts");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var src_app_servicios_toast_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/servicios/toast.service */ "./src/app/servicios/toast.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/servicios/auth.service */ "./src/app/servicios/auth.service.ts");
-/* harmony import */ var src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! src/app/servicios/alert.service */ "./src/app/servicios/alert.service.ts");
+/* harmony import */ var _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic-native/camera/ngx */ "./node_modules/@ionic-native/camera/ngx/index.js");
+/* harmony import */ var src_app_interfaces_producto__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/interfaces/producto */ "./src/app/interfaces/producto.ts");
+/* harmony import */ var src_app_servicios_productos_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/servicios/productos.service */ "./src/app/servicios/productos.service.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var src_app_servicios_toast_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/servicios/toast.service */ "./src/app/servicios/toast.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/servicios/auth.service */ "./src/app/servicios/auth.service.ts");
+/* harmony import */ var src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/servicios/alert.service */ "./src/app/servicios/alert.service.ts");
+/* harmony import */ var src_app_servicios_spinner_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! src/app/servicios/spinner.service */ "./src/app/servicios/spinner.service.ts");
 
 
 
@@ -140,15 +140,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var AltaProductoPage = /** @class */ (function () {
-    function AltaProductoPage(storage, camera, alertService, barcodeScanner, loadingCtrl, vibra, bda, toast, route, auth) {
+    function AltaProductoPage(storage, camera, alertService, barcodeScanner, vibra, bda, spi, toast, route, auth) {
         var _this = this;
         this.storage = storage;
         this.camera = camera;
         this.alertService = alertService;
         this.barcodeScanner = barcodeScanner;
-        this.loadingCtrl = loadingCtrl;
         this.vibra = vibra;
         this.bda = bda;
+        this.spi = spi;
         this.toast = toast;
         this.route = route;
         this.auth = auth;
@@ -243,7 +243,7 @@ var AltaProductoPage = /** @class */ (function () {
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        this.presentLoading("Cargando imagen");
+                        this.spi.showSpinner();
                         options = {
                             quality: 100,
                             destinationType: this.camera.DestinationType.DATA_URL,
@@ -263,26 +263,8 @@ var AltaProductoPage = /** @class */ (function () {
                             })];
                     case 1:
                         _a.sent();
+                        this.spi.hideSpinner();
                         return [2 /*return*/];
-                }
-            });
-        });
-    };
-    AltaProductoPage.prototype.presentLoading = function (message) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var _a;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        _a = this;
-                        return [4 /*yield*/, this.loadingCtrl.create({
-                                message: message,
-                                spinner: "crescent",
-                                duration: 3500
-                            })];
-                    case 1:
-                        _a.loading = _b.sent();
-                        return [2 /*return*/, this.loading.present()];
                 }
             });
         });
@@ -291,18 +273,19 @@ var AltaProductoPage = /** @class */ (function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             var m, p;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                this.presentLoading("Subiendo el producto.");
+                this.spi.showSpinner();
                 if (this.usuario.perfil == 'bar')
                     m = "bebida";
                 else
                     m = "comida";
                 if (this.url1 != null && this.url2 != null && this.url3 != null) {
-                    p = new src_app_interfaces_producto__WEBPACK_IMPORTED_MODULE_7__["Producto"](this.nombre, this.descripcion, this.minutos, this.precio, m, this.url1, this.url2, this.url3);
+                    p = new src_app_interfaces_producto__WEBPACK_IMPORTED_MODULE_6__["Producto"](this.nombre, this.descripcion, this.minutos, this.precio, m, this.url1, this.url2, this.url3);
                     this.cargarProducto(p, 1);
                 }
                 else {
                     this.alertService.mensaje("Error", "Deben estar subidas las tres imagenes para poder cargar el producto");
                 }
+                this.spi.hideSpinner();
                 return [2 /*return*/];
             });
         });
@@ -361,7 +344,7 @@ var AltaProductoPage = /** @class */ (function () {
                         path = com;
                         ref_1 = this.storage.ref(path);
                         task = this.storage.upload(path, file);
-                        return [4 /*yield*/, task.snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_9__["finalize"])(function () { return ref_1.getDownloadURL().subscribe(function (url) {
+                        return [4 /*yield*/, task.snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_8__["finalize"])(function () { return ref_1.getDownloadURL().subscribe(function (url) {
                                 _this.url1 = url;
                             }); })).subscribe()];
                     case 3:
@@ -401,7 +384,7 @@ var AltaProductoPage = /** @class */ (function () {
                         path = com;
                         ref_2 = this.storage.ref(path);
                         task = this.storage.upload(path, file);
-                        return [4 /*yield*/, task.snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_9__["finalize"])(function () { return ref_2.getDownloadURL().subscribe(function (url) {
+                        return [4 /*yield*/, task.snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_8__["finalize"])(function () { return ref_2.getDownloadURL().subscribe(function (url) {
                                 _this.url2 = url;
                             }); })).subscribe()];
                     case 3:
@@ -441,7 +424,7 @@ var AltaProductoPage = /** @class */ (function () {
                         path = com;
                         ref_3 = this.storage.ref(path);
                         task = this.storage.upload(path, file);
-                        return [4 /*yield*/, task.snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_9__["finalize"])(function () { return ref_3.getDownloadURL().subscribe(function (url) {
+                        return [4 /*yield*/, task.snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_8__["finalize"])(function () { return ref_3.getDownloadURL().subscribe(function (url) {
                                 _this.url3 = url;
                             }); })).subscribe()];
                     case 3:
@@ -474,7 +457,7 @@ var AltaProductoPage = /** @class */ (function () {
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        this.presentLoading("Eliminando");
+                        this.spi.showSpinner();
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 3, 4, 5]);
@@ -489,6 +472,7 @@ var AltaProductoPage = /** @class */ (function () {
                         return [3 /*break*/, 5];
                     case 4:
                         this.productoElegido = null;
+                        this.spi.hideSpinner();
                         return [7 /*endfinally*/];
                     case 5: return [2 /*return*/];
                 }
@@ -501,7 +485,7 @@ var AltaProductoPage = /** @class */ (function () {
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        this.presentLoading("Subiendo el producto.");
+                        this.spi.showSpinner();
                         p = this.productoElegido;
                         p.nombre = this.productoElegido.nombre;
                         p.precio = this.productoElegido.precio;
@@ -520,6 +504,7 @@ var AltaProductoPage = /** @class */ (function () {
                         return [3 /*break*/, 5];
                     case 4:
                         this.productoElegido = null;
+                        this.spi.hideSpinner();
                         return [7 /*endfinally*/];
                     case 5: return [2 /*return*/];
                 }
@@ -537,15 +522,199 @@ var AltaProductoPage = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./alta-producto.page.scss */ "./src/app/paginas/alta-producto/alta-producto.page.scss")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_fire_storage__WEBPACK_IMPORTED_MODULE_2__["AngularFireStorage"],
-            _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_6__["Camera"],
-            src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_13__["AlertService"],
+            _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_5__["Camera"],
+            src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_12__["AlertService"],
             _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_3__["BarcodeScanner"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["LoadingController"],
             _ionic_native_vibration_ngx__WEBPACK_IMPORTED_MODULE_4__["Vibration"],
-            src_app_servicios_productos_service__WEBPACK_IMPORTED_MODULE_8__["ProductosService"],
-            src_app_servicios_toast_service__WEBPACK_IMPORTED_MODULE_10__["ToastService"], _angular_router__WEBPACK_IMPORTED_MODULE_11__["Router"], src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_12__["AuthService"]])
+            src_app_servicios_productos_service__WEBPACK_IMPORTED_MODULE_7__["ProductosService"],
+            src_app_servicios_spinner_service__WEBPACK_IMPORTED_MODULE_13__["SpinnerService"],
+            src_app_servicios_toast_service__WEBPACK_IMPORTED_MODULE_9__["ToastService"], _angular_router__WEBPACK_IMPORTED_MODULE_10__["Router"], src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_11__["AuthService"]])
     ], AltaProductoPage);
     return AltaProductoPage;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/servicios/productos.service.ts":
+/*!************************************************!*\
+  !*** ./src/app/servicios/productos.service.ts ***!
+  \************************************************/
+/*! exports provided: ProductosService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductosService", function() { return ProductosService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/fire/firestore */ "./node_modules/@angular/fire/firestore/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+
+
+
+
+var ProductosService = /** @class */ (function () {
+    function ProductosService(db) {
+        this.db = db;
+        this.productos = this.db.collection("productos").snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (actions) {
+            return actions.map(function (a) {
+                var data = a.payload.doc.data();
+                var id = a.payload.doc.id;
+                return tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({ id: id }, data);
+            });
+        }));
+    }
+    ProductosService.prototype.createProducto = function (producto) {
+        return this.db.collection('productos').add(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, producto));
+    };
+    ProductosService.prototype.devolverListadoProductos = function () {
+        return this.productos;
+    };
+    ProductosService.prototype.actualizarProducto = function (prod) {
+        this.db.doc('productos' + '/' + prod.id).update(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, prod));
+    };
+    ProductosService.prototype.BorrarProducto = function (prod) {
+        this.db.doc('productos/' + prod.id).delete().then();
+    };
+    ProductosService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_2__["AngularFirestore"]])
+    ], ProductosService);
+    return ProductosService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/servicios/spinner.service.ts":
+/*!**********************************************!*\
+  !*** ./src/app/servicios/spinner.service.ts ***!
+  \**********************************************/
+/*! exports provided: SpinnerService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SpinnerService", function() { return SpinnerService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+
+
+
+var SpinnerService = /** @class */ (function () {
+    function SpinnerService(_loadingController, _toastCtrl) {
+        this._loadingController = _loadingController;
+        this._toastCtrl = _toastCtrl;
+        this._isSpinnerShowing = false;
+        this._isGoingToClose = false;
+        this._timer = -1; // This is the timer, it will go from 2000 to -1
+        this._timerID = null;
+        // console.log('Inicializo el spinner');
+        this.createSpinner();
+    }
+    SpinnerService.prototype.createSpinner = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var _a;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = this;
+                        return [4 /*yield*/, this._loadingController.create({
+                                spinner: null,
+                                keyboardClose: true,
+                                message: '<div class="spinner-css"><img src="assets/loading.png"></div> Cargando...',
+                                showBackdrop: false,
+                                duration: 30000,
+                                cssClass: 'cajaSpinner'
+                            })];
+                    case 1:
+                        _a._currentLoading = _b.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    SpinnerService.prototype.showSpinner = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                // console.log('Muestro el spinner', this._currentLoading);
+                if (this._isSpinnerShowing === false) {
+                    this._currentLoading.present();
+                    this._isSpinnerShowing = this.startTimer();
+                }
+                return [2 /*return*/];
+            });
+        });
+    };
+    SpinnerService.prototype.startTimer = function () {
+        var _this = this;
+        // console.log('Inicializo el conteo');
+        this._timer = 2000;
+        this._timerID = setInterval(function () {
+            _this._timer = _this._timer - 1;
+            if (_this._timer < 0) {
+                // console.log('El conteo se acabÃ³.');
+                _this._isGoingToClose = true;
+                clearInterval(_this._timerID);
+            }
+        }, 1);
+        return true;
+    };
+    SpinnerService.prototype.hideSpinner = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                // console.log('Intento ocultar el spinner con el timer en', this._timer);
+                if (this._isSpinnerShowing) {
+                    if (this._timer < 0) {
+                        // console.log('El tiempo acabÃ³ y oculto el spinner');
+                        this._isSpinnerShowing = this.stopAndReplaceSpinner();
+                        this._isGoingToClose = false;
+                    }
+                    else {
+                        // console.log('El tiempo NO acaba y hago un timeout para acabarlo en', this._timer);
+                        clearInterval(this._timerID);
+                        setTimeout(function () {
+                            _this._isGoingToClose = true;
+                            _this.hideSpinner();
+                        }, this._timer);
+                    }
+                    this._timer = -1;
+                }
+                return [2 /*return*/];
+            });
+        });
+    };
+    SpinnerService.prototype.stopAndReplaceSpinner = function () {
+        this._currentLoading.dismiss();
+        this.createSpinner();
+        return false;
+    };
+    SpinnerService.prototype.mostrarToast = function (message, timer, color, position) {
+        this._toastCtrl.create({
+            color: color,
+            duration: timer * 1000,
+            message: message,
+            position: position,
+        })
+            .then(function (toast) {
+            toast.present();
+        });
+    };
+    SpinnerService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"]])
+    ], SpinnerService);
+    return SpinnerService;
 }());
 
 

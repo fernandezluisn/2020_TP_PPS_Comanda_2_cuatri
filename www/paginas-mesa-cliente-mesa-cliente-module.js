@@ -1,31 +1,5 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["paginas-mesa-cliente-mesa-cliente-module"],{
 
-/***/ "./src/app/interfaces/Consulta.ts":
-/*!****************************************!*\
-  !*** ./src/app/interfaces/Consulta.ts ***!
-  \****************************************/
-/*! exports provided: Consulta */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Consulta", function() { return Consulta; });
-var Consulta = /** @class */ (function () {
-    function Consulta(mesa, consulta, estado, id) {
-        this.mesa = mesa;
-        this.consulta = consulta;
-        this.estado = estado;
-        if (id) {
-            this.id = id;
-        }
-    }
-    return Consulta;
-}());
-
-
-
-/***/ }),
-
 /***/ "./src/app/paginas/mesa-cliente/mesa-cliente.module.ts":
 /*!*************************************************************!*\
   !*** ./src/app/paginas/mesa-cliente/mesa-cliente.module.ts ***!
@@ -84,7 +58,7 @@ var MesaClientePageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar color=\"primary\" >\r\n    <ion-buttons slot=\"end\">\r\n      <ion-button color=\"tertiary\" size=\"small\">\r\n          <!-- <img class=\"icon-img\" src=\"assets/icon/logout.png\"> -->\r\n          <ion-icon name=\"log-out\" ></ion-icon>\r\n      </ion-button>\r\n    </ion-buttons>\r\n    <ion-title class=\"titulo-header\">\r\n     Cliente\r\n    </ion-title>\r\n    <ion-buttons slot=\"start\">\r\n      <ion-button color=\"tertiary\" size=\"small\">\r\n        <ion-icon name=\"person\" slot=\"icon-only\"></ion-icon>\r\n      </ion-button>\r\n    </ion-buttons>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n  <ion-card class=\"ion-activatable\" (click)=\"this.escanearQr()\">\r\n    <ion-ripple-effect></ion-ripple-effect>\r\n    <ion-icon name=\"qr-scanner\"></ion-icon>\r\n    <h2>Escanear QR</h2>\r\n  </ion-card>\r\n\r\n  <ion-card class=\"ion-activatable\" (click)=\"this.realizarPedido()\">\r\n    <ion-ripple-effect></ion-ripple-effect>\r\n    <ion-icon name=\"restaurant\"></ion-icon>\r\n    <h2>Realizar un Pedido</h2>\r\n  </ion-card>\r\n\r\n  <ion-card class=\"ion-activatable\" (click)=\"this.consultarMozo()\">\r\n    <ion-ripple-effect></ion-ripple-effect>\r\n    <ion-icon name=\"person\"></ion-icon>\r\n    <h2>Consulta al Mozo</h2>\r\n    </ion-card>\r\n    \r\n\r\n    <ion-card class=\"ion-activatable\" (click)=\"this.realizarEncuesta()\">\r\n      <ion-ripple-effect></ion-ripple-effect>\r\n      <ion-icon name=\"checkbox-outline\"></ion-icon>\r\n      <h2>Encuesta</h2>\r\n    </ion-card>\r\n\r\n    <ion-card class=\"ion-activatable\" (click)=\"this.jugar()\">\r\n      <ion-ripple-effect></ion-ripple-effect>\r\n      <ion-icon name=\"logo-game-controller-b\"></ion-icon>\r\n      <h2>Jugar</h2>\r\n      </ion-card>\r\n      \r\n      <ion-card class=\"ion-activatable\" (click)=\"this.pedirCuenta()\">\r\n      <ion-ripple-effect></ion-ripple-effect>\r\n      <ion-icon name=\"list\" ></ion-icon>\r\n      <h2>Pedir cuenta</h2>\r\n      </ion-card>\r\n\r\n      <ion-button class=\"apagar\" color=\"dark\" (click)=\"salir()\">\r\n        <ion-icon name=\"power\"></ion-icon>\r\n      </ion-button>\r\n</ion-content>"
+module.exports = "<ion-header>\r\n  <ion-toolbar color=\"primary\" >\r\n    <ion-buttons slot=\"end\">\r\n      <ion-button color=\"tertiary\" size=\"small\">\r\n          <!-- <img class=\"icon-img\" src=\"assets/icon/logout.png\"> -->\r\n      </ion-button>\r\n    </ion-buttons>\r\n    <ion-title class=\"titulo-header\">\r\n     Cliente\r\n    </ion-title>\r\n    <ion-buttons slot=\"start\">\r\n      <ion-button color=\"tertiary\" size=\"small\">\r\n        <ion-icon name=\"person\" slot=\"icon-only\"></ion-icon>\r\n      </ion-button>\r\n    </ion-buttons>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n  <ion-card class=\"ion-activatable\" (click)=\"this.escanearQr()\">\r\n    <ion-ripple-effect></ion-ripple-effect>\r\n    <ion-icon name=\"qr-scanner\"></ion-icon>\r\n    <h2>Escanear QR</h2>\r\n  </ion-card>\r\n\r\n  <ion-card class=\"ion-activatable\" (click)=\"this.realizarPedido()\">\r\n    <ion-ripple-effect></ion-ripple-effect>\r\n    <ion-icon name=\"restaurant\"></ion-icon>\r\n    <h2>Realizar un Pedido</h2>\r\n  </ion-card>\r\n\r\n  <ion-card class=\"ion-activatable\" (click)=\"this.consultarMozo()\">\r\n    <ion-ripple-effect></ion-ripple-effect>\r\n    <ion-icon name=\"person\"></ion-icon>\r\n    <h2>Consulta al Mozo</h2>\r\n    </ion-card>    \r\n\r\n    \r\n\r\n    <ion-card class=\"ion-activatable\" (click)=\"this.propina()\">\r\n      <ion-ripple-effect></ion-ripple-effect>\r\n      <ion-icon name=\"trophy\"></ion-icon>\r\n      <h2>Propina</h2>\r\n    </ion-card>\r\n\r\n    \r\n      \r\n      <ion-card class=\"ion-activatable\" (click)=\"this.pedirCuenta()\">\r\n      <ion-ripple-effect></ion-ripple-effect>\r\n      <ion-icon name=\"list\" ></ion-icon>\r\n      <h2>Pedir cuenta</h2>\r\n      </ion-card>\r\n\r\n      <ion-button class=\"apagar\" color=\"dark\" (click)=\"salir()\">\r\n        <ion-icon name=\"power\"></ion-icon>\r\n      </ion-button>\r\n</ion-content>"
 
 /***/ }),
 
@@ -120,6 +94,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_servicios_consulta_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/servicios/consulta.service */ "./src/app/servicios/consulta.service.ts");
 /* harmony import */ var src_app_interfaces_Consulta__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/interfaces/Consulta */ "./src/app/interfaces/Consulta.ts");
 /* harmony import */ var src_app_servicios_fcm_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/servicios/fcm.service */ "./src/app/servicios/fcm.service.ts");
+/* harmony import */ var src_app_servicios_mesa_cliente_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/servicios/mesa-cliente.service */ "./src/app/servicios/mesa-cliente.service.ts");
+/* harmony import */ var _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ionic-native/barcode-scanner/ngx */ "./node_modules/@ionic-native/barcode-scanner/ngx/index.js");
+
+
 
 
 
@@ -133,7 +111,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var MesaClientePage = /** @class */ (function () {
-    function MesaClientePage(platform, route, alert, auth, modalController, popoverCtrl, spinnerService, consultaService, fcmService) {
+    function MesaClientePage(platform, route, alert, auth, modalController, popoverCtrl, spinnerService, consultaService, fcmService, bda, barcodeScanner) {
+        var _this = this;
         this.platform = platform;
         this.route = route;
         this.alert = alert;
@@ -143,7 +122,16 @@ var MesaClientePage = /** @class */ (function () {
         this.spinnerService = spinnerService;
         this.consultaService = consultaService;
         this.fcmService = fcmService;
+        this.bda = bda;
+        this.barcodeScanner = barcodeScanner;
         this.usuario = JSON.parse(localStorage.getItem('usuario'));
+        var idMesaCliente = JSON.parse(localStorage.getItem('mesaClienteID'));
+        this.bda.devolverListadoMesas().subscribe(function (lista) {
+            lista.filter(function (elem) {
+                if (elem.id == idMesaCliente)
+                    _this.mesaCliente = elem;
+            });
+        });
     }
     MesaClientePage.prototype.ngOnInit = function () {
         //this.platform.isLandscape();
@@ -156,7 +144,16 @@ var MesaClientePage = /** @class */ (function () {
         this.route.navigate(['hacer-pedido']);
     };
     MesaClientePage.prototype.escanearQr = function () {
-        this.alert.mensaje('', 'escanear');
+        var _this = this;
+        this.barcodeScanner.scan().then(function (resultado) {
+            if (resultado.text == _this.mesaCliente.qrMesa) {
+                _this.route.navigate(["gestiones"]);
+                _this.spinnerService.showSpinner();
+            }
+            else {
+                _this.alert.mensaje("Error", "Esa no es su mesa");
+            }
+        });
     };
     MesaClientePage.prototype.consultarMozo = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
@@ -179,7 +176,7 @@ var MesaClientePage = /** @class */ (function () {
                                     //TODO -> PUSH NOTIFICATION.
                                     _this.spinnerService.hideSpinner();
                                     _this.alert.mensaje("", "Se ha enviado su consulta.");
-                                    _this.fcmService.enviarMensaje("Nueva Consulta", "Mesa1" + data.data, "mozo");
+                                    _this.fcmService.enviarMensaje("Nueva Consulta", "Mesa1" + data.data, "notificacionMozo");
                                 }
                                 else {
                                     _this.alert.mensaje("", "Consulta Cancelada");
@@ -189,22 +186,6 @@ var MesaClientePage = /** @class */ (function () {
             });
         });
     };
-    MesaClientePage.prototype.jugar = function () {
-        //falta completar esto
-        //if(this.mesacliente.juegoDescuento==null)
-        //this.route.navigate(["juego/"+this.idMesaCliente]);
-        /*else{
-          this.alert.mensaje('','Solo puede intentar el descuento una vez');
-        }*/
-    };
-    MesaClientePage.prototype.realizarEncuesta = function () {
-        var audio = new Audio();
-        audio.src = '../assets/click.m4a';
-        audio.load();
-        audio.play();
-        this.alert.mensaje('', 'Lo enviaremos a hacer una encuesta. Si quiere puede no hacerla');
-        this.route.navigate(['encuesta-cliente']);
-    };
     MesaClientePage.prototype.pedirCuenta = function () {
         if (localStorage.getItem('Sonido') == 'true') {
             var audio = new Audio();
@@ -213,6 +194,14 @@ var MesaClientePage = /** @class */ (function () {
             audio.play();
         }
         this.route.navigate(['/cuenta-cliente']);
+    };
+    MesaClientePage.prototype.propina = function () {
+        if (this.mesaCliente.propina == null || this.mesaCliente.propina == undefined)
+            this.route.navigate(['propina']);
+        else {
+            this.alert.mensaje("Cuidado", "Usted ya ingresó el monto de la propina, lo está ingresando nuevamente");
+            this.route.navigate(['propina']);
+        }
     };
     MesaClientePage.prototype.salir = function () {
         this.auth.LogOut();
@@ -226,7 +215,8 @@ var MesaClientePage = /** @class */ (function () {
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_4__["Platform"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_5__["AlertService"], src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ModalController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["PopoverController"], src_app_servicios_spinner_service__WEBPACK_IMPORTED_MODULE_7__["SpinnerService"],
-            src_app_servicios_consulta_service__WEBPACK_IMPORTED_MODULE_8__["ConsultaService"], src_app_servicios_fcm_service__WEBPACK_IMPORTED_MODULE_10__["FcmService"]])
+            src_app_servicios_consulta_service__WEBPACK_IMPORTED_MODULE_8__["ConsultaService"], src_app_servicios_fcm_service__WEBPACK_IMPORTED_MODULE_10__["FcmService"], src_app_servicios_mesa_cliente_service__WEBPACK_IMPORTED_MODULE_11__["MesaClienteService"],
+            _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_12__["BarcodeScanner"]])
     ], MesaClientePage);
     return MesaClientePage;
 }());
@@ -235,36 +225,130 @@ var MesaClientePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/servicios/consulta.service.ts":
-/*!***********************************************!*\
-  !*** ./src/app/servicios/consulta.service.ts ***!
-  \***********************************************/
-/*! exports provided: ConsultaService */
+/***/ "./src/app/servicios/spinner.service.ts":
+/*!**********************************************!*\
+  !*** ./src/app/servicios/spinner.service.ts ***!
+  \**********************************************/
+/*! exports provided: SpinnerService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConsultaService", function() { return ConsultaService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SpinnerService", function() { return SpinnerService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/fire/firestore */ "./node_modules/@angular/fire/firestore/index.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
 
 
 
-var ConsultaService = /** @class */ (function () {
-    function ConsultaService(db) {
-        this.db = db;
+var SpinnerService = /** @class */ (function () {
+    function SpinnerService(_loadingController, _toastCtrl) {
+        this._loadingController = _loadingController;
+        this._toastCtrl = _toastCtrl;
+        this._isSpinnerShowing = false;
+        this._isGoingToClose = false;
+        this._timer = -1; // This is the timer, it will go from 2000 to -1
+        this._timerID = null;
+        // console.log('Inicializo el spinner');
+        this.createSpinner();
     }
-    ConsultaService.prototype.createConsulta = function (Consulta) {
-        return this.db.collection('consultas').add(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, Consulta));
+    SpinnerService.prototype.createSpinner = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var _a;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = this;
+                        return [4 /*yield*/, this._loadingController.create({
+                                spinner: null,
+                                keyboardClose: true,
+                                message: '<div class="spinner-css"><img src="assets/loading.png"></div> Cargando...',
+                                showBackdrop: false,
+                                duration: 30000,
+                                cssClass: 'cajaSpinner'
+                            })];
+                    case 1:
+                        _a._currentLoading = _b.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
-    ConsultaService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    SpinnerService.prototype.showSpinner = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                // console.log('Muestro el spinner', this._currentLoading);
+                if (this._isSpinnerShowing === false) {
+                    this._currentLoading.present();
+                    this._isSpinnerShowing = this.startTimer();
+                }
+                return [2 /*return*/];
+            });
+        });
+    };
+    SpinnerService.prototype.startTimer = function () {
+        var _this = this;
+        // console.log('Inicializo el conteo');
+        this._timer = 2000;
+        this._timerID = setInterval(function () {
+            _this._timer = _this._timer - 1;
+            if (_this._timer < 0) {
+                // console.log('El conteo se acabÃ³.');
+                _this._isGoingToClose = true;
+                clearInterval(_this._timerID);
+            }
+        }, 1);
+        return true;
+    };
+    SpinnerService.prototype.hideSpinner = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                // console.log('Intento ocultar el spinner con el timer en', this._timer);
+                if (this._isSpinnerShowing) {
+                    if (this._timer < 0) {
+                        // console.log('El tiempo acabÃ³ y oculto el spinner');
+                        this._isSpinnerShowing = this.stopAndReplaceSpinner();
+                        this._isGoingToClose = false;
+                    }
+                    else {
+                        // console.log('El tiempo NO acaba y hago un timeout para acabarlo en', this._timer);
+                        clearInterval(this._timerID);
+                        setTimeout(function () {
+                            _this._isGoingToClose = true;
+                            _this.hideSpinner();
+                        }, this._timer);
+                    }
+                    this._timer = -1;
+                }
+                return [2 /*return*/];
+            });
+        });
+    };
+    SpinnerService.prototype.stopAndReplaceSpinner = function () {
+        this._currentLoading.dismiss();
+        this.createSpinner();
+        return false;
+    };
+    SpinnerService.prototype.mostrarToast = function (message, timer, color, position) {
+        this._toastCtrl.create({
+            color: color,
+            duration: timer * 1000,
+            message: message,
+            position: position,
+        })
+            .then(function (toast) {
+            toast.present();
+        });
+    };
+    SpinnerService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
             providedIn: 'root'
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_2__["AngularFirestore"]])
-    ], ConsultaService);
-    return ConsultaService;
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"]])
+    ], SpinnerService);
+    return SpinnerService;
 }());
 
 

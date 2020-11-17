@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Consultas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding color="dark"> 
+
+  <br>
+  <ion-list-header lines="inset" color="dark">
+    <ion-label>Consultas de clientes</ion-label>
+  </ion-list-header>
+<div *ngFor="let consulta of this.consultas">
+  <ion-item color="dark">
+    <ion-label style="color:black" >{{consulta.consulta}} {{consulta.mesa}}</ion-label>
+    <ion-button fill="outline" (click)="Marcar(consulta)">Marcar como vista</ion-button>
+  </ion-item>
+</div>
+<div *ngIf="this.consultas.length === 0">
+  <ion-item color="dark">
+    <ion-label >Sin consultas sin ver.</ion-label>
+  </ion-item>
+</div>
+
+<ion-button class="apagar" color="dark" (click)="salir()">
+  <ion-icon name="power"></ion-icon>
+</ion-button>
+
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button color='dark' expand="full" (click)='this.AltaCliente()' >Alta Cliente</ion-button>
+  </ion-toolbar>
+</ion-footer>

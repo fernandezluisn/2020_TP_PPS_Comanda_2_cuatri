@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Pedidos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding color="dark"> 
+
+  <br>
+  <ion-list-header lines="inset" color="dark">
+    <ion-label>Estado de Pedidos</ion-label>
+  </ion-list-header>
+<div *ngFor="let pedido of this.pedidosMostrar">
+  <ion-item color="dark">
+    <ion-label style="color:black" >Pedido de {{pedido.usuario}} En  {{pedido.Mesa}} Se encuentra en estado: {{pedido.estado}}</ion-label>
+    <ion-button fill="outline" (click)="servir(pedido)" *ngIf="pedido.estado=='listo'">Servir</ion-button>
+  </ion-item>
+</div>
+<div *ngIf="pedidosMostrar.length === 0">
+  <ion-item color="dark">
+    <ion-label >Sin Pedidos pendientes.</ion-label>
+  </ion-item>
+</div>
+
+<ion-button class="apagar" color="dark" (click)="salir()">
+  <ion-icon name="power"></ion-icon>
+</ion-button>
+
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button color='dark' expand="full" (click)='this.AltaCliente()' >Alta Cliente</ion-button>
+  </ion-toolbar>
+</ion-footer>

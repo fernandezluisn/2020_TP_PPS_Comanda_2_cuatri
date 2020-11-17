@@ -270,6 +270,77 @@ var EncuestaEmpleadoPage = /** @class */ (function () {
 
 
 
+/***/ }),
+
+/***/ "./src/app/servicios/encuestas.service.ts":
+/*!************************************************!*\
+  !*** ./src/app/servicios/encuestas.service.ts ***!
+  \************************************************/
+/*! exports provided: EncuestasService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EncuestasService", function() { return EncuestasService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/fire/firestore */ "./node_modules/@angular/fire/firestore/index.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+
+
+
+
+var EncuestasService = /** @class */ (function () {
+    function EncuestasService(db) {
+        this.db = db;
+        this.encuestasEmpleados = this.db.collection('encuestas-empleados').snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (actions) {
+            return actions.map(function (a) {
+                var data = a.payload.doc.data();
+                var id = a.payload.doc.id;
+                return tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({ id: id }, data);
+            });
+        }));
+    }
+    EncuestasService.prototype.addEncuesta = function (encuesta) {
+        var _this = this;
+        return new Promise(function (resolve, rejected) {
+            _this.db.collection('encuestas-cliente').add(encuesta).then(function (ret) {
+                resolve(ret);
+            }).catch(function (err) {
+                rejected(err);
+            });
+        });
+    };
+    EncuestasService.prototype.addEncuestaEmpleado = function (encuesta) {
+        return this.db.collection('encuestas-empleados').add(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, encuesta));
+    };
+    EncuestasService.prototype.addEncuestaDueño = function (encuesta) {
+        var _this = this;
+        return new Promise(function (resolve, rejected) {
+            _this.db.collection('encuestas-dueño').add(encuesta).then(function (ret) {
+                resolve(ret);
+            }).catch(function (err) {
+                rejected(err);
+            });
+        });
+    };
+    EncuestasService.prototype.GetEncuestasClientes = function () {
+        return this.db.collection('encuestas-cliente').get().toPromise();
+    };
+    EncuestasService.prototype.GetEncuestasEmpleados = function () {
+        return this.encuestasEmpleados;
+    };
+    EncuestasService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_1__["AngularFirestore"]])
+    ], EncuestasService);
+    return EncuestasService;
+}());
+
+
+
 /***/ })
 
 }]);

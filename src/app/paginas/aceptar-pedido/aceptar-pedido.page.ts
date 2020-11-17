@@ -38,8 +38,6 @@ export class AceptarPedidoPage implements OnInit {
              console.log(pedidosProducto);
              pedido.productos = pedidosProducto;
              })
-
-
           })
      
       });
@@ -48,7 +46,8 @@ export class AceptarPedidoPage implements OnInit {
   confirmarPedido(pedido){
    
     pedido.estado = "confirmado";
-
+var flagcomida = 0;
+var flagbebida = 0;
     this.pedidoService.updatePedido(pedido.id, pedido);
 
 
@@ -56,9 +55,23 @@ export class AceptarPedidoPage implements OnInit {
     this.pedidoService.getPedidosProductosPorPedido(pedido.id).then(pedidosProducto => {
       pedidosProducto.forEach(pedidoProducto => {
          pedidoProducto.estado = "confirmado";
+         if(pedidoProducto.tipoProducto == "comida")
+         flagcomida == 1;
+
+         if(pedidoProducto.tipoProducto == "comida")
+         flagbebida == 1;
+
          this.pedidoService.updatePedidoProducto(pedidoProducto.id, pedidoProducto)
          });
       })
+
+      if(flagbebida == 1)
+      this.fcmService.enviarMensaje("Nuevo Producto Pendiente", "nueva bebida a preparar", "notificacionBar")
+
+      if(flagcomida == 1)
+      this.fcmService.enviarMensaje("Nuevo Producto Pendiente", "nueva comida a preparar", "notificacionCocina")
+
+
 
   }
 

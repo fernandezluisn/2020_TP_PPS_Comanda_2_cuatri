@@ -741,6 +741,12 @@ var map = {
 		"./src/app/paginas/aceptar-cliente/aceptar-cliente.module.ts",
 		"paginas-aceptar-cliente-aceptar-cliente-module"
 	],
+	"./paginas/aceptar-pedido/aceptar-pedido.module": [
+		"./src/app/paginas/aceptar-pedido/aceptar-pedido.module.ts",
+		"default~paginas-aceptar-pedido-aceptar-pedido-module~paginas-cuenta-cliente-cuenta-cliente-module~pa~6494ff32",
+		"common",
+		"paginas-aceptar-pedido-aceptar-pedido-module"
+	],
 	"./paginas/admin-comercio/admin-comercio.module": [
 		"./src/app/paginas/admin-comercio/admin-comercio.module.ts",
 		"common",
@@ -766,11 +772,22 @@ var map = {
 		"common",
 		"paginas-alta-supervisor-alta-supervisor-module"
 	],
+	"./paginas/confirmar-pago/confirmar-pago.module": [
+		"./src/app/paginas/confirmar-pago/confirmar-pago.module.ts",
+		"common",
+		"paginas-confirmar-pago-confirmar-pago-module"
+	],
 	"./paginas/consulta-mozo/consulta-mozo.module": [
 		"./src/app/paginas/consulta-mozo/consulta-mozo.module.ts"
 	],
+	"./paginas/consultas/consultas.module": [
+		"./src/app/paginas/consultas/consultas.module.ts",
+		"common",
+		"paginas-consultas-consultas-module"
+	],
 	"./paginas/cuenta-cliente/cuenta-cliente.module": [
 		"./src/app/paginas/cuenta-cliente/cuenta-cliente.module.ts",
+		"default~paginas-aceptar-pedido-aceptar-pedido-module~paginas-cuenta-cliente-cuenta-cliente-module~pa~6494ff32",
 		"common",
 		"paginas-cuenta-cliente-cuenta-cliente-module"
 	],
@@ -789,13 +806,21 @@ var map = {
 		"common",
 		"paginas-encuesta-supervisor-encuesta-supervisor-module"
 	],
+	"./paginas/graficos-cliente/graficos-cliente.module": [
+		"./src/app/paginas/graficos-cliente/graficos-cliente.module.ts",
+		"default~paginas-graficos-cliente-graficos-cliente-module~paginas-graficos-graficos-module",
+		"common",
+		"paginas-graficos-cliente-graficos-cliente-module"
+	],
 	"./paginas/graficos/graficos.module": [
 		"./src/app/paginas/graficos/graficos.module.ts",
+		"default~paginas-graficos-cliente-graficos-cliente-module~paginas-graficos-graficos-module",
 		"common",
 		"paginas-graficos-graficos-module"
 	],
 	"./paginas/hacer-pedido/hacer-pedido.module": [
 		"./src/app/paginas/hacer-pedido/hacer-pedido.module.ts",
+		"default~paginas-aceptar-pedido-aceptar-pedido-module~paginas-cuenta-cliente-cuenta-cliente-module~pa~6494ff32",
 		"common",
 		"paginas-hacer-pedido-hacer-pedido-module"
 	],
@@ -837,13 +862,24 @@ var map = {
 	],
 	"./paginas/log-in/log-in.module": [
 		"./src/app/paginas/log-in/log-in.module.ts",
-		"common",
 		"paginas-log-in-log-in-module"
 	],
 	"./paginas/mesa-cliente/mesa-cliente.module": [
 		"./src/app/paginas/mesa-cliente/mesa-cliente.module.ts",
 		"common",
 		"paginas-mesa-cliente-mesa-cliente-module"
+	],
+	"./paginas/pedidos-listos/pedidos-listos.module": [
+		"./src/app/paginas/pedidos-listos/pedidos-listos.module.ts",
+		"default~paginas-aceptar-pedido-aceptar-pedido-module~paginas-cuenta-cliente-cuenta-cliente-module~pa~6494ff32",
+		"common",
+		"paginas-pedidos-listos-pedidos-listos-module"
+	],
+	"./paginas/preparacion/preparacion.module": [
+		"./src/app/paginas/preparacion/preparacion.module.ts",
+		"default~paginas-aceptar-pedido-aceptar-pedido-module~paginas-cuenta-cliente-cuenta-cliente-module~pa~6494ff32",
+		"common",
+		"paginas-preparacion-preparacion-module"
 	],
 	"./paginas/propina/propina.module": [
 		"./src/app/paginas/propina/propina.module.ts",
@@ -941,8 +977,14 @@ var routes = [
     { path: 'encuesta-cliente', loadChildren: './paginas/encuesta-cliente/encuesta-cliente.module#EncuestaClientePageModule' },
     { path: 'consulta-mozo', loadChildren: './paginas/consulta-mozo/consulta-mozo.module#ConsultaMozoPageModule' },
     { path: 'hacer-pedido', loadChildren: './paginas/hacer-pedido/hacer-pedido.module#HacerPedidoPageModule' },
+    { path: 'graficos-cliente', loadChildren: './paginas/graficos-cliente/graficos-cliente.module#GraficosClientePageModule' },
     { path: 'juego/:idMesaCliente', loadChildren: './paginas/juego/juego.module#JuegoPageModule' },
     { path: 'cuenta-cliente', loadChildren: './paginas/cuenta-cliente/cuenta-cliente.module#CuentaClientePageModule' },
+    { path: 'confirmar-pago', loadChildren: './paginas/confirmar-pago/confirmar-pago.module#ConfirmarPagoPageModule' },
+    { path: 'aceptar-pedido', loadChildren: './paginas/aceptar-pedido/aceptar-pedido.module#AceptarPedidoPageModule' },
+    { path: 'preparacion', loadChildren: './paginas/preparacion/preparacion.module#PreparacionPageModule' },
+    { path: 'consultas', loadChildren: './paginas/consultas/consultas.module#ConsultasPageModule' },
+    { path: 'pedidos-listos', loadChildren: './paginas/pedidos-listos/pedidos-listos.module#PedidosListosPageModule' },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {

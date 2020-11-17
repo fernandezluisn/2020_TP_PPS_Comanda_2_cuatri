@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Mozzo</ion-title>
+    <ion-title>Mozo</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -16,6 +16,12 @@
       <ion-icon name="list"></ion-icon>
       <h2>Aceptar Pedidos</h2>
     </ion-card>
+
+    <ion-card class="ion-alert" (click)="this.verConsultas()">
+      <ion-ripple-effect></ion-ripple-effect>
+      <ion-icon name="bookmarks"></ion-icon>
+      <h2>Consultas</h2>
+    </ion-card> 
   
     <ion-card class="ion-activatable" (click)="this.TerminarPedidos()">
       <ion-ripple-effect></ion-ripple-effect>
@@ -28,6 +34,8 @@
       <ion-icon name="cash"></ion-icon>
       <h2>Confirmar Pagos</h2>
     </ion-card>
+
+
 
     <ion-card class="ion-activatable" (click)="this.encuesta()">
       <ion-ripple-effect></ion-ripple-effect>

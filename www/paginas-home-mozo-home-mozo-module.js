@@ -58,7 +58,7 @@ var HomeMozoPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-content>\r\n    <ion-card class=\"ion-activatable\" (click)=\"this.HacerPedido()\">\r\n      <ion-ripple-effect></ion-ripple-effect>\r\n      <ion-icon name=\"add\"></ion-icon>\r\n      <h2>Hacer Pedido</h2>\r\n    </ion-card>\r\n\r\n    <ion-card class=\"ion-activatable\" (click)=\"this.ConfirmarPedidos()\">\r\n      <ion-ripple-effect></ion-ripple-effect>\r\n      <ion-icon name=\"list\"></ion-icon>\r\n      <h2>Aceptar Pedidos</h2>\r\n    </ion-card>\r\n  \r\n    <ion-card class=\"ion-activatable\" (click)=\"this.TerminarPedidos()\">\r\n      <ion-ripple-effect></ion-ripple-effect>\r\n      <ion-icon name=\"restaurant\"></ion-icon>\r\n      <h2>Estado de pedidos</h2>\r\n    </ion-card>\r\n  \r\n    <ion-card class=\"ion-activatable\" (click)=\"this.ConfirmarPago()\">\r\n      <ion-ripple-effect></ion-ripple-effect>\r\n      <ion-icon name=\"cash\"></ion-icon>\r\n      <h2>Confirmar Pagos</h2>\r\n    </ion-card>\r\n\r\n    <ion-card class=\"ion-activatable\" (click)=\"this.encuesta()\">\r\n      <ion-ripple-effect></ion-ripple-effect>\r\n      <ion-icon name=\"bookmarks\"></ion-icon>\r\n      <h2>Encuesta</h2>\r\n    </ion-card> \r\n\r\n    <ion-button class=\"apagar\" color=\"dark\" (click)=\"salir()\">\r\n      <ion-icon name=\"power\"></ion-icon>\r\n    </ion-button>\r\n</ion-content>\r\n"
+module.exports = "<ion-header>\r\n  <ion-toolbar color=\"primary\">\r\n    <ion-title>Mozo</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n    <ion-card class=\"ion-activatable\" (click)=\"this.HacerPedido()\">\r\n      <ion-ripple-effect></ion-ripple-effect>\r\n      <ion-icon name=\"add\"></ion-icon>\r\n      <h2>Hacer Pedido</h2>\r\n    </ion-card>\r\n\r\n    <ion-card class=\"ion-activatable\" (click)=\"this.ConfirmarPedidos()\">\r\n      <ion-ripple-effect></ion-ripple-effect>\r\n      <ion-icon name=\"list\"></ion-icon>\r\n      <h2>Aceptar Pedidos</h2>\r\n    </ion-card>\r\n\r\n    <ion-card class=\"ion-alert\" (click)=\"this.verConsultas()\">\r\n      <ion-ripple-effect></ion-ripple-effect>\r\n      <ion-icon name=\"bookmarks\"></ion-icon>\r\n      <h2>Consultas</h2>\r\n    </ion-card> \r\n  \r\n    <ion-card class=\"ion-activatable\" (click)=\"this.TerminarPedidos()\">\r\n      <ion-ripple-effect></ion-ripple-effect>\r\n      <ion-icon name=\"restaurant\"></ion-icon>\r\n      <h2>Estado de pedidos</h2>\r\n    </ion-card>\r\n  \r\n    <ion-card class=\"ion-activatable\" (click)=\"this.ConfirmarPago()\">\r\n      <ion-ripple-effect></ion-ripple-effect>\r\n      <ion-icon name=\"cash\"></ion-icon>\r\n      <h2>Confirmar Pagos</h2>\r\n    </ion-card>\r\n\r\n\r\n\r\n    <ion-card class=\"ion-activatable\" (click)=\"this.encuesta()\">\r\n      <ion-ripple-effect></ion-ripple-effect>\r\n      <ion-icon name=\"bookmarks\"></ion-icon>\r\n      <h2>Encuesta</h2>\r\n    </ion-card> \r\n\r\n    <ion-button class=\"apagar\" color=\"dark\" (click)=\"salir()\">\r\n      <ion-icon name=\"power\"></ion-icon>\r\n    </ion-button>\r\n</ion-content>\r\n"
 
 /***/ }),
 
@@ -102,13 +102,16 @@ var HomeMozoPage = /** @class */ (function () {
         this.router.navigate(['/hacer-pedido']);
     };
     HomeMozoPage.prototype.ConfirmarPago = function () {
-        this.router.navigate(['/cuenta']);
+        this.router.navigate(['/confirmar-pago']);
     };
     HomeMozoPage.prototype.ConfirmarPedidos = function () {
-        this.router.navigate(['/mozo-aceptar']);
+        this.router.navigate(['/aceptar-pedido']);
     };
     HomeMozoPage.prototype.TerminarPedidos = function () {
-        this.router.navigate(['/mozo-terminar']);
+        this.router.navigate(['/pedidos-listos']);
+    };
+    HomeMozoPage.prototype.verConsultas = function () {
+        this.router.navigate(['/consultas']);
     };
     HomeMozoPage.prototype.encuesta = function () {
         this.router.navigate(['/encuesta-empleado']);

@@ -48,7 +48,9 @@ const routes: Routes = [
    { path: 'cuenta-cliente', loadChildren: './paginas/cuenta-cliente/cuenta-cliente.module#CuentaClientePageModule' },
   { path: 'confirmar-pago', loadChildren: './paginas/confirmar-pago/confirmar-pago.module#ConfirmarPagoPageModule' },
   { path: 'aceptar-pedido', loadChildren: './paginas/aceptar-pedido/aceptar-pedido.module#AceptarPedidoPageModule' },
-  { path: 'preparacion', loadChildren: './paginas/preparacion/preparacion.module#PreparacionPageModule' },
+  { path: 'preparacion', loadChildren: './paginas/preparacion/preparacion.module#PreparacionPageModule' },  { path: 'consultas', loadChildren: './paginas/consultas/consultas.module#ConsultasPageModule' },
+  { path: 'pedidos-listos', loadChildren: './paginas/pedidos-listos/pedidos-listos.module#PedidosListosPageModule' },
+
 
 
 ];
