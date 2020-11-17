@@ -6,6 +6,7 @@ export interface Pedido {
     id_mesa: string;
     estado:string;
     comienzo: string;
+    Mesa: string;
     email: string;
     productos: PedidoProducto[];
     productosLista: string[];
@@ -20,4 +21,12 @@ export interface PedidoProducto {
     cantidad:number;
     nombreProducto: string;
     tipoProducto: string;
+}
+
+export enum estadosPedido{
+    "sconfirmar",
+    "confirmado",
+    "entregado",
+    "cerrado"
+
 }

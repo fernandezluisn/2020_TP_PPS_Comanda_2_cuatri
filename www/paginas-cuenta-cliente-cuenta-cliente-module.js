@@ -58,7 +58,7 @@ var CuentaClientePageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar color=\"primary\">\n    <ion-title  style=\"text-align: center;\">Cuenta</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <br>\n  <ion-card style=\"border: 2px solid #A599B5; text-align: center; font-size: 18px;\" *ngIf=\"id != ''\">\n    <br><br>\n    <ion-card *ngIf=\"this.pedidos.length> 0\" style=\"background-color:whitesmoke; border-radius: 20px;\">\n      <ion-card-content>\n\n\n        <table style=\"width: 100%; text-align: center;\">\n          <thead>\n            <th>Productos</th><th>Precio</th>\n          </thead>\n          <tbody>\n            <tr *ngFor=\"let item of this.pedidos\">\n              <td>{{item.email}}</td>\n              <td>{{item.precio}}</td>\n            </tr>\n          </tbody>\n        </table>\n      </ion-card-content>\n    </ion-card>\n\n\n\n    <br>\n\n    <ion-item *ngIf=\"descPorcentaje\">\n      <h5>Descuento por juego: 10%</h5>\n    </ion-item>\n    <br> \n    <ng-container *ngIf=\"!esMozo\">\n      <ng-container>\n        <ion-item style=\"text-align: center;\">\n          <h1>Total sin propina: ${{total}}</h1>\n        </ion-item>\n        <ion-button *ngIf=\"!delivery\" (click)=\"darPropina()\" color=\"success\">Dar Propina</ion-button>\n      </ng-container>\n      <br>\n      <ion-item  *ngIf=\"!delivery\">\n        <h1>Total final más propina: ${{TotalMasPropina}}</h1>\n      </ion-item>\n      <br>\n      <ng-container *ngIf=\"!delivery\">\n        <ion-button (click)=\"Pagar()\" color=\"success\" expand=\"success\">Pagar</ion-button>\n      </ng-container>\n    </ng-container>\n\n    <ng-container *ngIf=\"esMozo && !delivery\">\n      <ion-item *ngIf=\"propina == 0 && total != 0\">\n        <h2>Falta ingresar la propina!</h2>\n      </ion-item>\n      <ng-container>\n        <ion-item>\n          <h1>Total final más propina: ${{TotalFinal}}</h1>\n        </ion-item>\n        <br>\n        <ion-button color=\"success\" expand=\"full\" (click)=\"Pagar()\">Guardar Pago</ion-button>\n      </ng-container>  \n    </ng-container>    \n  </ion-card>\n</ion-content>\n"
+module.exports = "<ion-header>\r\n  <ion-toolbar color=\"primary\">\r\n    <ion-title  style=\"text-align: center;\">Cuenta</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n  <br>\r\n  <ion-card style=\"border: 2px solid #A599B5; text-align: center; font-size: 18px;\" *ngIf=\"id != ''\">\r\n    <br><br>\r\n    <ion-card *ngIf=\"this.pedidos.length> 0\" style=\"background-color:whitesmoke; border-radius: 20px;\">\r\n      <ion-card-content>\r\n\r\n\r\n        <table style=\"width: 100%; text-align: center;\">\r\n          <thead>\r\n            <th>Productos</th><th>Precio</th><th>Cantidad Unitaria</th>\r\n          </thead>\r\n          <tbody>\r\n            <tr>\r\n            <td>Hamburguesa</td>\r\n            <td>500</td>\r\n            <td>4</td>\r\n          </tr>\r\n          <tr>\r\n            <td>Vodka</td>\r\n            <td>100</td>\r\n            <td>5</td>\r\n          </tr>\r\n\r\n          </tbody>\r\n        </table>\r\n      </ion-card-content>\r\n    </ion-card>\r\n\r\n\r\n\r\n    <br>\r\n\r\n    <ion-item *ngIf=\"descPorcentaje\">\r\n      <h5>Descuento por juego: 10%</h5>\r\n    </ion-item>\r\n    <br> \r\n    <ng-container *ngIf=\"!esMozo\">\r\n      <ng-container>\r\n        <ion-item style=\"text-align: center;\">\r\n          <h1>Total sin propina: ${{total}}</h1>\r\n        </ion-item>\r\n        <ion-button *ngIf=\"!delivery\" (click)=\"darPropina()\" color=\"success\">Dar Propina</ion-button>\r\n      </ng-container>\r\n\r\n        <ion-item style=\"text-align: center;\">\r\n          <h1>Descuentos: ${{descuentos}}</h1>\r\n        </ion-item>\r\n      \r\n      <br>\r\n      <ion-item  *ngIf=\"!delivery\">\r\n        <h1>Total final: ${{TotalMasPropina}}</h1>\r\n      </ion-item>\r\n      <br>\r\n      <ng-container *ngIf=\"!delivery\">\r\n        <ion-button (click)=\"Pagar()\" color=\"success\" expand=\"success\">Pagar</ion-button>\r\n      </ng-container>\r\n    </ng-container>\r\n\r\n    <ng-container *ngIf=\"esMozo && !delivery\">\r\n      <ion-item *ngIf=\"propina == 0 && total != 0\">\r\n        <h2>Falta ingresar la propina!</h2>\r\n      </ion-item>\r\n      <ng-container>\r\n        <ion-item>\r\n          <h1>Total final(propina y descuentos): ${{TotalMasPropina}}</h1>\r\n        </ion-item>\r\n        <br>\r\n        <ion-button color=\"success\" expand=\"full\" (click)=\"Pagar()\">Guardar Pago</ion-button>\r\n      </ng-container>  \r\n    </ng-container>    \r\n  </ion-card>\r\n</ion-content>\r\n"
 
 /***/ }),
 
@@ -109,7 +109,7 @@ var CuentaClientePage = /** @class */ (function () {
         this.mesaClienteService = mesaClienteService;
         this.pedidos = [];
         //TODO calcular total..
-        this.total = 100;
+        this.total = 2500;
     }
     CuentaClientePage.prototype.ngOnInit = function () {
         var _this = this;
@@ -118,6 +118,7 @@ var CuentaClientePage = /** @class */ (function () {
             console.log("es nan" + this.propina);
             this.propina = 0;
         }
+        this.descuentos = 0;
         this.clienteService.obtenerCliente(this.cliente.uid).subscribe(function (resp) {
             resp.forEach(function (user) {
                 console.log(user.estado);
@@ -137,14 +138,19 @@ var CuentaClientePage = /** @class */ (function () {
                     mesas.forEach(function (mesa) {
                         if (mesa.idCliente == user.id && mesa.cerrada == false) {
                             _this.propina = mesa.propina;
-                            if (_this.propina == undefined)
-                                _this.propina = 0;
                             _this.idMesa = mesa.id;
                             _this.mesaCliente = mesa;
+                            if (_this.propina == undefined)
+                                _this.propina = 0;
+                            _this.descuentos = mesa.juegoDescuento;
+                            if (_this.descuentos == undefined)
+                                _this.descuentos = 0;
                             if (_this.propina != 0)
                                 _this.TotalMasPropina = _this.total * (_this.propina);
                             else
                                 _this.TotalMasPropina = _this.total;
+                            if (_this.mesaCliente.juegoDescuento != undefined)
+                                _this.TotalMasPropina = _this.TotalMasPropina - _this.descuentos;
                         }
                     });
                 });

@@ -24,7 +24,7 @@ export class CuentaClientePage implements OnInit {
     mesaCliente;
     descuentos;
     //TODO calcular total..
-    total = 100;
+    total = 2500;
     TotalMasPropina;
   ngOnInit() {
 
@@ -59,10 +59,14 @@ this.descuentos = 0;
                         if(mesa.idCliente ==user.id  && mesa.cerrada == false)
                         {
                         this.propina = mesa.propina;
-                        if(this.propina == undefined)
-                        this.propina = 0;
                         this.idMesa = mesa.id;
                         this.mesaCliente = mesa;
+
+                        if(this.propina == undefined)
+                        this.propina = 0;
+
+
+                 
                       
                         this.descuentos = mesa.juegoDescuento
                         if(this.descuentos == undefined)
@@ -85,6 +89,7 @@ this.descuentos = 0;
       
       });        
   })
+
 }
 
 

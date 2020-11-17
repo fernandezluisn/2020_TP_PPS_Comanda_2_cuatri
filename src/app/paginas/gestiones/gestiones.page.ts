@@ -76,4 +76,8 @@ export class GestionesPage implements OnInit {
     this.route.navigate(["mesa-cliente"])
   }
 
+  confirmarRecepcion(){
+    this.alert.mensaje("","Ha confirmado la recepcion del pedido!!")
+  }
+
 }

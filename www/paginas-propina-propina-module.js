@@ -100,7 +100,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var PropinaPage = /** @class */ (function () {
-    function PropinaPage(alertController, router, bda, loadingCtrl, barcodeScanner, vibra, tomarId, auth) {
+    function PropinaPage(alertController, router, bda, loadingCtrl, barcodeScanner, vibra, auth) {
         var _this = this;
         this.alertController = alertController;
         this.router = router;
@@ -108,15 +108,13 @@ var PropinaPage = /** @class */ (function () {
         this.loadingCtrl = loadingCtrl;
         this.barcodeScanner = barcodeScanner;
         this.vibra = vibra;
-        this.tomarId = tomarId;
         this.auth = auth;
         this.satisfaccion = null;
-        this.idMesaCliente = this.tomarId.snapshot.paramMap.get('idMesaCliente');
+        this.idMesaCliente = JSON.parse(localStorage.getItem('mesaClienteID'));
         this.bda.devolverListadoMesas().subscribe(function (lista) {
-            _this.listaMEsas = lista;
-            _this.listaMEsas.filter(function (mesa) {
-                if (mesa.id == _this.idMesaCliente)
-                    _this.mesaCliente = mesa;
+            lista.filter(function (elem) {
+                if (elem.id == _this.idMesaCliente)
+                    _this.mesaCliente = elem;
             });
         });
     }
@@ -227,7 +225,7 @@ var PropinaPage = /** @class */ (function () {
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_5__["AlertController"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], src_app_servicios_mesa_cliente_service__WEBPACK_IMPORTED_MODULE_7__["MesaClienteService"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["LoadingController"], _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_3__["BarcodeScanner"], _ionic_native_vibration_ngx__WEBPACK_IMPORTED_MODULE_4__["Vibration"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_6__["AuthService"]])
+            src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_6__["AuthService"]])
     ], PropinaPage);
     return PropinaPage;
 }());

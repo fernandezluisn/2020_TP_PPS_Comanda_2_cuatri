@@ -29,7 +29,7 @@ export class MesaClientePage implements OnInit {
   constructor(private platform: Platform,private route:Router,public alert: AlertService, private auth: AuthService,
     public modalController: ModalController,   private popoverCtrl: PopoverController, private spinnerService: SpinnerService,
     private consultaService: ConsultaService, private fcmService: FcmService, private bda:MesaClienteService,
-    private barcodeScanner: BarcodeScanner,) { 
+    private barcodeScanner: BarcodeScanner) { 
 
   this.usuario = JSON.parse(localStorage.getItem('usuario'));
 

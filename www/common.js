@@ -403,71 +403,76 @@ var findCheckedOption = function (el, tagName) {
 
 /***/ }),
 
-/***/ "./src/app/servicios/encuestas.service.ts":
-/*!************************************************!*\
-  !*** ./src/app/servicios/encuestas.service.ts ***!
-  \************************************************/
-/*! exports provided: EncuestasService */
+/***/ "./src/app/interfaces/Consulta.ts":
+/*!****************************************!*\
+  !*** ./src/app/interfaces/Consulta.ts ***!
+  \****************************************/
+/*! exports provided: Consulta */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EncuestasService", function() { return EncuestasService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Consulta", function() { return Consulta; });
+var Consulta = /** @class */ (function () {
+    function Consulta(mesa, consulta, estado, id) {
+        this.mesa = mesa;
+        this.consulta = consulta;
+        this.estado = estado;
+        if (id) {
+            this.id = id;
+        }
+    }
+    return Consulta;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/servicios/consulta.service.ts":
+/*!***********************************************!*\
+  !*** ./src/app/servicios/consulta.service.ts ***!
+  \***********************************************/
+/*! exports provided: ConsultaService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConsultaService", function() { return ConsultaService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/fire/firestore */ "./node_modules/@angular/fire/firestore/index.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/fire/firestore */ "./node_modules/@angular/fire/firestore/index.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 
 
 
 
-var EncuestasService = /** @class */ (function () {
-    function EncuestasService(db) {
+var ConsultaService = /** @class */ (function () {
+    function ConsultaService(db) {
         this.db = db;
-        this.encuestasEmpleados = this.db.collection('encuestas-empleados').snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (actions) {
-            return actions.map(function (a) {
-                var data = a.payload.doc.data();
-                var id = a.payload.doc.id;
-                return tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({ id: id }, data);
+    }
+    ConsultaService.prototype.createConsulta = function (Consulta) {
+        return this.db.collection('consultas').add(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, Consulta));
+    };
+    ConsultaService.prototype.getConsultas = function () {
+        return this.db.collection('consultas').snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (cliente) {
+            return cliente.map(function (espera) {
+                var data = espera.payload.doc.data();
+                data.id = espera.payload.doc.id;
+                return data;
             });
         }));
-    }
-    EncuestasService.prototype.addEncuesta = function (encuesta) {
-        var _this = this;
-        return new Promise(function (resolve, rejected) {
-            _this.db.collection('encuestas-cliente').add(encuesta).then(function (ret) {
-                resolve(ret);
-            }).catch(function (err) {
-                rejected(err);
-            });
-        });
     };
-    EncuestasService.prototype.addEncuestaEmpleado = function (encuesta) {
-        return this.db.collection('encuestas-empleados').add(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, encuesta));
+    ConsultaService.prototype.updateConsulta = function (id, consulta) {
+        this.db.collection('consultas').doc(id).set(consulta);
     };
-    EncuestasService.prototype.addEncuestaDueño = function (encuesta) {
-        var _this = this;
-        return new Promise(function (resolve, rejected) {
-            _this.db.collection('encuestas-dueño').add(encuesta).then(function (ret) {
-                resolve(ret);
-            }).catch(function (err) {
-                rejected(err);
-            });
-        });
-    };
-    EncuestasService.prototype.GetEncuestasClientes = function () {
-        return this.db.collection('encuestas-cliente').get().toPromise();
-    };
-    EncuestasService.prototype.GetEncuestasEmpleados = function () {
-        return this.encuestasEmpleados;
-    };
-    EncuestasService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])({
+    ConsultaService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
             providedIn: 'root'
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_1__["AngularFirestore"]])
-    ], EncuestasService);
-    return EncuestasService;
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_2__["AngularFirestore"]])
+    ], ConsultaService);
+    return ConsultaService;
 }());
 
 
@@ -623,6 +628,32 @@ var MesaClienteService = /** @class */ (function () {
     MesaClienteService.prototype.actualizarMesa = function (mesa) {
         this.db.doc('mesaClientes' + '/' + mesa.id).update(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, mesa));
     };
+    //zamora: error en la mesa
+    MesaClienteService.prototype.getMesas = function () {
+        return this.db.collection('mesaClientes').snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (mesas) {
+            return mesas.map(function (mesa) {
+                var data = mesa.payload.doc.data();
+                data.id = mesa.payload.doc.id;
+                return data;
+            });
+        }));
+    };
+    MesaClienteService.prototype.getMesaPorID = function (idMesa) {
+        var _this = this;
+        return this.db.collection('mesaClientes').ref.where('id', '==', idMesa).get()
+            .then(function (pedidos) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, pedidos.docs.map(function (documento) {
+                            var data = documento.data();
+                            data.id = documento.id;
+                            return data;
+                        })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        }); });
+    };
     MesaClienteService.prototype.BorrarMesa = function (mesa) {
         this.db.doc('mesaClientes/' + mesa.id).delete().then();
     };
@@ -668,6 +699,7 @@ var MesasService = /** @class */ (function () {
             });
         }));
     }
+    //zamora: error en la mesa
     MesasService.prototype.getMesas = function () {
         return this.db.collection('mesas').snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (mesas) {
             return mesas.map(function (mesa) {
@@ -717,215 +749,6 @@ var MesasService = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_2__["AngularFirestore"]])
     ], MesasService);
     return MesasService;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/servicios/pedidos.service.ts":
-/*!**********************************************!*\
-  !*** ./src/app/servicios/pedidos.service.ts ***!
-  \**********************************************/
-/*! exports provided: PedidosService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PedidosService", function() { return PedidosService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/fire/firestore */ "./node_modules/@angular/fire/firestore/index.js");
-/* harmony import */ var rxjs_internal_operators_map__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/internal/operators/map */ "./node_modules/rxjs/internal/operators/map.js");
-/* harmony import */ var rxjs_internal_operators_map__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(rxjs_internal_operators_map__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _productos_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./productos.service */ "./src/app/servicios/productos.service.ts");
-
-
-
-
-
-var PedidosService = /** @class */ (function () {
-    function PedidosService(firestore, productosService) {
-        this.firestore = firestore;
-        this.productosService = productosService;
-    }
-    PedidosService.prototype.AddPedido = function (pedido) {
-        var _this = this;
-        return new Promise(function (resolve, rejected) {
-            _this.firestore.collection('pedidos').add(pedido).then(function (ret) {
-                resolve(ret);
-            }).catch(function (err) {
-                rejected(err);
-            });
-        });
-    };
-    PedidosService.prototype.AddPedidoProducto = function (pedidoProducto) {
-        var _this = this;
-        return new Promise(function (resolve, rejected) {
-            _this.firestore.collection('pedido-productos').add(pedidoProducto).then(function (ret) {
-                resolve(ret);
-            }).catch(function (err) {
-                rejected(err);
-            });
-        });
-    };
-    PedidosService.prototype.getPedidos = function () {
-        return this.firestore.collection('pedidos').snapshotChanges().pipe(Object(rxjs_internal_operators_map__WEBPACK_IMPORTED_MODULE_3__["map"])(function (pedidos) {
-            return pedidos.map(function (pedido) {
-                var data = pedido.payload.doc.data();
-                data.id = pedido.payload.doc.id;
-                return data;
-            });
-        }));
-    };
-    PedidosService.prototype.getPedido = function (idMesa) {
-        var _this = this;
-        // ACÁ ESTÁ EL ERROR, TRAE ÚNICAMENTE LOS REGISTROS QUE ESTÁN CON EL ESTADO "PREPARACIÓN"
-        return this.firestore.collection('pedidos').ref.where('id-mesa', '==', idMesa) /*.where('estado', '==', 'preparacion')*/.get()
-            .then(function (pedidos) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, pedidos.docs.map(function (documento) {
-                            var data = documento.data();
-                            data.id = documento.id;
-                            return data;
-                        })];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        }); });
-    };
-    PedidosService.prototype.getPedidoPorEmailCliente = function (email) {
-        var _this = this;
-        return this.firestore.collection('pedidos').ref.where('email', '==', email).get()
-            .then(function (pedidos) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, pedidos.docs.map(function (documento) {
-                            var data = documento.data();
-                            data.id = documento.id;
-                            return data;
-                        })];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        }); });
-    };
-    PedidosService.prototype.getPedidoProductos = function () {
-        return this.firestore.collection('pedido-productos').snapshotChanges().pipe(Object(rxjs_internal_operators_map__WEBPACK_IMPORTED_MODULE_3__["map"])(function (pedidos) {
-            return pedidos.map(function (pedido) {
-                var data = pedido.payload.doc.data();
-                data.id = pedido.payload.doc.id;
-                return data;
-            });
-        }));
-    };
-    PedidosService.prototype.getPedidosProductos = function () {
-        return this.firestore.collection('pedido-productos').snapshotChanges().pipe(Object(rxjs_internal_operators_map__WEBPACK_IMPORTED_MODULE_3__["map"])(function (fotos) {
-            return fotos.map(function (a) {
-                var data = a.payload.doc.data();
-                data['id'] = a.payload.doc.id;
-                return data;
-            });
-        }));
-    };
-    PedidosService.prototype.updatePedido = function (id, pedido) {
-        this.firestore.collection('pedidos').doc(id).set(pedido);
-    };
-    PedidosService.prototype.updatePedidoProducto = function (id, pedido) {
-        this.firestore.collection('pedido-productos').doc(id).set(pedido);
-    };
-    PedidosService.prototype.getProductos = function () {
-        return this.firestore.collection('productos').snapshotChanges().pipe(Object(rxjs_internal_operators_map__WEBPACK_IMPORTED_MODULE_3__["map"])(function (fotos) {
-            return fotos.map(function (a) {
-                var data = a.payload.doc.data();
-                data['id'] = a.payload.doc.id;
-                return data;
-            });
-        }));
-    };
-    PedidosService.prototype.PagarPedido = function (pedido) {
-        var _this = this;
-        return this.firestore.collection('pedidos').ref.where('id', '==', pedido.id).get().then(function (documento) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                this.firestore.collection('pedidos').doc(pedido.id).set({
-                    comienzo: pedido.comienzo,
-                    id_mesa_cliente: pedido.id_mesa_cliente,
-                    id_mozo: pedido.id_mozo,
-                    estado: 'pagado'
-                })
-                    .catch(function (err) {
-                    console.log('Error al pagar', err);
-                });
-                return [2 /*return*/];
-            });
-        }); });
-    };
-    PedidosService.prototype.DeletePedido = function (idPedido) {
-        return this.firestore.collection('pedidos').doc(idPedido).delete();
-    };
-    PedidosService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-            providedIn: 'root'
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_2__["AngularFirestore"],
-            _productos_service__WEBPACK_IMPORTED_MODULE_4__["ProductosService"]])
-    ], PedidosService);
-    return PedidosService;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/servicios/productos.service.ts":
-/*!************************************************!*\
-  !*** ./src/app/servicios/productos.service.ts ***!
-  \************************************************/
-/*! exports provided: ProductosService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductosService", function() { return ProductosService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/fire/firestore */ "./node_modules/@angular/fire/firestore/index.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-
-
-
-
-var ProductosService = /** @class */ (function () {
-    function ProductosService(db) {
-        this.db = db;
-        this.productos = this.db.collection("productos").snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (actions) {
-            return actions.map(function (a) {
-                var data = a.payload.doc.data();
-                var id = a.payload.doc.id;
-                return tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({ id: id }, data);
-            });
-        }));
-    }
-    ProductosService.prototype.createProducto = function (producto) {
-        return this.db.collection('productos').add(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, producto));
-    };
-    ProductosService.prototype.devolverListadoProductos = function () {
-        return this.productos;
-    };
-    ProductosService.prototype.actualizarProducto = function (prod) {
-        this.db.doc('productos' + '/' + prod.id).update(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, prod));
-    };
-    ProductosService.prototype.BorrarProducto = function (prod) {
-        this.db.doc('productos/' + prod.id).delete().then();
-    };
-    ProductosService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-            providedIn: 'root'
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_2__["AngularFirestore"]])
-    ], ProductosService);
-    return ProductosService;
 }());
 
 
@@ -1027,189 +850,6 @@ var ReservasService = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_fire_firestore__WEBPACK_IMPORTED_MODULE_1__["AngularFirestore"], _auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"]])
     ], ReservasService);
     return ReservasService;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/servicios/spiner.service.ts":
-/*!*********************************************!*\
-  !*** ./src/app/servicios/spiner.service.ts ***!
-  \*********************************************/
-/*! exports provided: SpinerService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SpinerService", function() { return SpinerService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
-
-
-
-var SpinerService = /** @class */ (function () {
-    function SpinerService(loadingCtrl) {
-        this.loadingCtrl = loadingCtrl;
-    }
-    SpinerService.prototype.GetAllPageSpinner = function (messageSpinner) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var loader;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.loadingCtrl.create({
-                            spinner: null,
-                            keyboardClose: true,
-                            message: '<div class="spinner-css"><img src="assets/loading.png"></div>' + messageSpinner + '',
-                            showBackdrop: false,
-                            duration: 30000,
-                            cssClass: 'cajaSpinner'
-                        })];
-                    case 1:
-                        loader = _a.sent();
-                        return [2 /*return*/, loader];
-                }
-            });
-        });
-    };
-    SpinerService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-            providedIn: 'root'
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"]])
-    ], SpinerService);
-    return SpinerService;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/servicios/spinner.service.ts":
-/*!**********************************************!*\
-  !*** ./src/app/servicios/spinner.service.ts ***!
-  \**********************************************/
-/*! exports provided: SpinnerService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SpinnerService", function() { return SpinnerService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
-
-
-
-var SpinnerService = /** @class */ (function () {
-    function SpinnerService(_loadingController, _toastCtrl) {
-        this._loadingController = _loadingController;
-        this._toastCtrl = _toastCtrl;
-        this._isSpinnerShowing = false;
-        this._isGoingToClose = false;
-        this._timer = -1; // This is the timer, it will go from 2000 to -1
-        this._timerID = null;
-        // console.log('Inicializo el spinner');
-        this.createSpinner();
-    }
-    SpinnerService.prototype.createSpinner = function () {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var _a;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        _a = this;
-                        return [4 /*yield*/, this._loadingController.create({
-                                spinner: null,
-                                keyboardClose: true,
-                                message: '<div class="spinner-css"><img src="assets/loading.png"></div> Cargando...',
-                                showBackdrop: false,
-                                duration: 30000,
-                                cssClass: 'cajaSpinner'
-                            })];
-                    case 1:
-                        _a._currentLoading = _b.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    SpinnerService.prototype.showSpinner = function () {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                // console.log('Muestro el spinner', this._currentLoading);
-                if (this._isSpinnerShowing === false) {
-                    this._currentLoading.present();
-                    this._isSpinnerShowing = this.startTimer();
-                }
-                return [2 /*return*/];
-            });
-        });
-    };
-    SpinnerService.prototype.startTimer = function () {
-        var _this = this;
-        // console.log('Inicializo el conteo');
-        this._timer = 2000;
-        this._timerID = setInterval(function () {
-            _this._timer = _this._timer - 1;
-            if (_this._timer < 0) {
-                // console.log('El conteo se acabÃ³.');
-                _this._isGoingToClose = true;
-                clearInterval(_this._timerID);
-            }
-        }, 1);
-        return true;
-    };
-    SpinnerService.prototype.hideSpinner = function () {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var _this = this;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                // console.log('Intento ocultar el spinner con el timer en', this._timer);
-                if (this._isSpinnerShowing) {
-                    if (this._timer < 0) {
-                        // console.log('El tiempo acabÃ³ y oculto el spinner');
-                        this._isSpinnerShowing = this.stopAndReplaceSpinner();
-                        this._isGoingToClose = false;
-                    }
-                    else {
-                        // console.log('El tiempo NO acaba y hago un timeout para acabarlo en', this._timer);
-                        clearInterval(this._timerID);
-                        setTimeout(function () {
-                            _this._isGoingToClose = true;
-                            _this.hideSpinner();
-                        }, this._timer);
-                    }
-                    this._timer = -1;
-                }
-                return [2 /*return*/];
-            });
-        });
-    };
-    SpinnerService.prototype.stopAndReplaceSpinner = function () {
-        this._currentLoading.dismiss();
-        this.createSpinner();
-        return false;
-    };
-    SpinnerService.prototype.mostrarToast = function (message, timer, color, position) {
-        this._toastCtrl.create({
-            color: color,
-            duration: timer * 1000,
-            message: message,
-            position: position,
-        })
-            .then(function (toast) {
-            toast.present();
-        });
-    };
-    SpinnerService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-            providedIn: 'root'
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"]])
-    ], SpinnerService);
-    return SpinnerService;
 }());
 
 

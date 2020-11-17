@@ -93,7 +93,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic-native/barcode-scanner/ngx */ "./node_modules/@ionic-native/barcode-scanner/ngx/index.js");
 /* harmony import */ var src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/servicios/alert.service */ "./src/app/servicios/alert.service.ts");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
-/* harmony import */ var src_app_servicios_spiner_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/servicios/spiner.service */ "./src/app/servicios/spiner.service.ts");
+/* harmony import */ var _consulta_mozo_consulta_mozo_page__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../consulta-mozo/consulta-mozo.page */ "./src/app/paginas/consulta-mozo/consulta-mozo.page.ts");
+/* harmony import */ var src_app_servicios_spinner_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/servicios/spinner.service */ "./src/app/servicios/spinner.service.ts");
+/* harmony import */ var src_app_servicios_consulta_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/servicios/consulta.service */ "./src/app/servicios/consulta.service.ts");
+/* harmony import */ var src_app_interfaces_Consulta__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! src/app/interfaces/Consulta */ "./src/app/interfaces/Consulta.ts");
+/* harmony import */ var src_app_servicios_fcm_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! src/app/servicios/fcm.service */ "./src/app/servicios/fcm.service.ts");
+/* harmony import */ var src_app_servicios_mesa_cliente_service__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! src/app/servicios/mesa-cliente.service */ "./src/app/servicios/mesa-cliente.service.ts");
+
+
+
+
+
 
 
 
@@ -106,17 +116,21 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var HacerPedidoPage = /** @class */ (function () {
-    function HacerPedidoPage(prodServ, pedidoServ, mesaServ, authServ, router, barcodeScanner, alertServ, alertController, spiner) {
+    function HacerPedidoPage(platform, prodServ, pedidoServ, mesaServ, authServ, MesaClienteService, router, barcodeScanner, alertServ, popoverCtrl, spinnerService, consultaService, fcmService) {
         var _this = this;
+        this.platform = platform;
         this.prodServ = prodServ;
         this.pedidoServ = pedidoServ;
         this.mesaServ = mesaServ;
         this.authServ = authServ;
+        this.MesaClienteService = MesaClienteService;
         this.router = router;
         this.barcodeScanner = barcodeScanner;
         this.alertServ = alertServ;
-        this.alertController = alertController;
-        this.spiner = spiner;
+        this.popoverCtrl = popoverCtrl;
+        this.spinnerService = spinnerService;
+        this.consultaService = consultaService;
+        this.fcmService = fcmService;
         this.direccion = false;
         this.pedido = {
             comienzo: (new Date()).toString(),
@@ -126,7 +140,8 @@ var HacerPedidoPage = /** @class */ (function () {
             delivery: false,
             direccion: '',
             foto: '',
-            email: ''
+            email: '',
+            Mesa: ""
         };
         this.pedidosProductos = [];
         this.mesasClientes = [];
@@ -139,38 +154,32 @@ var HacerPedidoPage = /** @class */ (function () {
     }
     HacerPedidoPage.prototype.ngOnInit = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var sp;
             var _this = this;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.spiner.GetAllPageSpinner("")];
-                    case 1:
-                        sp = _a.sent();
-                        sp.present();
-                        this.idUsusario = this.authServ.getUsuario()['id'];
-                        this.usuario = this.authServ.getUsuario();
-                        this.pedido.foto = this.usuario['foto'];
-                        this.pedido.email = this.usuario['mail'];
-                        this.mesaServ.getMesas().subscribe(function (data) {
-                            _this.mesasClientes = data;
-                            if (_this.usuario.perfil != 'cliente' && _this.usuario.perfil != 'anonimo') {
-                                _this.esMozo = true;
+                this.spinnerService.showSpinner();
+                this.idUsusario = this.authServ.getUsuario()['id'];
+                this.usuario = this.authServ.getUsuario();
+                this.pedido.foto = this.usuario['foto'];
+                this.pedido.email = this.usuario['mail'];
+                this.MesaClienteService.getMesas().subscribe(function (data) {
+                    _this.mesasClientes = data;
+                    if (_this.usuario.perfil != 'cliente' && _this.usuario.perfil != 'anonimo') {
+                        _this.esMozo = true;
+                    }
+                    else {
+                        _this.esMozo = false;
+                        _this.esCliente = _this.usuario.perfil == 'cliente';
+                        for (var _i = 0, _a = _this.mesasClientes; _i < _a.length; _i++) {
+                            var item = _a[_i];
+                            if (item.idCliente === _this.idUsusario && !item.cerrada) {
+                                _this.pedido.id_mesa_cliente = item.id;
+                                break;
                             }
-                            else {
-                                _this.esMozo = false;
-                                _this.esCliente = _this.usuario.perfil == 'cliente';
-                                for (var _i = 0, _a = _this.mesasClientes; _i < _a.length; _i++) {
-                                    var item = _a[_i];
-                                    if (item.idCliente === _this.idUsusario && !item.cerrada) {
-                                        _this.pedido.id_mesa_cliente = item.id;
-                                        break;
-                                    }
-                                }
-                            }
-                            sp.dismiss();
-                        });
-                        return [2 /*return*/];
-                }
+                        }
+                    }
+                    _this.spinnerService.hideSpinner();
+                });
+                return [2 /*return*/];
             });
         });
     };
@@ -193,91 +202,76 @@ var HacerPedidoPage = /** @class */ (function () {
     HacerPedidoPage.prototype.TerminarPedido = function (delivery) {
         if (delivery === void 0) { delivery = false; }
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var sp, alert_1;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                if (this.pedidosProductos.length > 0) {
+                    // console.log(this.pedido.id_mesa_cliente);
+                    if ((!this.esMozo) || this.pedido.id_mesa_cliente != '') {
+                        this.mesasClientes.forEach(function (mCliente) {
+                            if (mCliente.id == _this.pedido.id_mesa_cliente) {
+                                _this.pedido['id-mesa'] = mCliente.idMesa;
+                                _this.MesaClienteService.getMesaPorID(mCliente.idMesa).then(function (mesas) {
+                                    mesas[0].estado = 'esperando pedido';
+                                    _this.pedido.Mesa = mesas[0].qrMesa;
+                                    _this.MesaClienteService.actualizarMesa(mesas[0]);
+                                });
+                            }
+                        });
+                        this.pedidoServ.AddPedido(this.pedido).then(function (res) {
+                            _this.pedido['id'] = res['id'];
+                            // console.log(this.pedido);
+                            for (var _i = 0, _a = _this.pedidosProductos; _i < _a.length; _i++) {
+                                var item = _a[_i];
+                                item.id_pedido = res['id'];
+                                _this.pedidoServ.AddPedidoProducto(item).then(function (res) {
+                                    console.log('agregado');
+                                });
+                            }
+                            _this.alertServ.mensaje('', 'El pedido se agregó correctamente');
+                            if (_this.usuario.perfil == 'cliente' || _this.usuario.perfil == 'anonimo') {
+                                _this.avisarPedidoMozo(_this.pedido.id_mesa_cliente);
+                                _this.router.navigate(['/mesa-cliente']);
+                            }
+                            else {
+                                _this.router.navigate(['/mozo-aceptar']);
+                            }
+                        });
+                    }
+                    else {
+                        this.alertServ.mensaje('Alerta:', 'Faltan datos para generar el pedido');
+                    }
+                }
+                return [2 /*return*/];
+            });
+        });
+    };
+    HacerPedidoPage.prototype.avisarPedidoMozo = function (mesa) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var popover;
             var _this = this;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.spiner.GetAllPageSpinner("")];
+                    case 0: return [4 /*yield*/, this.popoverCtrl.create({
+                            component: _consulta_mozo_consulta_mozo_page__WEBPACK_IMPORTED_MODULE_10__["ConsultaMozoPage"],
+                            translucent: true
+                        })];
                     case 1:
-                        sp = _a.sent();
-                        sp.present();
-                        if (!delivery) {
-                            this.direccion = false;
-                        }
-                        if (!(this.esCliente && this.pedido.id_mesa_cliente == '' && !delivery)) return [3 /*break*/, 3];
-                        sp.dismiss();
-                        return [4 /*yield*/, this.alertController.create({
-                                header: 'Usted no tiene mesa',
-                                message: ' Desea hacer un delivery?',
-                                inputs: [
-                                    {
-                                        name: 'direccion',
-                                        type: 'text',
-                                        placeholder: 'Direccion del pedido'
-                                    }
-                                ],
-                                translucent: true,
-                                buttons: [
-                                    {
-                                        text: 'Cancelar',
-                                        role: 'cancel',
-                                        cssClass: 'secondary',
-                                        handler: function () {
-                                            _this.alertServ.mensaje('', 'No se hara el delivery');
-                                        }
-                                    }, {
-                                        text: 'Aceptar',
-                                        handler: function (data) {
-                                            _this.pedido.direccion = data['direccion'];
-                                            _this.pedido.delivery = true;
-                                            _this.pedido.id_mesa_cliente = _this.usuario['id'];
-                                            _this.TerminarPedido(data['direccion']);
-                                        }
-                                    }
-                                ]
+                        popover = _a.sent();
+                        popover.present();
+                        return [2 /*return*/, popover.onDidDismiss().then(function (data) {
+                                console.log(data);
+                                if (data.data) {
+                                    _this.spinnerService.showSpinner();
+                                    _this.consultaService.createConsulta(new src_app_interfaces_Consulta__WEBPACK_IMPORTED_MODULE_13__["Consulta"](mesa, data.data, "Pendiente"));
+                                    //TODO -> PUSH NOTIFICATION.
+                                    _this.spinnerService.hideSpinner();
+                                    // this.alertServ.mensaje("", "Se ha enviado su consulta.");
+                                    _this.fcmService.enviarMensaje("Nuevo Pedido", mesa + ':' + data.data, "mozo");
+                                }
+                                else {
+                                    _this.alertServ.mensaje("", "Pedido Cancelado");
+                                }
                             })];
-                    case 2:
-                        alert_1 = _a.sent();
-                        return [2 /*return*/, alert_1.present()];
-                    case 3:
-                        if (this.pedidosProductos.length > 0) {
-                            // console.log(this.pedido.id_mesa_cliente);
-                            if ((!this.esMozo && this.pedido.direccion && this.pedido.delivery) || this.pedido.id_mesa_cliente != '') {
-                                this.mesasClientes.forEach(function (mCliente) {
-                                    if (mCliente.id == _this.pedido.id_mesa_cliente) {
-                                        _this.pedido['id-mesa'] = mCliente.idMesa;
-                                        // By Eze
-                                        _this.mesaServ.getMesaPorID(mCliente.idMesa).then(function (mesas) {
-                                            mesas[0].estado = 'esperando pedido';
-                                            _this.mesaServ.actualizarMesa(mesas[0]);
-                                        });
-                                    }
-                                });
-                                this.pedidoServ.AddPedido(this.pedido).then(function (res) {
-                                    _this.pedido['id'] = res['id'];
-                                    // console.log(this.pedido);
-                                    for (var _i = 0, _a = _this.pedidosProductos; _i < _a.length; _i++) {
-                                        var item = _a[_i];
-                                        item.id_pedido = res['id'];
-                                        _this.pedidoServ.AddPedidoProducto(item).then(function (res) {
-                                            console.log('agregado');
-                                        });
-                                    }
-                                    _this.alertServ.mensaje('', 'El pedido se agregó correctamente');
-                                    if (_this.usuario.perfil == 'cliente' || _this.usuario.perfil == 'anonimo') {
-                                        _this.router.navigate(['/home-cliente']);
-                                    }
-                                    else {
-                                        _this.router.navigate(['/mozo-aceptar']);
-                                    }
-                                });
-                            }
-                            else {
-                                this.alertServ.mensaje('Alerta:', 'Faltan datos para generar el pedido');
-                            }
-                        }
-                        sp.dismiss();
-                        return [2 /*return*/];
                 }
             });
         });
@@ -310,11 +304,12 @@ var HacerPedidoPage = /** @class */ (function () {
             template: __webpack_require__(/*! ./hacer-pedido.page.html */ "./src/app/paginas/hacer-pedido/hacer-pedido.page.html"),
             styles: [__webpack_require__(/*! ./hacer-pedido.page.scss */ "./src/app/paginas/hacer-pedido/hacer-pedido.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_servicios_productos_service__WEBPACK_IMPORTED_MODULE_2__["ProductosService"], src_app_servicios_pedidos_service__WEBPACK_IMPORTED_MODULE_3__["PedidosService"],
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_9__["Platform"], src_app_servicios_productos_service__WEBPACK_IMPORTED_MODULE_2__["ProductosService"], src_app_servicios_pedidos_service__WEBPACK_IMPORTED_MODULE_3__["PedidosService"],
             src_app_servicios_mesas_service__WEBPACK_IMPORTED_MODULE_4__["MesasService"], src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"],
+            src_app_servicios_mesa_cliente_service__WEBPACK_IMPORTED_MODULE_15__["MesaClienteService"],
             _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"], _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_7__["BarcodeScanner"],
-            src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_8__["AlertService"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_9__["AlertController"], src_app_servicios_spiner_service__WEBPACK_IMPORTED_MODULE_10__["SpinerService"]])
+            src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_8__["AlertService"], _ionic_angular__WEBPACK_IMPORTED_MODULE_9__["PopoverController"], src_app_servicios_spinner_service__WEBPACK_IMPORTED_MODULE_11__["SpinnerService"],
+            src_app_servicios_consulta_service__WEBPACK_IMPORTED_MODULE_12__["ConsultaService"], src_app_servicios_fcm_service__WEBPACK_IMPORTED_MODULE_14__["FcmService"]])
     ], HacerPedidoPage);
     return HacerPedidoPage;
 }());

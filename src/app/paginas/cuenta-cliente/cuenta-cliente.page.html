@@ -14,13 +14,20 @@
 
         <table style="width: 100%; text-align: center;">
           <thead>
-            <th>Productos</th><th>Precio</th>
+            <th>Productos</th><th>Precio</th><th>Cantidad Unitaria</th>
           </thead>
           <tbody>
-            <tr *ngFor="let item of this.pedidos">
-              <td>{{item.email}}</td>
-              <td>{{item.precio}}</td>
-            </tr>
+            <tr>
+            <td>Hamburguesa</td>
+            <td>500</td>
+            <td>4</td>
+          </tr>
+          <tr>
+            <td>Vodka</td>
+            <td>100</td>
+            <td>5</td>
+          </tr>
+
           </tbody>
         </table>
       </ion-card-content>

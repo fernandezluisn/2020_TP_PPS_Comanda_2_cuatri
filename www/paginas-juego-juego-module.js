@@ -117,22 +117,21 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var JuegoPage = /** @class */ (function () {
-    function JuegoPage(bda, tomarId, route) {
+    function JuegoPage(bda, route) {
         var _this = this;
         this.bda = bda;
-        this.tomarId = tomarId;
         this.route = route;
         this.resultado = true;
         this.perder = true;
         this.ganarB = true;
-        this.idMesaCliente = this.tomarId.snapshot.paramMap.get('idMesaCliente');
-        this.lista = new Array();
+        this.mesaClienteID = JSON.parse(localStorage.getItem('mesaClienteID'));
         this.bda.devolverListadoMesas().subscribe(function (lista) {
-            lista.filter(function (mesa) {
-                if (mesa.id == _this.idMesaCliente)
-                    _this.mesaCliente = mesa;
+            lista.filter(function (elem) {
+                if (elem.id == _this.mesaClienteID)
+                    _this.mesaCliente = elem;
             });
         });
+        this.lista = new Array();
         this.jugadorR = JSON.parse(localStorage.getItem('usuario'));
         this.alemania = new src_app_interfaces_pais__WEBPACK_IMPORTED_MODULE_3__["Pais"]('Alemania', "Participó de dos guerras mundiales, ganó cuatro mundiales de futbol y queda en el centro de Europa.", "../../assets/imagenes/paises/alemania.jpg");
         this.lista.push(this.alemania);
@@ -301,7 +300,7 @@ var JuegoPage = /** @class */ (function () {
         this.bda.actualizarMesa(this.mesaCliente);
     };
     JuegoPage.prototype.volver = function () {
-        this.route.navigate(["home-cliente"]);
+        this.route.navigate(["gestiones"]);
     };
     JuegoPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -309,7 +308,7 @@ var JuegoPage = /** @class */ (function () {
             template: __webpack_require__(/*! ./juego.page.html */ "./src/app/paginas/juego/juego.page.html"),
             styles: [__webpack_require__(/*! ./juego.page.scss */ "./src/app/paginas/juego/juego.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_servicios_mesa_cliente_service__WEBPACK_IMPORTED_MODULE_4__["MesaClienteService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_servicios_mesa_cliente_service__WEBPACK_IMPORTED_MODULE_4__["MesaClienteService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
     ], JuegoPage);
     return JuegoPage;
 }());

@@ -26,7 +26,10 @@ export class HomeMozoPage implements OnInit {
     this.router.navigate(['/aceptar-pedido']);
   }
   public TerminarPedidos() {
-    this.router.navigate(['/mozo-terminar']);
+    this.router.navigate(['/pedidos-listos']);
+  }
+  public verConsultas(){
+    this.router.navigate(['/consultas']);
   }
 
   encuesta(){
