@@ -23,18 +23,19 @@ export class PropinaPage implements OnInit {
 
   constructor(public alertController: AlertController, private router:Router, private bda:MesaClienteService,
     private loadingCtrl: LoadingController, private barcodeScanner: BarcodeScanner, private vibra:Vibration,
-    private tomarId:ActivatedRoute,  private auth:AuthService) {
+    private auth:AuthService) {
 
-      this.idMesaCliente=this.tomarId.snapshot.paramMap.get('idMesaCliente');
 
-      this.bda.devolverListadoMesas().subscribe(lista=>{
-        this.listaMEsas=lista;
-        this.listaMEsas.filter(mesa=>{
-          if(mesa.id==this.idMesaCliente)
-          this.mesaCliente=mesa;
-        })
+      this.idMesaCliente = JSON.parse(localStorage.getItem('mesaClienteID'));
+
+    this.bda.devolverListadoMesas().subscribe(lista=>{
+      lista.filter(elem=>{
+        if(elem.id==this.idMesaCliente)
+        this.mesaCliente=elem
       })
-     }
+    })
+ 
+  }
 
   ngOnInit() {
   }

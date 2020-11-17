@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="titulo-header">Gestiones</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="ion-activatable" (click)="this.realizarEncuesta()">
+    <ion-ripple-effect></ion-ripple-effect>
+    <ion-icon name="checkbox-outline"></ion-icon>
+    <h2>Encuesta</h2>
+  </ion-card>
+
+  <ion-card class="ion-activatable" (click)="this.jugar()">
+    <ion-ripple-effect></ion-ripple-effect>
+    <ion-icon name="logo-game-controller-b"></ion-icon>
+    <h2>Jugar</h2>
+    </ion-card>
+
+    <ion-card class="ion-activatable" (click)="this.estado()">
+      <ion-ripple-effect></ion-ripple-effect>
+      <ion-icon name="restaurant"></ion-icon>
+      <h2>Estado del pedido</h2>
+      </ion-card>
+
+      <ion-card class="ion-activatable" (click)="this.volver()">
+        <ion-ripple-effect></ion-ripple-effect>
+        <ion-icon name="home"></ion-icon>
+        <h2>Volver a la home</h2>
+        </ion-card>
+
+      <ion-button class="apagar" color="dark" (click)="salir()">
+        <ion-icon name="power"></ion-icon>
+      </ion-button>
+</ion-content>

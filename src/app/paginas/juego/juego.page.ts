@@ -51,18 +51,21 @@ export class JuegoPage implements OnInit {
 
   mesaCliente:MesaCliente;
 
-  idMesaCliente:string;
-  constructor(private bda:MesaClienteService, private tomarId:ActivatedRoute, private route:Router) {
+  mesaClienteID:string;
+  
+  constructor(private bda:MesaClienteService,  private route:Router) {
     
-    this.idMesaCliente=this.tomarId.snapshot.paramMap.get('idMesaCliente');
-    this.lista=new Array();
-    
-      this.bda.devolverListadoMesas().subscribe(lista=>{
-        lista.filter(mesa=>{
-            if(mesa.id==this.idMesaCliente)
-            this.mesaCliente=mesa;
-        })
+    this.mesaClienteID = JSON.parse(localStorage.getItem('mesaClienteID'));
+
+    this.bda.devolverListadoMesas().subscribe(lista=>{
+      lista.filter(elem=>{
+        if(elem.id==this.mesaClienteID)
+        this.mesaCliente=elem
       })
+    })
+    
+    this.lista=new Array();    
+     
       
 
       this.jugadorR=JSON.parse(localStorage.getItem('usuario'));
@@ -253,7 +256,7 @@ export class JuegoPage implements OnInit {
   }
 
   volver(){
-    this.route.navigate(["home-cliente"]);
+    this.route.navigate(["gestiones"]);
   }
 
  

@@ -33,7 +33,7 @@ const routes: Routes = [
   { path: 'home-delivery', loadChildren: './paginas/home-delivery/home-delivery.module#HomeDeliveryPageModule' },
   { path: 'home-mozo', loadChildren: './paginas/home-mozo/home-mozo.module#HomeMozoPageModule' },
   { path: 'home-cliente', loadChildren: './paginas/home-cliente/home-cliente.module#HomeClientePageModule' },   
-  { path: 'propina/:idMesaCliente', loadChildren: './paginas/propina/propina.module#PropinaPageModule' },
+  { path: 'propina', loadChildren: './paginas/propina/propina.module#PropinaPageModule' },
   { path: 'mesa-cliente', loadChildren: './paginas/mesa-cliente/mesa-cliente.module#MesaClientePageModule' },
   { path: 'encuesta-supervisor', loadChildren: './paginas/encuesta-supervisor/encuesta-supervisor.module#EncuestaSupervisorPageModule' },
   { path: 'encuesta-empleado', loadChildren: './paginas/encuesta-empleado/encuesta-empleado.module#EncuestaEmpleadoPageModule' },
@@ -43,7 +43,9 @@ const routes: Routes = [
   { path: 'encuesta-cliente', loadChildren: './paginas/encuesta-cliente/encuesta-cliente.module#EncuestaClientePageModule' },
   { path: 'consulta-mozo', loadChildren: './paginas/consulta-mozo/consulta-mozo.module#ConsultaMozoPageModule' },
   { path: 'hacer-pedido', loadChildren: './paginas/hacer-pedido/hacer-pedido.module#HacerPedidoPageModule' },
-  { path: 'juego/:idMesaCliente', loadChildren: './paginas/juego/juego.module#JuegoPageModule' },
+  { path: 'juego', loadChildren: './paginas/juego/juego.module#JuegoPageModule' },
+  { path: 'gestiones', loadChildren: './paginas/gestiones/gestiones.module#GestionesPageModule' },
+
 
  // { path: 'graficos-cliente', loadChildren: './paginas/graficos-clientes/graficos-cliente.module#GraficosClientesPageModule' },
 ];

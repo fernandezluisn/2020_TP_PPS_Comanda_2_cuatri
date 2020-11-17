@@ -12,6 +12,9 @@ import { SpinnerService } from 'src/app/servicios/spinner.service';
 import { ConsultaService } from 'src/app/servicios/consulta.service';
 import { Consulta } from 'src/app/interfaces/Consulta';
 import { FcmService } from 'src/app/servicios/fcm.service';
+import { MesaClienteService } from 'src/app/servicios/mesa-cliente.service';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { MesaCliente } from 'src/app/interfaces/mesa-cliente';
 
 @Component({
   selector: 'app-mesa-cliente',
@@ -22,11 +25,25 @@ export class MesaClientePage implements OnInit {
 
 
   public usuario: any;
+  mesaCliente:MesaCliente;
   constructor(private platform: Platform,private route:Router,public alert: AlertService, private auth: AuthService,
     public modalController: ModalController,   private popoverCtrl: PopoverController, private spinnerService: SpinnerService,
-    private consultaService: ConsultaService, private fcmService: FcmService) { 
+    private consultaService: ConsultaService, private fcmService: FcmService, private bda:MesaClienteService,
+    private barcodeScanner: BarcodeScanner,) { 
 
   this.usuario = JSON.parse(localStorage.getItem('usuario'));
+
+  let idMesaCliente = JSON.parse(localStorage.getItem('mesaClienteID'));
+    
+    
+    this.bda.devolverListadoMesas().subscribe(lista=>{
+      lista.filter(elem=>{
+        if(elem.id==idMesaCliente)
+        this.mesaCliente=elem
+      })      
+    })
+
+
   }
 
   ngOnInit() {
@@ -43,7 +60,17 @@ realizarPedido()
 }
   escanearQr()
   {
-    this.alert.mensaje('','escanear')
+    
+    
+    this.barcodeScanner.scan().then(resultado => {
+      if(resultado.text==this.mesaCliente.qrMesa){
+        this.route.navigate(["gestiones"]);
+        this.spinnerService.showSpinner();
+      }else{
+        this.alert.mensaje("Error", "Esa no es su mesa");
+      }
+    })
+    
   }
   
   async consultarMozo()
@@ -67,24 +94,7 @@ realizarPedido()
              this.alert.mensaje("", "Consulta Cancelada");
           }
         })  }
-  jugar()
-  {
-    //falta completar esto
-    //if(this.mesacliente.juegoDescuento==null)
-    //this.route.navigate(["juego/"+this.idMesaCliente]);
-    /*else{
-      this.alert.mensaje('','Solo puede intentar el descuento una vez');
-    }*/
-  }
-  realizarEncuesta()
-  {
-    let audio = new Audio();
-    audio.src = '../assets/click.m4a';
-    audio.load();
-    audio.play();
-    this.alert.mensaje('','Lo enviaremos a hacer una encuesta. Si quiere puede no hacerla')
-    this.route.navigate(['encuesta-cliente'])
-  }
+  
  
   pedirCuenta()
   {
@@ -92,10 +102,13 @@ realizarPedido()
 
   }
 
-  propina(){
-    //falta completar esto
-
-    //this.route.navigate(['propina/'+ this.idMesaCliente]);
+  propina(){    
+    if(this.mesaCliente.propina==null || this.mesaCliente.propina==undefined)
+    this.route.navigate(['propina']);
+    else{
+      this.alert.mensaje("Cuidado", "Usted ya ingresó el monto de la propina, lo está ingresando nuevamente");
+      this.route.navigate(['propina']);
+    }
   }
 
   salir(){

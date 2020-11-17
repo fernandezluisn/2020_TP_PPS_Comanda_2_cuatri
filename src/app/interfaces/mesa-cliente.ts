@@ -11,12 +11,14 @@ export class MesaCliente {
     juegoPostre: number;
     propina: number;
     qrMesa: string;
+    
 
     constructor( idMesa:string, idCliente:string, qrMesa: string){
         this.cerrada=false;
         this.idCliente=idCliente;
         this.idMesa=idMesa;
         this.qrMesa = qrMesa;
+        this.juegoDescuento=null;
        // this.idMozo=idMozo;
     }
 }
