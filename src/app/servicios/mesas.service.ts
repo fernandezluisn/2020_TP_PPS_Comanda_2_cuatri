@@ -26,7 +26,7 @@ export class MesasService {
   }
 
 
- 
+ //zamora: error en la mesa
   getMesas() {
     return this.db.collection('mesas').snapshotChanges().pipe(map(mesas => {
       return mesas.map(mesa => {

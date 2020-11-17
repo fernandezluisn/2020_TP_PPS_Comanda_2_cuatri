@@ -9,8 +9,15 @@ import { AuthService } from 'src/app/servicios/auth.service';
 import { Router } from '@angular/router';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { AlertService } from 'src/app/servicios/alert.service';
-import { AlertController } from '@ionic/angular';
-import { SpinerService } from 'src/app/servicios/spiner.service';
+
+import { Platform,AlertController, PopoverController } from '@ionic/angular';
+import { ConsultaMozoPage } from '../consulta-mozo/consulta-mozo.page';
+import { SpinnerService } from 'src/app/servicios/spinner.service';
+import { ConsultaService } from 'src/app/servicios/consulta.service';
+import { Consulta } from 'src/app/interfaces/Consulta';
+import { FcmService } from 'src/app/servicios/fcm.service';
+import { MesaClienteService } from 'src/app/servicios/mesa-cliente.service';
+
 
 @Component({
   selector: 'app-hacer-pedido',
@@ -37,11 +44,13 @@ export class HacerPedidoPage implements OnInit {
   private usuario;
   public esMozo: boolean;
   esCliente:boolean;
-  constructor(private prodServ: ProductosService, private pedidoServ: PedidosService,
+  constructor(private platform: Platform,private prodServ: ProductosService, private pedidoServ: PedidosService,
     private mesaServ: MesasService, private authServ: AuthService,
+    private MesaClienteService: MesaClienteService,
     private router: Router, private barcodeScanner: BarcodeScanner, 
-    private alertServ: AlertService,
-    private alertController: AlertController,private spiner:SpinerService) {
+    private alertServ: AlertService,private popoverCtrl: PopoverController, private spinnerService: SpinnerService,
+    private consultaService: ConsultaService, private fcmService: FcmService)    
+    {
     this.prodServ.devolverListadoProductos().subscribe( (data) => {
       this.productos = data;
       // console.log(data);
@@ -49,13 +58,12 @@ export class HacerPedidoPage implements OnInit {
     this.cantidad = 1;
   }
   async ngOnInit() {
-    let sp = await this.spiner.GetAllPageSpinner("");
-    sp.present();
+    this.spinnerService.showSpinner();
     this.idUsusario = this.authServ.getUsuario()['id'];
     this.usuario = this.authServ.getUsuario();
     this.pedido.foto = this.usuario['foto'];
     this.pedido.email = this.usuario['mail'];
-    this.mesaServ.getMesas().subscribe( (data) => {
+    this.MesaClienteService.getMesas().subscribe( (data) => {
       this.mesasClientes = data;
       if (this.usuario.perfil != 'cliente' && this.usuario.perfil != 'anonimo') {
         this.esMozo = true;
@@ -70,7 +78,7 @@ export class HacerPedidoPage implements OnInit {
           }
         }
       }
-    sp.dismiss();
+      this.spinnerService.hideSpinner();
 
     });
   }
@@ -93,59 +101,18 @@ export class HacerPedidoPage implements OnInit {
   }
 
   public async TerminarPedido(delivery:boolean=false) {
-    let sp = await this.spiner.GetAllPageSpinner("");
-    sp.present();
 
-    if(!delivery){
-      this.direccion = false;
-    }
-    if(this.esCliente && this.pedido.id_mesa_cliente == '' && !delivery){
-      sp.dismiss();
-
-      const alert = await this.alertController.create({
-        header: 'Usted no tiene mesa',
-        message:' Desea hacer un delivery?',
-        inputs: [
-          {
-            name: 'direccion',
-            type: 'text',
-            placeholder: 'Direccion del pedido'
-          }
-        ],
-        translucent: true,
-        buttons: [
-          {
-            text: 'Cancelar',
-            role: 'cancel',
-            cssClass: 'secondary',
-            handler: () => {
-              this.alertServ.mensaje('','No se hara el delivery')
-            }
-          }, {
-            text: 'Aceptar',
-            handler: (data) => {
-              this.pedido.direccion = data['direccion'];
-              this.pedido.delivery = true;
-              this.pedido.id_mesa_cliente = this.usuario['id'];
-
-              this.TerminarPedido(data['direccion'])
-            }
-          }
-        ]
-      });
-      return alert.present();
-    }
     if (this.pedidosProductos.length > 0) {
       // console.log(this.pedido.id_mesa_cliente);
-      if ((!this.esMozo && this.pedido.direccion && this.pedido.delivery) || this.pedido.id_mesa_cliente != '' ) {
+      if ((!this.esMozo) || this.pedido.id_mesa_cliente != '' ) {
         this.mesasClientes.forEach(mCliente => {
           if (mCliente.id == this.pedido.id_mesa_cliente) {
             this.pedido['id-mesa'] = mCliente.idMesa;
 
-            // By Eze
-            this.mesaServ.getMesaPorID(mCliente.idMesa).then(mesas => {
+            
+            this.MesaClienteService.getMesaPorID(mCliente.idMesa).then(mesas => {
               mesas[0].estado = 'esperando pedido';
-              this.mesaServ.actualizarMesa(mesas[0]);
+              this.MesaClienteService.actualizarMesa(mesas[0]);
             });
           }
         });
@@ -160,7 +127,10 @@ export class HacerPedidoPage implements OnInit {
           }
           this.alertServ.mensaje('', 'El pedido se agregó correctamente');
           if ( this.usuario.perfil == 'cliente' || this.usuario.perfil == 'anonimo') {
-            this.router.navigate(['/home-cliente']);
+         
+            this.avisarPedidoMozo(this.pedido.id_mesa_cliente);
+
+            this.router.navigate(['/mesa-cliente']);
           } else {
             this.router.navigate(['/mozo-aceptar']);
           }
@@ -169,9 +139,31 @@ export class HacerPedidoPage implements OnInit {
         this.alertServ.mensaje('Alerta:', 'Faltan datos para generar el pedido');
       }
     }
-    sp.dismiss();
 
   }
+  async avisarPedidoMozo(mesa:string)
+  {
+    const popover = await this.popoverCtrl.create({
+      component: ConsultaMozoPage,
+      translucent: true
+    });
+    popover.present();  
+    return popover.onDidDismiss().then(
+      (data: any) => {
+        console.log(data);
+        if(data.data){
+          this.spinnerService.showSpinner();
+          this.consultaService.createConsulta(new Consulta(mesa,data.data,"Pendiente"));
+          //TODO -> PUSH NOTIFICATION.
+          this.spinnerService.hideSpinner();
+         // this.alertServ.mensaje("", "Se ha enviado su consulta.");
+          this.fcmService.enviarMensaje("Nuevo Pedido", mesa+':'+data.data, "mozo")
+        }else{
+             this.alertServ.mensaje("", "Pedido Cancelado");
+          }
+        })  
+      }
+
   public BorrarProducto(idProducto: string) {
     console.log(this.pedidosProductos);
     for (const pp of this.pedidosProductos) {

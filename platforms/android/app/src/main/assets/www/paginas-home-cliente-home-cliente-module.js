@@ -83,7 +83,7 @@ var HomeClientePageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<ion-header>\r\n\r\n\t<div *ngIf=\"cliente.estado=='desconectado' || cliente.estado == 'EnListaDeEspera' || cliente.estado == 'aceptado'\"  class=\"login-header  ion-padding\">\r\n\r\n    <img class=\"logo-img\" src=\"assets/img/logo.png\">\r\n\r\n  </div>\r\n</ion-header>\r\n\r\n\r\n<ion-content class=\"secondaryBackground ion-padding\">\r\n  <div *ngIf=\"cliente.estado=='desconectado'\" style=\"height: 100%; display:flex; flex-direction:column;\">\r\n    <div class=\"titulo\">\r\n      <h1>Bienvenido</h1>\r\n      <p>Aquí puede solicitar una reserva.</p>\r\n      <ion-card class=\"ion-activatable\" (click)=\"this.Mover('reservas')\" [ngClass]=\"{ 'card-vertical': !this.platform.isLandscape(), 'card-horizontal': this.platform.isLandscape() }\">\r\n        <ion-ripple-effect></ion-ripple-effect>\r\n        <ion-icon name=\"create\" [ngClass]=\"{ 'icon-horizontal': this.platform.isLandscape(), 'icon-vertical': !this.platform.isLandscape() }\"></ion-icon>\r\n        \r\n        <h5>La reserva estará sujeta a aprobación.</h5>\r\n      </ion-card>\r\n      \r\n\r\n      <h3></h3>\r\n      <p>O escanee el codigo QR para Ingresar a la lista de espera..</p>\r\n    </div>\r\n    <div style=\"display: flex;justify-content: center;\">\r\n      <ion-button class=\"boton\" (click)=\"scanearEspera()\">\r\n        <ion-icon name=\"qr-code\" class=\"qrCode\"></ion-icon>        &nbsp; Escanear codigo QR         \r\n      </ion-button>\r\n    </div>\r\n\r\n    \r\n  </div>\r\n\r\n\r\n    <div *ngIf=\"cliente.estado == 'EnListaDeEspera'\">\r\n      <ion-col >\r\n        <ion-row style=\"justify-content:center; margin-top:35px\" >\r\n          <p class=\"spinnerInterceptor latido\">Ya se encuentra en la lista de espera, podra ingresar al ser aprobado. </p>\r\n        </ion-row>\r\n        <ion-row style=\"justify-content: center; margin-top:125px;\">\r\n          <ion-spinner name=\"circles\" class=\"ion-spinner-large\" color=\"primary\"></ion-spinner>\r\n        </ion-row>\r\n      </ion-col>\r\n    </div>\r\n\r\n \r\n      <div *ngIf=\"cliente.estado=='aceptado'\" style=\"height: 100%; display:flex; flex-direction:column;\">\r\n        <div class=\"titulo\">\r\n          <h1>Bienvenido</h1>\r\n          <h3></h3>\r\n          <p>Escanee el codigo QR para solicitar  la mesa</p>\r\n        </div>\r\n        <div style=\"display: flex;justify-content: center;\">\r\n          <ion-button class=\"boton\" (click)=\"scanearMesa()\">\r\n            <ion-icon name=\"qr-code\" class=\"qrCode\"></ion-icon>        &nbsp; Escanear codigo QR         \r\n          </ion-button>\r\n        </div>\r\n      </div>\r\n  \r\n      <ion-button class=\"apagar\" color=\"dark\" (click)=\"salir()\">\r\n        <ion-icon name=\"power\"></ion-icon>\r\n      </ion-button>\r\n\r\n</ion-content>\r\n"
+module.exports = "\r\n<ion-header>\r\n\r\n\t<div *ngIf=\"cliente.estado=='desconectado' || cliente.estado == 'EnListaDeEspera' || cliente.estado == 'aceptado'\"  class=\"login-header  ion-padding\">\r\n\r\n    <img class=\"logo-img\" src=\"assets/img/logo.png\">\r\n\r\n  </div>\r\n</ion-header>\r\n\r\n<ion-content class=\"secondaryBackground ion-padding\">\r\n  <div *ngIf=\"cliente.estado=='desconectado'\" style=\"height: 100%; display:flex; flex-direction:column;\">\r\n    <div class=\"titulo\">\r\n      <h1>Bienvenido</h1>\r\n      <p>Aquí puede solicitar una reserva.</p>\r\n      <ion-card class=\"ion-activatable\" (click)=\"this.Mover('reservas')\" [ngClass]=\"{ 'card-vertical': !this.platform.isLandscape(), 'card-horizontal': this.platform.isLandscape() }\">\r\n        <ion-ripple-effect></ion-ripple-effect>\r\n        <ion-icon name=\"create\" [ngClass]=\"{ 'icon-horizontal': this.platform.isLandscape(), 'icon-vertical': !this.platform.isLandscape() }\"></ion-icon>\r\n        \r\n        <h5>La reserva estará sujeta a aprobación.</h5>\r\n      </ion-card>\r\n      \r\n\r\n      <h3></h3>\r\n      <p>O escanee el codigo QR para Ingresar a la lista de espera..</p>\r\n    </div>\r\n    <div style=\"display: flex;justify-content: center;\">\r\n      <ion-button class=\"boton\" (click)=\"scanearEspera()\">\r\n        <ion-icon name=\"qr-code\" class=\"qrCode\"></ion-icon>        &nbsp; Escanear codigo QR         \r\n      </ion-button>\r\n    </div>\r\n\r\n    \r\n  </div>\r\n\r\n\r\n    <div *ngIf=\"cliente.estado == 'EnListaDeEspera'\">\r\n      <ion-col >\r\n        <ion-row style=\"justify-content:center; margin-top:35px\" >\r\n          <p class=\"spinnerInterceptor latido\">Ya se encuentra en la lista de espera, podra ingresar al ser aprobado. </p>\r\n        </ion-row>\r\n        <ion-row style=\"justify-content: center; margin-top:125px;\">\r\n          <ion-spinner name=\"circles\" class=\"ion-spinner-large\" color=\"primary\"></ion-spinner>\r\n        </ion-row>\r\n      </ion-col>\r\n    </div>\r\n\r\n \r\n      <div *ngIf=\"cliente.estado=='aceptado'\" style=\"height: 100%; display:flex; flex-direction:column;\">\r\n        <div class=\"titulo\">\r\n          <h1>Bienvenido</h1>\r\n          <h3></h3>\r\n          <p>Escanee el codigo QR para solicitar  la mesa</p>\r\n        </div>\r\n        <div style=\"display: flex;justify-content: center;\">\r\n          <ion-button class=\"boton\" (click)=\"scanearMesa()\">\r\n            <ion-icon name=\"qr-code\" class=\"qrCode\"></ion-icon>        &nbsp; Escanear codigo QR         \r\n          </ion-button>\r\n        </div>\r\n      </div>\r\n  \r\n      <ion-button class=\"apagar\" color=\"dark\" (click)=\"salir()\">\r\n        <ion-icon name=\"power\"></ion-icon>\r\n      </ion-button>\r\n\r\n</ion-content>\r\n"
 
 /***/ }),
 
@@ -166,7 +166,9 @@ var HomeClientePage = /** @class */ (function () {
         this.clienteService.obtenerCliente(this.cliente.uid).subscribe(function (resp) {
             resp.forEach(function (user) {
                 console.log(user.estado);
+                var id = _this.cliente.id;
                 _this.cliente = user;
+                _this.cliente.id = id;
                 //chequeo si cambio el estado del cliente para poder darle un mensaje de aviso.
                 if (_this.cliente.estado == "aceptado" && _this.estadoActualCliente == "EnListaDeEspera") {
                     _this.alert.mensaje("", "Ha sido aceptado! ya puede ingresar al local");
@@ -289,24 +291,34 @@ var HomeClientePage = /** @class */ (function () {
     };
     HomeClientePage.prototype.chequearReservas = function () {
         var _this = this;
-        var fech = this.datePipe.transform(this.fecha, 'dd/MM/yyyy');
+        var fech1 = this.datePipe.transform(this.fecha, 'dd/MM/yyyy');
+        var fech2 = this.datePipe.transform(this.fecha, 'yyyy-MM-dd');
         this.fecha.setMinutes(this.fecha.getMinutes() - 40);
         var resD = new Array();
         this.reservaService.getReservas().subscribe(function (list) {
             list.filter(function (res) {
-                if (res.fecha == fech) {
+                if (res.fecha == fech1 && res.estado == "confirmada") {
                     resD.push(res);
+                }
+                else if (Number(Date.parse(res.fecha2)) < Number(Date.parse(fech2)) && res.estado != "expirada") {
+                    res.estado = "expirada";
+                    _this.reservaService.updateReserva(res);
                 }
             });
             resD.forEach(function (resDia) {
                 var hor = new Date(resDia.fecha + " " + resDia.hora);
                 if (hor > _this.fecha) {
                     _this.mesas.filter(function (mesa) {
-                        if (mesa.numero == resDia.mesa.numero && mesa.estado == "Vacia") {
+                        if (mesa.numero == resDia.mesa.numero && mesa.estado == "Vacia" && resDia.situacion == "a reservar") {
                             mesa.estado = "Reservada";
                             _this.mesaService.actualizarMesa(mesa);
+                            resDia.situacion = "hecha";
                             resDia.mesa = mesa;
                             _this.reservaService.updateReserva(resDia);
+                            _this.fcmService.enviarMensaje("Mesa" + mesa.numero, "Le informamos que se encuentra reservada la mesa " + mesa.numero, 'notificacionListaEspera');
+                        }
+                        else if (mesa.numero == resDia.mesa.numero && mesa.estado == "Ocupada" && resDia.situacion == "a reservar") {
+                            _this.fcmService.enviarMensaje("Mesa" + mesa.numero, "Le informamos que se encuentra reservada la mesa " + mesa.numero + ", debe desocuparla en un plazo menor a 40 minutos.", 'notificacionListaEspera');
                         }
                     });
                 }

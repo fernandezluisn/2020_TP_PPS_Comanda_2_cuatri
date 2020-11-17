@@ -209,7 +209,7 @@ var PropinaPage = /** @class */ (function () {
             this.presentLoading("Cargando propina");
             this.mesaCliente.propina = this.propina;
             this.bda.actualizarMesa(this.mesaCliente);
-            this.router.navigate(["home-cliente"]);
+            this.router.navigate(["cuenta-cliente"]);
         }
         catch (e) {
             this.alertar(e);

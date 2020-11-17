@@ -39,6 +39,30 @@ export class MesaClienteService {
     
   }
 
+
+  
+ //zamora: error en la mesa
+ getMesas() {
+  return this.db.collection('mesaClientes').snapshotChanges().pipe(map(mesas => {
+    return mesas.map(mesa => {
+      const data = mesa.payload.doc.data() as MesaCliente;
+      data.id = mesa.payload.doc.id;
+      return data;
+    });
+  }));
+}
+
+getMesaPorID(idMesa: string) {
+  return this.db.collection('mesaClientes').ref.where('id', '==', idMesa).get()
+  .then(async pedidos => {
+     return await pedidos.docs.map(documento => {
+      const data = documento.data() as MesaCliente;
+      data.id = documento.id;
+      return data;
+    });
+  });
+}
+
   BorrarMesa(mesa: MesaCliente) {
     this.db.doc('mesaClientes/' + mesa.id).delete().then()
   }

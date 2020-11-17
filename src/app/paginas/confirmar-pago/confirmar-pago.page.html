@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Pagos a Cofnrimar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding color="dark"> 
+
+  <br>
+  <ion-list-header lines="inset" color="dark">
+    <ion-label>Pagos a Confirmar</ion-label>
+  </ion-list-header>
+<div *ngFor="let mesa of this.mesasAConfirmar">
+  <ion-item color="dark">
+    <ion-label style="color:black" *ngIf="mesa.estado" >Se realizo el pago de {{mesa.pago}} pesos en la {{mesa.qrMesa}}</ion-label>
+    <ion-button fill="outline" (click)="confirmarPago(mesa)">Confimar</ion-button>
+  </ion-item>
+</div>
+<div *ngIf="mesasAConfirmar.length === 0">
+  <ion-item color="dark">
+    <ion-label >Sin pagos a confirmar.</ion-label>
+  </ion-item>
+</div>
+
+<ion-button class="apagar" color="dark" (click)="salir()">
+  <ion-icon name="power"></ion-icon>
+</ion-button>
+
+</ion-content>

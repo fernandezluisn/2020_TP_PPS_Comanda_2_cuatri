@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title  style="text-align: center;">Cuenta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <br>
+  <ion-card style="border: 2px solid #A599B5; text-align: center; font-size: 18px;" *ngIf="id != ''">
+    <br><br>
+    <ion-card *ngIf="this.pedidos.length> 0" style="background-color:whitesmoke; border-radius: 20px;">
+      <ion-card-content>
+
+
+        <table style="width: 100%; text-align: center;">
+          <thead>
+            <th>Productos</th><th>Precio</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of this.pedidos">
+              <td>{{item.email}}</td>
+              <td>{{item.precio}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </ion-card-content>
+    </ion-card>
+
+
+
+    <br>
+
+    <ion-item *ngIf="descPorcentaje">
+      <h5>Descuento por juego: 10%</h5>
+    </ion-item>
+    <br> 
+    <ng-container *ngIf="!esMozo">
+      <ng-container>
+        <ion-item style="text-align: center;">
+          <h1>Total sin propina: ${{total}}</h1>
+        </ion-item>
+        <ion-button *ngIf="!delivery" (click)="darPropina()" color="success">Dar Propina</ion-button>
+      </ng-container>
+
+        <ion-item style="text-align: center;">
+          <h1>Descuentos: ${{descuentos}}</h1>
+        </ion-item>
+      
+      <br>
+      <ion-item  *ngIf="!delivery">
+        <h1>Total final: ${{TotalMasPropina}}</h1>
+      </ion-item>
+      <br>
+      <ng-container *ngIf="!delivery">
+        <ion-button (click)="Pagar()" color="success" expand="success">Pagar</ion-button>
+      </ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="esMozo && !delivery">
+      <ion-item *ngIf="propina == 0 && total != 0">
+        <h2>Falta ingresar la propina!</h2>
+      </ion-item>
+      <ng-container>
+        <ion-item>
+          <h1>Total final(propina y descuentos): ${{TotalMasPropina}}</h1>
+        </ion-item>
+        <br>
+        <ion-button color="success" expand="full" (click)="Pagar()">Guardar Pago</ion-button>
+      </ng-container>  
+    </ng-container>    
+  </ion-card>
+</ion-content>

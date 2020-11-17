@@ -111,7 +111,7 @@ ext {
     }
     // Sets the minSdkVersion to the given value.
     if (!project.hasProperty('cdvMinSdkVersion')) {
-        cdvMinSdkVersion = null
+        cdvMinSdkVersion = 19
     }
     // Sets the maxSdkVersion to the given value.
     if (!project.hasProperty('cdvMaxSdkVersion')) {

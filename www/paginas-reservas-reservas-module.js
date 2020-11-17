@@ -11,7 +11,7 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Reserva", function() { return Reserva; });
 var Reserva = /** @class */ (function () {
-    function Reserva(idCliente, fecha, hora, estado, nombreCliente, cantidad, tipo) {
+    function Reserva(idCliente, fecha, hora, estado, nombreCliente, cantidad, tipo, fecha2) {
         this.fecha = fecha;
         this.hora = hora;
         this.idCliente = idCliente;
@@ -19,6 +19,8 @@ var Reserva = /** @class */ (function () {
         this.nombreCliente = nombreCliente;
         this.cantidad = cantidad;
         this.tipo = tipo;
+        this.situacion = "a reservar";
+        this.fecha2 = fecha2;
     }
     return Reserva;
 }());
@@ -149,6 +151,7 @@ var ReservasPage = /** @class */ (function () {
         ;
         var fech = this.datePipe.transform(this.fecha, 'dd/MM/yyyy');
         var nom = this.usuario.nombre + " " + this.usuario.apellido;
+        var fech2 = this.datePipe.transform(this.fecha, 'yyyy-MM-dd');
         if (fech == null && hor == null) {
             this.alertar.mensaje("Faltan datos", "Debe ingresar fecha y hora");
         }
@@ -160,7 +163,7 @@ var ReservasPage = /** @class */ (function () {
         }
         else {
             try {
-                var r = new src_app_interfaces_reserva__WEBPACK_IMPORTED_MODULE_3__["Reserva"](this.usuario.id, fech, hor, "pendiente", nom, this.cantidad, this.tipo);
+                var r = new src_app_interfaces_reserva__WEBPACK_IMPORTED_MODULE_3__["Reserva"](this.usuario.id, fech, hor, "pendiente", nom, this.cantidad, this.tipo, fech2);
                 this.bda.addReserva(r);
                 this.toast.confirmationToast("Se solicitó la reserva correctamente");
                 this.route.navigate(["home-cliente"]);
