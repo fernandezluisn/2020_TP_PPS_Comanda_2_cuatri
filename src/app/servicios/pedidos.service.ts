@@ -77,6 +77,20 @@ export class PedidosService {
     }));
   }
 
+  
+  getPedidosProductosPorPedido(idPedido: string) {
+    // ACÁ ESTÁ EL ERROR, TRAE ÚNICAMENTE LOS REGISTROS QUE ESTÁN CON EL ESTADO "PREPARACIÓN"
+    return this.firestore.collection('pedido-productos').ref.where('id_pedido', '==', idPedido).get()
+    .then(async pedidos => {
+       return await pedidos.docs.map(documento => {
+        const data = documento.data() as PedidoProducto;
+        data.id = documento.id;
+        return data;
+      });
+    });
+  }
+
+
   public getPedidosProductos() {
     return this.firestore.collection('pedido-productos').snapshotChanges().pipe(map((fotos) => {
       return fotos.map((a) => {

@@ -58,10 +58,9 @@ realizarPedido()
   audio.play();
   this.route.navigate(['hacer-pedido'])
 }
+  
   escanearQr()
-  {
-    
-    
+  {    
     this.barcodeScanner.scan().then(resultado => {
       if(resultado.text==this.mesaCliente.qrMesa){
         this.route.navigate(["gestiones"]);
@@ -89,7 +88,7 @@ realizarPedido()
           //TODO -> PUSH NOTIFICATION.
           this.spinnerService.hideSpinner();
           this.alert.mensaje("", "Se ha enviado su consulta.");
-          this.fcmService.enviarMensaje("Nueva Consulta", "Mesa1"+data.data, "mozo")
+          this.fcmService.enviarMensaje("Nueva Consulta", "Mesa1"+data.data, "notificacionMozo")
         }else{
              this.alert.mensaje("", "Consulta Cancelada");
           }

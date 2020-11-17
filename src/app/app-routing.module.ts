@@ -33,7 +33,7 @@ const routes: Routes = [
   { path: 'home-delivery', loadChildren: './paginas/home-delivery/home-delivery.module#HomeDeliveryPageModule' },
   { path: 'home-mozo', loadChildren: './paginas/home-mozo/home-mozo.module#HomeMozoPageModule' },
   { path: 'home-cliente', loadChildren: './paginas/home-cliente/home-cliente.module#HomeClientePageModule' },   
-  { path: 'propina', loadChildren: './paginas/propina/propina.module#PropinaPageModule' },
+  { path: 'propina/:idMesaCliente', loadChildren: './paginas/propina/propina.module#PropinaPageModule' },
   { path: 'mesa-cliente', loadChildren: './paginas/mesa-cliente/mesa-cliente.module#MesaClientePageModule' },
   { path: 'encuesta-supervisor', loadChildren: './paginas/encuesta-supervisor/encuesta-supervisor.module#EncuestaSupervisorPageModule' },
   { path: 'encuesta-empleado', loadChildren: './paginas/encuesta-empleado/encuesta-empleado.module#EncuestaEmpleadoPageModule' },
@@ -44,9 +44,11 @@ const routes: Routes = [
   { path: 'consulta-mozo', loadChildren: './paginas/consulta-mozo/consulta-mozo.module#ConsultaMozoPageModule' },
   { path: 'hacer-pedido', loadChildren: './paginas/hacer-pedido/hacer-pedido.module#HacerPedidoPageModule' },
   { path: 'graficos-cliente', loadChildren: './paginas/graficos-cliente/graficos-cliente.module#GraficosClientePageModule' },
-  { path: 'juego', loadChildren: './paginas/juego/juego.module#JuegoPageModule' },
+  { path: 'juego/:idMesaCliente', loadChildren: './paginas/juego/juego.module#JuegoPageModule' },
    { path: 'cuenta-cliente', loadChildren: './paginas/cuenta-cliente/cuenta-cliente.module#CuentaClientePageModule' },
   { path: 'confirmar-pago', loadChildren: './paginas/confirmar-pago/confirmar-pago.module#ConfirmarPagoPageModule' },
+  { path: 'aceptar-pedido', loadChildren: './paginas/aceptar-pedido/aceptar-pedido.module#AceptarPedidoPageModule' },
+  { path: 'preparacion', loadChildren: './paginas/preparacion/preparacion.module#PreparacionPageModule' },
 
 
 ];
@@ -57,6 +59,8 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
+
+
 
 
 

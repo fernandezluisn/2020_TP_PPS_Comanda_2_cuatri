@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Metre</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding color="dark"> 
+
+  <br>
+  <ion-list-header lines="inset" color="dark">
+    <ion-label>LISTA DE ESPERA</ion-label>
+  </ion-list-header>
+<div *ngFor="let pedidosProd of this.pedidosProdlista">
+
+  <ion-item color="dark" *ngIf="pedidosProd.tipoProducto == 'bebida' && this.usuario.perfil == 'bar' && pedidosProd.estado =='confirmado'">
+    <ion-label style="color:black" >Comida: {{pedidosProd.nombreProducto}}  Cantidad: {{pedidosProd.cantidad}}</ion-label>
+    <ion-button fill="outline" (click)="prepararProducto(pedidosProd)">Preparar</ion-button>
+  </ion-item>
+
+  <ion-item color="dark" *ngIf="pedidosProd.tipoProducto == 'comida' && this.usuario.perfil == 'cocina' && pedidosProd.estado =='confirmado'">
+    <ion-label style="color:black" >Bebida: {{pedidosProd.nombreProducto}}  Cantidad: {{pedidosProd.cantidad}}</ion-label>
+    <ion-button fill="outline" (click)="prepararProducto(pedidosProd)">Preparar</ion-button>
+  </ion-item>
+</div>
+<div *ngIf="pedidosProdlista.length === 0">
+  <ion-item color="dark">
+    <ion-label >Sin productos a preparar.</ion-label>
+  </ion-item>
+</div>
+
+<ion-button class="apagar" color="dark" (click)="salir()">
+  <ion-icon name="power"></ion-icon>
+</ion-button>
+
+</ion-content>
+
+

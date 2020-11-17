@@ -7,6 +7,8 @@ export interface Pedido {
     estado:string;
     comienzo: string;
     email: string;
+    productos: PedidoProducto[];
+    productosLista: string[];
 }
 
 export interface PedidoProducto {
@@ -16,4 +18,6 @@ export interface PedidoProducto {
     estado:string;
     id_comanda:string;
     cantidad:number;
+    nombreProducto: string;
+    tipoProducto: string;
 }
