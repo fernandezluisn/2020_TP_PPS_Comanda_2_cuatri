@@ -19,7 +19,6 @@ import { FcmService } from 'src/app/servicios/fcm.service';
 import { MesaClienteService } from 'src/app/servicios/mesa-cliente.service';
 
 
-
 @Component({
   selector: 'app-hacer-pedido',
   templateUrl: './hacer-pedido.page.html',
@@ -38,7 +37,7 @@ export class HacerPedidoPage implements OnInit {
     direccion:'',
     foto:'',
     email:'',
-    Mesa: ""
+    Mesa: ''
   };
   public pedidosProductos = [];
   public mesasClientes = [];
@@ -69,8 +68,7 @@ export class HacerPedidoPage implements OnInit {
       this.mesasClientes = data;
       if (this.usuario.perfil != 'cliente' && this.usuario.perfil != 'anonimo') {
         this.esMozo = true;
-      } else
-       {
+      } else {
         this.esMozo = false;
         this.esCliente = this.usuario.perfil == 'cliente';
 
@@ -86,17 +84,15 @@ export class HacerPedidoPage implements OnInit {
     });
   }
 
-  public Agregar(producto: Producto) {
-    console.log(producto.id);
+  public Agregar(idProd: string) {
+    console.log(idProd);
     if (this.cantidad > 0 ) {
         const pedidoProd = {
           id_pedido: this.pedido['id'],
           estado: 'sconfirmar',
-          id_producto: producto.id,
+          id_producto: idProd,
           id_comanda: '',
-          cantidad: this.cantidad,
-          nombreProducto:producto.nombre,
-          tipoProducto:producto.tipo
+          cantidad: this.cantidad
         };
         this.pedidosProductos.push(pedidoProd);
         this.alertServ.mensaje(''+this.cantidad+' productos','agregados')
@@ -114,12 +110,11 @@ export class HacerPedidoPage implements OnInit {
           if (mCliente.id == this.pedido.id_mesa_cliente) {
             this.pedido['id-mesa'] = mCliente.idMesa;
 
-            //ACTUALIZO LA MESA 
-            this.mesaServ.getMesaPorID(mCliente.idMesa).then(mesas => {
+            
+            this.MesaClienteService.getMesaPorID(mCliente.idMesa).then(mesas => {
               mesas[0].estado = 'esperando pedido';
               this.pedido.Mesa = mesas[0].qrMesa;
               this.MesaClienteService.actualizarMesa(mesas[0]);
-              this.mesaServ.actualizarMesa(mesas[0]);
             });
           }
         });
@@ -150,9 +145,26 @@ export class HacerPedidoPage implements OnInit {
   }
   async avisarPedidoMozo(mesa:string)
   {
-
-     this.fcmService.enviarMensaje("Nuevo Pedido",'de la mesa :'+mesa, "notificacionMozo")
-  }
+    const popover = await this.popoverCtrl.create({
+      component: ConsultaMozoPage,
+      translucent: true
+    });
+    popover.present();  
+    return popover.onDidDismiss().then(
+      (data: any) => {
+        console.log(data);
+        if(data.data){
+          this.spinnerService.showSpinner();
+          this.consultaService.createConsulta(new Consulta(mesa,data.data,"Pendiente"));
+          //TODO -> PUSH NOTIFICATION.
+          this.spinnerService.hideSpinner();
+         // this.alertServ.mensaje("", "Se ha enviado su consulta.");
+          this.fcmService.enviarMensaje("Nuevo Pedido", mesa+':'+data.data, "mozo")
+        }else{
+             this.alertServ.mensaje("", "Pedido Cancelado");
+          }
+        })  
+      }
 
   public BorrarProducto(idProducto: string) {
     console.log(this.pedidosProductos);
@@ -169,7 +181,7 @@ export class HacerPedidoPage implements OnInit {
     this.barcodeScanner.scan().then(resultado => {
       this.productos.forEach(producto => {
         if (producto.qr == resultado.text) {
-          this.Agregar(producto);
+          this.Agregar(producto.id);
         }
       });
     });
