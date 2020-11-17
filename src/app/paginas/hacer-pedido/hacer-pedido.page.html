@@ -9,7 +9,7 @@
     <ion-item><ion-label>Seleccione Nro de Mesa:</ion-label></ion-item>
     <ion-select [(ngModel)]="pedido['id_mesa_cliente']" placeholder="Seleccione Nro Mesa">
       <ng-container *ngFor="let m of mesasClientes">
-        <ion-select-option value="{{m.id}}" *ngIf="!m.cerrada">{{m.idMesa}}</ion-select-option>
+        <ion-select-option value="{{m.id}}" *ngIf="!m.cerrada">{{m.qr}}</ion-select-option>
       </ng-container>
     </ion-select>
   </ng-container>  
@@ -38,15 +38,15 @@
       <ion-item><h2>{{item.nombre}}</h2></ion-item>
       <ion-item>{{item.descripcion}}</ion-item>
       <div style="height: 100px; text-align: center;">
-        <img src="{{item.foto_1}}" style="width: 30%; height: 100%;">
-        <img src="{{item.foto_2}}" style="width: 30%; height: 100%;">
-        <img src="{{item.foto_3}}" style="width: 30%; height: 100%;">
+        <img src="{{item.foto_1}}" style="width: 100px; height: 100px;">
+        <img src="{{item.foto_2}}" style="width: 100px; height: 100px;">
+        <img src="{{item.foto_3}}" style="width: 100px; height: 100px;">
       </div>
       <br>
       <ion-item>Precio: ${{item.precio}}.00</ion-item>
       <ion-item>
           Cantidad: &nbsp;<input type="number" min="1" [(ngModel)]="cantidad" style="width: 30px;">
-        <ion-button color="danger" (click)="Agregar(item.id)" slot="end">Agregar a Pedido</ion-button>
+        <ion-button color="danger" (click)="Agregar(item)" slot="end">Agregar a Pedido</ion-button>
       </ion-item>
     </div>
   </ion-list>
