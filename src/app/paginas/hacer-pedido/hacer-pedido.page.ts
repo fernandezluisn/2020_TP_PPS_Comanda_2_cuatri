@@ -145,25 +145,9 @@ export class HacerPedidoPage implements OnInit {
   }
   async avisarPedidoMozo(mesa:string)
   {
-    const popover = await this.popoverCtrl.create({
-      component: ConsultaMozoPage,
-      translucent: true
-    });
-    popover.present();  
-    return popover.onDidDismiss().then(
-      (data: any) => {
-        console.log(data);
-        if(data.data){
-          this.spinnerService.showSpinner();
-          this.consultaService.createConsulta(new Consulta(mesa,data.data,"Pendiente"));
-          //TODO -> PUSH NOTIFICATION.
-          this.spinnerService.hideSpinner();
-         // this.alertServ.mensaje("", "Se ha enviado su consulta.");
-          this.fcmService.enviarMensaje("Nuevo Pedido", mesa+':'+data.data, "mozo")
-        }else{
-             this.alertServ.mensaje("", "Pedido Cancelado");
-          }
-        })  
+    
+          this.fcmService.enviarMensaje("Nuevo Pedido", 'Nuevo Pedido en Mesa'+mesa, "mozo")
+ 
       }
 
   public BorrarProducto(idProducto: string) {
