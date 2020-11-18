@@ -48,6 +48,7 @@ export class MesaClientePage implements OnInit {
 
   ngOnInit() {
     //this.platform.isLandscape();
+    console.log(this.mesaCliente);
   }
 
 realizarPedido()
@@ -61,14 +62,16 @@ realizarPedido()
   
   escanearQr()
   {    
-    this.barcodeScanner.scan().then(resultado => {
+    /*this.barcodeScanner.scan().then(resultado => {
       if(resultado.text==this.mesaCliente.qrMesa){
         this.route.navigate(["gestiones"]);
         this.spinnerService.showSpinner();
       }else{
         this.alert.mensaje("Error", "Esa no es su mesa");
       }
-    })
+    })*/
+    this.route.navigate(["gestiones"]);
+
     
   }
   

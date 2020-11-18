@@ -86,6 +86,6 @@ export class EncuestaClientePage {
       this.alert.mensaje('', 'Encuesta cargada exitosamente!');
     }).catch(error => { this.alert.mensaje('ERROR', error); });
 
-    this.route.navigate(['mesa-cliente']);
+    this.route.navigate(['gestiones']);
   }
 }

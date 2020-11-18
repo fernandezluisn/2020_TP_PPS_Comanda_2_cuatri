@@ -84,15 +84,15 @@ export class HacerPedidoPage implements OnInit {
     });
   }
 
-  public Agregar(idProd: string) {
-    console.log(idProd);
+  public Agregar(producto: Producto) {
     if (this.cantidad > 0 ) {
         const pedidoProd = {
           id_pedido: this.pedido['id'],
           estado: 'sconfirmar',
-          id_producto: idProd,
           id_comanda: '',
-          cantidad: this.cantidad
+          cantidad: this.cantidad,
+          nombreProducto: producto.nombre,
+          tipoProducto: producto.tipo
         };
         this.pedidosProductos.push(pedidoProd);
         this.alertServ.mensaje(''+this.cantidad+' productos','agregados')
@@ -165,7 +165,7 @@ export class HacerPedidoPage implements OnInit {
     this.barcodeScanner.scan().then(resultado => {
       this.productos.forEach(producto => {
         if (producto.qr == resultado.text) {
-          this.Agregar(producto.id);
+          this.Agregar(producto);
         }
       });
     });
