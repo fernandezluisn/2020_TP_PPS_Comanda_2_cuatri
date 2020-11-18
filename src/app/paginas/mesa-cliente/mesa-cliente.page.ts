@@ -36,12 +36,15 @@ export class MesaClientePage implements OnInit {
   let idMesaCliente = JSON.parse(localStorage.getItem('mesaClienteID'));
     
     
-    this.bda.devolverListadoMesas().subscribe(lista=>{
-      lista.filter(elem=>{
-        if(elem.id==idMesaCliente)
-        this.mesaCliente=elem
-      })      
+  this.bda.devolverListadoMesas().subscribe(lista=>{
+    lista.filter(elem=>{
+      if(elem.idCliente == this.usuario.id && elem.cerrada == false)
+      {
+      this.mesaCliente=elem;
+      console.log(elem);
+    }
     })
+  })
 
 
   }
@@ -62,14 +65,15 @@ realizarPedido()
   
   escanearQr()
   {    
-    /*this.barcodeScanner.scan().then(resultado => {
+    this.barcodeScanner.scan().then(resultado => {
       if(resultado.text==this.mesaCliente.qrMesa){
-        this.route.navigate(["gestiones"]);
         this.spinnerService.showSpinner();
+        this.route.navigate(["gestiones"]);
+        this.spinnerService.hideSpinner();
       }else{
-        this.alert.mensaje("Error", "Esa no es su mesa");
+        this.alert.mensaje("Error", "Esa no es su mesa asignada");
       }
-    })*/
+    })
     this.route.navigate(["gestiones"]);
 
     
