@@ -166,7 +166,7 @@ var EncuestaClientePage = /** @class */ (function () {
         }).then(function () {
             _this.alert.mensaje('', 'Encuesta cargada exitosamente!');
         }).catch(function (error) { _this.alert.mensaje('ERROR', error); });
-        this.route.navigate(['mesa-cliente']);
+        this.route.navigate(['gestiones']);
     };
     EncuestaClientePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({

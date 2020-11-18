@@ -58,7 +58,7 @@ var HacerPedidoPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title>Hacer Pedido</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n  <ng-container *ngIf=\"esMozo\">\r\n    <ion-item><ion-label>Seleccione Nro de Mesa:</ion-label></ion-item>\r\n    <ion-select [(ngModel)]=\"pedido['id_mesa_cliente']\" placeholder=\"Seleccione Nro Mesa\">\r\n      <ng-container *ngFor=\"let m of mesasClientes\">\r\n        <ion-select-option value=\"{{m.id}}\" *ngIf=\"!m.cerrada\">{{m.idMesa}}</ion-select-option>\r\n      </ng-container>\r\n    </ion-select>\r\n  </ng-container>  \r\n  <ng-container *ngIf=\"pedidosProductos.length > 0\">\r\n    <ion-item><ion-label>Pedido Actual:</ion-label></ion-item>\r\n    <table style=\"width: 100%; border: 2px solid red; text-align: center;\">\r\n      <thead><th>Producto</th><th>Precio</th> <th>Cantidad</th> <th>Borrar</th></thead>\r\n      <tbody>\r\n        <ng-container *ngFor=\"let prod of pedidosProductos\">\r\n          <tr>\r\n            <ng-container *ngFor=\"let p of productos\">\r\n              <ng-container *ngIf=\"p.id == prod.id_producto\">\r\n                <td>{{p.nombre}}</td>\r\n                <td>{{p.precio}}</td>\r\n                <td>{{prod.cantidad}}</td>\r\n              </ng-container>              \r\n            </ng-container>     \r\n            <td><ion-button color=\"danger\" (click)=\"BorrarProducto(prod.id_producto)\" shape=\"round\">X</ion-button></td>       \r\n          </tr>\r\n        </ng-container>        \r\n      </tbody>\r\n    </table>\r\n  </ng-container>  \r\n  <ion-list *ngFor=\"let item of productos\">\r\n    <div style=\"width:100%;\">\r\n      <ion-item><h2>{{item.nombre}}</h2></ion-item>\r\n      <ion-item>{{item.descripcion}}</ion-item>\r\n      <div style=\"height: 100px; text-align: center;\">\r\n        <img src=\"{{item.foto_1}}\" style=\"width: 30%; height: 100%;\">\r\n        <img src=\"{{item.foto_2}}\" style=\"width: 30%; height: 100%;\">\r\n        <img src=\"{{item.foto_3}}\" style=\"width: 30%; height: 100%;\">\r\n      </div>\r\n      <br>\r\n      <ion-item>Precio: ${{item.precio}}.00</ion-item>\r\n      <ion-item>\r\n          Cantidad: &nbsp;<input type=\"number\" min=\"1\" [(ngModel)]=\"cantidad\" style=\"width: 30px;\">\r\n        <ion-button color=\"danger\" (click)=\"Agregar(item.id)\" slot=\"end\">Agregar a Pedido</ion-button>\r\n      </ion-item>\r\n    </div>\r\n  </ion-list>\r\n</ion-content>\r\n<ion-footer>\r\n  <ion-button (click)=\"LeerQR()\" color='dark' expand=\"full\">Seleccionar por QR</ion-button>\r\n  <ion-button (click)=\"TerminarPedido()\" color='dark' expand=\"full\">Terminar Pedido</ion-button>\r\n</ion-footer>"
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>Hacer Pedido</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ng-container *ngIf=\"esMozo\">\n    <ion-item><ion-label>Seleccione Nro de Mesa:</ion-label></ion-item>\n    <ion-select [(ngModel)]=\"pedido['id_mesa_cliente']\" placeholder=\"Seleccione Nro Mesa\">\n      <ng-container *ngFor=\"let m of mesasClientes\">\n        <ion-select-option value=\"{{m.id}}\" *ngIf=\"!m.cerrada\">{{m.qr}}</ion-select-option>\n      </ng-container>\n    </ion-select>\n  </ng-container>  \n  <ng-container *ngIf=\"pedidosProductos.length > 0\">\n    <ion-item><ion-label>Pedido Actual:</ion-label></ion-item>\n    <table style=\"width: 100%; border: 2px solid red; text-align: center;\">\n      <thead><th>Producto</th><th>Precio</th> <th>Cantidad</th> <th>Borrar</th></thead>\n      <tbody>\n        <ng-container *ngFor=\"let prod of pedidosProductos\">\n          <tr>\n            <ng-container *ngFor=\"let p of productos\">\n              <ng-container *ngIf=\"p.id == prod.id_producto\">\n                <td>{{p.nombre}}</td>\n                <td>{{p.precio}}</td>\n                <td>{{prod.cantidad}}</td>\n              </ng-container>              \n            </ng-container>     \n            <td><ion-button color=\"danger\" (click)=\"BorrarProducto(prod.id_producto)\" shape=\"round\">X</ion-button></td>       \n          </tr>\n        </ng-container>        \n      </tbody>\n    </table>\n  </ng-container>  \n  <ion-list *ngFor=\"let item of productos\">\n    <div style=\"width:100%;\">\n      <ion-item><h2>{{item.nombre}}</h2></ion-item>\n      <ion-item>{{item.descripcion}}</ion-item>\n      <div style=\"height: 100px; text-align: center;\">\n        <img src=\"{{item.foto_1}}\" style=\"width: 100px; height: 100px;\">\n        <img src=\"{{item.foto_2}}\" style=\"width: 100px; height: 100px;\">\n        <img src=\"{{item.foto_3}}\" style=\"width: 100px; height: 100px;\">\n      </div>\n      <br>\n      <ion-item>Precio: ${{item.precio}}.00</ion-item>\n      <ion-item>\n          Cantidad: &nbsp;<input type=\"number\" min=\"1\" [(ngModel)]=\"cantidad\" style=\"width: 30px;\">\n        <ion-button color=\"danger\" (click)=\"Agregar(item)\" slot=\"end\">Agregar a Pedido</ion-button>\n      </ion-item>\n    </div>\n  </ion-list>\n</ion-content>\n<ion-footer>\n  <ion-button (click)=\"LeerQR()\" color='dark' expand=\"full\">Seleccionar por QR</ion-button>\n  <ion-button (click)=\"TerminarPedido()\" color='dark' expand=\"full\">Terminar Pedido</ion-button>\n</ion-footer>"
 
 /***/ }),
 
@@ -93,14 +93,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic-native/barcode-scanner/ngx */ "./node_modules/@ionic-native/barcode-scanner/ngx/index.js");
 /* harmony import */ var src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/servicios/alert.service */ "./src/app/servicios/alert.service.ts");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
-/* harmony import */ var _consulta_mozo_consulta_mozo_page__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../consulta-mozo/consulta-mozo.page */ "./src/app/paginas/consulta-mozo/consulta-mozo.page.ts");
-/* harmony import */ var src_app_servicios_spinner_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/servicios/spinner.service */ "./src/app/servicios/spinner.service.ts");
-/* harmony import */ var src_app_servicios_consulta_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/servicios/consulta.service */ "./src/app/servicios/consulta.service.ts");
-/* harmony import */ var src_app_interfaces_Consulta__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! src/app/interfaces/Consulta */ "./src/app/interfaces/Consulta.ts");
-/* harmony import */ var src_app_servicios_fcm_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! src/app/servicios/fcm.service */ "./src/app/servicios/fcm.service.ts");
-/* harmony import */ var src_app_servicios_mesa_cliente_service__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! src/app/servicios/mesa-cliente.service */ "./src/app/servicios/mesa-cliente.service.ts");
-
-
+/* harmony import */ var src_app_servicios_spinner_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/servicios/spinner.service */ "./src/app/servicios/spinner.service.ts");
+/* harmony import */ var src_app_servicios_consulta_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/servicios/consulta.service */ "./src/app/servicios/consulta.service.ts");
+/* harmony import */ var src_app_servicios_fcm_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/servicios/fcm.service */ "./src/app/servicios/fcm.service.ts");
+/* harmony import */ var src_app_servicios_mesa_cliente_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! src/app/servicios/mesa-cliente.service */ "./src/app/servicios/mesa-cliente.service.ts");
 
 
 
@@ -141,7 +137,7 @@ var HacerPedidoPage = /** @class */ (function () {
             direccion: '',
             foto: '',
             email: '',
-            Mesa: ""
+            Mesa: ''
         };
         this.pedidosProductos = [];
         this.mesasClientes = [];
@@ -183,15 +179,15 @@ var HacerPedidoPage = /** @class */ (function () {
             });
         });
     };
-    HacerPedidoPage.prototype.Agregar = function (idProd) {
-        console.log(idProd);
+    HacerPedidoPage.prototype.Agregar = function (producto) {
         if (this.cantidad > 0) {
             var pedidoProd = {
                 id_pedido: this.pedido['id'],
                 estado: 'sconfirmar',
-                id_producto: idProd,
                 id_comanda: '',
-                cantidad: this.cantidad
+                cantidad: this.cantidad,
+                nombreProducto: producto.nombre,
+                tipoProducto: producto.tipo
             };
             this.pedidosProductos.push(pedidoProd);
             this.alertServ.mensaje('' + this.cantidad + ' productos', 'agregados');
@@ -247,32 +243,9 @@ var HacerPedidoPage = /** @class */ (function () {
     };
     HacerPedidoPage.prototype.avisarPedidoMozo = function (mesa) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var popover;
-            var _this = this;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.popoverCtrl.create({
-                            component: _consulta_mozo_consulta_mozo_page__WEBPACK_IMPORTED_MODULE_10__["ConsultaMozoPage"],
-                            translucent: true
-                        })];
-                    case 1:
-                        popover = _a.sent();
-                        popover.present();
-                        return [2 /*return*/, popover.onDidDismiss().then(function (data) {
-                                console.log(data);
-                                if (data.data) {
-                                    _this.spinnerService.showSpinner();
-                                    _this.consultaService.createConsulta(new src_app_interfaces_Consulta__WEBPACK_IMPORTED_MODULE_13__["Consulta"](mesa, data.data, "Pendiente"));
-                                    //TODO -> PUSH NOTIFICATION.
-                                    _this.spinnerService.hideSpinner();
-                                    // this.alertServ.mensaje("", "Se ha enviado su consulta.");
-                                    _this.fcmService.enviarMensaje("Nuevo Pedido", mesa + ':' + data.data, "mozo");
-                                }
-                                else {
-                                    _this.alertServ.mensaje("", "Pedido Cancelado");
-                                }
-                            })];
-                }
+                this.fcmService.enviarMensaje("Nuevo Pedido", 'Nuevo Pedido en Mesa' + mesa, "mozo");
+                return [2 /*return*/];
             });
         });
     };
@@ -293,7 +266,7 @@ var HacerPedidoPage = /** @class */ (function () {
         this.barcodeScanner.scan().then(function (resultado) {
             _this.productos.forEach(function (producto) {
                 if (producto.qr == resultado.text) {
-                    _this.Agregar(producto.id);
+                    _this.Agregar(producto);
                 }
             });
         });
@@ -306,10 +279,10 @@ var HacerPedidoPage = /** @class */ (function () {
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_9__["Platform"], src_app_servicios_productos_service__WEBPACK_IMPORTED_MODULE_2__["ProductosService"], src_app_servicios_pedidos_service__WEBPACK_IMPORTED_MODULE_3__["PedidosService"],
             src_app_servicios_mesas_service__WEBPACK_IMPORTED_MODULE_4__["MesasService"], src_app_servicios_auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"],
-            src_app_servicios_mesa_cliente_service__WEBPACK_IMPORTED_MODULE_15__["MesaClienteService"],
+            src_app_servicios_mesa_cliente_service__WEBPACK_IMPORTED_MODULE_13__["MesaClienteService"],
             _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"], _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_7__["BarcodeScanner"],
-            src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_8__["AlertService"], _ionic_angular__WEBPACK_IMPORTED_MODULE_9__["PopoverController"], src_app_servicios_spinner_service__WEBPACK_IMPORTED_MODULE_11__["SpinnerService"],
-            src_app_servicios_consulta_service__WEBPACK_IMPORTED_MODULE_12__["ConsultaService"], src_app_servicios_fcm_service__WEBPACK_IMPORTED_MODULE_14__["FcmService"]])
+            src_app_servicios_alert_service__WEBPACK_IMPORTED_MODULE_8__["AlertService"], _ionic_angular__WEBPACK_IMPORTED_MODULE_9__["PopoverController"], src_app_servicios_spinner_service__WEBPACK_IMPORTED_MODULE_10__["SpinnerService"],
+            src_app_servicios_consulta_service__WEBPACK_IMPORTED_MODULE_11__["ConsultaService"], src_app_servicios_fcm_service__WEBPACK_IMPORTED_MODULE_12__["FcmService"]])
     ], HacerPedidoPage);
     return HacerPedidoPage;
 }());
