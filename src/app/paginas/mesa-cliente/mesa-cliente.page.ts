@@ -71,7 +71,7 @@ realizarPedido()
         this.route.navigate(["gestiones"]);
         this.spinnerService.hideSpinner();
       }else{
-        this.alert.mensaje("Error", "Esa no es su mesa");
+        this.alert.mensaje("Error", "Esa no es su mesa asignada");
       }
     })
     this.route.navigate(["gestiones"]);
