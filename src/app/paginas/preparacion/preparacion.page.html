@@ -13,12 +13,12 @@
 <div *ngFor="let pedidosProd of this.pedidosProdlista">
 
   <ion-item color="dark" *ngIf="pedidosProd.tipoProducto == 'bebida' && this.usuario.perfil == 'bar' && pedidosProd.estado =='confirmado'">
-    <ion-label style="color:black" >Comida: {{pedidosProd.nombreProducto}}  Cantidad: {{pedidosProd.cantidad}}</ion-label>
+    <ion-label style="color:black" >Bebida: {{pedidosProd.nombreProducto}}  Cantidad: {{pedidosProd.cantidad}}</ion-label>
     <ion-button fill="outline" (click)="prepararProducto(pedidosProd)">Preparar</ion-button>
   </ion-item>
 
   <ion-item color="dark" *ngIf="pedidosProd.tipoProducto == 'comida' && this.usuario.perfil == 'cocina' && pedidosProd.estado =='confirmado'">
-    <ion-label style="color:black" >Bebida: {{pedidosProd.nombreProducto}}  Cantidad: {{pedidosProd.cantidad}}</ion-label>
+    <ion-label style="color:black" >Comida: {{pedidosProd.nombreProducto}}  Cantidad: {{pedidosProd.cantidad}}</ion-label>
     <ion-button fill="outline" (click)="prepararProducto(pedidosProd)">Preparar</ion-button>
   </ion-item>
 </div>

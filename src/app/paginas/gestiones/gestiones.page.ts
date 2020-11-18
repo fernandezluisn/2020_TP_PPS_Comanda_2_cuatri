@@ -16,14 +16,19 @@ export class GestionesPage implements OnInit {
 
   idMesaCliente:string;
   mesaCliente:MesaCliente;
+  usuario;
   constructor(private route:Router,public alert: AlertService, private bda:MesaClienteService, private auth:AuthService,
     private pedidoServ:PedidosService) { 
     this.idMesaCliente = JSON.parse(localStorage.getItem('mesaClienteID'));
+    this.usuario = JSON.parse(localStorage.getItem('usuario'));
 
     this.bda.devolverListadoMesas().subscribe(lista=>{
       lista.filter(elem=>{
-        if(elem.id==this.idMesaCliente)
-        this.mesaCliente=elem
+        if(elem.idCliente == this.usuario.id && elem.cerrada == false)
+        {
+        this.mesaCliente=elem;
+        console.log(elem);
+      }
       })
     })
   }
@@ -56,21 +61,39 @@ export class GestionesPage implements OnInit {
   }
 
   estado(){
+    console.log(this.mesaCliente.id);
     let ped:Pedido;
     this.pedidoServ.getPedidos().subscribe(lista=>{
       lista.filter(elem=>{
         if(elem.id_mesa_cliente==this.mesaCliente.id){
           ped=elem;
-        }
+          if(ped.estado=="sconfirmar")
+          this.alert.mensaje("","Su pedido aún no ha sido confirmado")
+          else if(ped.estado=="confirmado")
+          this.alert.mensaje("","Su pedido está siendo elaborado")
+          else if(ped.estado=="terminado")
+          this.alert.mensaje("","Su pedido ya está listo")
+              }
       })
+    
     })
-    if(ped.estado=="sconfirmar")
-    this.alert.mensaje("","Su pedido aún no ha sido confirmado")
-    else if(ped.estado=="confirmado")
-    this.alert.mensaje("","Su pedido está siendo elaborado")
-    else if(ped.estado=="terminado")
-    this.alert.mensaje("","Su pedido ya está listo")
+
   }
+
+  pedirCuenta()
+  {
+    if(localStorage.getItem('Sonido') == 'true')
+    {
+      let audio = new Audio();
+      audio.src = '../assets/click.m4a';
+      audio.load();
+      audio.play();
+    }
+  this.route.navigate(['/cuenta-cliente']);
+  }
+
+  
+
 
   volver(){
     this.route.navigate(["mesa-cliente"])

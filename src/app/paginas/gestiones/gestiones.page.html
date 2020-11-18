@@ -36,8 +36,15 @@
         <ion-icon name="home"></ion-icon>
         <h2>Volver a la home</h2>
         </ion-card>
-
-      <ion-button class="apagar" color="dark" (click)="salir()">
+      
+      
+        <ion-card class="ion-activatable" (click)="this.pedirCuenta()">
+          <ion-ripple-effect></ion-ripple-effect>
+          <ion-icon name="list" ></ion-icon>
+          <h2>Pedir cuenta</h2>
+          </ion-card>
+          
+          <ion-button class="apagar" color="dark" (click)="salir()">
         <ion-icon name="power"></ion-icon>
       </ion-button>
 </ion-content>
