@@ -43,7 +43,7 @@
 | M | Hacer reserva | Hecho | Fernández |
 | N | Realizar pedido direccion | Pendiente |  | 
 | O | Chat delivery | Pendiente | | 
-| P | Juego descuento | Pendiente | Fernández | 
+| P | Juego descuento | Hecho | Fernández | 
 
 
 <h3>Diagrama código Qr (mesa)</h3><br><br>
@@ -104,8 +104,8 @@ Mesa 4:<br>
 |  | Alfa | Beta | Gammaa 
 |---|---|---|---|
 | Tareas | correcciones <br> Juego | correcciones | correcciones | 
-| Fecha inicio | 7/11 | 7/11 | 7/11 | 
-| Fecha finalizaciíon | 14/11 | 14/11 | 14/11 | 
+| Fecha inicio | 15/11 | 15/11 | 15/11 | 
+| Fecha finalizaciíon | 22/11 | 22/11 | 22/11 | 
 
 <h2>
   Guía de uso :computer:
